@@ -34,14 +34,14 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.S))
             players[0].transform.Translate(Vector3.back * speed * Time.deltaTime);
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+       /* if (Input.GetKey(KeyCode.LeftArrow))
             players[1].transform.Translate(Vector3.left * speed * Time.deltaTime);
         if (Input.GetKey(KeyCode.RightArrow))
             players[1].transform.Translate(Vector3.right * speed * Time.deltaTime);
         if (Input.GetKey(KeyCode.UpArrow))
             players[1].transform.Translate(Vector3.forward * speed * Time.deltaTime);
         if (Input.GetKey(KeyCode.DownArrow))
-            players[1].transform.Translate(Vector3.back * speed * Time.deltaTime);
+            players[1].transform.Translate(Vector3.back * speed * Time.deltaTime);*/
     }
 
     void Jump(float forceJump)
