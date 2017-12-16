@@ -6,9 +6,10 @@ using UnityEngine.AI;
 public class NPCScript : MonoBehaviour {
 
 	public Rigidbody[] rbPlayers;
-	private float player1dis;
+	public float player1dis;
 	private float player2dis;
 	private bool canNav = false;
+	public float dis = 15F;
 
 	[SerializeField]
 	//Transform _destination;
@@ -43,14 +44,18 @@ public class NPCScript : MonoBehaviour {
 	private void SetDestination(){
 		Vector3 targetVector;
 		player1dis = Vector3.Distance(rbPlayers[0].transform.position, transform.position);
-		targetVector = rbPlayers[0].transform.position;
+		if (player1dis <= dis) {
+			targetVector = rbPlayers [0].transform.position;
+			_navMeshAgent.SetDestination (targetVector);
+		}
+		 
 		//player2dis = Vector3.Distance(rbPlayers[1].transform.position, transform.position);
 		//if(player1dis < player2dis) targetVector = rbPlayers[0].transform.position;
 		//else if(player2dis < player1dis) targetVector = rbPlayers[1].transform.position;
 
 		//if (_destination != null) {
 			//Vector3 targetVector = _destination.transform.position;
-			_navMeshAgent.SetDestination (targetVector);
+
 		//}
 	}
 
