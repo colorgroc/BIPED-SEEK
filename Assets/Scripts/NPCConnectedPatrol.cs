@@ -19,7 +19,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	ConnectedWaypoint _previousWaypoint;
 	public GameObject[] allWaypoints;
 
-	public Transform playerTarget;
+	public GameObject playerTarget;
 
 	bool _travelling;
 	bool waiting;
