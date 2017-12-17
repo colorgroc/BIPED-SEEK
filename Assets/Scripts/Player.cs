@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	public float speed;
+	float distToGround;
 	public float speedRotation;
 	public GameObject[] players;
 	public float jumpSpeed = 100.0F;
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour {
 	void Start()
 	{
 
-
+		distToGround = this.gameObject.GetComponent<Collider> ().bounds.extents.y;
 		/*timePast1 = 0;
 		timePast2 = 0;
 		timePast3 = 0;
@@ -68,6 +69,12 @@ public class Player : MonoBehaviour {
 			transform.Translate (0, 0, y * speed);
 			transform.Rotate (0, x * speedRotation, 0);
 
+			if (Input.GetKeyDown(KeyCode.RightControl) && isGrounded())
+			{
+				GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
+
+			}
+
 			if (Input.GetKeyDown (KeyCode.P)) {
 				Debug.Log ("Kill");
 			}
@@ -78,60 +85,17 @@ public class Player : MonoBehaviour {
 			transform.Translate (0, 0, y * speed);
 			transform.Rotate (0, x * speedRotation, 0);
 
-			if (Input.GetKeyDown (KeyCode.E)) {
+			if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded())
+			{
+				GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
 
+			}
+
+			if (Input.GetKeyDown (KeyCode.E)) {
+				Debug.Log ("Kill");
 			}
 		}
-
-		/*if (this.gameObject.tag.Equals ("Player 1")) {
-			if (detected1) {
-				this.gameObject.GetComponent<Light> ().enabled = true;
-				timePast1 += Time.deltaTime;
-				if (timePast1 > 5) {
-					detected1 = false;
-				}
-
-			} else if(!detected1) {
-				this.gameObject.GetComponent<Light> ().enabled = false;
-				timePast1 = 0;
-			}
-		} else if (this.gameObject.tag.Equals ("Player 2")) {
-			if (detected2) {
-				this.gameObject.GetComponent<Light> ().enabled = true;
-				timePast2 += Time.deltaTime;
-				if (timePast2 > 5) {
-					detected2 = false;
-
-				}
-
-			} else if(!detected2) {
-				this.gameObject.GetComponent<Light> ().enabled = false;
-				timePast2 = 0;
-			}
-		}else if (this.gameObject.tag.Equals ("Player 3")) {
-			if (detected3) {
-				this.gameObject.GetComponent<Light> ().enabled = true;
-				timePast3 += Time.deltaTime;
-				if (timePast3 > 5)
-					detected3 = false;
-
-			} else if(!detected3){
-				this.gameObject.GetComponent<Light> ().enabled = false;
-				timePast3 = 0;
-			}
-		}else if (this.gameObject.tag.Equals ("Player 4")) {
-			if (detected4) {
-				this.gameObject.GetComponent<Light> ().enabled = true;
-				timePast4 += Time.deltaTime;
-				if (timePast4 > 5)
-					detected4 = false;
-
-			} else if(!detected4) {
-				this.gameObject.GetComponent<Light> ().enabled = false;
-				timePast4 = 0;
-			}
-		}*/
-
+			
 		if (this.gameObject.tag.Equals ("Player 1")) {
 			if (ControlScript.detected1) {
 				this.gameObject.GetComponent<Light> ().enabled = true;
@@ -185,17 +149,6 @@ public class Player : MonoBehaviour {
 
 
 
-	void Jump(float forceJump)
-	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			GetComponent<Rigidbody>().AddForce(0, forceJump, 0, ForceMode.Impulse);
-
-			// Debug.Log("salt");
-		}
-	}
-
-
 	public void Kill(GameObject gO){
 		if (gO.gameObject.tag.Equals ("Guard") || gO.gameObject.tag.Equals ("Killler Guards")) {
 			Destroy (gO);
@@ -233,13 +186,17 @@ public class Player : MonoBehaviour {
 		isDead = false;
 
 	}
-	/*void OnCollisionEnter(Collision collision){
-		if (collision.gameObject.layer == 8)) {
+	void OnCollisionEnter(Collision collision){
+		if (collision.gameObject.tag.Equals("Killzone")) {
 			//_waypointsVisited++;
-			collision.gameObject.SetActive (false);
-			collision.gameObject.GetComponent<Player>().Respawn();
+			this.gameObject.SetActive (false);
+			Respawn (this.gameObject);
 
 		}
-	}*/
+	}
+
+	bool isGrounded(){
+		return Physics.Raycast (transform.position, -Vector3.up, distToGround + 0.1f);
+	}
 
 }
