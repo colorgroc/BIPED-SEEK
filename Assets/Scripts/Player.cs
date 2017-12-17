@@ -10,25 +10,10 @@ public class Player : MonoBehaviour {
 	public float speedRotation;
 	public GameObject[] players;
 	public float jumpSpeed = 100.0F;
-	/*[HideInInspector]
-	public bool detected1;
-	[HideInInspector]
-	public bool detected2;
-	[HideInInspector]
-	public bool detected3;
-	[HideInInspector]
-	public bool detected4;
 
-	public bool onFieldView_1;
-	public bool onFieldView_2;
-	public bool onFieldView_3;
-	public bool onFieldView_4;*/
 
 	public GameObject target;
-	/*private float timePast1;
-	private float timePast2;
-	private float timePast3;
-	private float timePast4;*/
+
 	public bool isDead;
 	private float count;
 
@@ -42,10 +27,7 @@ public class Player : MonoBehaviour {
 	{
 
 		distToGround = this.gameObject.GetComponent<Collider> ().bounds.extents.y;
-		/*timePast1 = 0;
-		timePast2 = 0;
-		timePast3 = 0;
-		timePast4 = 0;*/
+
 		 
 		this.gameObject.GetComponent<Light> ().enabled = false;
 
@@ -76,7 +58,7 @@ public class Player : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown (KeyCode.P)) {
-				Debug.Log ("Kill");
+				ControlScript.player_1_WannaKill = true;
 			}
 
 		} else if (this.gameObject.tag.Equals ("Player 2")) {
@@ -92,7 +74,7 @@ public class Player : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown (KeyCode.E)) {
-				Debug.Log ("Kill");
+				ControlScript.player_2_WannaKill = true;
 			}
 		}
 			
@@ -150,7 +132,8 @@ public class Player : MonoBehaviour {
 
 
 	public void Kill(GameObject gO){
-		if (gO.gameObject.tag.Equals ("Guard") || gO.gameObject.tag.Equals ("Killler Guards")) {
+		Debug.Log ("Kill");
+		/*if (gO.gameObject.tag.Equals ("Guard") || gO.gameObject.tag.Equals ("Killer Guards")) {
 			Destroy (gO);
 			//puntuacio -100;
 		}else if(gO.gameObject.layer == 8 && gO != ControlScript.objective){
@@ -160,7 +143,7 @@ public class Player : MonoBehaviour {
 			//puntuacio +200;
 			//recalcular objectiu
 			//avisar del nou objectiu
-		}
+		}*/
 	}
 
 

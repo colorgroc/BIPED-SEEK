@@ -33,177 +33,6 @@ public class FieldOfView : MonoBehaviour {
 		}
 	}
 
-	/*void FindVisibleTargets() {
-		visibleTargets.Clear ();
-		Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
-
-		for (int i = 0; i < targetsInViewRadius.Length; i++) {
-			//Transform target = targetsInViewRadius [i].transform;
-			//Vector3 dirToTarget = (target.position - transform.position).normalized;
-			GameObject target = targetsInViewRadius [i].transform.gameObject;
-			Vector3 dirToTarget = (target.transform.position - transform.position).normalized;
-			if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
-				float dstToTarget = Vector3.Distance (transform.position, target.transform.position);
-
-				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
-					visibleTargets.Add (target);
-					if (this.gameObject.tag.Equals ("Killer Guards")) {
-						this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = true;
-						this.gameObject.GetComponent<NPCConnectedPatrol> ().playerTarget = target;
-
-					} else if (this.gameObject.tag.Equals("Player 1")) {
-						if(target.gameObject.tag.Equals("Player 2")) GameObject.FindGameObjectWithTag("Player 2").gameObject.GetComponent<Player> ().detected2 = true;
-						if(target.gameObject.tag.Equals("Player 3")) GameObject.FindGameObjectWithTag("Player 3").gameObject.GetComponent<Player> ().detected3 = true;
-						if(target.gameObject.tag.Equals("Player 4")) GameObject.FindGameObjectWithTag("Player 4").gameObject.GetComponent<Player> ().detected4 = true;
-
-						target.gameObject.GetComponent<Player> ().target = target;
-
-					} else if (this.gameObject.tag.Equals("Player 2")) {
-						if(target.gameObject.tag.Equals("Player 1")) target.gameObject.GetComponent<Player> ().detected1 = true;
-						if(target.gameObject.tag.Equals("Player 3")) target.gameObject.GetComponent<Player> ().detected3 = true;
-						if(target.gameObject.tag.Equals("Player 4")) target.gameObject.GetComponent<Player> ().detected4 = true;
-
-						target.gameObject.GetComponent<Player> ().target = target;
-
-					} else if (this.gameObject.tag.Equals("Player 3")) {
-						if(target.gameObject.tag.Equals("Player 1")) target.gameObject.GetComponent<Player> ().detected1 = true;
-						if(target.gameObject.tag.Equals("Player 2")) target.gameObject.GetComponent<Player> ().detected2 = true;
-						if(target.gameObject.tag.Equals("Player 4")) target.gameObject.GetComponent<Player> ().detected4 = true;
-
-						target.gameObject.GetComponent<Player> ().target = target;
-
-					}else if (this.gameObject.tag.Equals("Player 4")) {
-						if(target.gameObject.tag.Equals("Player 1")) target.gameObject.GetComponent<Player> ().detected1 = true;
-						if(target.gameObject.tag.Equals("Player 2")) target.gameObject.GetComponent<Player> ().detected2 = true;
-						if(target.gameObject.tag.Equals("Player 3")) target.gameObject.GetComponent<Player> ().detected3 = true;
-
-						target.gameObject.GetComponent<Player> ().target = target;
-					}
-
-				} else { 
-					if (this.gameObject.tag.Equals ("Killer Guards")) {
-						this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
-					}else if(this.gameObject.tag.Equals("Player 1")){
-						if (target.gameObject.tag.Equals ("Player 2")) {
-							GameObject.FindGameObjectWithTag("Player 2").gameObject.GetComponent<Player> ().detected2 = false;
-							//target.gameObject.GetComponent<Player> ().timePast2 = 0;
-						}
-						if (target.gameObject.tag.Equals ("Player 3")) {
-							target.gameObject.GetComponent<Player> ().detected3 = false;
-							//target.gameObject.GetComponent<Player> ().timePast3 = 0;
-						}
-						if (target.gameObject.tag.Equals ("Player 4")) {
-							target.gameObject.GetComponent<Player> ().detected4 = false;
-							//target.gameObject.GetComponent<Player> ().timePast4 = 0;
-						}
-
-					}else if(this.gameObject.tag.Equals("Player 2")){
-
-						if (target.gameObject.tag.Equals ("Player 1")) {
-							target.gameObject.GetComponent<Player> ().detected1 = false;
-							//target.gameObject.GetComponent<Player> ().timePast1 = 0;
-						}
-						if (target.gameObject.tag.Equals ("Player 3")) {
-							target.gameObject.GetComponent<Player> ().detected3 = false;
-							//target.gameObject.GetComponent<Player> ().timePast3 = 0;
-						}
-						if (target.gameObject.tag.Equals ("Player 4")) {
-							target.gameObject.GetComponent<Player> ().detected4 = false;
-							//target.gameObject.GetComponent<Player> ().timePast4 = 0;
-						}
-
-					} else if(this.gameObject.tag.Equals("Player 3")){
-						if (target.gameObject.tag.Equals ("Player 1")) {
-							target.gameObject.GetComponent<Player> ().detected1 = false;
-							//target.gameObject.GetComponent<Player> ().timePast1 = 0;
-						}
-						if (target.gameObject.tag.Equals ("Player 2")) {
-							target.gameObject.GetComponent<Player> ().detected2 = false;
-							//target.gameObject.GetComponent<Player> ().timePast2 = 0;
-						}
-						if (target.gameObject.tag.Equals ("Player 4")) {
-							target.gameObject.GetComponent<Player> ().detected4 = false;
-							//target.gameObject.GetComponent<Player> ().timePast4 = 0;
-						}
-
-					}else if(this.gameObject.tag.Equals("Player 4")){
-						if (target.gameObject.tag.Equals ("Player 1")) {
-							target.gameObject.GetComponent<Player> ().detected1 = false;
-							//target.gameObject.GetComponent<Player> ().timePast1 = 0;
-						}
-						if (target.gameObject.tag.Equals ("Player 2")) {
-							target.gameObject.GetComponent<Player> ().detected2 = false;
-							//target.gameObject.GetComponent<Player> ().timePast2 = 0;
-						}
-						if (target.gameObject.tag.Equals ("Player 3")) {
-							target.gameObject.GetComponent<Player> ().detected3 = false;
-							//target.gameObject.GetComponent<Player> ().timePast3 = 0;
-						}
-					}
-				}
-
-			} else {
-				if (this.gameObject.tag.Equals ("Killer Guards")) {
-					this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
-				}else if(this.gameObject.tag.Equals("Player 1")){
-					if (target.gameObject.tag.Equals ("Player 2")) {
-						GameObject.FindGameObjectWithTag("Player 2").gameObject.GetComponent<Player> ().detected2 = false;
-						//target.gameObject.GetComponent<Player> ().timePast2 = 0;
-					}
-					if (target.gameObject.tag.Equals ("Player 3")) {
-						target.gameObject.GetComponent<Player> ().detected3 = false;
-						//target.gameObject.GetComponent<Player> ().timePast3 = 0;
-					}
-					if (target.gameObject.tag.Equals ("Player 4")) {
-						target.gameObject.GetComponent<Player> ().detected4 = false;
-						//target.gameObject.GetComponent<Player> ().timePast4 = 0;
-					}
-
-				}else if(this.gameObject.tag.Equals("Player 2")){
-					if (target.gameObject.tag.Equals ("Player 1")) {
-						target.gameObject.GetComponent<Player> ().detected1 = false;
-						//target.gameObject.GetComponent<Player> ().timePast1 = 0;
-					}
-					if (target.gameObject.tag.Equals ("Player 3")) {
-						target.gameObject.GetComponent<Player> ().detected3 = false;
-						//target.gameObject.GetComponent<Player> ().timePast3 = 0;
-					}
-					if (target.gameObject.tag.Equals ("Player 4")) {
-						target.gameObject.GetComponent<Player> ().detected4 = false;
-						//target.gameObject.GetComponent<Player> ().timePast4 = 0;
-					}
-
-				}else if(this.gameObject.tag.Equals("Player 3")){
-					if (target.gameObject.tag.Equals ("Player 1")) {
-						target.gameObject.GetComponent<Player> ().detected1 = false;
-						//target.gameObject.GetComponent<Player> ().timePast1 = 0;
-					}
-					if (target.gameObject.tag.Equals ("Player 2")) {
-						target.gameObject.GetComponent<Player> ().detected2 = false;
-						//target.gameObject.GetComponent<Player> ().timePast2 = 0;
-					}
-					if (target.gameObject.tag.Equals ("Player 4")) {
-						target.gameObject.GetComponent<Player> ().detected4 = false;
-						//target.gameObject.GetComponent<Player> ().timePast4 = 0;
-					}
-
-				}else if(this.gameObject.tag.Equals("Player 4")){
-					if (target.gameObject.tag.Equals ("Player 1")) {
-						target.gameObject.GetComponent<Player> ().detected1 = false;
-						//target.gameObject.GetComponent<Player> ().timePast1 = 0;
-					}
-					if (target.gameObject.tag.Equals ("Player 2")) {
-						target.gameObject.GetComponent<Player> ().detected2 = false;
-						//target.gameObject.GetComponent<Player> ().timePast2 = 0;
-					}
-					if (target.gameObject.tag.Equals ("Player 3")) {
-						target.gameObject.GetComponent<Player> ().detected3 = false;
-						//target.gameObject.GetComponent<Player> ().timePast3 = 0;
-					}
-				}
-			}
-		}
-	}*/
 
 	void FindVisibleTargets() {
 		visibleTargets.Clear ();
@@ -218,11 +47,21 @@ public class FieldOfView : MonoBehaviour {
 				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
 					visibleTargets.Add (target);
 					if (this.gameObject.tag.Equals("Player 1")) {
-						if(target.gameObject.tag.Equals("Player 2")) ControlScript.detected2 = true;
-						if(target.gameObject.tag.Equals("Player 3")) ControlScript.detected3 = true;
-						if(target.gameObject.tag.Equals("Player 4")) ControlScript.detected4 = true;
-
-						target.gameObject.GetComponent<Player> ().target = target;
+						if (target.gameObject.tag.Equals ("Player 2")) {
+							ControlScript.detected2 = true;
+							target.gameObject.GetComponent<Player> ().target = target;
+						} else if (target.gameObject.tag.Equals ("Player 3")) {
+							ControlScript.detected3 = true;
+							target.gameObject.GetComponent<Player> ().target = target;
+						} else if (target.gameObject.tag.Equals ("Player 4")) {
+							ControlScript.detected4 = true;
+							target.gameObject.GetComponent<Player> ().target = target;
+						} else {
+							if (ControlScript.player_1_WannaKill) {
+								this.gameObject.GetComponent<Player> ().Kill (target.gameObject);
+								ControlScript.player_1_WannaKill = false;
+							}
+						}
 
 					} else if (this.gameObject.tag.Equals("Player 2")) {
 						if(target.gameObject.tag.Equals("Player 1")) ControlScript.detected1 = true;
@@ -230,6 +69,11 @@ public class FieldOfView : MonoBehaviour {
 						if(target.gameObject.tag.Equals("Player 4")) ControlScript.detected4 = true;
 
 						target.gameObject.GetComponent<Player> ().target = target;
+
+						if (ControlScript.player_2_WannaKill && dstToTarget < 5) {
+							this.gameObject.GetComponent<Player> ().Kill (target.gameObject);
+							ControlScript.player_2_WannaKill = false;
+						}
 
 					} else if (this.gameObject.tag.Equals("Player 3")) {
 						if(target.gameObject.tag.Equals("Player 1")) ControlScript.detected1 = true;

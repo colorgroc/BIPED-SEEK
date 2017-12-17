@@ -12,6 +12,11 @@ public class ControlScript: MonoBehaviour{
 	//[HideInInspector]
 	public static bool detected4;
 
+	public static bool player_1_WannaKill;
+	public static bool player_2_WannaKill;
+	public static bool player_3_WannaKill;
+	public static bool player_4_WannaKill;
+
 	public static bool onFieldView_1;
 	public static bool onFieldView_2;
 	public static bool onFieldView_3;
