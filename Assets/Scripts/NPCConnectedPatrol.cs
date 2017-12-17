@@ -24,8 +24,13 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	bool _travelling;
 	bool waiting;
 	public bool playerOnFieldView;
+
 	float _waitTimer;
 	int _waypointsVisited;
+	Player player;
+
+	public bool isDead;
+	public float count;
 
 
 	// Use this for initialization
@@ -53,6 +58,24 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void Update () {
+		/*if (isDead) {
+			//this.enabled = false;
+			count += Time.deltaTime;
+			if (count >= 3) {
+				player.gameObject.SetActive (true);
+			}
+			//StartCoroutine (Respawn (random, 3));
+			//Invoke ("Respawn", 3);
+		}*/
+		/*if (isDead) {
+			count += Time.deltaTime;
+			if (count >= 3) {
+				count = 0;
+				isDead = false;
+
+			}
+		}*/
+
 		if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
 			_travelling = false;
 			_waypointsVisited++;
@@ -72,6 +95,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		}
 		if (playerOnFieldView) {
 			ChacePlayer (playerTarget.transform.position);
+			//Debug.Log ("chacing");
 		}
 	}
 
@@ -90,16 +114,22 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		_navMeshAgent.SetDestination (targetVector);
 	}
 	void OnCollisionEnter(Collision collision){
-		if (collision.gameObject.tag.Equals("Guard")) {
+		if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards")) {
 			//_waypointsVisited++;
 			SetDestination ();
 		}
-	}
-	void OnCollisionStay(Collision collision){
-		//Debug.Log ("Stay");
-		if (collision.gameObject.tag.Equals ("Guard")) {
+		if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8) {
+			//collision.gameObject.GetComponent<Player> ().isDead = true;
+			//player = collision.gameObject.GetComponent<Player> ();
+			collision.gameObject.SetActive (false);
+			//isDead = collision.gameObject.GetComponent<Player> ().isDead;
+			collision.gameObject.GetComponent<Player> ().Respawn (collision.gameObject);
+			//this.playerOnFieldView = false;
+
+			//Invoke ("collision.gameObject.GetComponent<Player> ().Respawn", 3);
 			//_waypointsVisited++;
-			SetDestination ();
+			//collision.gameObject.GetComponent<Respawn>()
 		}
 	}
+
 }

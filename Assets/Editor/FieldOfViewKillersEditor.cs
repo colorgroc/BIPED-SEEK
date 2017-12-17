@@ -2,12 +2,12 @@
 using System.Collections;
 using UnityEditor;
 
-[CustomEditor (typeof (FieldOfView))]
+[CustomEditor (typeof (FieldOfViewKillers))]
 [CanEditMultipleObjects]
-public class FieldOfViewEditor : Editor {
+public class FieldOfViewKillersEditor: Editor {
 
 	void OnSceneGUI() {
-		FieldOfView fow = (FieldOfView)target;
+		FieldOfViewKillers fow = (FieldOfViewKillers)target;
 		Handles.color = Color.white;
 		Handles.DrawWireArc (fow.transform.position, Vector3.up, Vector3.forward, 360, fow.viewRadius);
 		Vector3 viewAngleA = fow.DirFromAngle (-fow.viewAngle / 2, false);
@@ -24,5 +24,4 @@ public class FieldOfViewEditor : Editor {
 			Handles.DrawLine (fow.transform.position, visibleTarget.transform.position);
 		}
 	}
-
 }
