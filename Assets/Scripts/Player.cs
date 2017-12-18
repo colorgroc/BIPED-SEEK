@@ -14,9 +14,6 @@ public class Player : MonoBehaviour {
 	[SerializeField]
 	private HUDStat score1;
 
-	[SerializeField]
-	private HUDStat score2;
-
 	public GameObject target;
 
 	public bool isDead;
@@ -34,9 +31,9 @@ public class Player : MonoBehaviour {
 		score1.KillVal = 0;
 		score1.SurvivedVal = 0;
 
-		score2.ScoreVal = 0;
-		score2.KillVal = 0;
-		score2.SurvivedVal = 0;
+		score1.ScoreVal2 = 0;
+		score1.KillVal2 = 0;
+		score1.SurvivedVal2 = 0;
 		distToGround = this.gameObject.GetComponent<Collider> ().bounds.extents.y;
 
 		 
@@ -51,9 +48,9 @@ public class Player : MonoBehaviour {
 			score1.ScoreVal += 10;
 			score1.KillVal += 5;
 			score1.SurvivedVal += 1;
-			score2.ScoreVal += 12;
-			score2.KillVal += 52;
-			score2.SurvivedVal += 31;
+			score1.ScoreVal2 += 12;
+			score1.KillVal2 += 52;
+			score1.SurvivedVal2 += 31;
 		}
 		/*if (isDead) {
 			this.enabled = false;
