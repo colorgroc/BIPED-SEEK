@@ -122,6 +122,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 			//collision.gameObject.GetComponent<Player> ().isDead = true;
 			//player = collision.gameObject.GetComponent<Player> ();
 			collision.gameObject.SetActive (false);
+			FieldOfView.alive = false;
 			//isDead = collision.gameObject.GetComponent<Player> ().isDead;
 			collision.gameObject.GetComponent<Player> ().Respawn (collision.gameObject);
 			//this.playerOnFieldView = false;

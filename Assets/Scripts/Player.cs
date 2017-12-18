@@ -132,18 +132,21 @@ public class Player : MonoBehaviour {
 
 
 	public void Kill(GameObject gO){
-		Debug.Log ("Kill");
-		/*if (gO.gameObject.tag.Equals ("Guard") || gO.gameObject.tag.Equals ("Killer Guards")) {
+		
+		if (gO.gameObject.tag.Equals ("Guard") || gO.gameObject.tag.Equals ("Killer Guards")) {
+			Debug.Log ("Kill Guard");
 			Destroy (gO);
 			//puntuacio -100;
 		}else if(gO.gameObject.layer == 8 && gO != ControlScript.objective){
+			Debug.Log ("Kill player");
 			//puntuacio -50;
 			Respawn(gO);
 		}else if(gO.gameObject.layer == 8 && gO == ControlScript.objective){
+			ControlScript.objComplete = true;
 			//puntuacio +200;
 			//recalcular objectiu
 			//avisar del nou objectiu
-		}*/
+		}
 	}
 
 
@@ -160,6 +163,7 @@ public class Player : MonoBehaviour {
 	}*/
 	public void Respawn(GameObject gO){
 		//yield return new WaitForSeconds (delay);
+		FieldOfView.alive = true;
 		GameObject[] allWaypoints = GameObject.FindGameObjectsWithTag ("Waypoint");
 		int random = UnityEngine.Random.Range (0, allWaypoints.Length);
 		gO.gameObject.transform.position = allWaypoints [random].transform.position;

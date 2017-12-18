@@ -26,10 +26,14 @@ public class ControlScript: MonoBehaviour{
 	public static float timePast2;
 	public static float timePast3;
 	public static float timePast4;
-
-	public static GameObject[] killers;
-
+	[SerializeField]
+	public int numOfPlayers;
+	public static bool objComplete;
+	[SerializeField]
+	public float timeLeft;
+	private float timeStartLeft;
 	public static GameObject objective;
+	public static int random;
 	// Use this for initialization
 	void Start () {
 		timePast1 = 0;
@@ -37,10 +41,37 @@ public class ControlScript: MonoBehaviour{
 		timePast3 = 0;
 		timePast4 = 0;
 
+		timeStartLeft = timeLeft;
+
+		random = UnityEngine.Random.Range (0, numOfPlayers);
+		if (random == 0)
+			objective = GameObject.FindGameObjectWithTag ("Player 1");
+		else if(random == 1)
+			objective = GameObject.FindGameObjectWithTag ("Player 2");
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		timeLeft -= Time.deltaTime;
+
+		if (objComplete) {
+			random = UnityEngine.Random.Range (0, numOfPlayers);
+			if (random == 0)
+				objective = GameObject.FindGameObjectWithTag ("Player 1");
+			else if(random == 1)
+				objective = GameObject.FindGameObjectWithTag ("Player 2");
+			objComplete = false;
+		}
+		if (timeLeft <= 0 && !objComplete) {
+			//posar puntuacions negatives
+			random = UnityEngine.Random.Range (0, numOfPlayers);
+			if (random == 0)
+				objective = GameObject.FindGameObjectWithTag ("Player 1");
+			else if(random == 1)
+				objective = GameObject.FindGameObjectWithTag ("Player 2");
+			timeLeft = timeStartLeft;
+		}
 	}
 }

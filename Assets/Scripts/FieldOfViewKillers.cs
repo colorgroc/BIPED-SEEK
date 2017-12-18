@@ -56,7 +56,7 @@ public class FieldOfViewKillers : MonoBehaviour
 					this.gameObject.GetComponent<NPCConnectedPatrol> ().playerTarget = target;
 					//this.gameObject.GetComponent<KillersProperties>().follow = true;
 				} else { 
-					Debug.Log ("Woha");
+					//Debug.Log ("Woha");
 					//this.gameObject.GetComponent<KillersProperties>().follow = false;
 					this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
 					//this.gameObject.GetComponent<NPCConnectedPatrol> ().playerTarget = null;
