@@ -143,6 +143,7 @@ public class Player : MonoBehaviour {
 			Respawn(gO);
 		}else if(gO.gameObject.layer == 8 && gO == ControlScript.objective){
 			ControlScript.objComplete = true;
+
 			//puntuacio +200;
 			//recalcular objectiu
 			//avisar del nou objectiu
