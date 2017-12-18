@@ -81,6 +81,14 @@ public class ControlScript: MonoBehaviour{
 
 		if (objComplete) {
 			Debug.Log ("Congratulations");
+			if (this.gameObject.tag.Equals ("Player 1")) {
+				Player.score1.KillVal += 1;
+				Player.score1.ScoreVal += 50;
+			}
+			else if (this.gameObject.tag.Equals ("Player 2")) {
+				Player.score1.KillVal2 += 1;
+				Player.score1.ScoreVal += 50;
+			}
 			//Pause (p);
 			random = UnityEngine.Random.Range (0, numOfPlayers);
 			if (random == 0)

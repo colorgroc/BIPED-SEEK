@@ -150,15 +150,26 @@ public class Player : MonoBehaviour {
 		
 		if (gO.gameObject.tag.Equals ("Guard") || gO.gameObject.tag.Equals ("Killer Guards")) {
 			Debug.Log ("Kill Guard");
+			if (this.gameObject.tag.Equals ("Player 1")) {
+				score1.ScoreVal -= 5;
+			}
+			else if (this.gameObject.tag.Equals ("Player 2")) {
+				score1.ScoreVal2 -= 5;
+			}
 			Destroy (gO);
 			//puntuacio -100;
 		}else if(gO.gameObject.layer == 8 && gO != ControlScript.objective){
 			Debug.Log ("Kill player");
+			if (this.gameObject.tag.Equals ("Player 1")) {
+				score1.KillVal += 10;
+			}
+			else if (this.gameObject.tag.Equals ("Player 2")) {
+				score1.KillVal2 += 10;
+			}
 			//puntuacio -50;
 			Respawn(gO);
 		}else if(gO.gameObject.layer == 8 && gO == ControlScript.objective){
 			ControlScript.objComplete = true;
-
 			//puntuacio +200;
 			//recalcular objectiu
 			//avisar del nou objectiu
