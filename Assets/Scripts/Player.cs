@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
 	public float jumpSpeed = 100.0F;
 
 	[SerializeField]
-	private HUDStat score1;
+	public HUDStat score1;
 
 	public GameObject target;
 
