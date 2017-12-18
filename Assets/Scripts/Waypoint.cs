@@ -8,7 +8,7 @@ public class Waypoint : MonoBehaviour {
 	protected float debugDragRadius = 1.0F;
 
 	public virtual void OnDrawGizmos(){
-		Gizmos.color = Color.blue;
+		Gizmos.color = Color.magenta;
 		Gizmos.DrawWireSphere (transform.position, debugDragRadius);
 	}
 }

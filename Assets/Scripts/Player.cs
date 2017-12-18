@@ -164,9 +164,9 @@ public class Player : MonoBehaviour {
 	public void Respawn(GameObject gO){
 		//yield return new WaitForSeconds (delay);
 		FieldOfView.alive = true;
-		GameObject[] allWaypoints = GameObject.FindGameObjectsWithTag ("Waypoint");
-		int random = UnityEngine.Random.Range (0, allWaypoints.Length);
-		gO.gameObject.transform.position = allWaypoints [random].transform.position;
+		GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag ("RespawnPoint");
+		int random = UnityEngine.Random.Range (0, allMyRespawnPoints.Length);
+		gO.gameObject.transform.position = allMyRespawnPoints [random].transform.position;
 		gO.gameObject.SetActive (true);
 		//this.enabled = true;
 		//this.transform.position = pos;

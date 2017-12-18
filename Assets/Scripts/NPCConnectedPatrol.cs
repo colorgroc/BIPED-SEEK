@@ -133,4 +133,13 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		}
 	}
 
+	public void Respawn(GameObject gO){
+		//yield return new WaitForSeconds (delay);
+		GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag ("RespawnPoint");
+		int random = UnityEngine.Random.Range (0, allMyRespawnPoints.Length);
+		gO.gameObject.transform.position = allMyRespawnPoints [random].transform.position;
+		gO.gameObject.SetActive (true);
+
+	}
+
 }
