@@ -58,6 +58,8 @@
      <Compile Include="Assets\Scripts\E01.cs" />
      <Compile Include="Assets\Scripts\FieldOfView.cs" />
      <Compile Include="Assets\Scripts\FieldOfViewKillers.cs" />
+     <Compile Include="Assets\Scripts\HUDScript.cs" />
+     <Compile Include="Assets\Scripts\HUDStat.cs" />
      <Compile Include="Assets\Scripts\KillersProperties.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\NPCConnectedPatrol.cs" />

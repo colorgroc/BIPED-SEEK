@@ -11,6 +11,11 @@ public class Player : MonoBehaviour {
 	public GameObject[] players;
 	public float jumpSpeed = 100.0F;
 
+	[SerializeField]
+	private HUDStat score1;
+
+	[SerializeField]
+	private HUDStat score2;
 
 	public GameObject target;
 
@@ -25,7 +30,13 @@ public class Player : MonoBehaviour {
 
 	void Start()
 	{
+		score1.ScoreVal = 0;
+		score1.KillVal = 0;
+		score1.SurvivedVal = 0;
 
+		score2.ScoreVal = 0;
+		score2.KillVal = 0;
+		score2.SurvivedVal = 0;
 		distToGround = this.gameObject.GetComponent<Collider> ().bounds.extents.y;
 
 		 
@@ -36,7 +47,14 @@ public class Player : MonoBehaviour {
 	void Update()
 	{
 
-
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			score1.ScoreVal += 10;
+			score1.KillVal += 5;
+			score1.SurvivedVal += 1;
+			score2.ScoreVal += 12;
+			score2.KillVal += 52;
+			score2.SurvivedVal += 31;
+		}
 		/*if (isDead) {
 			this.enabled = false;
 			count += Time.deltaTime;
