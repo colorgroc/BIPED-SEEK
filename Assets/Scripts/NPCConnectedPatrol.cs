@@ -118,18 +118,20 @@ public class NPCConnectedPatrol : MonoBehaviour {
 			//_waypointsVisited++;
 			SetDestination ();
 		}
-		if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8) {
-			//collision.gameObject.GetComponent<Player> ().isDead = true;
-			//player = collision.gameObject.GetComponent<Player> ();
-			collision.gameObject.SetActive (false);
-			FieldOfView.alive = false;
-			//isDead = collision.gameObject.GetComponent<Player> ().isDead;
-			collision.gameObject.GetComponent<Player> ().Respawn (collision.gameObject);
-			//this.playerOnFieldView = false;
+		if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != ControlScript.objective) {
+				//collision.gameObject.GetComponent<Player> ().isDead = true;
+				//player = collision.gameObject.GetComponent<Player> ();
+				collision.gameObject.SetActive (false);
+				FieldOfView.alive = false;
+				//isDead = collision.gameObject.GetComponent<Player> ().isDead;
+				collision.gameObject.GetComponent<Player> ().Respawn (collision.gameObject);
+				//this.playerOnFieldView = false;
 
-			//Invoke ("collision.gameObject.GetComponent<Player> ().Respawn", 3);
-			//_waypointsVisited++;
-			//collision.gameObject.GetComponent<Respawn>()
+				//Invoke ("collision.gameObject.GetComponent<Player> ().Respawn", 3);
+				//_waypointsVisited++;
+				//collision.gameObject.GetComponent<Respawn>()
+		}else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == ControlScript.objective){
+			ControlScript.objComplete = true;
 		}
 	}
 

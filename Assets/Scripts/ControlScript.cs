@@ -29,6 +29,7 @@ public class ControlScript: MonoBehaviour{
 	[SerializeField]
 	public int numOfPlayers;
 	public static bool objComplete;
+	public static bool objKilledByGuard;
 	[SerializeField]
 	public float timeLeft;
 	private float timeStartLeft;
@@ -99,6 +100,19 @@ public class ControlScript: MonoBehaviour{
 			else if(random == 1)
 				objective = GameObject.FindGameObjectWithTag ("Player 2");
 			timeLeft = timeStartLeft;
+			foreach (GameObject player in players) {
+				player.GetComponent<Player> ().Respawn (player.gameObject);
+			}
+		}
+		if (objKilledByGuard) {
+			Debug.Log ("U got killed noob!");
+			//Pause (p);
+			random = UnityEngine.Random.Range (0, numOfPlayers);
+			if (random == 0)
+				objective = GameObject.FindGameObjectWithTag ("Player 1");
+			else if(random == 1)
+				objective = GameObject.FindGameObjectWithTag ("Player 2");
+			objKilledByGuard = false;
 			foreach (GameObject player in players) {
 				player.GetComponent<Player> ().Respawn (player.gameObject);
 			}
