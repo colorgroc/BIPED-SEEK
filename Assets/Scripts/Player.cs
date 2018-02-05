@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-
+    
 	// Use this for initialization
 	public float speed;
 	float distToGround;
@@ -21,12 +21,13 @@ public class Player : MonoBehaviour {
 
 	//private GameObject[] allWaypoints;
 	public int random;
-	//private NPCConnectedPatrol npc;
-
+    //private NPCConnectedPatrol npc;
+   // public int scoreGeneral;
 
 
 	void Start()
 	{
+        //this.scoreGeneral = 0;
 		score1.ScoreVal = 0;
 		score1.KillVal = 0;
 		score1.SurvivedVal = 0;
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour {
 	{
 
 		if (Input.GetKeyDown (KeyCode.Q)) {
+            //this.scoreGeneral += 10;
 			score1.ScoreVal += 10;
 			score1.KillVal += 5;
 			score1.SurvivedVal += 1;
@@ -150,6 +152,7 @@ public class Player : MonoBehaviour {
 		
 		if (gO.gameObject.tag.Equals ("Guard") || gO.gameObject.tag.Equals ("Killer Guards")) {
 			Debug.Log ("Kill Guard");
+            
 			if (this.gameObject.tag.Equals ("Player 1")) {
 				score1.ScoreVal -= 5;
 			}

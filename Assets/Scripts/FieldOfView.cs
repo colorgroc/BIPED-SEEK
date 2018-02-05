@@ -13,7 +13,7 @@ public class FieldOfView : MonoBehaviour {
 	public LayerMask targetMask;
 	public LayerMask obstacleMask;
 
-	[HideInInspector]
+    [HideInInspector]
 	//public List<Transform> visibleTargets = new List<Transform>();
 	public List<GameObject> visibleTargets = new List<GameObject>();
 
@@ -22,7 +22,7 @@ public class FieldOfView : MonoBehaviour {
 	void Start() {
 		//targetMask = LayerMask.NameToLayer ("Player");
 		//Debug.Log (targetMask.value);
-
+        
 		viewAngle = 119;
 		viewRadius = 30;
 		StartCoroutine ("FindTargetsWithDelay", .2f);
@@ -54,12 +54,68 @@ public class FieldOfView : MonoBehaviour {
 			if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
 				float dstToTarget = Vector3.Distance (transform.position, target.transform.position);
 
-				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
-					visibleTargets.Add (target);
-					//StartCoroutine (FadeOut (target.gameObject));
-					//FadeOut (target.gameObject);
+                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                {
+                    visibleTargets.Add(target);
+                    //StartCoroutine (FadeOut (target.gameObject));
+                    //FadeOut (target.gameObject);
 
-					if (this.gameObject.tag.Equals("Player 1")) {
+
+                    if (this.gameObject.layer == 8)
+                    {
+                        if (target.gameObject.layer == 8)
+                        {
+                            //ControlScript.detected2 = true;
+                            target.gameObject.GetComponent<PlayerControl>().detected = true;
+                            target.gameObject.GetComponent<PlayerControl>().target = target;
+                            if (this.gameObject.GetComponent<PlayerControl>().wannaKill)
+                            {
+                                visibleTargets.Remove(target);
+                                this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
+                                this.gameObject.GetComponent<PlayerControl>().wannaKill = false;
+                            }
+                        }
+                        else
+                        {
+                            if (this.gameObject.GetComponent<PlayerControl>().wannaKill)
+                            {
+                                visibleTargets.Remove(target);
+                                this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
+                                this.gameObject.GetComponent<PlayerControl>().wannaKill = false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+
+                    if (this.gameObject.layer == 8 && target.gameObject.layer == 8)
+                    {
+
+                        foreach (GameObject player in NewControl.players)
+                        {
+                            if(player.gameObject != this.gameObject)
+                                player.GetComponent<PlayerControl>().detected = false;
+                        }
+
+                    }
+                }
+
+            }
+            else
+            {
+                if (this.gameObject.layer == 8 && target.gameObject.layer == 8)
+                {
+                    foreach (GameObject player in NewControl.players)
+                    {
+                        if (player.gameObject != this.gameObject)
+                            player.GetComponent<PlayerControl>().detected = false;
+                    }
+
+                }
+            }
+
+                    /*if (this.gameObject.tag.Equals("Player 1")) {
 						if (target.gameObject.tag.Equals ("Player 2")) {
 							ControlScript.detected2 = true;
 							target.gameObject.GetComponent<Player> ().target = target;
@@ -256,9 +312,9 @@ public class FieldOfView : MonoBehaviour {
 						ControlScript.detected3 = false;
 						//target.gameObject.GetComponent<Player> ().timePast3 = 0;
 					}
-				}
+				}*/
 
-			}
+            
 
 		}
 

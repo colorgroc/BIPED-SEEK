@@ -36,7 +36,7 @@ public class ControlScript: MonoBehaviour{
 	public static GameObject objective;
 	public  GameObject showObjective;
 	public static int random;
-	public List<GameObject> players = new List<GameObject>();
+	public List<GameObject> playersControl = new List<GameObject>();
 	public GameObject[] guards;
 	public GameObject[] killers;
 	// Use this for initialization
@@ -46,15 +46,15 @@ public class ControlScript: MonoBehaviour{
 		timePast3 = 0;
 		timePast4 = 0;
 		if (numOfPlayers == 2) {
-			players.Add (GameObject.FindGameObjectWithTag ("Player 1"));
-			players.Add (GameObject.FindGameObjectWithTag ("Player 2"));
+			playersControl.Add (GameObject.FindGameObjectWithTag ("Player 1"));
+			playersControl.Add (GameObject.FindGameObjectWithTag ("Player 2"));
 		}
 		guards = GameObject.FindGameObjectsWithTag("Guard");
 		killers = GameObject.FindGameObjectsWithTag("Killer Guards");
 			
 		timeStartLeft = timeLeft;
 
-		foreach (GameObject player in players) {
+		foreach (GameObject player in playersControl) {
 			player.GetComponent<Player> ().Respawn (player.gameObject);
 		}
 
@@ -96,7 +96,7 @@ public class ControlScript: MonoBehaviour{
 			else if(random == 1)
 				objective = GameObject.FindGameObjectWithTag ("Player 2");
 			objComplete = false;
-			foreach (GameObject player in players) {
+			foreach (GameObject player in playersControl) {
 				player.GetComponent<Player> ().Respawn (player.gameObject);
 			}
 		}
@@ -108,7 +108,7 @@ public class ControlScript: MonoBehaviour{
 			else if(random == 1)
 				objective = GameObject.FindGameObjectWithTag ("Player 2");
 			timeLeft = timeStartLeft;
-			foreach (GameObject player in players) {
+			foreach (GameObject player in playersControl) {
 				player.GetComponent<Player> ().Respawn (player.gameObject);
 			}
 		}
@@ -121,7 +121,7 @@ public class ControlScript: MonoBehaviour{
 			else if(random == 1)
 				objective = GameObject.FindGameObjectWithTag ("Player 2");
 			objKilledByGuard = false;
-			foreach (GameObject player in players) {
+			foreach (GameObject player in playersControl) {
 				player.GetComponent<Player> ().Respawn (player.gameObject);
 			}
 		}
