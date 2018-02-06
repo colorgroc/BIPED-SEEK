@@ -27,7 +27,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
 	float _waitTimer;
 	int _waypointsVisited;
-	Player player;
+	//Player player;
 
 	public bool isDead;
 	public float count;
@@ -117,14 +117,14 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards")) {
 			SetDestination ();
 		}
-		if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != ControlScript.objective) {
+	if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
 
 				collision.gameObject.SetActive (false);
-				FieldOfView.alive = false;
-				collision.gameObject.GetComponent<Player> ().Respawn (collision.gameObject);
+				collision.gameObject.GetComponent<FieldOfView> ().alive = false;
+				collision.gameObject.GetComponent<PlayerControl> ().Respawn (collision.gameObject);
 
-		}else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == ControlScript.objective){
-			ControlScript.objKilledByGuard = true;
+	}else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
+		NewControl.objKilledByGuard = true;
 		}
 	}
 

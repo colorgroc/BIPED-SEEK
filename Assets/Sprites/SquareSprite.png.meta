@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: b5e1bb35d7cf25f438ef9b0dd7dc24eb
-timeCreated: 1513562410
+timeCreated: 1517871000
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: SquareSprite_0
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -40,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -74,10 +75,52 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
+    sprites:
+    - serializedVersion: 2
+      name: SquareSprite_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 105
+        width: 362
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: 184, y: 106}
+      - {x: 182, y: 108}
+      - {x: -178, y: 108}
+      - {x: -182, y: 104}
+      - {x: -182, y: -103}
+      - {x: -179, y: -107}
+      - {x: 180, y: -107}
+      - {x: 182, y: -106}
+      - {x: 183, y: -103}
+      - {x: 184, y: 102}
     physicsShape: []
   spritePackingTag: 
   userData: 

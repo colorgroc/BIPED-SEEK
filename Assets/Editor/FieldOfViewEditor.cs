@@ -21,7 +21,8 @@ public class FieldOfViewEditor : Editor {
 			Handles.DrawLine (fow.transform.position, visibleTarget.position);
 		}*/
 		foreach (GameObject visibleTarget in fow.visibleTargets) {
-			Handles.DrawLine (fow.transform.position, visibleTarget.transform.position);
+			if(visibleTarget != null)
+				Handles.DrawLine (fow.transform.position, visibleTarget.transform.position);
 		}
 	}
 

@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerControl : MonoBehaviour {
     public float speed;
     float distToGround;
     public float speedRotation;
     public float jumpSpeed = 100.0F;
 
-    [SerializeField]
-    public HUDStat score1;
-
-    public GameObject target;
-
-    public bool isDead;
+	public int playerID;
+   // public bool isDead;
     private float count;
 
     //private GameObject[] allWaypoints;
@@ -26,11 +23,17 @@ public class PlayerControl : MonoBehaviour {
     public bool onFieldView;
     public float timePast;
     public bool detected;
+	public GameObject player_New;
 
+	public PlayerControl(int id, int score, int kills, int saveds){
+		this.scoreGeneral = score;
+		this.scoreKills = kills;
+		this.scoreSurvived = saveds;
+		this.playerID = id;
+	}
+		
     // Use this for initialization
     void Start () {
-        this.scoreGeneral = 0;
-        
         distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
         this.gameObject.GetComponent<Light>().enabled = false;
     }
@@ -69,6 +72,7 @@ public class PlayerControl : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.P))
             {
+				//Debug.Log("Killig");
                 this.wannaKill = true;
                // ControlScript.player_1_WannaKill = true;
             }
@@ -122,13 +126,15 @@ public class PlayerControl : MonoBehaviour {
         else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
         {
             Debug.Log("Kill player");
-            this.scoreKills += 10;
+			this.scoreGeneral += 30;
+			this.scoreKills += 1;
             //puntuacio -50;
             Respawn(gO);
         }
         else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
         {
             NewControl.objComplete = true;
+			NewControl.parcialWinner = this.gameObject;
             //puntuacio +200;
             //recalcular objectiu
             //avisar del nou objectiu
@@ -138,16 +144,19 @@ public class PlayerControl : MonoBehaviour {
 
     public void Respawn(GameObject gO)
     {
-        //yield return new WaitForSeconds (delay);
-        FieldOfView.alive = true;
+        
+		/*this.gameObject.GetComponent<FieldOfView>().alive = true;
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
         gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
         gO.gameObject.SetActive(true);
-        //this.enabled = true;
-        //this.transform.position = pos;
         this.isDead = false;
-
+		*/
+		//this.gameObject.GetComponent<FieldOfView>().alive = true;
+		GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+		int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+		GameObject playerNew = Instantiate (player_New, allMyRespawnPoints [random].transform);
+		Destroy (gO);
     }
     void OnCollisionEnter(Collision collision)
     {
