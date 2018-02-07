@@ -133,7 +133,14 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag ("RespawnPoint");
 		int random = UnityEngine.Random.Range (0, allMyRespawnPoints.Length);
 		gO.gameObject.transform.position = allMyRespawnPoints [random].transform.position;
-		gO.gameObject.SetActive (true);
+        if (this.gameObject.tag.Equals("Killer Guards")) {
+            gO.gameObject.transform.parent = GameObject.Find("Killer Guards").transform;
+        }
+        else if (this.gameObject.tag.Equals("Guard"))
+        {
+            gO.gameObject.transform.parent = GameObject.Find("Guards").transform;
+        }
+        gO.gameObject.SetActive (true);
 
 	}
 

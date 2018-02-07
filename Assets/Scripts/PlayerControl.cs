@@ -29,16 +29,20 @@ public class PlayerControl : MonoBehaviour {
     void Start () {
         distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
         this.gameObject.GetComponent<Light>().enabled = false;
-        if (this.gameObject.tag.Equals("Player 1"))
+       /* if (this.gameObject.tag.Equals("Player 1"))
         {
             this.tipo_de_character = PlayerPrefs.GetInt("characterPlayer_1");
+            
+            //GameObject prefab = (GameObject)Resources.Load("Tipo_1");
+            //if(prefab == null)
+            //GameObject newPlayer = (GameObject)Instantiate(prefab, this.gameObject.transform);
             Debug.Log("Jugador 1 Tipo: " + this.tipo_de_character);
         }
         else if (this.gameObject.tag.Equals("Player 2"))
         {
             this.tipo_de_character = PlayerPrefs.GetInt("characterPlayer_2");
             Debug.Log("Jugador 2 Tipo: " + this.tipo_de_character);
-        }
+        }*/
         
     }
 

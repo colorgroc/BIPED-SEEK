@@ -35,12 +35,36 @@ public class NewControl : MonoBehaviour
 		paused = false;
 		pausa.SetActive (false);
 		timeLeft = UnityEngine.Random.Range(60, 3*60);
-		//añadir jugadores activos
-        if (numOfPlayers == 2)
+        GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+        int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+
+        for(int i = 1; i <= numOfPlayers; i++)
         {
+            GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
+
+            GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
+            player.transform.parent = GameObject.Find("Players").transform;
+            player.gameObject.name = "Player_" + i.ToString(); 
+        }
+        /*GameObject prefab_1 = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_1").ToString());
+        
+        GameObject Player_1 = (GameObject)Instantiate(prefab_1, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
+        Player_1.transform.parent = GameObject.Find("Players").transform;
+
+        GameObject prefab_2 = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_2").ToString());
+
+        GameObject Player_2 = (GameObject)Instantiate(prefab_1, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
+        Player_2.transform.parent = GameObject.Find("Players").transform;*/
+        //añadir jugadores activos
+        for(int i = 1; i <= numOfPlayers; i++){
+            players.Add(GameObject.Find("Player_" + i.ToString()));
+        }
+        /*if (numOfPlayers == 2)
+        {
+            //players.Add(GameObject.Find("Player_" + i.toString()));
             players.Add(GameObject.FindGameObjectWithTag("Player 1"));
             players.Add(GameObject.FindGameObjectWithTag("Player 2"));
-        }
+        }*/
         guards = GameObject.FindGameObjectsWithTag("Guard");
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
 
@@ -52,18 +76,17 @@ public class NewControl : MonoBehaviour
             player.GetComponent<PlayerControl>().Respawn(player.gameObject);
         }
         //eleccio objectiu
-        random = UnityEngine.Random.Range(0, numOfPlayers);
-        if (random == 0)
-            objective = GameObject.FindGameObjectWithTag("Player 1");
-        else if (random == 1)
-            objective = GameObject.FindGameObjectWithTag("Player 2");
+        RecalculaObjetivo();
         showObjective = objective;
     }
 
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            RespawnNPCS();
+        }
+        if (Input.GetKeyDown (KeyCode.Escape)) {
 			paused = !paused;
 			pausa.SetActive (paused);
 		}
@@ -106,23 +129,18 @@ public class NewControl : MonoBehaviour
 			Debug.Log("Congratulations to " + this.gameObject.name);
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 50;
-			/*GameObject.Find ("Winner").GetComponent<Canvas> ().enabled = true;
+            /*GameObject.Find ("Winner").GetComponent<Canvas> ().enabled = true;
 			Time.timeScale = 0;*/
 
-            //eleccio objectiu
-            random = UnityEngine.Random.Range(0, numOfPlayers);
-			if (random == 0) {
-				objective = GameObject.FindGameObjectWithTag ("Player 1");
-			} else if (random == 1) {
-				objective = GameObject.FindGameObjectWithTag ("Player 2");
-			}
+            RecalculaObjetivo();
             objComplete = false;
             foreach (GameObject player in players)
             {
 				if(player != parcialWinner)
 					player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             }
-			parcialWinner = null;
+           
+            parcialWinner = null;
         }
         if (timeLeft <= 0 && !objComplete)
         {
@@ -131,14 +149,10 @@ public class NewControl : MonoBehaviour
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 50;
 
-			/*GameObject.Find ("Winner").GetComponent<Canvas> ().enabled = true;
+            /*GameObject.Find ("Winner").GetComponent<Canvas> ().enabled = true;
 			Time.timeScale = 0;*/
 
-            random = UnityEngine.Random.Range(0, numOfPlayers);
-            if (random == 0)
-                objective = GameObject.FindGameObjectWithTag("Player 1");
-            else if (random == 1)
-                objective = GameObject.FindGameObjectWithTag("Player 2");
+            RecalculaObjetivo();
             timeLeft = timeStartLeft;
             foreach (GameObject player in players)
             {
@@ -151,17 +165,31 @@ public class NewControl : MonoBehaviour
         {
             Debug.Log("U got killed noob!");
             //Pause (p);
-            random = UnityEngine.Random.Range(0, numOfPlayers);
-            if (random == 0)
-                objective = GameObject.FindGameObjectWithTag("Player 1");
-            else if (random == 1)
-                objective = GameObject.FindGameObjectWithTag("Player 2");
+            RecalculaObjetivo();
             objKilledByGuard = false;
             foreach (GameObject player in players)
             {
 				player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             }
         }
+    }
+
+    void RespawnNPCS()
+    {
+        foreach (GameObject guard in guards)
+        {
+            guard.GetComponent<NPCConnectedPatrol>().Respawn(guard.gameObject);
+        }
+        foreach (GameObject killer in killers)
+        {
+            killer.GetComponent<NPCConnectedPatrol>().Respawn(killer.gameObject);
+        }
+    }
+
+    void RecalculaObjetivo()
+    {
+        random = UnityEngine.Random.Range(0, numOfPlayers);
+        objective = GameObject.FindGameObjectWithTag("Player " + (random + 1).ToString());
     }
 
   
