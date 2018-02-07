@@ -10,6 +10,7 @@ public class WinnerHUD : MonoBehaviour {
 	//public static GameObject[] winners;
 	// Use this for initialization
 	void Start () {
+		Time.timeScale = 1;
 		this.gameObject.SetActive (false);
 		//player = GetComponent<GameObject>();
 		if(NewControl.finalWinner != null)

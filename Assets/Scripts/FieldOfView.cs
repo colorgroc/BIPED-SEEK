@@ -30,11 +30,11 @@ public class FieldOfView : MonoBehaviour {
 	void Update(){
 		FindVisibleTargets ();
 		//Debug.Log (alive);
-		/*if (this.alive) {
+		if (this.alive) {
 			this.visibleTargets.Clear ();
 			this.alive = false;
-			StartCoroutine ("FindTargetsWithDelay", .2f); //no funciona, preguntar a algu o intentar fer que quan et moris crear un nou gameobject player
-		}*/
+			//StartCoroutine ("FindTargetsWithDelay", .2f); //no funciona, preguntar a algu o intentar fer que quan et moris crear un nou gameobject player
+		}
 	}
 		
 	IEnumerator FindTargetsWithDelay(float delay) {

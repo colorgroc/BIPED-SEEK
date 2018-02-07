@@ -7,7 +7,7 @@ public class NewControl : MonoBehaviour
 {
    
     [SerializeField]
-    public int numOfPlayers;
+    public static int numOfPlayers = 2;
     public static bool objComplete;
     public static bool objKilledByGuard;
     [SerializeField]
@@ -27,9 +27,12 @@ public class NewControl : MonoBehaviour
 	private GameObject pausa;
 	public GameObject finalWinnerCanvas;
 	private int topScore;
+    [SerializeField]
+    public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
     // Use this for initialization
     void Start()
     {
+		paused = false;
 		pausa.SetActive (false);
 		timeLeft = UnityEngine.Random.Range(60, 3*60);
 		//añadir jugadores activos
@@ -63,16 +66,17 @@ public class NewControl : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			paused = !paused;
 			pausa.SetActive (paused);
-			if (paused)
-				Time.timeScale = 0;
-			else Time.timeScale = 1;
 		}
 		if (Input.GetKeyDown (KeyCode.Return) && paused) {
 			pausa.SetActive (false);
 			Time.timeScale = 1;
 			SceneManager.LoadScene (0);
-
+			paused = false;
 		}
+		if (paused)
+			Time.timeScale = 0;
+		else Time.timeScale = 1;
+
         showObjective = objective;
         timeLeft -= Time.deltaTime;
 

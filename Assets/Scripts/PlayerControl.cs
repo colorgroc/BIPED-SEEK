@@ -8,7 +8,8 @@ public class PlayerControl : MonoBehaviour {
     float distToGround;
     public float speedRotation;
     public float jumpSpeed = 100.0F;
-
+    [SerializeField]
+    private int tipo_de_character;
 	public int playerID;
    // public bool isDead;
     private float count;
@@ -24,23 +25,27 @@ public class PlayerControl : MonoBehaviour {
     public float timePast;
     public bool detected;
 	public GameObject player_New;
-
-	public PlayerControl(int id, int score, int kills, int saveds){
-		this.scoreGeneral = score;
-		this.scoreKills = kills;
-		this.scoreSurvived = saveds;
-		this.playerID = id;
-	}
-		
     // Use this for initialization
     void Start () {
         distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
         this.gameObject.GetComponent<Light>().enabled = false;
+        if (this.gameObject.tag.Equals("Player 1"))
+        {
+            this.tipo_de_character = PlayerPrefs.GetInt("characterPlayer_1");
+            Debug.Log("Jugador 1 Tipo: " + this.tipo_de_character);
+        }
+        else if (this.gameObject.tag.Equals("Player 2"))
+        {
+            this.tipo_de_character = PlayerPrefs.GetInt("characterPlayer_2");
+            Debug.Log("Jugador 2 Tipo: " + this.tipo_de_character);
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -64,19 +69,8 @@ public class PlayerControl : MonoBehaviour {
             transform.Translate(0, 0, y * speed);
             transform.Rotate(0, x * speedRotation, 0);
 
-            if (Input.GetKeyDown(KeyCode.RightControl) && IsGrounded())
-            {
-                GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
 
-            }
-
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-				//Debug.Log("Killig");
-                this.wannaKill = true;
-               // ControlScript.player_1_WannaKill = true;
-            }
-
+				
         }
         else if (this.gameObject.tag.Equals("Player 2"))
         {
@@ -85,16 +79,9 @@ public class PlayerControl : MonoBehaviour {
             transform.Translate(0, 0, y * speed);
             transform.Rotate(0, x * speedRotation, 0);
 
-            if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded())
-            {
-                GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
-
-            }
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                this.wannaKill = true;
-            }
+			if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded()) GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
+			if (Input.GetKeyDown(KeyCode.E)) this.wannaKill = true;
+			if(Input.GetKeyUp(KeyCode.E)) this.wannaKill = false;
         }
 
        
@@ -145,18 +132,17 @@ public class PlayerControl : MonoBehaviour {
     public void Respawn(GameObject gO)
     {
         
-		/*this.gameObject.GetComponent<FieldOfView>().alive = true;
+		this.gameObject.GetComponent<FieldOfView>().alive = true;
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
         gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
         gO.gameObject.SetActive(true);
-        this.isDead = false;
-		*/
+        //this.isDead = false;
 		//this.gameObject.GetComponent<FieldOfView>().alive = true;
-		GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+		/*GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
 		int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
 		GameObject playerNew = Instantiate (player_New, allMyRespawnPoints [random].transform);
-		Destroy (gO);
+		Destroy (gO);*/
     }
     void OnCollisionEnter(Collision collision)
     {
