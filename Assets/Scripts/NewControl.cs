@@ -7,7 +7,7 @@ public class NewControl : MonoBehaviour
 {
    
     [SerializeField]
-    public static int numOfPlayers = 2;
+    public static int numOfPlayers;
     public static bool objComplete;
     public static bool objKilledByGuard;
     [SerializeField]
@@ -32,7 +32,8 @@ public class NewControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		paused = false;
+        numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
+        paused = false;
 		pausa.SetActive (false);
 		timeLeft = UnityEngine.Random.Range(60, 3*60);
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
