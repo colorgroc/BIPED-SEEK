@@ -22,7 +22,8 @@ using UnityEngine.EventSystems;
 public class CharacterSelection : MonoBehaviour {
     private GameObject[] jugadores;
     System.Array values;
-    List<GameObject> characterTypes;
+    [HideInInspector]
+    public List<GameObject> characterTypes;
     //GameObject but;
     // Use this for initialization
     void Start() {
@@ -34,15 +35,16 @@ public class CharacterSelection : MonoBehaviour {
 
         jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
 
-        EventSystem.current.SetSelectedGameObject(null);
-        if (this.gameObject.name.EndsWith("1"))
+        //EventSystem.current.SetSelectedGameObject(null);
+
+        /*if (this.gameObject.name.EndsWith("1") && this.transform.parent.name.EndsWith("1"))
         {
             EventSystem.current.SetSelectedGameObject(this.gameObject);
             //this.but = this.gameObject.GetComponent<Button>().gameObject;
-        }
+        }*/
             //EventSystem.current.SetSelectedGameObject(this.but);
 
-        values = System.Enum.GetValues(typeof(KeyCode));
+       // values = System.Enum.GetValues(typeof(KeyCode));
     }
 
     // Update is called once per frame
@@ -82,7 +84,7 @@ public class CharacterSelection : MonoBehaviour {
 
 
     }
-    
+    //Con botones
     public void Chosed() //que tipo de personaje elige
     {
         List<GameObject> character = new List<GameObject>();
