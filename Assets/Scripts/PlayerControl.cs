@@ -72,9 +72,8 @@ public class PlayerControl : MonoBehaviour {
             float y = Input.GetAxis("Vertical") * Time.deltaTime;
             transform.Translate(0, 0, y * speed);
             transform.Rotate(0, x * speedRotation, 0);
-
-
-				
+            if (Input.GetKeyDown(KeyCode.P)) this.wannaKill = true;
+            if (Input.GetKeyDown(KeyCode.RightControl) && IsGrounded()) GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
         }
         else if (this.gameObject.tag.Equals("Player 2"))
         {
@@ -84,7 +83,7 @@ public class PlayerControl : MonoBehaviour {
             transform.Rotate(0, x * speedRotation, 0);
 
 			if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded()) GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
-			if (Input.GetKeyDown(KeyCode.E)) this.wannaKill = true;
+			
 			if(Input.GetKeyUp(KeyCode.E)) this.wannaKill = false;
         }
 

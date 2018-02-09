@@ -12,6 +12,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     public static List<GameObject> characterTypes_P2;
     public static List<GameObject> characterTypes_P3;
     public static List<GameObject> characterTypes_P4;
+    private List<GameObject> players;
     private int select_1, select_2, select_3, select_4;
     private static bool ready_P1, ready_P2, ready_P3, ready_P4;
     [SerializeField]
@@ -21,55 +22,42 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
-    GameObject[] characterTypes;
+    private GameObject[] characterTypes;
     //bool changeStatus;
+
     
-    //List<GameObject> characters;
-    List<GameObject> players;
     // Use this for initialization
     void Start() {
-        //EventSystem.current.SetSelectedGameObject(null);
-        // this.characterTypes = new List<GameObject>();
-        //this.characters = new List<GameObject>();
+
         GameObject[] jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
         characterTypes_P1 = new List<GameObject>();
         characterTypes_P2 = new List<GameObject>();
         characterTypes_P3 = new List<GameObject>();
         characterTypes_P4 = new List<GameObject>();
+        players = new List<GameObject>();
         select_1 = select_2 = select_3 = select_4 = 0;
-        //EventSystem.current.SetSelectedGameObject(null);
-        //EventSystem.current.SetSelectedGameObject(this.characterTypes[0]);
-        //this.characterTypes[0].GetComponent<Button>().Select();
 
-        
-
+        //guardar num of players
         //PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
         PlayerPrefs.SetInt("NumPlayers", 2);
 
-        players = new List<GameObject>();
-
+        //inicialitzar canvas seleccio personatges
         for (int i = 0; i < jugadores.Length; i++)
         {
             players.Add(jugadores[i].gameObject);
             jugadores[i].gameObject.SetActive(false);
-
         }
-        //players.OrderBy(go => go.name).ToList();
+
         players.Sort(SortByName);
 
         for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++) {
             players[i].SetActive(true);
-            //  Button[] buton = players[i].GetComponentsInChildren<Button>();
-            //if(buton[i].gameObject.name.EndsWith("1")) EventSystem.current.SetSelectedGameObject(buton[i].gameObject);
         }
         foreach (GameObject child in players)
         {
             if (child.gameObject.activeInHierarchy)
             {
                 this.characterTypes = GameObject.FindGameObjectsWithTag("Character");
-                /*foreach(GameObject kid in child[i])
-                     this.characterTypes.Add(child.gameObject);*/
-
             }
         }
         for(int i = 0; i< this.characterTypes.Length; i++)
@@ -80,53 +68,29 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P1.Add(this.characterTypes[i].gameObject);
                 characterTypes_P1[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P1[0].GetComponent<Button>().Select();
-
             }
             else if (i >= 4 && i < 8)
             {
                 characterTypes_P2.Add(this.characterTypes[i].gameObject);
                 characterTypes_P2[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P2[0].GetComponent<Button>().transition = Selectable.Transition.ColorTint;
             }
             else if (i >= 8 && i < 12)
             {
                 characterTypes_P3.Add(this.characterTypes[i].gameObject);
                 characterTypes_P3[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P3[0].GetComponent<Button>().Select();
             }
             else
             {
                 characterTypes_P4.Add(this.characterTypes[i].gameObject);
                 characterTypes_P4[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P3[0].GetComponent<Button>().Select();
             }
         }
-        //butons
-        /*if (!ready_P1) {  
-            for (int i = 0; i < characterTypes_P1.Count; i++) {
-                
-                characterTypes_P1[i].GetComponent<Button>().interactable = true;
-            }
-            EventSystem.current.SetSelectedGameObject(characterTypes_P1[0]);
-        }*/
-
-        // if (this.gameObject.name.EndsWith("1"))
-        //EventSystem.current.SetSelectedGameObject(characterTypes_P1[0]);
-
-       
-        
-
-        Debug.Log(characterTypes_P1.Count);
-        Debug.Log(characterTypes_P2.Count);
-        Debug.Log(characterTypes_P3.Count);
-        Debug.Log(characterTypes_P4.Count);
     }
 	
 	// Update is called once per frame
 	void Update () {
         
-        
+        //codi de prova
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(2);
@@ -147,7 +111,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
     void SeleccionJugadores(int numOfPlayers)
     {
-        if (numOfPlayers == 2) //hacer lo que esta con 2 player con los demas (esta a medias)
+        if (numOfPlayers == 2) 
         {
             //-------------------------Moviments player 1-----------------------------------
             //Horitzontal
