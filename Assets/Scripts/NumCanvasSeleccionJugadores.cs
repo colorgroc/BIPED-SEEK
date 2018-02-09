@@ -22,57 +22,44 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
     GameObject[] characterTypes;
-    //bool changeStatus;
-    
-    //List<GameObject> characters;
+    private int numOfPlayers;
     List<GameObject> players;
     // Use this for initialization
-    void Start() {
-        //EventSystem.current.SetSelectedGameObject(null);
-        // this.characterTypes = new List<GameObject>();
-        //this.characters = new List<GameObject>();
+    void Start()
+    {
+        //inicializar variables
         GameObject[] jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
         characterTypes_P1 = new List<GameObject>();
         characterTypes_P2 = new List<GameObject>();
         characterTypes_P3 = new List<GameObject>();
         characterTypes_P4 = new List<GameObject>();
-        select_1 = select_2 = select_3 = select_4 = 0;
-        //EventSystem.current.SetSelectedGameObject(null);
-        //EventSystem.current.SetSelectedGameObject(this.characterTypes[0]);
-        //this.characterTypes[0].GetComponent<Button>().Select();
-
-        
-
-        //PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        PlayerPrefs.SetInt("NumPlayers", 2);
-
         players = new List<GameObject>();
+        select_1 = select_2 = select_3 = select_4 = 0;
 
+        //guardar num jugadores
+        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
+        numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
+        //PlayerPrefs.SetInt("NumPlayers", 2);
+
+        //establecer los canvas 
         for (int i = 0; i < jugadores.Length; i++)
         {
             players.Add(jugadores[i].gameObject);
             jugadores[i].gameObject.SetActive(false);
 
         }
-        //players.OrderBy(go => go.name).ToList();
         players.Sort(SortByName);
 
-        for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++) {
+        for (int i = 0; i < numOfPlayers; i++)
+        {
             players[i].SetActive(true);
-            //  Button[] buton = players[i].GetComponentsInChildren<Button>();
-            //if(buton[i].gameObject.name.EndsWith("1")) EventSystem.current.SetSelectedGameObject(buton[i].gameObject);
+
         }
         foreach (GameObject child in players)
         {
-            if (child.gameObject.activeInHierarchy)
-            {
-                this.characterTypes = GameObject.FindGameObjectsWithTag("Character");
-                /*foreach(GameObject kid in child[i])
-                     this.characterTypes.Add(child.gameObject);*/
-
-            }
+            if (child.gameObject.activeInHierarchy) this.characterTypes = GameObject.FindGameObjectsWithTag("Character");
         }
-        for(int i = 0; i< this.characterTypes.Length; i++)
+        for (int i = 0; i < this.characterTypes.Length; i++)
         {
             //butons
             this.characterTypes[i].GetComponent<Outline>().enabled = false;
@@ -80,97 +67,114 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P1.Add(this.characterTypes[i].gameObject);
                 characterTypes_P1[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P1[0].GetComponent<Button>().Select();
-
             }
             else if (i >= 4 && i < 8)
             {
                 characterTypes_P2.Add(this.characterTypes[i].gameObject);
                 characterTypes_P2[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P2[0].GetComponent<Button>().transition = Selectable.Transition.ColorTint;
             }
             else if (i >= 8 && i < 12)
             {
                 characterTypes_P3.Add(this.characterTypes[i].gameObject);
                 characterTypes_P3[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P3[0].GetComponent<Button>().Select();
             }
             else
             {
                 characterTypes_P4.Add(this.characterTypes[i].gameObject);
                 characterTypes_P4[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P3[0].GetComponent<Button>().Select();
             }
         }
-        //butons
-        /*if (!ready_P1) {  
-            for (int i = 0; i < characterTypes_P1.Count; i++) {
-                
-                characterTypes_P1[i].GetComponent<Button>().interactable = true;
-            }
-            EventSystem.current.SetSelectedGameObject(characterTypes_P1[0]);
-        }*/
-
-        // if (this.gameObject.name.EndsWith("1"))
-        //EventSystem.current.SetSelectedGameObject(characterTypes_P1[0]);
-
-       
-        
-
-        Debug.Log(characterTypes_P1.Count);
-        Debug.Log(characterTypes_P2.Count);
-        Debug.Log(characterTypes_P3.Count);
-        Debug.Log(characterTypes_P4.Count);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+    // Update is called once per frame
+    void Update() {
+
+        //codigo de prueba pa ver que funciona
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(2);
+        }*/
+
+        //codi anterior que funciona
+        //SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
+        if (numOfPlayers == 2)
+        {
+            Seleccion_Jugadores(ready_P1, characterTypes_P1, select_1, 1);
+            Seleccion_Jugadores(ready_P2, characterTypes_P2, select_2, 2);
+        }
+        else if (numOfPlayers == 3)
+        {
+            Seleccion_Jugadores(ready_P1, characterTypes_P1, select_1, 1);
+            Seleccion_Jugadores(ready_P2, characterTypes_P2, select_2, 2);
+            Seleccion_Jugadores(ready_P3, characterTypes_P3, select_3, 3);
+        }
+        else if (numOfPlayers == 4)
+        {
+            Seleccion_Jugadores(ready_P1, characterTypes_P1, select_1, 1);
+            Seleccion_Jugadores(ready_P2, characterTypes_P2, select_2, 2);
+            Seleccion_Jugadores(ready_P3, characterTypes_P3, select_3, 3);
+            Seleccion_Jugadores(ready_P4, characterTypes_P4, select_4, 4);
         }
 
-        SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
-
         if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene(2);
-        else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene(2);
-        else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene(2);
+            else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene(2);
+            else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene(2);
 
-    }
+        }
+    
     
     private static int SortByName(GameObject o1, GameObject o2)
     {
         return o1.name.CompareTo(o2.name);
     }
-
-    void SeleccionJugadores(int numOfPlayers)
+    void Seleccion_Jugadores(bool ready, List<GameObject>characterType, int select, int player)
     {
-        if (numOfPlayers == 2) //hacer lo que esta con 2 player con los demas (esta a medias)
+        if (!ready) Movement(player);
+        //Acceptar
+        if (Input.GetButtonDown("A_" + player.ToString()))
+        {
+            characterType[select].GetComponent<Outline>().effectDistance = outline;
+            characterType[select].GetComponent<Outline>().effectColor = gold_Color;
+            PlayerPrefs.SetInt("characterPlayer_" + player.ToString(), player);
+            GameObject.Find("Ready_" + player.ToString()).GetComponent<Text>().enabled = true;
+            ready = true;
+        }
+        //Cancelar
+        if (Input.GetButtonDown("B_" + player.ToString()) && ready_P1)
+        {
+            characterType[select].GetComponent<Outline>().effectDistance = default_outline;
+            characterType[select].GetComponent<Outline>().effectColor = default_Color;
+            PlayerPrefs.SetInt("characterPlayer_" + player.ToString(), 0);
+            GameObject.Find("Ready_" + player.ToString()).GetComponent<Text>().enabled = false;
+            ready = false;
+        }
+    }
+    void Movement(int player)
+    {
+        //Horitzontal
+        if ((Input.GetAxis("H_LPad_" + player.ToString()) < 0 || Input.GetAxis("H_Arrows_" + player.ToString()) < 0)) MoveLeft(player);
+        else if (Input.GetAxis("H_LPad_" + player.ToString()) > 0 || Input.GetAxis("H_Arrows_" + player.ToString()) > 0) MoveRight(player);
+
+        //Vertical
+        if (Input.GetAxis("V_LPad_" + player.ToString()) < 0 || Input.GetAxis("V_Arrows_" + player.ToString()) < 0) MoveUp(player);
+        else if (Input.GetAxis("V_LPad_" + player.ToString()) > 0 || Input.GetAxis("V_Arrows_" + player.ToString()) > 0) MoveDown(player);
+    }
+    /*void SeleccionJugadores(int numOfPlayers)
+    {
+        if (numOfPlayers == 2) 
         {
             //-------------------------Moviments player 1-----------------------------------
-            //Horitzontal
+            
             if (!ready_P1)
             {
-                if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
-                {
-                    MoveLeft(1);
-                }
-                else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
-                {
-                    MoveRight(1);
-                }
+                //Horitzontal
+                if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0)) MoveLeft(1);
+                else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0) MoveRight(1);
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
-                {
-                    MoveUp(1);
-                }
-                else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
-                {
-                    MoveDown(1);
-                }
+                if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0) MoveUp(1);
+                else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0) MoveDown(1);
+
             }
             if (Input.GetButtonDown("A_1"))
             {
@@ -193,284 +197,246 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             //Horitzontal
             if (!ready_P2)
             {
-                if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
-                {
-                    MoveLeft(2);
-                }
-                else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0)
-                {
-                    MoveRight(2);
-                }
+                //Horitzontal
+                if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0)) MoveLeft(2);
+                else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0) MoveRight(2);
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0)
-                {
-                    MoveUp(2);
-                }
-                else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0)
-                {
-                    MoveDown(2);
-                }
+                if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0) MoveUp(2);
+                else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0) MoveDown(2);
+
             }
             if (Input.GetButtonDown("A_2"))
             {
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 2);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
-                ready_P1 = true;
+                GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                ready_P2 = true;
             }
-            if (Input.GetButtonDown("B_2"))
+            if (Input.GetButtonDown("B_2") && ready_P2)
             {
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
-                ready_P1 = false;
+                GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                ready_P2 = false;
             }
-
-
         }
         else if (numOfPlayers == 3)
         {
             //-------------------------Moviments player 1-----------------------------------
-            //Horitzontal
-            if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
-            {
-                MoveLeft(1);
-            }
-            else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
-            {
-                MoveRight(1);
-            }
 
-            //Vertical
-            if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
+            if (!ready_P1)
             {
-                MoveUp(1);
-            }
-            else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
-            {
-                MoveDown(1);
+                //Horitzontal
+                if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0)) MoveLeft(1);
+                else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0) MoveRight(1);
+
+                //Vertical
+                if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0) MoveUp(1);
+                else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0) MoveDown(1);
+
             }
             if (Input.GetButtonDown("A_1"))
             {
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 1);
+                GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                ready_P1 = true;
             }
-            if (Input.GetButtonDown("B_1"))
+            if (Input.GetButtonDown("B_1") && ready_P1)
             {
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
-            }
-
-            //-------------------------Moviments player 2-----------------------------------
-            //Horitzontal
-            if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
-            {
-                MoveLeft(2);
-            }
-            else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0)
-            {
-                MoveRight(2);
-            }
-
-            //Vertical
-            if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0)
-            {
-                MoveUp(2);
-            }
-            else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0)
-            {
-                MoveDown(2);
-            }
-            if (Input.GetButtonDown("A_2"))
-            {
-                //characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
-                //characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_2", 2);
-            }
-            if (Input.GetButtonDown("B_2"))
-            {
-                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_2", 0);
-            }
-
-            //-------------------------Moviments player 3-----------------------------------
-            //Horitzontal
-            if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3") < 0))
-            {
-                MoveLeft(3);
-            }
-            else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3") > 0)
-            {
-                MoveRight(3);
-            }
-
-            //Vertical
-            if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") < 0)
-            {
-                MoveUp(3);
-            }
-            else if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") > 0)
-            {
-                MoveDown(3);
-            }
-            if (Input.GetButtonDown("A_3"))
-            {
-                //characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
-                //characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_3", 3);
-            }
-            if (Input.GetButtonDown("B_3"))
-            {
-                //characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
-                //characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_3", 0);
-            }
-        }
-        else if (numOfPlayers == 4)
-        {
-            //-------------------------Moviments player 1-----------------------------------
-            //Horitzontal
-            if (!ready_P1)
-            {
-                if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
-                {
-                    MoveLeft(1);
-                }
-                else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
-                {
-                    MoveRight(1);
-                }
-
-                //Vertical
-                if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
-                {
-                    MoveUp(1);
-                }
-                else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
-                {
-                    MoveDown(1);
-                }
-            }
-            if (Input.GetButtonDown("A_1"))
-            {
-                //characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = new Vector2(10,10);
-                //characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 1);
-                ready_P1 = true;
-            }
-            if (Input.GetButtonDown("B_1"))
-            {
-                //characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
-                //characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 0);
+                GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
                 ready_P1 = false;
             }
 
             //-------------------------Moviments player 2-----------------------------------
             //Horitzontal
-            if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
+            if (!ready_P2)
             {
-                MoveLeft(2);
-            }
-            else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0)
-            {
-                MoveRight(2);
-            }
+                //Horitzontal
+                if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0)) MoveLeft(2);
+                else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0) MoveRight(2);
 
-            //Vertical
-            if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0)
-            {
-                MoveUp(2);
-            }
-            else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0)
-            {
-                MoveDown(2);
+                //Vertical
+                if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0) MoveUp(2);
+                else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0) MoveDown(2);
+
             }
             if (Input.GetButtonDown("A_2"))
             {
-                //characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
-                //characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 2);
+                GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                ready_P2 = true;
             }
-            if (Input.GetButtonDown("B_2"))
+            if (Input.GetButtonDown("B_2") && ready_P2)
             {
-                //characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
-                //characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
+                GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                ready_P2 = false;
             }
 
             //-------------------------Moviments player 3-----------------------------------
             //Horitzontal
-            if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3") < 0))
+            if (!ready_P3)
             {
-                MoveLeft(3);
-            }
-            else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3") > 0)
-            {
-                MoveRight(3);
-            }
+                //Horitzontal
+                if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3") < 0)) MoveLeft(3);
+                else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3") > 0) MoveRight(3);
 
-            //Vertical
-            if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") < 0)
-            {
-                MoveUp(3);
-            }
-            else if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") > 0)
-            {
-                MoveDown(3);
+                //Vertical
+                if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") < 0) MoveUp(3);
+                else if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") > 0) MoveDown(3);
+
             }
             if (Input.GetButtonDown("A_3"))
             {
-                //characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
-                //characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
+                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_3", 3);
+                GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
+                ready_P3 = true;
             }
-            if (Input.GetButtonDown("B_3"))
+            if (Input.GetButtonDown("B_3") && ready_P3)
             {
-                //characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
-                //characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
+                characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
+                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_3", 0);
+                GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
+                ready_P3 = false;
+            }
+        }
+        else if (numOfPlayers == 4)
+        {
+            //-------------------------Moviments player 1-----------------------------------
+            //Horizontal
+            if (!ready_P1)
+            {
+                //Horitzontal
+                if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0)) MoveLeft(1);
+                else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0) MoveRight(1);
+
+                //Vertical
+                if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0) MoveUp(1);
+                else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0) MoveDown(1);
+
+            }
+            if (Input.GetButtonDown("A_1"))
+            {
+                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
+                PlayerPrefs.SetInt("characterPlayer_1", 1);
+                GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                ready_P1 = true;
+            }
+            if (Input.GetButtonDown("B_1") && ready_P1)
+            {
+                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                PlayerPrefs.SetInt("characterPlayer_1", 0);
+                GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                ready_P1 = false;
+            }
+
+            //-------------------------Moviments player 2-----------------------------------
+            //Horitzontal
+            if (!ready_P2)
+            {
+                //Horitzontal
+                if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0)) MoveLeft(2);
+                else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0) MoveRight(2);
+
+                //Vertical
+                if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0) MoveUp(2);
+                else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0) MoveDown(2);
+
+            }
+            if (Input.GetButtonDown("A_2"))
+            {
+                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
+                PlayerPrefs.SetInt("characterPlayer_2", 2);
+                GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                ready_P2 = true;
+            }
+            if (Input.GetButtonDown("B_2") && ready_P2)
+            {
+                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                PlayerPrefs.SetInt("characterPlayer_2", 0);
+                GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                ready_P2 = false;
+            }
+
+            //-------------------------Moviments player 3-----------------------------------
+            //Horitzontal
+            if (!ready_P3)
+            {
+                //Horitzontal
+                if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3") < 0)) MoveLeft(3);
+                else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3") > 0) MoveRight(3);
+
+                //Vertical
+                if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") < 0) MoveUp(3);
+                else if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") > 0) MoveDown(3);
+
+            }
+            if (Input.GetButtonDown("A_3"))
+            {
+                characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
+                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
+                PlayerPrefs.SetInt("characterPlayer_3", 3);
+                GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
+                ready_P3 = true;
+            }
+            if (Input.GetButtonDown("B_3") && ready_P3)
+            {
+                characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
+                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
+                PlayerPrefs.SetInt("characterPlayer_3", 0);
+                GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
+                ready_P3 = false;
             }
             //-------------------------Moviments player 4-----------------------------------
             //Horitzontal
-            if ((Input.GetAxis("H_LPad_4") < 0 || Input.GetAxis("H_Arrows_4") < 0))
+            if (!ready_P4)
             {
-                MoveLeft(4);
-            }
-            else if (Input.GetAxis("H_LPad_4") > 0 || Input.GetAxis("H_Arrows_4") > 0)
-            {
-                MoveRight(4);
-            }
+                //Horitzontal
+                if ((Input.GetAxis("H_LPad_4") < 0 || Input.GetAxis("H_Arrows_4") < 0)) MoveLeft(4);
+                else if (Input.GetAxis("H_LPad_4") > 0 || Input.GetAxis("H_Arrows_4") > 0) MoveRight(4);
 
-            //Vertical
-            if (Input.GetAxis("V_LPad_4") < 0 || Input.GetAxis("V_Arrows_4") < 0)
-            {
-                MoveUp(4);
-            }
-            else if (Input.GetAxis("V_LPad_4") > 0 || Input.GetAxis("V_Arrows_4") > 0)
-            {
-                MoveDown(4);
+                //Vertical
+                if (Input.GetAxis("V_LPad_4") < 0 || Input.GetAxis("V_Arrows_4") < 0) MoveUp(4);
+                else if (Input.GetAxis("V_LPad_4") > 0 || Input.GetAxis("V_Arrows_4") > 0) MoveDown(4);
+
             }
             if (Input.GetButtonDown("A_4"))
             {
-                //characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
-                //characterTypes_P4[select_4].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
+                characterTypes_P4[select_4].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_4", 4);
+                GameObject.Find("Ready_4").GetComponent<Text>().enabled = true;
+                ready_P4 = true;
             }
-            if (Input.GetButtonDown("B_4"))
+            if (Input.GetButtonDown("B_4") && ready_P4)
             {
-                //characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = default_outline;
-                //characterTypes_P4[select_4].GetComponent<Outline>().effectColor = default_Color;
+                characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = default_outline;
+                characterTypes_P4[select_4].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_4", 0);
+                GameObject.Find("Ready_4").GetComponent<Text>().enabled = false;
+                ready_P4 = false;
             }
         }
-    }
+    }*/
 
     void MoveRight(int whichPlayer)
     {
