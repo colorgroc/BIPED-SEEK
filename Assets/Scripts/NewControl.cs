@@ -42,7 +42,6 @@ public class NewControl : MonoBehaviour
         for(int i = 1; i <= numOfPlayers; i++)
         {
             GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
-
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
             player.transform.parent = GameObject.Find("Players").transform;
             player.gameObject.name = "Player_" + i.ToString(); 
@@ -56,6 +55,7 @@ public class NewControl : MonoBehaviour
 
         GameObject Player_2 = (GameObject)Instantiate(prefab_1, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
         Player_2.transform.parent = GameObject.Find("Players").transform;*/
+
         //añadir jugadores activos
         for(int i = 1; i <= numOfPlayers; i++){
             players.Add(GameObject.Find("Player_" + i.ToString()));

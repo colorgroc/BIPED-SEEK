@@ -29,6 +29,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
+        //inicialitzar variables
         GameObject[] jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
         characterTypes_P1 = new List<GameObject>();
         characterTypes_P2 = new List<GameObject>();
@@ -98,6 +99,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
 
+        //quan tothom ready, comença joc
         if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene(2);
         else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene(2);
         else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene(2);
