@@ -39,7 +39,9 @@ public class NewControl : MonoBehaviour
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
 
-        for(int i = 1; i <= numOfPlayers; i++)
+        MapaRandom();
+
+        for(int i = 1; i < numOfPlayers; i++)
         {
             GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
@@ -87,19 +89,7 @@ public class NewControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             RespawnNPCS();
         }
-        if (Input.GetKeyDown (KeyCode.Escape)) {
-			paused = !paused;
-			pausa.SetActive (paused);
-		}
-		if (Input.GetKeyDown (KeyCode.Return) && paused) {
-			pausa.SetActive (false);
-			Time.timeScale = 1;
-			SceneManager.LoadScene (0);
-			paused = false;
-		}
-		if (paused)
-			Time.timeScale = 0;
-		else Time.timeScale = 1;
+        Pausa();
 
         showObjective = objective;
         timeLeft -= Time.deltaTime;
@@ -174,6 +164,13 @@ public class NewControl : MonoBehaviour
             }
         }
     }
+    private void MapaRandom()
+    {
+        int mapa = UnityEngine.Random.Range(0, PlayerPrefs.GetInt("NumMapas"));
+        if (mapa + 1 == 1) GameObject.Find("Plaza_2").SetActive(false);
+        if (mapa + 1 == 2) GameObject.Find("Plaza").SetActive(false);
+
+    }
 
     void RespawnNPCS()
     {
@@ -192,6 +189,23 @@ public class NewControl : MonoBehaviour
         random = UnityEngine.Random.Range(0, numOfPlayers);
         objective = GameObject.FindGameObjectWithTag("Player " + (random + 1).ToString());
     }
+    private void Pausa()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            paused = !paused;
+            pausa.SetActive(paused);
+        }
+        if (Input.GetKeyDown(KeyCode.Return) && paused)
+        {
+            pausa.SetActive(false);
+            Time.timeScale = 1;
+            SceneManager.LoadScene(0);
+            paused = false;
+        }
+        if (paused)
+            Time.timeScale = 0;
+        else Time.timeScale = 1;
+    }
 
-  
 }

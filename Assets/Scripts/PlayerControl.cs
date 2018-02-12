@@ -77,14 +77,14 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.tag.Equals("Player 2"))
         {
-            float x = Input.GetAxis("Horizontal 2") * Time.deltaTime;
+            /*float x = Input.GetAxis("Horizontal 2") * Time.deltaTime;
             float y = Input.GetAxis("Vertical 2") * Time.deltaTime;
             transform.Translate(0, 0, y * speed);
             transform.Rotate(0, x * speedRotation, 0);
 
 			if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded()) GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
 			
-			if(Input.GetKeyUp(KeyCode.E)) this.wannaKill = false;
+			if(Input.GetKeyUp(KeyCode.E)) this.wannaKill = false;*/
         }
 
        

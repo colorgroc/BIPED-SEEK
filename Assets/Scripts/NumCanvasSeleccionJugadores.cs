@@ -19,10 +19,10 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private Vector2 outline = new Vector2(10, 10);
     [SerializeField]
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
-
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
     private GameObject[] characterTypes;
+   
     //bool changeStatus;
 
     
@@ -37,10 +37,10 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         characterTypes_P4 = new List<GameObject>();
         players = new List<GameObject>();
         select_1 = select_2 = select_3 = select_4 = 0;
-
+        
         //guardar num of players
         //PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        PlayerPrefs.SetInt("NumPlayers", 2);
+        //PlayerPrefs.SetInt("NumPlayers", 2);
 
         //inicialitzar canvas seleccio personatges
         for (int i = 0; i < jugadores.Length; i++)
@@ -99,6 +99,9 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
 
+        
+        //proves per 1 jugador
+        if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene(2);
         //quan tothom ready, comença joc
         if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene(2);
         else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene(2);
@@ -110,9 +113,50 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     {
         return o1.name.CompareTo(o2.name);
     }
-
+    
     void SeleccionJugadores(int numOfPlayers)
     {
+        //proves per 1 jugador
+        if(numOfPlayers == 1)
+        {
+            if (!ready_P1)
+            {
+                if (Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Horizontal Arrows") < 0)
+                {
+                    MoveLeft(1);
+                }
+                else if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal Arrows") > 0)
+                {
+                    MoveRight(1);
+                }
+
+                //Vertical
+                if (Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical Arrows") > 0)
+                {
+                    MoveDown(1);
+                }
+                else if (Input.GetAxis("Vertical") < 0 || Input.GetAxis("Vertical Arrows") > 0)
+                {
+                    MoveUp(1);
+                }
+            }
+            if (Input.GetButtonDown("Submit"))
+            {
+                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
+                PlayerPrefs.SetInt("characterPlayer_1", 1);
+                GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                ready_P1 = true;
+            }
+            if (Input.GetButtonDown("Cancel") && ready_P1)
+            {
+                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                PlayerPrefs.SetInt("characterPlayer_1", 0);
+                GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                ready_P1 = false;
+            }
+        }
         if (numOfPlayers == 2) 
         {
             //-------------------------Moviments player 1-----------------------------------
@@ -131,11 +175,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //Vertical
                 if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
                 {
-                    MoveUp(1);
+                    MoveDown(1);
                 }
                 else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
                 {
-                    MoveDown(1);
+                    MoveUp(1);
                 }
             }
             if (Input.GetButtonDown("A_1"))
@@ -171,11 +215,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //Vertical
                 if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0)
                 {
-                    MoveUp(2);
+                    MoveDown(2);
                 }
                 else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0)
                 {
-                    MoveDown(2);
+                    MoveUp(2);
                 }
             }
             if (Input.GetButtonDown("A_2"))
@@ -215,11 +259,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //Vertical
                 if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
                 {
-                    MoveUp(1);
+                    MoveDown(1);
                 }
                 else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
                 {
-                    MoveDown(1);
+                    MoveUp(1);
                 }
             }
             if (Input.GetButtonDown("A_1"))
@@ -255,11 +299,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //Vertical
                 if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0)
                 {
-                    MoveUp(2);
+                    MoveDown(2);
                 }
                 else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0)
                 {
-                    MoveDown(2);
+                    MoveUp(2);
                 }
             }
             if (Input.GetButtonDown("A_2"))
@@ -295,11 +339,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //Vertical
                 if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") < 0)
                 {
-                    MoveUp(3);
+                    MoveDown(3);
                 }
                 else if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") > 0)
                 {
-                    MoveDown(3);
+                    MoveUp(3);
                 }
             }
             if (Input.GetButtonDown("A_3"))
@@ -337,11 +381,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //Vertical
                 if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
                 {
-                    MoveUp(1);
+                    MoveDown(1);
                 }
                 else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
                 {
-                    MoveDown(1);
+                    MoveUp(1);
                 }
             }
             if (Input.GetButtonDown("A_1"))
@@ -377,11 +421,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //Vertical
                 if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0)
                 {
-                    MoveUp(2);
+                    MoveDown(2);
                 }
                 else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0)
                 {
-                    MoveDown(2);
+                    MoveUp(2);
                 }
             }
             if (Input.GetButtonDown("A_2"))
@@ -417,11 +461,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //Vertical
                 if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") < 0)
                 {
-                    MoveUp(3);
+                    MoveDown(3);
                 }
                 else if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") > 0)
                 {
-                    MoveDown(3);
+                    MoveUp(3);
                 }
             }
             if (Input.GetButtonDown("A_3"))
@@ -456,11 +500,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //Vertical
                 if (Input.GetAxis("V_LPad_4") < 0 || Input.GetAxis("V_Arrows_4") < 0)
                 {
-                    MoveUp(4);
+                    MoveDown(4);
                 }
                 else if (Input.GetAxis("V_LPad_4") > 0 || Input.GetAxis("V_Arrows_4") > 0)
                 {
-                    MoveDown(4);
+                    MoveUp(4);
                 }
             }
             if (Input.GetButtonDown("A_4"))
@@ -558,7 +602,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 break;
         }
     }
-    void MoveDown(int whichPlayer)
+    void MoveUp(int whichPlayer)
     {
         switch (whichPlayer)
         {
@@ -596,7 +640,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 break;
         }
     }
-    void MoveUp(int whichPlayer)
+    void MoveDown(int whichPlayer)
     {
         switch (whichPlayer)
         {

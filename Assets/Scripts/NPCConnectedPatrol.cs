@@ -11,9 +11,6 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	[SerializeField]
 	float _totalWaitTime = 3f;
 
-	[SerializeField]
-	float switchProbability = 0.2f;
-
 	NavMeshAgent _navMeshAgent;
 	ConnectedWaypoint _currentWaypoint;
 	ConnectedWaypoint _previousWaypoint;
