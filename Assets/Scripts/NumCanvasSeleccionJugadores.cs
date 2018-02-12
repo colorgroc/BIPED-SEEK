@@ -121,7 +121,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         {
             if (!ready_P1)
             {
-                if (Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Horizontal Arrows") < 0)
+                if ((Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Horizontal Arrows") < 0))
                 {
                     MoveLeft(1);
                 }
@@ -135,7 +135,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 {
                     MoveDown(1);
                 }
-                else if (Input.GetAxis("Vertical") < 0 || Input.GetAxis("Vertical Arrows") > 0)
+                else if (Input.GetAxis("Vertical") < 0 || Input.GetAxis("Vertical Arrows") < 0)
                 {
                     MoveUp(1);
                 }
