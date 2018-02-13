@@ -40,7 +40,7 @@ public class Menu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Cancel") && !inMenu) BackToMenu();
+        if (Input.GetButtonDown("Back") && !inMenu) BackToMenu();
 	}
 
     public void GoToPlay()
@@ -59,7 +59,7 @@ public class Menu : MonoBehaviour {
         mainMenu.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         options.gameObject.SetActive(true);
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(GameObject.Find("Window"));
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(GameObject.Find("Full Screen"));
         lastButon = opt;
     }
     public void ShowCredits()
