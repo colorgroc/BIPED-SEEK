@@ -191,12 +191,12 @@ public class NewControl : MonoBehaviour
     }
     private void Pausa()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
         {
             paused = !paused;
             pausa.SetActive(paused);
         }
-        if (Input.GetKeyDown(KeyCode.Return) && paused)
+        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit")) && paused)
         {
             pausa.SetActive(false);
             Time.timeScale = 1;

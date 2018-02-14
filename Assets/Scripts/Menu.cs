@@ -20,17 +20,48 @@ public class Menu : MonoBehaviour {
     private Button opt, cred;
     [SerializeField]
     public static int numOfMapas = 1;
+    [SerializeField]
+    GameObject fullScreen, windowed, muted, notMuted;
     //private Button[] butons;
     // private int select;
 
     // Use this for initialization
     void Start () {
+        //PlayerPrefs.DeleteAll();
+        if (Application.isEditor == false)
+        {
+            if (PlayerPrefs.GetInt("FirstGame") == 0)
+            {
+                PlayerPrefs.DeleteAll();
+                PlayerPrefs.SetInt("FirstGame", 1);
+                PlayerPrefs.SetFloat("MusicVolume", 1f);
+                PlayerPrefs.SetInt("isMute", 0); //sona musica
+                if (Screen.fullScreen)
+                    PlayerPrefs.SetInt("ScreenMode", 0); //full screen
+                else if(!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
+                //posar playerprefs controls
+            }
+        }
         options.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
         inMenu = true;
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
         PlayerPrefs.SetInt("NumMapas", numOfMapas);
+        //music.volume = 1f;
+        volume.value = PlayerPrefs.GetFloat("MusicVolume"); ;
+
+        if (PlayerPrefs.GetInt("ScreenMode") == 0)
+        {
+            FullScreen();
+        }
+        else WindowScreen();
+
+        if (PlayerPrefs.GetInt("isMute") == 0)
+        {
+            SoundMusic();
+        }
+        else MuteMusic();
         //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
         //butons = this.gameObject.GetComponentsInChildren<Button>();
         //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(butons[0].gameObject);
@@ -59,7 +90,25 @@ public class Menu : MonoBehaviour {
         mainMenu.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         options.gameObject.SetActive(true);
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(GameObject.Find("Full Screen"));
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(fullScreen);
+        if (PlayerPrefs.GetInt("ScreenMode") == 0)
+        {
+            //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(fullScreen);
+            fullScreen.GetComponent<Toggle>().isOn = true;
+        }
+        else if (PlayerPrefs.GetInt("ScreenMode") == 1) { 
+            //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(windowed);
+            windowed.GetComponent<Toggle>().isOn = true;
+        }
+        if (PlayerPrefs.GetInt("isMute") == 0)
+        {
+            //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(fullScreen);
+            notMuted.GetComponent<Toggle>().isOn = true;
+        }
+        else if (PlayerPrefs.GetInt("isMute") == 1)
+        {
+            muted.GetComponent<Toggle>().isOn = true;
+        }
         lastButon = opt;
     }
     public void ShowCredits()
@@ -83,24 +132,29 @@ public class Menu : MonoBehaviour {
     public void FullScreen()
     {
         Screen.fullScreen = true;
+        PlayerPrefs.SetInt("ScreenMode", 0);
     }
     public void WindowScreen()
     {
         Screen.fullScreen = false;
+        PlayerPrefs.SetInt("ScreenMode", 1);
     }
     public void SetVolume()
     {
         //AudioListener.volume = volume.value;
         music.volume = volume.value;
-        Debug.Log("volumen");
+        PlayerPrefs.SetFloat("MusicVolume", music.volume);
+        //Debug.Log("volumen");
     }
     public void MuteMusic()
     {
-        music.mute = true; ;
+        music.mute = true;
+        PlayerPrefs.SetInt("isMute", 1);
     }
     public void SoundMusic()
     {
-        music.mute = false; ;
+        music.mute = false;
+        PlayerPrefs.SetInt("isMute", 0);
     }
   
 }
