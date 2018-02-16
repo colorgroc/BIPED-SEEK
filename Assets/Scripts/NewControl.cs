@@ -49,35 +49,23 @@ public class NewControl : MonoBehaviour
             player.transform.parent = GameObject.Find("Players").transform;
             player.gameObject.name = "Player_" + i.ToString();
 
-            //10 per tipo
+            //10 per tipo --> s'ha d'eliminar els guards del editor
             for (int y = 0; y < 10; y++)
             {
                 GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_Guard_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
                 GameObject guard = (GameObject)Instantiate(prefabG, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
                 guard.transform.parent = GameObject.Find("Guards").transform;
                 guard.gameObject.name = "Guard_Tipo_" + i.ToString();
+                guard.gameObject.tag = "Guard";
             }
         }
-        /*GameObject prefab_1 = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_1").ToString());
-        
-        GameObject Player_1 = (GameObject)Instantiate(prefab_1, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
-        Player_1.transform.parent = GameObject.Find("Players").transform;
-
-        GameObject prefab_2 = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_2").ToString());
-
-        GameObject Player_2 = (GameObject)Instantiate(prefab_1, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
-        Player_2.transform.parent = GameObject.Find("Players").transform;*/
+      
 
         //añadir jugadores activos
         for(int i = 1; i <= numOfPlayers; i++){
             players.Add(GameObject.Find("Player_" + i.ToString()));
         }
-        /*if (numOfPlayers == 2)
-        {
-            //players.Add(GameObject.Find("Player_" + i.toString()));
-            players.Add(GameObject.FindGameObjectWithTag("Player 1"));
-            players.Add(GameObject.FindGameObjectWithTag("Player 2"));
-        }*/
+        
         guards = GameObject.FindGameObjectsWithTag("Guard");
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
 
