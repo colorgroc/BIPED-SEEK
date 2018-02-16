@@ -22,6 +22,8 @@ public class Menu : MonoBehaviour {
     public static int numOfMapas = 1;
     [SerializeField]
     GameObject fullScreen, windowed, muted, notMuted;
+    [SerializeField]
+    GameObject mc_p1, mc_p2, mc_p3, mc_p4;
     //private Button[] butons;
     // private int select;
 
@@ -156,5 +158,37 @@ public class Menu : MonoBehaviour {
         music.mute = false;
         PlayerPrefs.SetInt("isMute", 0);
     }
-  
+    public void MostrarControles_p1()
+    {
+        GameObject.Find("NamePlayer").GetComponent<Text>().text = "Player 1";
+        mc_p1.SetActive(true);
+        mc_p2.SetActive(false);
+        mc_p3.SetActive(false);
+        mc_p4.SetActive(false);
+    }
+    public void MostrarControles_p2()
+    {
+        GameObject.Find("NamePlayer").GetComponent<Text>().text = "Player 2";
+        mc_p1.SetActive(false);
+        mc_p2.SetActive(true);
+        mc_p3.SetActive(false);
+        mc_p4.SetActive(false);
+    }
+    public void MostrarControles_p3()
+    {
+        GameObject.Find("NamePlayer").GetComponent<Text>().text = "Player 3";
+        mc_p1.SetActive(false);
+        mc_p2.SetActive(false);
+        mc_p3.SetActive(true);
+        mc_p4.SetActive(false);
+    }
+    public void MostrarControles_p4()
+    {
+        GameObject.Find("NamePlayer").GetComponent<Text>().text = "Player 4";
+        mc_p1.SetActive(false);
+        mc_p2.SetActive(false);
+        mc_p3.SetActive(false);
+        mc_p4.SetActive(true);
+    }
+
 }
