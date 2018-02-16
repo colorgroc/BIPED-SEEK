@@ -37,23 +37,29 @@ public class NewControl : MonoBehaviour
 		pausa.SetActive (false);
 		timeLeft = UnityEngine.Random.Range(60, 3*60);
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-        int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+        //int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
 
         MapaRandom();
 
-        for(int i = 1; i < numOfPlayers; i++)
+        for(int i = 1; i <= numOfPlayers; i++)
         {
+            int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+            
             //es crea player desde la seleccio escollida (es crida prefab)
-            GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
+            GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()).ToString());
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
             player.transform.parent = GameObject.Find("Players").transform;
             player.gameObject.name = "Player_" + i.ToString();
 
-            //10 per tipo --> s'ha d'eliminar els guards del editor
+            //10 per tipo
+            Debug.Log("no va");
             for (int y = 0; y < 10; y++)
             {
+                
+                int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
                 GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_Guard_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
-                GameObject guard = (GameObject)Instantiate(prefabG, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
+               // GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_3");
+                GameObject guard = (GameObject)Instantiate(prefabG, allMyRespawnPoints[rand].transform.position, allMyRespawnPoints[rand].transform.rotation);
                 guard.transform.parent = GameObject.Find("Guards").transform;
                 guard.gameObject.name = "Guard_Tipo_" + i.ToString();
                 guard.gameObject.tag = "Guard";
