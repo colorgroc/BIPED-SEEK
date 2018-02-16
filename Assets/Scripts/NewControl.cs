@@ -43,10 +43,20 @@ public class NewControl : MonoBehaviour
 
         for(int i = 1; i < numOfPlayers; i++)
         {
+            //es crea player desde la seleccio escollida (es crida prefab)
             GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
             player.transform.parent = GameObject.Find("Players").transform;
-            player.gameObject.name = "Player_" + i.ToString(); 
+            player.gameObject.name = "Player_" + i.ToString();
+
+            //10 per tipo
+            for (int y = 0; y < 10; y++)
+            {
+                GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_Guard_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
+                GameObject guard = (GameObject)Instantiate(prefabG, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
+                guard.transform.parent = GameObject.Find("Guards").transform;
+                guard.gameObject.name = "Guard_Tipo_" + i.ToString();
+            }
         }
         /*GameObject prefab_1 = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_1").ToString());
         
