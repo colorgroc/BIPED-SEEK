@@ -53,7 +53,7 @@ public class NewControl : MonoBehaviour
             player.gameObject.name = "Player_" + i.ToString();
 
             //10 per tipo
-            for (int y = 0; y < 10; y++)
+            /*for (int y = 0; y < 10; y++)
             {  
                 int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
                 GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_Guard_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
@@ -62,7 +62,7 @@ public class NewControl : MonoBehaviour
                 guard.transform.parent = GameObject.Find("Guards").transform;
                 guard.gameObject.name = "Guard_Tipo_" + i.ToString();
                 guard.gameObject.tag = "Guard";
-            }
+            }*/
         }
         //lo q te a veure amb els guards d moment, al no haverhi prefab, no va i per tant, el q hi ha a continuació no es fa
 
@@ -71,7 +71,7 @@ public class NewControl : MonoBehaviour
             players.Add(GameObject.Find("Player_" + i.ToString()));
         }
         
-        guards = GameObject.FindGameObjectsWithTag("Guard");
+        //guards = GameObject.FindGameObjectsWithTag("Guard");
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
 
         timeStartLeft = timeLeft;

@@ -48,9 +48,9 @@ public class Menu : MonoBehaviour {
                 {
                     PlayerPrefs.SetString("Movement_P" + i.ToString(), "Vertical");
                     PlayerPrefs.SetString("Rotation_P" + i.ToString(), "Rotation Horizontal");
-                    PlayerPrefs.SetString("Kill_P" + i.ToString(), "joystick" + i.ToString() + "button 2");
-                    PlayerPrefs.SetString("Hab1_P" + i.ToString(), "joystick" + i.ToString() + "button 0");
-                    PlayerPrefs.SetString("Hab2_P" + i.ToString(), "joystick" + i.ToString() + "button 1");
+                    PlayerPrefs.SetString("Kill_P" + i.ToString(), "joystick " + i.ToString() + " button 2");
+                    PlayerPrefs.SetString("Hab1_P" + i.ToString(), "joystick " + i.ToString() + " button 0");
+                    PlayerPrefs.SetString("Hab2_P" + i.ToString(), "joystick " + i.ToString() + " button 1");
 
                     /*PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
                     PlayerPrefs.SetString("Hab1_P" + i.ToString(), "A_" + i.ToString());
@@ -114,9 +114,9 @@ public class Menu : MonoBehaviour {
             {
                 PlayerPrefs.SetString("Movement_P" + i.ToString(), "Vertical");
                 PlayerPrefs.SetString("Rotation_P" + i.ToString(), "Rotation Horizontal");
-                PlayerPrefs.SetString("Kill_P" + i.ToString(), "joystick" + i.ToString() + "button 2");
-                PlayerPrefs.SetString("Hab1_P" + i.ToString(), "joystick" + i.ToString() + "button 0");
-                PlayerPrefs.SetString("Hab2_P" + i.ToString(), "joystick" + i.ToString() + "button 1");
+                PlayerPrefs.SetString("Kill_P" + i.ToString(), "joystick " + i.ToString() + " button 2");
+                PlayerPrefs.SetString("Hab1_P" + i.ToString(), "joystick " + i.ToString() + " button 0");
+                PlayerPrefs.SetString("Hab2_P" + i.ToString(), "joystick " + i.ToString() + " button 1");
 
                /* PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
                 PlayerPrefs.SetString("Hab1_P" + i.ToString(), "A_" + i.ToString());

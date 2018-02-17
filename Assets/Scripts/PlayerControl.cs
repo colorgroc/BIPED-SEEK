@@ -36,11 +36,11 @@ public class PlayerControl : MonoBehaviour {
         }
         else
         {
-            if (this.gameObject.name.Equals("Player 1"))
+            if (this.gameObject.name.Equals("Player_1"))
             {
-                AxisMovement = PlayerPrefs.GetString("Movement_P1");
-                AxisRotation = PlayerPrefs.GetString("Rotation_P1");
-                killButton = PlayerPrefs.GetString("Kill_P1");
+                this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
+                this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
+                this.killButton = PlayerPrefs.GetString("Kill_P1");
                 this.hab1Button = PlayerPrefs.GetString("Hab1_P1");
                 this.hab2Button = PlayerPrefs.GetString("Hab2_P1");
                 /* this.pauseButton = PlayerPrefs.GetString("Pause_P1");
@@ -51,7 +51,7 @@ public class PlayerControl : MonoBehaviour {
                 Debug.Log("P1: " + this.AxisRotation);
                 Debug.Log("P1: " + this.killButton);
             }
-            else if (this.gameObject.name.Equals("Player 2"))
+            else if (this.gameObject.name.Equals("Player_2"))
             {
                 this.AxisMovement = PlayerPrefs.GetString("Movement_P2");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P2");
@@ -66,7 +66,7 @@ public class PlayerControl : MonoBehaviour {
                 Debug.Log("P2: " + this.AxisRotation);
                 Debug.Log("P2: " + this.killButton);
             }
-            else if (this.gameObject.name.Equals("Player 3"))
+            else if (this.gameObject.name.Equals("Player_3"))
             {
                 this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P3");
@@ -77,7 +77,7 @@ public class PlayerControl : MonoBehaviour {
                     this.submitButton = PlayerPrefs.GetString("Submit_P3");
                     this.cancelButton = PlayerPrefs.GetString("Cancel_P3");*/
             }
-            else if (this.gameObject.name.Equals("Player 4"))
+            else if (this.gameObject.name.Equals("Player_4"))
             {
                 this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P4");
