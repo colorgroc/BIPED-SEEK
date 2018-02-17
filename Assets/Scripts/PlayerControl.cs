@@ -4,94 +4,106 @@ using UnityEngine;
 
 
 public class PlayerControl : MonoBehaviour {
-    public float speed;
-    float distToGround;
-    public float speedRotation;
-    public float jumpSpeed = 100.0F;
+    [SerializeField]
+    private float speed, speedRotation;
+    
     [SerializeField]
     private int tipo_de_character;
 	public int playerID;
-   // public bool isDead;
+    [HideInInspector]
+    public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, submitButton, pauseButton, cancelButton, habSpecialButton;
+    
     private float count;
+    private float distToGround;
 
-    //private GameObject[] allWaypoints;
-    public int random;
-    //private NPCConnectedPatrol npc;
-    public int scoreGeneral;
-    public int scoreKills;
-    public int scoreSurvived;
-    public bool wannaKill;
-    public bool onFieldView;
-    public float timePast;
-    public bool detected;
-	public GameObject player_New;
+    [HideInInspector]
+    public int scoreGeneral, scoreKills, scoreSurvived, random;
+    [HideInInspector]
+    public bool wannaKill, onFieldView, detected;
+    [HideInInspector]
+    public float jumpSpeed = 100.0F, timePast;
+
     // Use this for initialization
     void Start () {
         distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
         this.gameObject.GetComponent<Light>().enabled = false;
-       /* if (this.gameObject.tag.Equals("Player 1"))
-        {
-            this.tipo_de_character = PlayerPrefs.GetInt("characterPlayer_1");
-            
-            //GameObject prefab = (GameObject)Resources.Load("Tipo_1");
-            //if(prefab == null)
-            //GameObject newPlayer = (GameObject)Instantiate(prefab, this.gameObject.transform);
-            Debug.Log("Jugador 1 Tipo: " + this.tipo_de_character);
+
+        //asignacion controles
+        if (PlayerPrefs.GetInt("NumPlayers") == 1) {
+            this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
+            this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
+            this.killButton = "Kill";
         }
-        else if (this.gameObject.tag.Equals("Player 2"))
+        else
         {
-            this.tipo_de_character = PlayerPrefs.GetInt("characterPlayer_2");
-            Debug.Log("Jugador 2 Tipo: " + this.tipo_de_character);
-        }*/
+            if (this.gameObject.name.Equals("Player 1"))
+            {
+                AxisMovement = PlayerPrefs.GetString("Movement_P1");
+                AxisRotation = PlayerPrefs.GetString("Rotation_P1");
+                killButton = PlayerPrefs.GetString("Kill_P1");
+                this.hab1Button = PlayerPrefs.GetString("Hab1_P1");
+                this.hab2Button = PlayerPrefs.GetString("Hab2_P1");
+                /* this.pauseButton = PlayerPrefs.GetString("Pause_P1");
+                    this.submitButton = PlayerPrefs.GetString("Submit_P1");
+                    this.cancelButton = PlayerPrefs.GetString("Cancel_P1");*/
+
+                Debug.Log("P1: " + this.AxisMovement);
+                Debug.Log("P1: " + this.AxisRotation);
+                Debug.Log("P1: " + this.killButton);
+            }
+            else if (this.gameObject.name.Equals("Player 2"))
+            {
+                this.AxisMovement = PlayerPrefs.GetString("Movement_P2");
+                this.AxisRotation = PlayerPrefs.GetString("Rotation_P2");
+                this.killButton = PlayerPrefs.GetString("Kill_P2");
+                this.hab1Button = PlayerPrefs.GetString("Hab1_P2");
+                this.hab2Button = PlayerPrefs.GetString("Hab2_P2");
+                /*this.pauseButton = PlayerPrefs.GetString("Pause_P2");
+                this.submitButton = PlayerPrefs.GetString("Submit_P2");
+                this.cancelButton = PlayerPrefs.GetString("Cancel_P2");*/
+
+                Debug.Log("P2: " + this.AxisMovement);
+                Debug.Log("P2: " + this.AxisRotation);
+                Debug.Log("P2: " + this.killButton);
+            }
+            else if (this.gameObject.name.Equals("Player 3"))
+            {
+                this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
+                this.AxisRotation = PlayerPrefs.GetString("Rotation_P3");
+                this.killButton = PlayerPrefs.GetString("Kill_P3");
+                this.hab1Button = PlayerPrefs.GetString("Hab1_P3");
+                this.hab2Button = PlayerPrefs.GetString("Hab2_P3");
+                /* this.pauseButton = PlayerPrefs.GetString("Pause_P3");
+                    this.submitButton = PlayerPrefs.GetString("Submit_P3");
+                    this.cancelButton = PlayerPrefs.GetString("Cancel_P3");*/
+            }
+            else if (this.gameObject.name.Equals("Player 4"))
+            {
+                this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
+                this.AxisRotation = PlayerPrefs.GetString("Rotation_P4");
+                this.killButton = PlayerPrefs.GetString("Kill_P4");
+                this.hab1Button = PlayerPrefs.GetString("Hab1_P4");
+                this.hab2Button = PlayerPrefs.GetString("Hab2_P4");
+                /* this.pauseButton = PlayerPrefs.GetString("Pause_P4");
+                    this.submitButton = PlayerPrefs.GetString("Submit_P4");
+                    this.cancelButton = PlayerPrefs.GetString("Cancel_P4");*/
+            }
+        }
+
         
     }
 
     // Update is called once per frame
     void Update()
     {
+       //Controles
+        float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
+        float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
+        transform.Translate(0, 0, y * speed);
+        transform.Rotate(0, rX * speedRotation, 0);
+        if (Input.GetButtonDown(killButton)) this.wannaKill = true;
+   
 
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-           
-            if (this.gameObject.tag.Equals("Player 1"))
-            {
-                this.scoreGeneral += 10;
-                Debug.Log("Score 1: " + this.scoreGeneral);
-            }
-            else if (this.gameObject.tag.Equals("Player 2"))
-            {
-                this.scoreGeneral += 20;
-                Debug.Log("Score 2: " + this.scoreGeneral);
-            }
-        }
-
-        if (this.gameObject.tag.Equals("Player 1"))
-        {
-            //float x = Input.GetAxis("Horizontal") * Time.deltaTime;
-            float y = Input.GetAxis("Vertical") * Time.deltaTime;
-            float rX = Input.GetAxis("Rotation Horizontal") * Time.deltaTime;
-          
-           // float rY = Input.GetAxis("Rotation Vertical") * Time.deltaTime;
-
-            transform.Translate(0, 0, y * speed);
-            transform.Rotate(0, rX * speedRotation, 0);
-            if (Input.GetButtonDown("Kill")) this.wannaKill = true;
-            if (Input.GetKeyDown(KeyCode.RightControl) && IsGrounded()) GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
-        }
-        else if (this.gameObject.tag.Equals("Player 2"))
-        {
-            /*float x = Input.GetAxis("Horizontal 2") * Time.deltaTime;
-            float y = Input.GetAxis("Vertical 2") * Time.deltaTime;
-            transform.Translate(0, 0, y * speed);
-            transform.Rotate(0, x * speedRotation, 0);
-
-			if (Input.GetKeyDown(KeyCode.LeftControl) && IsGrounded()) GetComponent<Rigidbody>().AddForce(0, jumpSpeed, 0, ForceMode.Impulse);
-			
-			if(Input.GetKeyUp(KeyCode.E)) this.wannaKill = false;*/
-        }
-
-       
         if (this.detected)
         {
             this.gameObject.GetComponent<Light>().enabled = true;

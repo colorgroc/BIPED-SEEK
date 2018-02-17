@@ -52,10 +52,8 @@ public class NewControl : MonoBehaviour
             player.gameObject.name = "Player_" + i.ToString();
 
             //10 per tipo
-            Debug.Log("no va");
             for (int y = 0; y < 10; y++)
-            {
-                
+            {  
                 int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
                 GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_Guard_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
                // GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_3");
