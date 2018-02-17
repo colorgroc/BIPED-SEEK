@@ -17,7 +17,7 @@ public class WinnerHUD : MonoBehaviour {
 			player.text = NewControl.finalWinner.name;
 	}
 	void Update(){
-		if (Input.GetKeyDown (KeyCode.Return)) {
+		if (Input.GetButtonDown("Submit")) {
 			this.gameObject.SetActive (false);
 			Time.timeScale = 1;
 			SceneManager.LoadScene (0);

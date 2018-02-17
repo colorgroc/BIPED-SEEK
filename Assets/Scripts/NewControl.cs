@@ -16,8 +16,9 @@ public class NewControl : MonoBehaviour
     public static GameObject objective;
 	public static GameObject parcialWinner;
 	public static GameObject finalWinner;
-	//public List<GameObject> finalWinners = new List<GameObject>();
-    public GameObject showObjective;
+    //public List<GameObject> finalWinners = new List<GameObject>();
+    [SerializeField]
+    private GameObject showObjective;
     public static int random;
     public static List<GameObject> players = new List<GameObject>();
     public GameObject[] guards;
@@ -63,7 +64,7 @@ public class NewControl : MonoBehaviour
                 guard.gameObject.tag = "Guard";
             }
         }
-      
+        //lo q te a veure amb els guards d moment, al no haverhi prefab, no va i per tant, el q hi ha a continuació no es fa
 
         //añadir jugadores activos
         for(int i = 1; i <= numOfPlayers; i++){
@@ -81,7 +82,7 @@ public class NewControl : MonoBehaviour
             player.GetComponent<PlayerControl>().Respawn(player.gameObject);
         }
         //eleccio objectiu
-        RecalculaObjetivo();
+        RecalculaObjetivo(); 
         showObjective = objective;
     }
 
@@ -188,8 +189,10 @@ public class NewControl : MonoBehaviour
 
     void RecalculaObjetivo()
     {
-        random = UnityEngine.Random.Range(0, numOfPlayers);
-        objective = GameObject.FindGameObjectWithTag("Player " + (random + 1).ToString());
+        random = UnityEngine.Random.Range(0, PlayerPrefs.GetInt("NumPlayers"));
+        Debug.Log(random);
+        objective = GameObject.Find("Player_" + (random + 1).ToString());
+        Debug.Log(objective);
     }
     private void Pausa()
     {

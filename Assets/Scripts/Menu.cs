@@ -130,7 +130,8 @@ public class Menu : MonoBehaviour {
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
         PlayerPrefs.SetInt("NumMapas", numOfMapas);
         //music.volume = 1f;
-        volume.value = PlayerPrefs.GetFloat("MusicVolume"); ;
+        volume.value = PlayerPrefs.GetFloat("MusicVolume");
+        music.volume = volume.value;
 
         if (PlayerPrefs.GetInt("ScreenMode") == 0)
         {
