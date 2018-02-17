@@ -228,7 +228,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 2);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
-                ready_P1 = true;
+                ready_P2 = true;
             }
             if (Input.GetButtonDown("B_2"))
             {
@@ -236,7 +236,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
-                ready_P1 = false;
+                ready_P2 = false;
             }
 
 
