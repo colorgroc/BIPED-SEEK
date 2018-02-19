@@ -4,9 +4,7 @@ using System.Collections.Generic;
 
 public class KillersProperties : MonoBehaviour
 {
-    public bool playerOnFieldView;
-    public GameObject playerTarget;
-    public bool follow;
+    
     // Use this for initialization
 }
 
@@ -19,7 +17,12 @@ public class FieldOfViewKillers : MonoBehaviour
 	[Range (0, 360)]
 	public float viewAngle;
 
-	[SerializeField]
+    [HideInInspector]
+    //public bool playerOnFieldView;
+    //public GameObject playerTarget;
+    public bool follow;
+
+    [SerializeField]
 	public LayerMask targetMask;
 	public LayerMask obstacleMask;
 
@@ -34,7 +37,7 @@ public class FieldOfViewKillers : MonoBehaviour
 	}
 
 	void Update(){
-		if (!this.gameObject.GetComponent<KillersProperties> ().follow) 
+		if (!this.follow) 
 			this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
 	}
 

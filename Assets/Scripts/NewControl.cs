@@ -32,9 +32,9 @@ public class NewControl : MonoBehaviour
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
     private int timesPlayed;
     [SerializeField]
-    private int rondas;
+    private int rondas = 3;
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
         paused = false;
@@ -42,7 +42,6 @@ public class NewControl : MonoBehaviour
 		timeLeft = UnityEngine.Random.Range(60, 3*60);
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         
-       
 
         MapaRandom();
 
@@ -55,7 +54,7 @@ public class NewControl : MonoBehaviour
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
             player.transform.parent = GameObject.Find("Players").transform;
             player.gameObject.name = "Player_" + i.ToString();
-            player.gameObject.tag = "Player_" + i.ToString();
+            player.gameObject.tag = "Player " + i.ToString();
             player.gameObject.layer = 8;
 
             //10 per tipo
