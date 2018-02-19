@@ -30,6 +30,9 @@ public class NewControl : MonoBehaviour
 	private int topScore;
     [SerializeField]
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
+    private int timesPlayed;
+    [SerializeField]
+    private int rondas;
     // Use this for initialization
     void Start()
     {
@@ -38,7 +41,8 @@ public class NewControl : MonoBehaviour
 		pausa.SetActive (false);
 		timeLeft = UnityEngine.Random.Range(60, 3*60);
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-        //int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+        
+       
 
         MapaRandom();
 
@@ -55,7 +59,7 @@ public class NewControl : MonoBehaviour
             player.gameObject.layer = 8;
 
             //10 per tipo
-            /*for (int y = 0; y < 10; y++)
+            for (int y = 0; y < 10; y++)
             {  
                 int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
                 GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_Guard_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
@@ -64,7 +68,7 @@ public class NewControl : MonoBehaviour
                 guard.transform.parent = GameObject.Find("Guards").transform;
                 guard.gameObject.name = "Guard_Tipo_" + i.ToString();
                 guard.gameObject.tag = "Guard";
-            }*/
+            }
         }
         //lo q te a veure amb els guards d moment, al no haverhi prefab, no va i per tant, el q hi ha a continuació no es fa
 
@@ -73,11 +77,11 @@ public class NewControl : MonoBehaviour
             players.Add(GameObject.Find("Player_" + i.ToString()));
         }
         
-        //guards = GameObject.FindGameObjectsWithTag("Guard");
+        guards = GameObject.FindGameObjectsWithTag("Guard");
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
 
         timeStartLeft = timeLeft;
-
+        RespawnNPCS();
         foreach (GameObject player in players)
         {
             player.GetComponent<PlayerControl>().timePast = 0;
@@ -91,9 +95,7 @@ public class NewControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       /* if (Input.GetKeyDown(KeyCode.Space)) {
-            RespawnNPCS();
-        }*/
+      
         Pausa();
 
         showObjective = objective;
@@ -130,12 +132,14 @@ public class NewControl : MonoBehaviour
 			Time.timeScale = 0;*/
 
             RecalculaObjetivo();
+            timesPlayed++;
             objComplete = false;
             foreach (GameObject player in players)
             {
 				if(player != parcialWinner)
 					player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             }
+            RespawnNPCS();
            
             parcialWinner = null;
         }
@@ -150,12 +154,14 @@ public class NewControl : MonoBehaviour
 			Time.timeScale = 0;*/
 
             RecalculaObjetivo();
+            timesPlayed++;
             timeLeft = timeStartLeft;
             foreach (GameObject player in players)
             {
 				if(player != parcialWinner)
 					player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             }
+            RespawnNPCS();
 			parcialWinner = null;
         }
         if (objKilledByGuard)
@@ -163,11 +169,18 @@ public class NewControl : MonoBehaviour
             Debug.Log("U got killed noob!");
             //Pause (p);
             RecalculaObjetivo();
+            timesPlayed++;
             objKilledByGuard = false;
             foreach (GameObject player in players)
             {
 				player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             }
+            RespawnNPCS();
+        }
+
+        if (timesPlayed == rondas)
+        {
+            finalWinnerCanvas.SetActive(true);
         }
     }
     private void MapaRandom()

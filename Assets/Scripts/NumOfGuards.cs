@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NumOfGuards : MonoBehaviour {
 	
-	public GameObject guard;
+	/*public GameObject guard;
 	private GameObject[] guardList;
 	public int numOfGuards;
 
@@ -16,14 +16,5 @@ public class NumOfGuards : MonoBehaviour {
 			//clone.GetComponent<NPCConnectedPatrol> ().Start();
 			//guardList [i] = clone;
 		}
-	}
-	//}
-	// Use this for initialization
-	void Start () {
-		
-	}
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	}*/
 }

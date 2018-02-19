@@ -94,12 +94,12 @@ public class PlayerControl : MonoBehaviour {
         float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
         transform.Translate(0, 0, y * speed);
         transform.Rotate(0, rX * speedRotation, 0);
-        if (Input.GetButtonDown(killButton) && !this.pressed)
+        if (Input.GetButtonDown(this.killButton) && !this.pressed)
         {
             this.pressed = true;
             this.timePress = 0;
 
-        }
+        } //provar posant else this.wannakill = false;
         if (this.pressed)
         {
             this.timePress += Time.deltaTime;
@@ -118,28 +118,9 @@ public class PlayerControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-       //Controles
-       /* float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
-        float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
-        transform.Translate(0, 0, y * speed);
-        transform.Rotate(0, rX * speedRotation, 0);
-        if (Input.GetButtonDown(killButton))
-        {
-            this.pressed = true;
-            this.timePress += Time.deltaTime;
-            if (this.pressed)
-            {
-                this.wannaKill = true;
-                if (this.timePress >= 0.1)
-                {
-                    this.pressed = false;
-                    this.wannaKill = false;
-                    this.timePress = 0;
-                }
-            }
-        }*/
+
         
-        Debug.Log(this.pressed + ", " + this.timePress + ", " + this.wannaKill);
+        //Debug.Log(this.pressed + ", " + this.timePress + ", " + this.wannaKill);
         if (this.detected)
         {
             this.gameObject.GetComponent<Light>().enabled = true;

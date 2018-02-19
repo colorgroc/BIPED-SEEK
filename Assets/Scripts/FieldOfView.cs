@@ -59,27 +59,7 @@ public class FieldOfView : MonoBehaviour {
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     this.visibleTargets.Add(target);
-                    //StartCoroutine (FadeOut (target.gameObject));
-                    //FadeOut (target.gameObject);
-
-                    /* if (this.gameObject.GetComponent<PlayerControl>().wannaKill) {
-                                this.timePast += Time.deltaTime;
-                                
-                            }if (this.timePast < 0.1) this.kill = true;
-                            else
-                            {
-                                this.kill = false;
-                                this.timePast = 0;
-                            }
-                            if (this.kill)
-                            {
-								Debug.Log("Killing");
-                                this.visibleTargets.Remove(target);
-                                this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
-                                this.gameObject.GetComponent<PlayerControl>().wannaKill = false;
-                            }*/
-
-
+                   
                     if (this.gameObject.layer == 8)
                     {
                         if (target.gameObject.layer == 8)

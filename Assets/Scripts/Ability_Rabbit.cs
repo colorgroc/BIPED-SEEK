@@ -7,17 +7,40 @@ public class Ability_Rabbit : MonoBehaviour {
     public GameObject rabbit;
     public float radius;
     public GameObject explosion;
+    [HideInInspector]
+    public string hab1Button;
 
     void Start()
     {
+        if (this.gameObject.name.Equals("Player_1"))
+        {
+            this.hab1Button = PlayerPrefs.GetString("Hab1_P1");
+        }
+        else if (this.gameObject.name.Equals("Player_2"))
+        {
+            this.hab1Button = PlayerPrefs.GetString("Hab1_P2");
 
+        }
+        else if (this.gameObject.name.Equals("Player_3"))
+        {
+            this.hab1Button = PlayerPrefs.GetString("Hab1_P3");
+        }
+        else if (this.gameObject.name.Equals("Player_4"))
+        {
+            this.hab1Button = PlayerPrefs.GetString("Hab1_P4");
+        }
     }
 
     void Update () {
 
-        if (Input.GetKeyDown(KeyCode.R))
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             Multiply();        
+        }*/
+
+        if (Input.GetButtonDown(this.hab1Button))
+        {
+            Multiply();
         }
 
 	}
