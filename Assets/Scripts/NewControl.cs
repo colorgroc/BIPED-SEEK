@@ -51,6 +51,8 @@ public class NewControl : MonoBehaviour
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
             player.transform.parent = GameObject.Find("Players").transform;
             player.gameObject.name = "Player_" + i.ToString();
+            player.gameObject.tag = "Player_" + i.ToString();
+            player.gameObject.layer = 8;
 
             //10 per tipo
             /*for (int y = 0; y < 10; y++)
@@ -89,9 +91,9 @@ public class NewControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+       /* if (Input.GetKeyDown(KeyCode.Space)) {
             RespawnNPCS();
-        }
+        }*/
         Pausa();
 
         showObjective = objective;
@@ -123,6 +125,7 @@ public class NewControl : MonoBehaviour
 			Debug.Log("Congratulations to " + this.gameObject.name);
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 50;
+            
             /*GameObject.Find ("Winner").GetComponent<Canvas> ().enabled = true;
 			Time.timeScale = 0;*/
 
@@ -190,9 +193,9 @@ public class NewControl : MonoBehaviour
     void RecalculaObjetivo()
     {
         random = UnityEngine.Random.Range(0, PlayerPrefs.GetInt("NumPlayers"));
-        Debug.Log(random);
+       // Debug.Log(random);
         objective = GameObject.Find("Player_" + (random + 1).ToString());
-        Debug.Log(objective);
+        //Debug.Log(objective);
     }
     private void Pausa()
     {

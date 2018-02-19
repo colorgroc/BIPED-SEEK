@@ -46,11 +46,11 @@ public class Menu : MonoBehaviour {
 
                 for (int i = 1; i <= max_players; i++)
                 {
-                    PlayerPrefs.SetString("Movement_P" + i.ToString(), "Vertical");
-                    PlayerPrefs.SetString("Rotation_P" + i.ToString(), "Rotation Horizontal");
-                    PlayerPrefs.SetString("Kill_P" + i.ToString(), "joystick " + i.ToString() + " button 2");
-                    PlayerPrefs.SetString("Hab1_P" + i.ToString(), "joystick " + i.ToString() + " button 0");
-                    PlayerPrefs.SetString("Hab2_P" + i.ToString(), "joystick " + i.ToString() + " button 1");
+                    PlayerPrefs.SetString("Movement_P" + i.ToString(), "V_LPad_" + i.ToString());
+                    PlayerPrefs.SetString("Rotation_P" + i.ToString(), "H_RPad_" + i.ToString());
+                    PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
+                    PlayerPrefs.SetString("Hab1_P" + i.ToString(), "B_" + i.ToString());
+                    PlayerPrefs.SetString("Hab2_P" + i.ToString(), "Y_" + i.ToString());
 
                     /*PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
                     PlayerPrefs.SetString("Hab1_P" + i.ToString(), "A_" + i.ToString());
@@ -112,15 +112,15 @@ public class Menu : MonoBehaviour {
         {
             for (int i = 1; i <= max_players; i++)
             {
-                PlayerPrefs.SetString("Movement_P" + i.ToString(), "Vertical");
-                PlayerPrefs.SetString("Rotation_P" + i.ToString(), "Rotation Horizontal");
-                PlayerPrefs.SetString("Kill_P" + i.ToString(), "joystick " + i.ToString() + " button 2");
-                PlayerPrefs.SetString("Hab1_P" + i.ToString(), "joystick " + i.ToString() + " button 0");
-                PlayerPrefs.SetString("Hab2_P" + i.ToString(), "joystick " + i.ToString() + " button 1");
+                PlayerPrefs.SetString("Movement_P" + i.ToString(), "V_LPad_" + i.ToString());
+                PlayerPrefs.SetString("Rotation_P" + i.ToString(), "H_RPad_" + i.ToString());
+                PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
+                PlayerPrefs.SetString("Hab1_P" + i.ToString(), "B_" + i.ToString());
+                PlayerPrefs.SetString("Hab2_P" + i.ToString(), "Y_" + i.ToString());
 
-               /* PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
-                PlayerPrefs.SetString("Hab1_P" + i.ToString(), "A_" + i.ToString());
-                PlayerPrefs.SetString("Hab2_P" + i.ToString(), "B_" + i.ToString());*/
+                /* PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
+                 PlayerPrefs.SetString("Hab1_P" + i.ToString(), "A_" + i.ToString());
+                 PlayerPrefs.SetString("Hab2_P" + i.ToString(), "B_" + i.ToString());*/
             }
         }
         options.gameObject.SetActive(false);
@@ -273,38 +273,26 @@ public class Menu : MonoBehaviour {
         if (mc_p1.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p1.GetComponentsInChildren<Dropdown>();
-            if (dropList[num].value == 0) button = "Vertical";
-            else if (dropList[num].value == 1) button = "Rotation Vertical";
-            else if (dropList[num].value == 2) button = "Vertical Arrows";
-            PlayerPrefs.SetString("Movement_P1", button);
+            button = Axis(mc_p1.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Movement_P1", button + "1");
         }
         else if (mc_p2.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p2.GetComponentsInChildren<Dropdown>();
-            if (dropList[num].value == 0) button = "Vertical";
-            else if (dropList[num].value == 1) button = "Rotation Vertical";
-            else if (dropList[num].value == 2) button = "Vertical Arrows";
-            PlayerPrefs.SetString("Movement_P2", button);
+            button = Axis(mc_p2.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Movement_P2", button + "2");
         }
         else if (mc_p3.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p3.GetComponentsInChildren<Dropdown>();
-            if (dropList[num].value == 0) button = "Vertical";
-            else if (dropList[num].value == 1) button = "Rotation Vertical";
-            else if (dropList[num].value == 2) button = "Vertical Arrows";
-            PlayerPrefs.SetString("Movement_P3", button);
+            button = Axis(mc_p3.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Movement_P3", button + "3");
         }
         else if (mc_p4.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p4.GetComponentsInChildren<Dropdown>();
-            if (dropList[num].value == 0) button = "Vertical";
-            else if (dropList[num].value == 1) button = "Rotation Vertical";
-            else if (dropList[num].value == 2) button = "Vertical Arrows";
-            PlayerPrefs.SetString("Movement_P4", button);
+            button = Axis(mc_p4.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Movement_P4", button + "4");
         }
     }
 
@@ -314,104 +302,76 @@ public class Menu : MonoBehaviour {
         if (mc_p1.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p1.GetComponentsInChildren<Dropdown>();
-            if (dropList[num].value == 0) button = "Horizontal";    
-            else if (dropList[num].value == 1) button = "Rotation Horizontal";
-            else if (dropList[num].value == 2) button = "Horizontal Arrows";
-            PlayerPrefs.SetString("Rotation_P1", button);
+            button = Axis(mc_p1.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Rotation_P1", button + "1");
         }
         else if (mc_p2.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p2.GetComponentsInChildren<Dropdown>();
-            if (dropList[num].value == 0) button = "Horizontal";
-            else if (dropList[num].value == 1) button = "Rotation Horizontal";
-            else if (dropList[num].value == 2) button = "Horizontal Arrows";
-            PlayerPrefs.SetString("Rotation_P2", button);
+            button = Axis(mc_p2.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Rotation_P2", button + "2");
         }
         else if (mc_p3.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p3.GetComponentsInChildren<Dropdown>();
-            if (dropList[num].value == 0) button = "Horizontal";
-            else if (dropList[num].value == 1) button = "Rotation Horizontal";
-            else if (dropList[num].value == 2) button = "Horizontal Arrows";
-            PlayerPrefs.SetString("Rotation_P3", button);
+            button = Axis(mc_p3.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Rotation_P3", button + "3");
         }
         else if (mc_p4.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p4.GetComponentsInChildren<Dropdown>();
-            if (dropList[num].value == 0) button = "Horizontal";
-            else if (dropList[num].value == 1) button = "Rotation Horizontal";
-            else if (dropList[num].value == 2) button = "Horizontal Arrows";
-            PlayerPrefs.SetString("Rotation_P4", button);
+            button = Axis(mc_p4.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Rotation_P4", button + "4");
         }
     }
-
+    private string Axis(Dropdown[] dropList, int num)
+    {
+        string button = "";
+        if (dropList[num].value == 0) button = "H_LPad_";
+        else if (dropList[num].value == 1) button = "H_RPad_";
+        else if (dropList[num].value == 2) button = "H_Arrows_";
+        return button;
+    }
+    private string Button(Dropdown[] dropList, int num)
+    {
+        string button = "";
+        if (dropList[num].value == 0) button = "A_";
+        else if (dropList[num].value == 1) button = "B_";
+        else if (dropList[num].value == 2) button = "Y_";
+        else if (dropList[num].value == 3) button = "X_";
+        else if (dropList[num].value == 4) button = "R_Bumper_";
+        else if (dropList[num].value == 5) button = "R_Trigger_";
+        else if (dropList[num].value == 6) button = "L_Bumper_";
+        else if (dropList[num].value == 7) button = "L_Trigger_";
+        return button;
+    }
     public void ChangeControl_Kill()
     {
         int num = 2;
         if (mc_p1.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p1.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 1 button 0";
-            else if (dropList[num].value == 1) button = "joystick 1 button 1";
-            else if (dropList[num].value == 2) button = "joystick 1 button 3";
-            else if (dropList[num].value == 3) button = "joystick 1 button 2";
-            else if (dropList[num].value == 4) button = "joystick 1 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 1 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Kill_P1", button);
+            button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Kill_P1", button + "1");
 
         }
         else if (mc_p2.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p2.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 2 button 0";
-            else if (dropList[num].value == 1) button = "joystick 2 button 1";
-            else if (dropList[num].value == 2) button = "joystick 2 button 3";
-            else if (dropList[num].value == 3) button = "joystick 2 button 2";
-            else if (dropList[num].value == 4) button = "joystick 2 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 2 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Kill_P2", button);
+            button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Kill_P2", button + "2");
         }
         else if (mc_p3.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p3.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 3 button 0";
-            else if (dropList[num].value == 1) button = "joystick 3 button 1";
-            else if (dropList[num].value == 2) button = "joystick 3 button 3";
-            else if (dropList[num].value == 3) button = "joystick 3 button 2";
-            else if (dropList[num].value == 4) button = "joystick 3 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 3 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Kill_P3", button);
+            button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Kill_P3", button + "3");
         }
         else if (mc_p4.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p4.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 4 button 0";
-            else if (dropList[num].value == 1) button = "joystick 4 button 1";
-            else if (dropList[num].value == 2) button = "joystick 4 button 3";
-            else if (dropList[num].value == 3) button = "joystick 4 button 2";
-            else if (dropList[num].value == 4) button = "joystick 4 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 4 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Kill_P4", button);
+            button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Kill_P4", button + "4");
         }
     }
 
@@ -421,62 +381,26 @@ public class Menu : MonoBehaviour {
         if (mc_p1.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p1.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 1 button 0";
-            else if (dropList[num].value == 1) button = "joystick 1 button 1";
-            else if (dropList[num].value == 2) button = "joystick 1 button 3";
-            else if (dropList[num].value == 3) button = "joystick 1 button 2";
-            else if (dropList[num].value == 4) button = "joystick 1 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 1 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Hab1_P1", button);
+            button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Hab1_P1", button + "1");
         }
         else if (mc_p2.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p2.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 2 button 0";
-            else if (dropList[num].value == 1) button = "joystick 2 button 1";
-            else if (dropList[num].value == 2) button = "joystick 2 button 3";
-            else if (dropList[num].value == 3) button = "joystick 2 button 2";
-            else if (dropList[num].value == 4) button = "joystick 2 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 2 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Hab1_P2", button);
+            button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Hab1_P2", button + "2");
         }
         else if (mc_p3.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p3.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 3 button 0";
-            else if (dropList[num].value == 1) button = "joystick 3 button 1";
-            else if (dropList[num].value == 2) button = "joystick 3 button 3";
-            else if (dropList[num].value == 3) button = "joystick 3 button 2";
-            else if (dropList[num].value == 4) button = "joystick 3 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 3 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Hab1_P3", button);
+            button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Hab1_P3", button + "3");
         }
         else if (mc_p4.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p4.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 4 button 0";
-            else if (dropList[num].value == 1) button = "joystick 4 button 1";
-            else if (dropList[num].value == 2) button = "joystick 4 button 3";
-            else if (dropList[num].value == 3) button = "joystick 4 button 2";
-            else if (dropList[num].value == 4) button = "joystick 4 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 4 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Hab1_P4", button);
+            button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Hab1_P4", button + "4");
         }
     }
 
@@ -486,62 +410,26 @@ public class Menu : MonoBehaviour {
         if (mc_p1.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p1.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 1 button 0";
-            else if (dropList[num].value == 1) button = "joystick 1 button 1";
-            else if (dropList[num].value == 2) button = "joystick 1 button 3";
-            else if (dropList[num].value == 3) button = "joystick 1 button 2";
-            else if (dropList[num].value == 4) button = "joystick 1 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 1 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Hab2_P1", button);
+            button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Hab2_P1", button + "1");
         }
         else if (mc_p2.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p2.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 2 button 0";
-            else if (dropList[num].value == 1) button = "joystick 2 button 1";
-            else if (dropList[num].value == 2) button = "joystick 2 button 3";
-            else if (dropList[num].value == 3) button = "joystick 2 button 2";
-            else if (dropList[num].value == 4) button = "joystick 2 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 2 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Hab2_P2", button);
+            button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Hab2_P2", button + "2");
         }
         else if (mc_p3.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p3.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 3 button 0";
-            else if (dropList[num].value == 1) button = "joystick 3 button 1";
-            else if (dropList[num].value == 2) button = "joystick 3 button 3";
-            else if (dropList[num].value == 3) button = "joystick 3 button 2";
-            else if (dropList[num].value == 4) button = "joystick 3 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 3 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Hab2_P3", button);
+            button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Hab2_P3", button + "3");
         }
         else if (mc_p4.activeInHierarchy)
         {
             string button = "";
-            Dropdown[] dropList = mc_p4.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 4 button 0";
-            else if (dropList[num].value == 1) button = "joystick 4 button 1";
-            else if (dropList[num].value == 2) button = "joystick 4 button 3";
-            else if (dropList[num].value == 3) button = "joystick 4 button 2";
-            else if (dropList[num].value == 4) button = "joystick 4 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 4 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Hab2_P4", button);
+            button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
+            PlayerPrefs.SetString("Hab2_P4", button + "4");
         }
     }
 

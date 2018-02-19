@@ -15,13 +15,13 @@ public class PlayerControl : MonoBehaviour {
     
     private float count;
     private float distToGround;
-
+    private bool pressed;
     [HideInInspector]
     public int scoreGeneral, scoreKills, scoreSurvived, random;
     [HideInInspector]
     public bool wannaKill, onFieldView, detected;
     [HideInInspector]
-    public float jumpSpeed = 100.0F, timePast;
+    public float jumpSpeed = 100.0F, timePast, timePress;
 
     // Use this for initialization
     void Start () {
@@ -29,13 +29,13 @@ public class PlayerControl : MonoBehaviour {
         this.gameObject.GetComponent<Light>().enabled = false;
 
         //asignacion controles
-        if (PlayerPrefs.GetInt("NumPlayers") == 1) {
+       /* if (PlayerPrefs.GetInt("NumPlayers") == 1) {
             this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
             this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
             this.killButton = "Kill";
-        }
-        else
-        {
+        }*/
+       // else
+       // {
             if (this.gameObject.name.Equals("Player_1"))
             {
                 this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
@@ -47,9 +47,7 @@ public class PlayerControl : MonoBehaviour {
                     this.submitButton = PlayerPrefs.GetString("Submit_P1");
                     this.cancelButton = PlayerPrefs.GetString("Cancel_P1");*/
 
-                Debug.Log("P1: " + this.AxisMovement);
-                Debug.Log("P1: " + this.AxisRotation);
-                Debug.Log("P1: " + this.killButton);
+                
             }
             else if (this.gameObject.name.Equals("Player_2"))
             {
@@ -62,9 +60,7 @@ public class PlayerControl : MonoBehaviour {
                 this.submitButton = PlayerPrefs.GetString("Submit_P2");
                 this.cancelButton = PlayerPrefs.GetString("Cancel_P2");*/
 
-                Debug.Log("P2: " + this.AxisMovement);
-                Debug.Log("P2: " + this.AxisRotation);
-                Debug.Log("P2: " + this.killButton);
+           
             }
             else if (this.gameObject.name.Equals("Player_3"))
             {
@@ -88,22 +84,62 @@ public class PlayerControl : MonoBehaviour {
                     this.submitButton = PlayerPrefs.GetString("Submit_P4");
                     this.cancelButton = PlayerPrefs.GetString("Cancel_P4");*/
             }
-        }
+        //}
 
         
     }
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-       //Controles
         float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
         float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
         transform.Translate(0, 0, y * speed);
         transform.Rotate(0, rX * speedRotation, 0);
-        if (Input.GetButtonDown(killButton)) this.wannaKill = true;
-   
+        if (Input.GetButtonDown(killButton) && !this.pressed)
+        {
+            this.pressed = true;
+            this.timePress = 0;
 
+        }
+        if (this.pressed)
+        {
+            this.timePress += Time.deltaTime;
+            if (this.timePress < 0.1)
+            {
+                this.wannaKill = true;
+            }
+            else
+            {
+                this.wannaKill = false;
+                this.pressed = false;
+            }
+        }
+       
+    }
+    // Update is called once per frame
+    void Update()
+    {
+       //Controles
+       /* float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
+        float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
+        transform.Translate(0, 0, y * speed);
+        transform.Rotate(0, rX * speedRotation, 0);
+        if (Input.GetButtonDown(killButton))
+        {
+            this.pressed = true;
+            this.timePress += Time.deltaTime;
+            if (this.pressed)
+            {
+                this.wannaKill = true;
+                if (this.timePress >= 0.1)
+                {
+                    this.pressed = false;
+                    this.wannaKill = false;
+                    this.timePress = 0;
+                }
+            }
+        }*/
+        
+        Debug.Log(this.pressed + ", " + this.timePress + ", " + this.wannaKill);
         if (this.detected)
         {
             this.gameObject.GetComponent<Light>().enabled = true;
