@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class NewControl : MonoBehaviour
@@ -25,7 +26,7 @@ public class NewControl : MonoBehaviour
     public GameObject[] killers;
 	private bool paused;
 	[SerializeField]
-	private GameObject pausa;
+	private GameObject pausa, objectiveCanvas;
 	public GameObject finalWinnerCanvas;
 	private int topScore;
     [SerializeField]
@@ -42,9 +43,9 @@ public class NewControl : MonoBehaviour
 		timeLeft = UnityEngine.Random.Range(60, 3*60);
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         
-
         MapaRandom();
 
+        //creacion jugadores
         for(int i = 1; i <= numOfPlayers; i++)
         {
             int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
@@ -57,7 +58,7 @@ public class NewControl : MonoBehaviour
             player.gameObject.tag = "Player " + i.ToString();
             player.gameObject.layer = 8;
 
-            //10 per tipo
+            //creacion de guards x jugador 
             for (int y = 0; y < 10; y++)
             {  
                 int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
@@ -71,7 +72,7 @@ public class NewControl : MonoBehaviour
         }
         //lo q te a veure amb els guards d moment, al no haverhi prefab, no va i per tant, el q hi ha a continuació no es fa
 
-        //añadir jugadores activos
+        //añadir jugadores activos a una lista de control
         for(int i = 1; i <= numOfPlayers; i++){
             players.Add(GameObject.Find("Player_" + i.ToString()));
         }
@@ -87,7 +88,7 @@ public class NewControl : MonoBehaviour
             player.GetComponent<PlayerControl>().Respawn(player.gameObject);
         }
         //eleccio objectiu
-        RecalculaObjetivo(); 
+        RecalculaObjetivo();
         showObjective = objective;
     }
 
@@ -205,9 +206,13 @@ public class NewControl : MonoBehaviour
     void RecalculaObjetivo()
     {
         random = UnityEngine.Random.Range(0, PlayerPrefs.GetInt("NumPlayers"));
-       // Debug.Log(random);
         objective = GameObject.Find("Player_" + (random + 1).ToString());
-        //Debug.Log(objective);
+        ShowObjectiveCanvas();
+
+    }
+    void ShowObjectiveCanvas()
+    {
+        objectiveCanvas.SetActive(true);
     }
     private void Pausa()
     {
