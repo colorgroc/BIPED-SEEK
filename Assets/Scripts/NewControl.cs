@@ -59,7 +59,7 @@ public class NewControl : MonoBehaviour
             player.gameObject.layer = 8;
 
             //creacion de guards x jugador 
-            for (int y = 0; y < 10; y++)
+           /* for (int y = 0; y < 10; y++)
             {  
                 int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
                 GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_Guard_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
@@ -68,7 +68,7 @@ public class NewControl : MonoBehaviour
                 guard.transform.parent = GameObject.Find("Guards").transform;
                 guard.gameObject.name = "Guard_Tipo_" + i.ToString();
                 guard.gameObject.tag = "Guard";
-            }
+            }*/
         }
         //lo q te a veure amb els guards d moment, al no haverhi prefab, no va i per tant, el q hi ha a continuació no es fa
 
@@ -77,7 +77,7 @@ public class NewControl : MonoBehaviour
             players.Add(GameObject.Find("Player_" + i.ToString()));
         }
         
-        guards = GameObject.FindGameObjectsWithTag("Guard");
+        //guards = GameObject.FindGameObjectsWithTag("Guard");
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
 
         timeStartLeft = timeLeft;
@@ -89,7 +89,11 @@ public class NewControl : MonoBehaviour
         }
         //eleccio objectiu
         RecalculaObjetivo();
-        showObjective = objective;
+        //showObjective = objective;
+    }
+    private void Start()
+    {
+       // RecalculaObjetivo();
     }
 
     // Update is called once per frame
@@ -98,7 +102,7 @@ public class NewControl : MonoBehaviour
       
         Pausa();
 
-        showObjective = objective;
+        //showObjective = objective;
         timeLeft -= Time.deltaTime;
 
 		//asignar ganador final
@@ -207,6 +211,7 @@ public class NewControl : MonoBehaviour
     {
         random = UnityEngine.Random.Range(0, PlayerPrefs.GetInt("NumPlayers"));
         objective = GameObject.Find("Player_" + (random + 1).ToString());
+        showObjective = objective;
         ShowObjectiveCanvas();
 
     }
