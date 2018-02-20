@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
-	public Text playerID;
+	//public Text playerID;
 	public Text score;
 	public Text kills;
 	public Text survived;
@@ -26,7 +26,7 @@ public class HUD : MonoBehaviour {
         score.text = this.player.GetComponent<PlayerControl> ().scoreGeneral.ToString();
 		kills.text = this.player.GetComponent<PlayerControl> ().scoreKills.ToString();
 		survived.text = this.player.GetComponent<PlayerControl> ().scoreSurvived.ToString();
-		playerID.text = this.player.GetComponent<PlayerControl> ().playerID.ToString();
+		//playerID.text = this.player.GetComponent<PlayerControl> ().playerID.ToString();
 	}
 
 	// Update is called once per frame

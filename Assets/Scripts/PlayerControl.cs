@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour {
     
     [SerializeField]
     private int tipo_de_character;
-	public int playerID;
+	//public int playerID;
     [HideInInspector]
     public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, submitButton, pauseButton, cancelButton, habSpecialButton;
     
