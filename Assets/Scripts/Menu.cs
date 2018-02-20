@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 
 public class Menu : MonoBehaviour {
+
     [SerializeField]
     private Scrollbar volume;
     [SerializeField]
@@ -155,7 +156,7 @@ public class Menu : MonoBehaviour {
 
     public void GoToPlay()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Juego");
 
     }
     public void Exit()
