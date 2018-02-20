@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PlayerControl : MonoBehaviour {
@@ -12,22 +13,25 @@ public class PlayerControl : MonoBehaviour {
 	//public int playerID;
     [HideInInspector]
     public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, submitButton, pauseButton, cancelButton, habSpecialButton;
-    
-    private float count;
-    private float distToGround;
-    private bool pressed;
+
+    private float distToGround, count, timeCoolDown, timeFeedback;
+    private int coolDown;
+    private bool pressed, cooledDown, badFeedback, goodFeedback;
     [HideInInspector]
     public int scoreGeneral, scoreKills, scoreSurvived, random;
     [HideInInspector]
     public bool wannaKill, onFieldView, detected;
     [HideInInspector]
     public float jumpSpeed = 100.0F, timePast, timePress;
+    private Outline feedback;
+    //[SerializeField]
+    //private GameObject HUD_1, HUD_2, HUD_3, HUD_4;
 
     // Use this for initialization
     void Start () {
         distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
         this.gameObject.GetComponent<Light>().enabled = false;
-
+        
         //asignacion controles
        /* if (PlayerPrefs.GetInt("NumPlayers") == 1) {
             this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
@@ -38,7 +42,9 @@ public class PlayerControl : MonoBehaviour {
        // {
             if (this.gameObject.name.Equals("Player_1"))
             {
-                this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
+            //this.feedback = this.HUD_1.GetComponent<Outline>();
+            this.feedback = GameObject.Find("Player1HUD").GetComponent<Outline>();
+            this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
                 this.killButton = PlayerPrefs.GetString("Kill_P1");
                 this.hab1Button = PlayerPrefs.GetString("Hab1_P1");
@@ -51,7 +57,9 @@ public class PlayerControl : MonoBehaviour {
             }
             else if (this.gameObject.name.Equals("Player_2"))
             {
-                this.AxisMovement = PlayerPrefs.GetString("Movement_P2");
+            // this.feedback = this.HUD_2.GetComponent<Outline>();
+            this.feedback = GameObject.Find("Player2HUD").GetComponent<Outline>();
+            this.AxisMovement = PlayerPrefs.GetString("Movement_P2");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P2");
                 this.killButton = PlayerPrefs.GetString("Kill_P2");
                 this.hab1Button = PlayerPrefs.GetString("Hab1_P2");
@@ -64,7 +72,9 @@ public class PlayerControl : MonoBehaviour {
             }
             else if (this.gameObject.name.Equals("Player_3"))
             {
-                this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
+            //this.feedback = this.HUD_3.GetComponent<Outline>();
+            this.feedback = GameObject.Find("Player3HUD").GetComponent<Outline>();
+            this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P3");
                 this.killButton = PlayerPrefs.GetString("Kill_P3");
                 this.hab1Button = PlayerPrefs.GetString("Hab1_P3");
@@ -75,7 +85,9 @@ public class PlayerControl : MonoBehaviour {
             }
             else if (this.gameObject.name.Equals("Player_4"))
             {
-                this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
+            //this.feedback = this.HUD_4.GetComponent<Outline>();
+            this.feedback = GameObject.Find("Player4HUD").GetComponent<Outline>();
+            this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P4");
                 this.killButton = PlayerPrefs.GetString("Kill_P4");
                 this.hab1Button = PlayerPrefs.GetString("Hab1_P4");
@@ -84,8 +96,9 @@ public class PlayerControl : MonoBehaviour {
                     this.submitButton = PlayerPrefs.GetString("Submit_P4");
                     this.cancelButton = PlayerPrefs.GetString("Cancel_P4");*/
             }
+            this.feedback.enabled = false;
         //}
-
+        
         
     }
     private void FixedUpdate()
@@ -118,8 +131,39 @@ public class PlayerControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        /*if (this.goodFeedback)
+        {
+            this.feedback.enabled = true;
+            this.feedback.effectColor = Color.green;
+            this.timeFeedback += Time.deltaTime;
+            if (this.timeFeedback >= 0.5) this.goodFeedback = false;
+        }
+        else
+        {
+            this.feedback.enabled = false;
+            this.timeFeedback = 0;
+        }
+        if (this.badFeedback)
+        {
+            this.feedback.enabled = true;
+            this.feedback.effectColor = Color.red;
+            this.timeFeedback += Time.deltaTime;
+            if (this.timeFeedback >= 0.5) this.badFeedback = false;
+        }
+        else
+        {
+            this.feedback.enabled = false;
+            this.timeFeedback = 0;
+        }*/
+       
 
-        
+        CalcCoolDown();
+        if (this.cooledDown) {
+            this.timeCoolDown += Time.deltaTime;
+            if (this.timeCoolDown >= this.coolDown)
+                RespawnCoolDown(this.gameObject);
+
+        }
         //Debug.Log(this.pressed + ", " + this.timePress + ", " + this.wannaKill);
         if (this.detected)
         {
@@ -135,21 +179,26 @@ public class PlayerControl : MonoBehaviour {
             this.gameObject.GetComponent<Light>().enabled = false;
             this.timePast = 0;
         }
+        //Debug.Log(this.timeFeedback);
+        Debug.Log(this.timeCoolDown);
+
     }
 
     public void Kill(GameObject gO)
     {
         if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards"))
         {
-            Debug.Log("Kill Guard");
-            this.scoreGeneral -= 5;
+            //Debug.Log("Kill Guard");
+            this.scoreGeneral -= 3;
+            this.badFeedback = true;
             Destroy(gO);
+            DeadCoolDown(this.gameObject);
             //puntuacio -100;
         }
         else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
         {
-            Debug.Log("Kill player");
-			this.scoreGeneral += 30;
+            //Debug.Log("Kill player");
+			this.scoreGeneral += 5;
 			this.scoreKills += 1;
             //puntuacio -50;
             Respawn(gO);
@@ -180,15 +229,38 @@ public class PlayerControl : MonoBehaviour {
 		GameObject playerNew = Instantiate (player_New, allMyRespawnPoints [random].transform);
 		Destroy (gO);*/
     }
+    public void DeadCoolDown(GameObject gO)
+    {
+        this.gameObject.GetComponent<FieldOfView>().alive = true;
+        GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+        int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+        gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
+        this.cooledDown = true;   
+    }
+    public void RespawnCoolDown(GameObject gO)
+    {
+        gO.gameObject.SetActive(true);
+        this.cooledDown = false;
+        this.timeCoolDown = 0;
+    }
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Killzone"))
         {
             //_waypointsVisited++;
             this.gameObject.SetActive(false);
-            Respawn(this.gameObject);
-
+            DeadCoolDown(this.gameObject);
+            
         }
+    }
+    void CalcCoolDown()
+    {
+        if (NewControl.timeLeft >= 120) this.coolDown = 3;
+        else if(NewControl.timeLeft >= 60 && NewControl.timeLeft < 120) this.coolDown = 4;
+        else if (NewControl.timeLeft >= 30 && NewControl.timeLeft < 60) this.coolDown = 6;
+        else if (NewControl.timeLeft >= 20 && NewControl.timeLeft < 30) this.coolDown = 8;
+        else if (NewControl.timeLeft < 20) this.coolDown = 10;
+
     }
 
     bool IsGrounded()

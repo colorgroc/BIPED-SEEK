@@ -120,7 +120,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
 				collision.gameObject.SetActive (false);
 				collision.gameObject.GetComponent<FieldOfView> ().alive = false;
-				collision.gameObject.GetComponent<PlayerControl> ().Respawn (collision.gameObject);
+				collision.gameObject.GetComponent<PlayerControl> ().DeadCoolDown (collision.gameObject);
 
 	}else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
 		NewControl.objKilledByGuard = true;

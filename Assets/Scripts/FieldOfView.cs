@@ -68,7 +68,7 @@ public class FieldOfView : MonoBehaviour {
                             target.gameObject.GetComponent<PlayerControl>().detected = true;
                             if (this.gameObject.GetComponent<PlayerControl>().wannaKill)
                             {
-								Debug.Log("Killing");
+								//Debug.Log("Killing");
                                 this.visibleTargets.Remove(target);
                                 this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
                                 this.gameObject.GetComponent<PlayerControl>().wannaKill = false;
@@ -78,7 +78,7 @@ public class FieldOfView : MonoBehaviour {
                         {
 							//if (!target.gameObject.layer == 8) {
 								if (this.gameObject.GetComponent<PlayerControl> ().wannaKill) {
-									Debug.Log("Killing");
+									//Debug.Log("Killing");
 									this.visibleTargets.Remove (target);
 									this.gameObject.GetComponent<PlayerControl> ().Kill (target.gameObject);
 									this.gameObject.GetComponent<PlayerControl> ().wannaKill = false;

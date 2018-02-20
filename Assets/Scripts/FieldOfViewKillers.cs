@@ -65,65 +65,22 @@ public class FieldOfViewKillers : MonoBehaviour
 					visibleTargets.Add (target);
 					this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = true;
 					this.gameObject.GetComponent<NPCConnectedPatrol> ().playerTarget = target;
-					//this.gameObject.GetComponent<KillersProperties>().follow = true;
+	
 				} else { 
-					//Debug.Log ("Woha");
-					//this.gameObject.GetComponent<KillersProperties>().follow = false;
+				
 					this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
-					//this.gameObject.GetComponent<NPCConnectedPatrol> ().playerTarget = null;
+					
 				}
 				if (dstToTarget >= 30) {
 					this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
 				}
-			} /*else if (Vector3.Angle (transform.forward, dirToTarget) >= viewAngle / 2 && this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView) {
-				Debug.Log ("work bitch");
-				this.gameObject.GetComponent<KillersProperties>().follow = false;
-				this.gameObject.GetComponent<NPCConnectedPatrol>().playerOnFieldView = false;
-			}*/
-			else //this.gameObject.GetComponent<KillersProperties>().follow = false;
+			} 
+			else 
 				this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
 		}
 
-		//this.gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
 	}
 
-	/*void FindVisibleTargets ()
-	{
-		visibleTargets.Clear ();
-		Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
-
-		for (int i = 0; i < targetsInViewRadius.Length; i++) {
-			GameObject target = targetsInViewRadius [i].transform.gameObject;
-			Vector3 dirToTarget = (target.transform.position - transform.position).normalized;
-			if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
-				float dstToTarget = Vector3.Distance (transform.position, target.transform.position);
-
-				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
-					visibleTargets.Add (target);
-					for(int j = 0; j < ControlScript.killers.Length; j++){
-						
-						if(this.gameObject.Equals(ControlScript.killers[j].gameObject)){
-							ControlScript.killers[j].gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = true;
-							ControlScript.killers[j].gameObject.GetComponent<NPCConnectedPatrol> ().playerTarget = target;
-						}
-					}
-
-				} else { 
-					for(int j = 0; i < ControlScript.killers.Length; j++){
-						if(this.gameObject.Equals(ControlScript.killers[j].gameObject)){
-							ControlScript.killers[j].gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
-						}
-					}
-				}
-
-			} else
-				for(int j = 0; i < ControlScript.killers.Length; j++){
-					if(this.gameObject.Equals(ControlScript.killers[j].gameObject)){
-						ControlScript.killers[j].gameObject.GetComponent<NPCConnectedPatrol> ().playerOnFieldView = false;
-					}
-				}
-		}
-	}*/
 
 	public Vector3 DirFromAngle (float angleInDegrees, bool angleIsGlobal)
 	{

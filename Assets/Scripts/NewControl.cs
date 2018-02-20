@@ -12,12 +12,12 @@ public class NewControl : MonoBehaviour
     public static int numOfPlayers;
     public static bool objComplete;
     public static bool objKilledByGuard;
-    [SerializeField]
-    public float timeLeft;
+    public static float timeLeft;
     private float timeStartLeft;
     public static GameObject objective;
 	public static GameObject parcialWinner;
 	public static GameObject finalWinner;
+    
     //public List<GameObject> finalWinners = new List<GameObject>();
     [SerializeField]
     private GameObject showObjective;
@@ -131,10 +131,10 @@ public class NewControl : MonoBehaviour
 		//asignar puntos ganador parcial
 		if (objComplete && parcialWinner != null) //this.gameObject != objective && )
         {
-			Debug.Log("Congratulations to " + this.gameObject.name);
+			//Debug.Log("Congratulations to " + this.gameObject.name);
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
-			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 50;
-
+			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
+            
             RecalculaObjetivo();
             timesPlayed++;
             objComplete = false;
@@ -150,9 +150,9 @@ public class NewControl : MonoBehaviour
         if (timeLeft <= 0 && !objComplete)
         {
 			parcialWinner = objective;
-			Debug.Log("Congratulations to " + this.gameObject.name);
+			//Debug.Log("Congratulations to " + this.gameObject.name);
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
-			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 50;
+			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
 
             RecalculaObjetivo();
             timesPlayed++;
@@ -167,7 +167,7 @@ public class NewControl : MonoBehaviour
         }
         if (objKilledByGuard)
         {
-            Debug.Log("U got killed noob!");
+            //Debug.Log("U got killed noob!");
             //Pause (p);
             RecalculaObjetivo();
             timesPlayed++;
