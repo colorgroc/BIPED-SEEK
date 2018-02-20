@@ -37,6 +37,7 @@ public class NewControl : MonoBehaviour
     private int rondas = 1;
     [SerializeField]
     private Text textHUD;
+    private int fin;
     // Use this for initialization
     void Awake()
     {
@@ -47,9 +48,10 @@ public class NewControl : MonoBehaviour
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         textHUD.text = GetMinutes(timeLeft);
         MapaRandom();
-
+        finalWinnerCanvas.SetActive(false);
+        fin = UnityEngine.Random.Range(0, 2);
         //creacion jugadores
-        for(int i = 1; i <= numOfPlayers; i++)
+        for (int i = 1; i <= numOfPlayers; i++)
         {
             int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
             Debug.Log(PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()));
@@ -118,7 +120,7 @@ public class NewControl : MonoBehaviour
 
 			} else if (player.GetComponent<PlayerControl> ().scoreGeneral == topScore) {
 				if (finalWinner != null) {
-					int fin = UnityEngine.Random.Range (0, 2);
+					
 					if (fin == 1)
 						finalWinner = player;
 				} else {

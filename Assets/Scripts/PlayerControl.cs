@@ -107,8 +107,11 @@ public class PlayerControl : MonoBehaviour {
         float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
         transform.Translate(0, 0, y * speed);
         transform.Rotate(0, rX * speedRotation, 0);
-        if (Input.GetButtonDown(this.killButton) && !this.pressed)
+        
+
+        /*if (Input.GetButtonDown(this.killButton) && !this.pressed)
         {
+            Debug.Log("wasup");
             this.pressed = true;
             this.timePress = 0;
 
@@ -125,12 +128,14 @@ public class PlayerControl : MonoBehaviour {
                 this.wannaKill = false;
                 this.pressed = false;
             }
-        }
+        }*/
        
     }
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
+        if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
         /*if (this.goodFeedback)
         {
             this.feedback.enabled = true;
@@ -155,7 +160,7 @@ public class PlayerControl : MonoBehaviour {
             this.feedback.enabled = false;
             this.timeFeedback = 0;
         }*/
-       
+
 
         CalcCoolDown();
         if (this.cooledDown) {

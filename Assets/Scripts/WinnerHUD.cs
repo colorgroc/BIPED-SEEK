@@ -7,11 +7,15 @@ using UnityEngine.SceneManagement;
 public class WinnerHUD : MonoBehaviour {
 
 	public Text player;
-	//public static GameObject[] winners;
-	// Use this for initialization
-	void Start () {
-		Time.timeScale = 1;
-		this.gameObject.SetActive (false);
+    //public static GameObject[] winners;
+    // Use this for initialization
+    private void Awake()
+    {
+        //this.gameObject.SetActive(false);
+    }
+    void Start () {
+		
+		
 		//player = GetComponent<GameObject>();
 		if(NewControl.finalWinner != null)
 			player.text = NewControl.finalWinner.name;
@@ -22,8 +26,8 @@ public class WinnerHUD : MonoBehaviour {
 			Time.timeScale = 1;
 			SceneManager.LoadScene (0);
 			//SceneManager.LoadScene ("menu", LoadSceneMode.Single);
-		}
-		if(NewControl.finalWinner != null)
+		} else Time.timeScale = 0;
+        if (NewControl.finalWinner != null)
 			player.text = NewControl.finalWinner.name;
 	}
 
