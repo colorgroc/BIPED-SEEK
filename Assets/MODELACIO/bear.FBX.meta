@@ -1,0 +1,228 @@
+fileFormatVersion: 2
+guid: c36afd3dd10fbc248a177bcad6172247
+timeCreated: 1519119664
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Box001
+    100004: Box002
+    100006: Capsule001
+    100008: Capsule003
+    100010: Capsule004
+    100012: Capsule005
+    100014: Capsule006
+    100016: Capsule007
+    100018: Capsule008
+    100020: Cone001
+    100022: Cylinder001
+    100024: Pyramid002
+    100026: Pyramid003
+    100028: Pyramid004
+    100030: Pyramid005
+    100032: Pyramid006
+    100034: Pyramid007
+    100036: Pyramid008
+    100038: Pyramid009
+    100040: Sphere001
+    100042: Sphere002
+    100044: Sphere003
+    100046: Sphere005
+    100048: Sphere006
+    100050: Sphere007
+    100052: Sphere009
+    100054: Sphere010
+    400000: //RootNode
+    400002: Box001
+    400004: Box002
+    400006: Capsule001
+    400008: Capsule003
+    400010: Capsule004
+    400012: Capsule005
+    400014: Capsule006
+    400016: Capsule007
+    400018: Capsule008
+    400020: Cone001
+    400022: Cylinder001
+    400024: Pyramid002
+    400026: Pyramid003
+    400028: Pyramid004
+    400030: Pyramid005
+    400032: Pyramid006
+    400034: Pyramid007
+    400036: Pyramid008
+    400038: Pyramid009
+    400040: Sphere001
+    400042: Sphere002
+    400044: Sphere003
+    400046: Sphere005
+    400048: Sphere006
+    400050: Sphere007
+    400052: Sphere009
+    400054: Sphere010
+    2300000: Box001
+    2300002: Box002
+    2300004: Capsule001
+    2300006: Capsule003
+    2300008: Capsule004
+    2300010: Capsule005
+    2300012: Capsule006
+    2300014: Capsule007
+    2300016: Capsule008
+    2300018: Cone001
+    2300020: Cylinder001
+    2300022: Pyramid002
+    2300024: Pyramid003
+    2300026: Pyramid004
+    2300028: Pyramid005
+    2300030: Pyramid006
+    2300032: Pyramid007
+    2300034: Pyramid008
+    2300036: Pyramid009
+    2300038: Sphere001
+    2300040: Sphere002
+    2300042: Sphere003
+    2300044: Sphere005
+    2300046: Sphere006
+    2300048: Sphere007
+    2300050: Sphere009
+    2300052: Sphere010
+    3300000: Box001
+    3300002: Box002
+    3300004: Capsule001
+    3300006: Capsule003
+    3300008: Capsule004
+    3300010: Capsule005
+    3300012: Capsule006
+    3300014: Capsule007
+    3300016: Capsule008
+    3300018: Cone001
+    3300020: Cylinder001
+    3300022: Pyramid002
+    3300024: Pyramid003
+    3300026: Pyramid004
+    3300028: Pyramid005
+    3300030: Pyramid006
+    3300032: Pyramid007
+    3300034: Pyramid008
+    3300036: Pyramid009
+    3300038: Sphere001
+    3300040: Sphere002
+    3300042: Sphere003
+    3300044: Sphere005
+    3300046: Sphere006
+    3300048: Sphere007
+    3300050: Sphere009
+    3300052: Sphere010
+    4300000: Sphere001
+    4300002: Sphere002
+    4300004: Sphere003
+    4300006: Sphere005
+    4300008: Cylinder001
+    4300010: Box001
+    4300012: Capsule001
+    4300014: Sphere006
+    4300016: Capsule003
+    4300018: Capsule004
+    4300020: Capsule005
+    4300022: Pyramid002
+    4300024: Pyramid003
+    4300026: Pyramid004
+    4300028: Pyramid005
+    4300030: Pyramid006
+    4300032: Pyramid007
+    4300034: Pyramid008
+    4300036: Pyramid009
+    4300038: Cone001
+    4300040: Box002
+    4300042: Capsule006
+    4300044: Capsule007
+    4300046: Capsule008
+    4300048: Sphere007
+    4300050: Sphere009
+    4300052: Sphere010
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: c51e945fd00d97841a2b8203b2774248, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

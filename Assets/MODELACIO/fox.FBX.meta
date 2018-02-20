@@ -1,0 +1,271 @@
+fileFormatVersion: 2
+guid: 6ef85d12d8af8fa4280796357c3dca62
+timeCreated: 1519119663
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Box001
+    100002: Capsule001
+    100004: Capsule002
+    100006: Capsule003
+    100008: Capsule004
+    100010: Capsule005
+    100012: Capsule007
+    100014: Capsule008
+    100016: Capsule009
+    100018: Capsule010
+    100020: Capsule011
+    100022: Capsule012
+    100024: Cone001
+    100026: Cone002
+    100028: Cone003
+    100030: Cone004
+    100032: Cone005
+    100034: Cone006
+    100036: Cone007
+    100038: Cone008
+    100040: Cone009
+    100042: Cone010
+    100044: Cone011
+    100046: Cone012
+    100048: Cone013
+    100050: Cone014
+    100052: Cone015
+    100054: Cone016
+    100056: Cone017
+    100058: Cone018
+    100060: Cone019
+    100062: Cone020
+    100064: Cylinder001
+    100066: //RootNode
+    100068: Sphere001
+    100070: Sphere002
+    100072: Sphere003
+    100074: Sphere004
+    100076: Sphere005
+    400000: Box001
+    400002: Capsule001
+    400004: Capsule002
+    400006: Capsule003
+    400008: Capsule004
+    400010: Capsule005
+    400012: Capsule007
+    400014: Capsule008
+    400016: Capsule009
+    400018: Capsule010
+    400020: Capsule011
+    400022: Capsule012
+    400024: Cone001
+    400026: Cone002
+    400028: Cone003
+    400030: Cone004
+    400032: Cone005
+    400034: Cone006
+    400036: Cone007
+    400038: Cone008
+    400040: Cone009
+    400042: Cone010
+    400044: Cone011
+    400046: Cone012
+    400048: Cone013
+    400050: Cone014
+    400052: Cone015
+    400054: Cone016
+    400056: Cone017
+    400058: Cone018
+    400060: Cone019
+    400062: Cone020
+    400064: Cylinder001
+    400066: //RootNode
+    400068: Sphere001
+    400070: Sphere002
+    400072: Sphere003
+    400074: Sphere004
+    400076: Sphere005
+    2300000: Capsule002
+    2300002: Capsule004
+    2300004: Capsule005
+    2300006: Capsule007
+    2300008: Capsule008
+    2300010: Capsule009
+    2300012: Capsule010
+    2300014: Capsule011
+    2300016: Capsule012
+    2300018: Cone001
+    2300020: Cone002
+    2300022: Cone003
+    2300024: Cone004
+    2300026: Cone005
+    2300028: Cone006
+    2300030: Cone007
+    2300032: Cone008
+    2300034: Cone009
+    2300036: Cone010
+    2300038: Cone011
+    2300040: Cone012
+    2300042: Cone013
+    2300044: Cone014
+    2300046: Cone015
+    2300048: Cone016
+    2300050: Cone017
+    2300052: Cone018
+    2300054: Cone019
+    2300056: Cone020
+    2300058: Cylinder001
+    2300060: Sphere001
+    2300062: Sphere003
+    2300064: Sphere004
+    2300066: Sphere005
+    3300000: Capsule002
+    3300002: Capsule004
+    3300004: Capsule005
+    3300006: Capsule007
+    3300008: Capsule008
+    3300010: Capsule009
+    3300012: Capsule010
+    3300014: Capsule011
+    3300016: Capsule012
+    3300018: Cone001
+    3300020: Cone002
+    3300022: Cone003
+    3300024: Cone004
+    3300026: Cone005
+    3300028: Cone006
+    3300030: Cone007
+    3300032: Cone008
+    3300034: Cone009
+    3300036: Cone010
+    3300038: Cone011
+    3300040: Cone012
+    3300042: Cone013
+    3300044: Cone014
+    3300046: Cone015
+    3300048: Cone016
+    3300050: Cone017
+    3300052: Cone018
+    3300054: Cone019
+    3300056: Cone020
+    3300058: Cylinder001
+    3300060: Sphere001
+    3300062: Sphere003
+    3300064: Sphere004
+    3300066: Sphere005
+    4300000: Sphere001
+    4300002: Cone001
+    4300004: Cone002
+    4300006: Cylinder001
+    4300008: Sphere003
+    4300010: Sphere004
+    4300012: Cone003
+    4300014: Cone004
+    4300016: Cone005
+    4300018: Cone006
+    4300020: Cone007
+    4300022: Cone008
+    4300024: Cone009
+    4300026: Cone010
+    4300028: Cone011
+    4300030: Cone012
+    4300032: Cone013
+    4300034: Cone014
+    4300036: Capsule002
+    4300038: Cone015
+    4300040: Sphere005
+    4300042: Cone016
+    4300044: Cone017
+    4300046: Capsule004
+    4300048: Capsule005
+    4300050: Cone018
+    4300052: Capsule007
+    4300054: Capsule008
+    4300056: Capsule009
+    4300058: Cone019
+    4300060: Cone020
+    4300062: Capsule010
+    4300064: Capsule011
+    4300066: Capsule012
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: c51e945fd00d97841a2b8203b2774248, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
