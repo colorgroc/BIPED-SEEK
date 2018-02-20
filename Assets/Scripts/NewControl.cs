@@ -33,7 +33,7 @@ public class NewControl : MonoBehaviour
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
     private int timesPlayed;
     [SerializeField]
-    private int rondas = 3;
+    private int rondas = 1;
     // Use this for initialization
     void Awake()
     {
@@ -203,7 +203,8 @@ public class NewControl : MonoBehaviour
         }
         foreach (GameObject killer in killers)
         {
-            killer.GetComponent<NPCConnectedPatrol>().Respawn(killer.gameObject);
+            if(killer != null)
+                killer.GetComponent<NPCConnectedPatrol>().Respawn(killer.gameObject);
         }
     }
 

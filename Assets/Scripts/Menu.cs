@@ -156,7 +156,7 @@ public class Menu : MonoBehaviour {
 
     public void GoToPlay()
     {
-        SceneManager.LoadScene("Juego");
+        SceneManager.LoadScene("Seleccion Personajes");
 
     }
     public void Exit()

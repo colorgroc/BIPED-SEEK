@@ -101,11 +101,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         
         //proves per 1 jugador
-        if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene(2);
+        if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");
         //quan tothom ready, comença joc
-        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene(2);
-        else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene(2);
-        else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene(2);
+        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Juego");
+        else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene("Juego");
+        else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene("Juego");
 
     }
     
