@@ -52,7 +52,7 @@ public class NewControl : MonoBehaviour
         for(int i = 1; i <= numOfPlayers; i++)
         {
             int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-            
+            Debug.Log(PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()));
             //es crea player desde la seleccio escollida (es crida prefab)
             GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()).ToString());
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
@@ -62,16 +62,16 @@ public class NewControl : MonoBehaviour
             player.gameObject.layer = 8;
 
             //creacion de guards x jugador 
-           /* for (int y = 0; y < 10; y++)
+            for (int y = 0; y < 10; y++)
             {  
                 int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-                GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_Guard_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
+                GameObject prefabG = (GameObject)Resources.Load("Prefabs/Guard_Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
                // GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_3");
                 GameObject guard = (GameObject)Instantiate(prefabG, allMyRespawnPoints[rand].transform.position, allMyRespawnPoints[rand].transform.rotation);
                 guard.transform.parent = GameObject.Find("Guards").transform;
                 guard.gameObject.name = "Guard_Tipo_" + i.ToString();
                 guard.gameObject.tag = "Guard";
-            }*/
+            }
         }
         //lo q te a veure amb els guards d moment, al no haverhi prefab, no va i per tant, el q hi ha a continuació no es fa
 
@@ -80,7 +80,7 @@ public class NewControl : MonoBehaviour
             players.Add(GameObject.Find("Player_" + i.ToString()));
         }
         
-        //guards = GameObject.FindGameObjectsWithTag("Guard");
+        guards = GameObject.FindGameObjectsWithTag("Guard");
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
 
         timeStartLeft = timeLeft;

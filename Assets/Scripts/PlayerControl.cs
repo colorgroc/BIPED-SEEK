@@ -180,7 +180,7 @@ public class PlayerControl : MonoBehaviour {
             this.timePast = 0;
         }
         //Debug.Log(this.timeFeedback);
-        Debug.Log(this.timeCoolDown);
+        //Debug.Log(this.timeCoolDown);
 
     }
 

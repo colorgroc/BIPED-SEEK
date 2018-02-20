@@ -69,23 +69,31 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P1.Add(this.characterTypes[i].gameObject);
                 characterTypes_P1[0].GetComponent<Outline>().enabled = true;
+                //characterTypes_P1.Sort(SortByName);
             }
             else if (i >= 4 && i < 8)
             {
                 characterTypes_P2.Add(this.characterTypes[i].gameObject);
                 characterTypes_P2[0].GetComponent<Outline>().enabled = true;
+                //characterTypes_P2.Sort(SortByName);
             }
             else if (i >= 8 && i < 12)
             {
                 characterTypes_P3.Add(this.characterTypes[i].gameObject);
                 characterTypes_P3[0].GetComponent<Outline>().enabled = true;
+                //characterTypes_P3.Sort(SortByName);
             }
             else
             {
                 characterTypes_P4.Add(this.characterTypes[i].gameObject);
                 characterTypes_P4[0].GetComponent<Outline>().enabled = true;
+                //characterTypes_P4.Sort(SortByName);
             }
         }
+        
+        
+        
+        
     }
 	
 	// Update is called once per frame
@@ -144,7 +152,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 1);
+                PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
             }
@@ -166,27 +174,31 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
                 {
                     MoveLeft(1);
+                    Debug.Log(select_1 + 1);
                 }
                 else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
                 {
                     MoveRight(1);
+                    Debug.Log(select_1 + 1);
                 }
 
                 //Vertical
                 if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
                 {
                     MoveDown(1);
+                    Debug.Log(select_1 + 1);
                 }
                 else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
                 {
                     MoveUp(1);
+                    Debug.Log(select_1 + 1);
                 }
             }
             if (Input.GetButtonDown("A_1"))
             {
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 1);
+                PlayerPrefs.SetInt("characterPlayer_1", select_1+1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
             }
@@ -226,7 +238,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_2", 2);
+                PlayerPrefs.SetInt("characterPlayer_2", select_2+ 1);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
                 ready_P2 = true;
             }
@@ -270,7 +282,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 1);
+                PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
             }
@@ -310,7 +322,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_2", 2);
+                PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
                 ready_P2 = true;
             }
@@ -350,7 +362,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_3", 3);
+                PlayerPrefs.SetInt("characterPlayer_3", select_3 + 3);
                 GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
                 ready_P3 = true;
             }
@@ -392,7 +404,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 1);
+                PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
             }
@@ -432,7 +444,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_2", 2);
+                PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
                 ready_P2 = true;
             }
@@ -472,7 +484,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_3", 3);
+                PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
                 GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
                 ready_P3 = true;
             }
@@ -511,7 +523,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P4[select_4].GetComponent<Outline>().effectColor = gold_Color;
-                PlayerPrefs.SetInt("characterPlayer_4", 4);
+                PlayerPrefs.SetInt("characterPlayer_4", select_4 + 1);
                 GameObject.Find("Ready_4").GetComponent<Text>().enabled = true;
                 ready_P4 = true;
             }

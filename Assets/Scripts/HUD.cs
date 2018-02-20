@@ -10,11 +10,16 @@ public class HUD : MonoBehaviour {
 	public Text survived;
     [SerializeField]
 	private GameObject player;
-	//Canvas player1, player2;
-	// Use this for initialization
-	void Start () {
+    //Canvas player1, player2;
+    // Use this for initialization
+    private void Awake()
+    {
+        
+    }
+    void Start () {
         //player = GetComponent<GameObject>();
-        if(this.gameObject.name == "Player1HUD")
+
+        if (this.gameObject.name == "Player1HUD")
             this.player = GameObject.Find("Player_1");
         else if (this.gameObject.name == "Player2HUD")
             this.player = GameObject.Find("Player_2");
