@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class NewControl : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class NewControl : MonoBehaviour
     private int timesPlayed;
     [SerializeField]
     private int rondas = 1;
+    [SerializeField]
+    private Text textHUD;
     // Use this for initialization
     void Awake()
     {
@@ -42,7 +45,7 @@ public class NewControl : MonoBehaviour
 		pausa.SetActive (false);
 		timeLeft = UnityEngine.Random.Range(60, 3*60);
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-        
+        textHUD.text = GetMinutes(timeLeft);
         MapaRandom();
 
         //creacion jugadores
@@ -104,9 +107,9 @@ public class NewControl : MonoBehaviour
 
         //showObjective = objective;
         timeLeft -= Time.deltaTime;
-
-		//asignar ganador final
-		foreach (GameObject player in players)
+        textHUD.text = GetMinutes(timeLeft);
+        //asignar ganador final
+        foreach (GameObject player in players)
 		{
 			if (player.GetComponent<PlayerControl> ().scoreGeneral > topScore) {
 				topScore = player.GetComponent<PlayerControl> ().scoreGeneral;
@@ -131,9 +134,6 @@ public class NewControl : MonoBehaviour
 			Debug.Log("Congratulations to " + this.gameObject.name);
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 50;
-            
-            /*GameObject.Find ("Winner").GetComponent<Canvas> ().enabled = true;
-			Time.timeScale = 0;*/
 
             RecalculaObjetivo();
             timesPlayed++;
@@ -153,9 +153,6 @@ public class NewControl : MonoBehaviour
 			Debug.Log("Congratulations to " + this.gameObject.name);
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 50;
-
-            /*GameObject.Find ("Winner").GetComponent<Canvas> ().enabled = true;
-			Time.timeScale = 0;*/
 
             RecalculaObjetivo();
             timesPlayed++;
@@ -238,5 +235,9 @@ public class NewControl : MonoBehaviour
             Time.timeScale = 0;
         else Time.timeScale = 1;
     }
-
+    private string GetMinutes(float timeLeft)
+    {
+        TimeSpan timeSpan = TimeSpan.FromSeconds(timeLeft);
+        return string.Format("{0:0}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
+    }
 }
