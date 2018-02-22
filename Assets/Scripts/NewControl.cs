@@ -27,14 +27,11 @@ public class NewControl : MonoBehaviour
     public GameObject[] killers;
 	private bool paused;
 	[SerializeField]
-	private GameObject pausa, objectiveCanvas;
-	public GameObject finalWinnerCanvas;
+	private GameObject pausa, objectiveCanvas, finalWinnerCanvas;
 	private int topScore;
     [SerializeField]
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
-    private int timesPlayed;
-    [SerializeField]
-    private int rondas = 1;
+    
     [SerializeField]
     private Text textHUD;
     private int fin;
@@ -42,24 +39,21 @@ public class NewControl : MonoBehaviour
     void Awake()
     {
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
-        paused = false;
-		pausa.SetActive (false);
-		timeLeft = UnityEngine.Random.Range(60, 3*60);
+        
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-        textHUD.text = GetMinutes(timeLeft);
         MapaRandom();
-        finalWinnerCanvas.SetActive(false);
+        
         fin = UnityEngine.Random.Range(0, 2);
         //creacion jugadores
         for (int i = 1; i <= numOfPlayers; i++)
         {
             int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-            Debug.Log(PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()));
+            //Debug.Log(PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()));
             //es crea player desde la seleccio escollida (es crida prefab)
             GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()).ToString());
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
             player.transform.parent = GameObject.Find("Players").transform;
-            player.gameObject.name = "Player_" + i.ToString();
+            player.gameObject.name = "Player " + i.ToString();
             player.gameObject.tag = "Player " + i.ToString();
             player.gameObject.layer = 8;
 
@@ -79,33 +73,53 @@ public class NewControl : MonoBehaviour
 
         //añadir jugadores activos a una lista de control
         for(int i = 1; i <= numOfPlayers; i++){
-            players.Add(GameObject.Find("Player_" + i.ToString()));
+            players.Add(GameObject.Find("Player " + i.ToString()));
         }
         
         guards = GameObject.FindGameObjectsWithTag("Guard");
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
 
+        
+       // timeStartLeft = timeLeft;
+        //RespawnNPCS();
+        //foreach (GameObject player in players)
+        //{
+        //    player.GetComponent<PlayerControl>().timePast = 0;
+        //    player.GetComponent<PlayerControl>().Respawn(player.gameObject);
+        //}
+        //eleccio objectiu
+        //RecalculaObjetivo();
+
+    }
+    private void Start()
+    {
+        objKilledByGuard = false;
+        parcialWinner = null;
+        objComplete = false;
+        finalWinnerCanvas.SetActive(false);
+        paused = false;
+        pausa.SetActive(false);
         timeStartLeft = timeLeft;
         RespawnNPCS();
         foreach (GameObject player in players)
         {
             player.GetComponent<PlayerControl>().timePast = 0;
             player.GetComponent<PlayerControl>().Respawn(player.gameObject);
+            player.GetComponent<FieldOfView>().Start();
         }
         //eleccio objectiu
         RecalculaObjetivo();
-        //showObjective = objective;
-    }
-    private void Start()
-    {
-       // RecalculaObjetivo();
+        timeLeft = UnityEngine.Random.Range(60, 3 * 60);
+        textHUD.text = GetMinutes(timeLeft);
+        // RecalculaObjetivo();
     }
 
     // Update is called once per frame
     void Update()
     {
-      
-        Pausa();
+        if (Input.GetKeyDown(KeyCode.Space)) Start();
+        if(!finalWinnerCanvas.activeInHierarchy)
+            Pausa();
 
         //showObjective = objective;
         timeLeft -= Time.deltaTime;
@@ -134,29 +148,30 @@ public class NewControl : MonoBehaviour
 		if (objComplete && parcialWinner != null) //this.gameObject != objective && )
         {
 			//Debug.Log("Congratulations to " + this.gameObject.name);
-			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
+			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreSurvived += 1;
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
-            
-            RecalculaObjetivo();
-            timesPlayed++;
-            objComplete = false;
+            Rondes.timesPlayed++;
+            //PlayerPrefs.SetInt("Rondes", Rondes.timesPlayed);
+            Start();
+           /* RecalculaObjetivo();
             foreach (GameObject player in players)
             {
 				if(player != parcialWinner)
 					player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             }
             RespawnNPCS();
-           
-            parcialWinner = null;
+            parcialWinner = null;*/
         }
         if (timeLeft <= 0 && !objComplete)
         {
 			parcialWinner = objective;
 			//Debug.Log("Congratulations to " + this.gameObject.name);
-			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
+			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreSurvived += 1;
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
-
-            RecalculaObjetivo();
+            Rondes.timesPlayed++;
+            //PlayerPrefs.SetInt("Rondes", Rondes.timesPlayed);
+            Start();
+            /*RecalculaObjetivo();
             timesPlayed++;
             timeLeft = timeStartLeft;
             foreach (GameObject player in players)
@@ -165,23 +180,27 @@ public class NewControl : MonoBehaviour
 					player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             }
             RespawnNPCS();
-			parcialWinner = null;
+			parcialWinner = null;*/
         }
         if (objKilledByGuard)
         {
+            Rondes.timesPlayed++;
+            //PlayerPrefs.SetInt("Rondes", Rondes.timesPlayed);
+            Start();
+
             //Debug.Log("U got killed noob!");
             //Pause (p);
-            RecalculaObjetivo();
+            /*RecalculaObjetivo();
             timesPlayed++;
             objKilledByGuard = false;
             foreach (GameObject player in players)
             {
 				player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             }
-            RespawnNPCS();
+            RespawnNPCS();*/
         }
 
-        if (timesPlayed == rondas)
+        if (Rondes.timesPlayed == Rondes.rondas)
         {
             finalWinnerCanvas.SetActive(true);
         }
@@ -198,7 +217,8 @@ public class NewControl : MonoBehaviour
     {
         foreach (GameObject guard in guards)
         {
-            guard.GetComponent<NPCConnectedPatrol>().Respawn(guard.gameObject);
+            if (guard != null)
+                guard.GetComponent<NPCConnectedPatrol>().Respawn(guard.gameObject);
         }
         foreach (GameObject killer in killers)
         {
@@ -210,7 +230,7 @@ public class NewControl : MonoBehaviour
     void RecalculaObjetivo()
     {
         random = UnityEngine.Random.Range(0, PlayerPrefs.GetInt("NumPlayers"));
-        objective = GameObject.Find("Player_" + (random + 1).ToString());
+        objective = GameObject.Find("Player " + (random + 1).ToString());
         showObjective = objective;
         ShowObjectiveCanvas();
 
@@ -218,15 +238,16 @@ public class NewControl : MonoBehaviour
     void ShowObjectiveCanvas()
     {
         objectiveCanvas.SetActive(true);
+        objectiveCanvas.GetComponent<ObjectiveCanvas>().Start();
     }
     private void Pausa()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
+        if (Input.GetButtonDown("Start"))
         {
             paused = !paused;
             pausa.SetActive(paused);
         }
-        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit")) && paused)
+        if (Input.GetButtonDown("Submit") && paused)
         {
             pausa.SetActive(false);
             Time.timeScale = 1;

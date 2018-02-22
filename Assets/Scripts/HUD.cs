@@ -20,13 +20,13 @@ public class HUD : MonoBehaviour {
         //player = GetComponent<GameObject>();
 
         if (this.gameObject.name == "Player1HUD")
-            this.player = GameObject.Find("Player_1");
+            this.player = GameObject.Find("Player 1");
         else if (this.gameObject.name == "Player2HUD")
-            this.player = GameObject.Find("Player_2");
+            this.player = GameObject.Find("Player 2");
         else if (this.gameObject.name == "Player3HUD")
-            this.player = GameObject.Find("Player_3");
+            this.player = GameObject.Find("Player 3");
         else if (this.gameObject.name == "Player4HUD")
-            this.player = GameObject.Find("Player_4");
+            this.player = GameObject.Find("Player 4");
 
         score.text = this.player.GetComponent<PlayerControl> ().scoreGeneral.ToString();
 		kills.text = this.player.GetComponent<PlayerControl> ().scoreKills.ToString();

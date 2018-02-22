@@ -116,27 +116,31 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards")) {
 			SetDestination ();
 		}
-	if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
+	    if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
 
-				collision.gameObject.SetActive (false);
-				collision.gameObject.GetComponent<FieldOfView> ().alive = false;
-				collision.gameObject.GetComponent<PlayerControl> ().DeadCoolDown (collision.gameObject);
+				    collision.gameObject.SetActive (false);
+				    collision.gameObject.GetComponent<FieldOfView> ().alive = false;
+				    collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
 
-	}else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
-		NewControl.objKilledByGuard = true;
-		}
+	    }else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
+		    NewControl.objKilledByGuard = true;
+	    }
 	}
 
 	public void Respawn(GameObject gO){
 		//yield return new WaitForSeconds (delay);
-		GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag ("RespawnPoint");
-		int random = UnityEngine.Random.Range (0, allMyRespawnPoints.Length);
-		gO.gameObject.transform.position = allMyRespawnPoints [random].transform.position;
-        if (this.gameObject.tag.Equals("Killer Guards")) {
+		
+        if (gO.gameObject.tag.Equals("Killer Guards")) {
+            GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPointKillers");
+            int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+            gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
             gO.gameObject.transform.parent = GameObject.Find("Killer Guards").transform;
         }
-        else if (this.gameObject.tag.Equals("Guard"))
+        else if (gO.gameObject.tag.Equals("Guard"))
         {
+            GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+            int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+            gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
             gO.gameObject.transform.parent = GameObject.Find("Guards").transform;
         }
         gO.gameObject.SetActive (true);

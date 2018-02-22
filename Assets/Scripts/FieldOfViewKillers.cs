@@ -29,7 +29,7 @@ public class FieldOfViewKillers : MonoBehaviour
 	[HideInInspector]
 	public List<GameObject> visibleTargets = new List<GameObject> ();
 
-	void Start ()
+	public void Start ()
 	{
 		viewAngle = 119;
 		viewRadius = 30;

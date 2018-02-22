@@ -25,13 +25,14 @@ public class Menu : MonoBehaviour {
     GameObject fullScreen, windowed, muted, notMuted;
     [SerializeField]
     GameObject mc_p1, mc_p2, mc_p3, mc_p4;
+    [SerializeField]
     private int max_players = 4;
     //private Button[] butons;
     // private int select;
-
-    // Use this for initialization
-    void Start () {
-        //PlayerPrefs.DeleteAll();
+    private void Awake()
+    {
+        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
+        PlayerPrefs.SetInt("NumMapas", numOfMapas);
 
         if (Application.isEditor == false)
         {
@@ -124,12 +125,17 @@ public class Menu : MonoBehaviour {
                  PlayerPrefs.SetString("Hab2_P" + i.ToString(), "B_" + i.ToString());*/
             }
         }
+    }
+    // Use this for initialization
+    void Start () {
+        //PlayerPrefs.DeleteAll();
+
+       
         options.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
         inMenu = true;
-        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        PlayerPrefs.SetInt("NumMapas", numOfMapas);
+       
         //music.volume = 1f;
         volume.value = PlayerPrefs.GetFloat("MusicVolume");
         music.volume = volume.value;

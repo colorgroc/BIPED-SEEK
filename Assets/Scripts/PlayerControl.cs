@@ -19,10 +19,10 @@ public class PlayerControl : MonoBehaviour {
     private bool pressed, cooledDown, badFeedback, goodFeedback;
     [HideInInspector]
     public int scoreGeneral, scoreKills, scoreSurvived, random;
-    [HideInInspector]
+   // [HideInInspector]
     public bool wannaKill, onFieldView, detected;
     [HideInInspector]
-    public float jumpSpeed = 100.0F, timePast, timePress;
+    public float jumpSpeed = 100.0F, timePast;
     private Outline feedback;
     //[SerializeField]
     //private GameObject HUD_1, HUD_2, HUD_3, HUD_4;
@@ -32,18 +32,11 @@ public class PlayerControl : MonoBehaviour {
         distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
         this.gameObject.GetComponent<Light>().enabled = false;
         
-        //asignacion controles
-       /* if (PlayerPrefs.GetInt("NumPlayers") == 1) {
-            this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
-            this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
-            this.killButton = "Kill";
-        }*/
-       // else
-       // {
-            if (this.gameObject.name.Equals("Player_1"))
+    
+            if (this.gameObject.name.Equals("Player 1"))
             {
             //this.feedback = this.HUD_1.GetComponent<Outline>();
-            this.feedback = GameObject.Find("Player1HUD").GetComponent<Outline>();
+           // this.feedback = GameObject.Find("Player1HUD").GetComponent<Outline>();
             this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
                 this.killButton = PlayerPrefs.GetString("Kill_P1");
@@ -55,10 +48,10 @@ public class PlayerControl : MonoBehaviour {
 
                 
             }
-            else if (this.gameObject.name.Equals("Player_2"))
+            else if (this.gameObject.name.Equals("Player 2"))
             {
             // this.feedback = this.HUD_2.GetComponent<Outline>();
-            this.feedback = GameObject.Find("Player2HUD").GetComponent<Outline>();
+            //this.feedback = GameObject.Find("Player2HUD").GetComponent<Outline>();
             this.AxisMovement = PlayerPrefs.GetString("Movement_P2");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P2");
                 this.killButton = PlayerPrefs.GetString("Kill_P2");
@@ -70,10 +63,10 @@ public class PlayerControl : MonoBehaviour {
 
            
             }
-            else if (this.gameObject.name.Equals("Player_3"))
+            else if (this.gameObject.name.Equals("Player 3"))
             {
             //this.feedback = this.HUD_3.GetComponent<Outline>();
-            this.feedback = GameObject.Find("Player3HUD").GetComponent<Outline>();
+           // this.feedback = GameObject.Find("Player3HUD").GetComponent<Outline>();
             this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P3");
                 this.killButton = PlayerPrefs.GetString("Kill_P3");
@@ -83,10 +76,10 @@ public class PlayerControl : MonoBehaviour {
                     this.submitButton = PlayerPrefs.GetString("Submit_P3");
                     this.cancelButton = PlayerPrefs.GetString("Cancel_P3");*/
             }
-            else if (this.gameObject.name.Equals("Player_4"))
+            else if (this.gameObject.name.Equals("Player 4"))
             {
             //this.feedback = this.HUD_4.GetComponent<Outline>();
-            this.feedback = GameObject.Find("Player4HUD").GetComponent<Outline>();
+            //this.feedback = GameObject.Find("Player4HUD").GetComponent<Outline>();
             this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
                 this.AxisRotation = PlayerPrefs.GetString("Rotation_P4");
                 this.killButton = PlayerPrefs.GetString("Kill_P4");
@@ -96,7 +89,7 @@ public class PlayerControl : MonoBehaviour {
                     this.submitButton = PlayerPrefs.GetString("Submit_P4");
                     this.cancelButton = PlayerPrefs.GetString("Cancel_P4");*/
             }
-            this.feedback.enabled = false;
+            //this.feedback.enabled = false;
         //}
         
         
@@ -109,26 +102,7 @@ public class PlayerControl : MonoBehaviour {
         transform.Rotate(0, rX * speedRotation, 0);
         
 
-        /*if (Input.GetButtonDown(this.killButton) && !this.pressed)
-        {
-            Debug.Log("wasup");
-            this.pressed = true;
-            this.timePress = 0;
-
-        } //provar posant else this.wannakill = false;
-        if (this.pressed)
-        {
-            this.timePress += Time.deltaTime;
-            if (this.timePress < 0.1)
-            {
-                this.wannaKill = true;
-            }
-            else
-            {
-                this.wannaKill = false;
-                this.pressed = false;
-            }
-        }*/
+      
        
     }
     // Update is called once per frame
@@ -136,6 +110,9 @@ public class PlayerControl : MonoBehaviour {
     {
         if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
         if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
+
+        
+
         /*if (this.goodFeedback)
         {
             this.feedback.enabled = true;
@@ -162,13 +139,14 @@ public class PlayerControl : MonoBehaviour {
         }*/
 
 
-        CalcCoolDown();
+        /*CalcCoolDown();
         if (this.cooledDown) {
             this.timeCoolDown += Time.deltaTime;
             if (this.timeCoolDown >= this.coolDown)
                 RespawnCoolDown(this.gameObject);
 
-        }
+        }*/
+
         //Debug.Log(this.pressed + ", " + this.timePress + ", " + this.wannaKill);
         if (this.detected)
         {
@@ -191,13 +169,13 @@ public class PlayerControl : MonoBehaviour {
 
     public void Kill(GameObject gO)
     {
-        if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards"))
+        if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards")) //canviar aixo?
         {
             //Debug.Log("Kill Guard");
             this.scoreGeneral -= 3;
-            this.badFeedback = true;
+           // this.badFeedback = true;
             Destroy(gO);
-            DeadCoolDown(this.gameObject);
+            Respawn(this.gameObject);
             //puntuacio -100;
         }
         else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
@@ -210,6 +188,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
         {
+
             NewControl.objComplete = true;
 			NewControl.parcialWinner = this.gameObject;
             //puntuacio +200;
@@ -254,7 +233,7 @@ public class PlayerControl : MonoBehaviour {
         {
             //_waypointsVisited++;
             this.gameObject.SetActive(false);
-            DeadCoolDown(this.gameObject);
+            Respawn(this.gameObject);
             
         }
     }

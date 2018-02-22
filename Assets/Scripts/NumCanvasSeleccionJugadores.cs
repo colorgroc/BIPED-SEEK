@@ -174,24 +174,24 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
                 {
                     MoveLeft(1);
-                    Debug.Log(select_1 + 1);
+                   // Debug.Log(select_1 + 1);
                 }
                 else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
                 {
                     MoveRight(1);
-                    Debug.Log(select_1 + 1);
+                    //Debug.Log(select_1 + 1);
                 }
 
                 //Vertical
                 if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
                 {
                     MoveDown(1);
-                    Debug.Log(select_1 + 1);
+                    //Debug.Log(select_1 + 1);
                 }
                 else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
                 {
                     MoveUp(1);
-                    Debug.Log(select_1 + 1);
+                    //Debug.Log(select_1 + 1);
                 }
             }
             if (Input.GetButtonDown("A_1"))

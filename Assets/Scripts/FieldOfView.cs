@@ -15,26 +15,26 @@ public class FieldOfView : MonoBehaviour {
 
     [HideInInspector]
 	//public List<Transform> visibleTargets = new List<Transform>();
-	public List<GameObject> visibleTargets = new List<GameObject>();
-	private Collider[] targetsInViewRadius;
+	public List<Transform> visibleTargets = new List<Transform>();
+	//private Collider[] targetsInViewRadius;
 	public bool alive;
 
-	void Start() {
+	public void Start() {
 		//targetMask = LayerMask.NameToLayer ("Player");
 		//Debug.Log (targetMask.value);
-		this.visibleTargets.Clear ();
+		//this.visibleTargets.Clear ();
 		viewAngle = 119;
 		viewRadius = 30;
-		//StartCoroutine ("FindTargetsWithDelay", .2f);
+		StartCoroutine ("FindTargetsWithDelay", .2f);
 	}
 	void Update(){
-		FindVisibleTargets ();
+		//FindVisibleTargets ();
 		//Debug.Log (alive);
-		if (this.alive) {
+		/*if (this.alive) {
 			this.visibleTargets.Clear ();
 			this.alive = false;
 			//StartCoroutine ("FindTargetsWithDelay", .2f); //no funciona, preguntar a algu o intentar fer que quan et moris crear un nou gameobject player
-		}
+		}*/
 	}
 		
 	IEnumerator FindTargetsWithDelay(float delay) {
@@ -46,12 +46,13 @@ public class FieldOfView : MonoBehaviour {
 
 
 	void FindVisibleTargets() {
-		//this.visibleTargets.Clear ();
-		//if(alive) {this.visibleTargets.Clear (); alive = false;}
-		targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
+       this.visibleTargets.Clear();
+        //this.visibleTargets.Clear ();
+        //if(alive) {this.visibleTargets.Clear (); alive = false;}
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 
-		for (int i = 0; i < targetsInViewRadius.Length; i++) {
-			GameObject target = targetsInViewRadius [i].transform.gameObject;
+        for (int i = 0; i < targetsInViewRadius.Length; i++) {
+			Transform target = targetsInViewRadius [i].transform;
 			Vector3 dirToTarget = (target.transform.position - transform.position).normalized;
 			if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
 				float dstToTarget = Vector3.Distance (transform.position, target.transform.position);
@@ -66,6 +67,7 @@ public class FieldOfView : MonoBehaviour {
                         {
                             //ControlScript.detected2 = true;
                             target.gameObject.GetComponent<PlayerControl>().detected = true;
+
                             if (this.gameObject.GetComponent<PlayerControl>().wannaKill)
                             {
 								//Debug.Log("Killing");
@@ -87,7 +89,7 @@ public class FieldOfView : MonoBehaviour {
                         }
                     }
                 }
-                else
+               /* else
                 {
 
                     if (this.gameObject.layer == 8 && target.gameObject.layer == 8)
@@ -96,25 +98,25 @@ public class FieldOfView : MonoBehaviour {
                         foreach (GameObject player in NewControl.players)
                         {
                             if(player.gameObject != this.gameObject)
-                                player.GetComponent<PlayerControl>().detected = false;
+                                player.GetComponent<PlayerDetection>().detected = false;
                         }
 
                     }
-                }
+                }*/
 
             }
-            else
+            /*else
             {
                 if (this.gameObject.layer == 8 && target.gameObject.layer == 8)
                 {
                     foreach (GameObject player in NewControl.players)
                     {
                         if (player.gameObject != this.gameObject)
-                            player.GetComponent<PlayerControl>().detected = false;
+                            player.GetComponent<PlayerDetection>().detected = false;
                     }
 
                 }
-            }
+            }*/
 
                    
 		}

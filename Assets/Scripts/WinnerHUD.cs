@@ -24,7 +24,7 @@ public class WinnerHUD : MonoBehaviour {
 		if (Input.GetButtonDown("Submit")) {
 			this.gameObject.SetActive (false);
 			Time.timeScale = 1;
-			SceneManager.LoadScene (0);
+			SceneManager.LoadScene ("menu");
 			//SceneManager.LoadScene ("menu", LoadSceneMode.Single);
 		} else Time.timeScale = 0;
         if (NewControl.finalWinner != null)
