@@ -217,7 +217,7 @@ public class NewControl : MonoBehaviour
         {
             pausa.SetActive(false);
             Time.timeScale = 1;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("menu");
             paused = false;
         }
         if (paused)

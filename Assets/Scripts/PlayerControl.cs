@@ -96,10 +96,7 @@ public class PlayerControl : MonoBehaviour {
     }
     private void FixedUpdate()
     {
-        float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
-        float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
-        transform.Translate(0, 0, y * speed);
-        transform.Rotate(0, rX * speedRotation, 0);
+       
         
 
       
@@ -108,6 +105,10 @@ public class PlayerControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
+        float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
+        transform.Translate(0, 0, y * speed);
+        transform.Rotate(0, rX * speedRotation, 0);
         if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
         if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
 
@@ -181,7 +182,8 @@ public class PlayerControl : MonoBehaviour {
         else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
         {
             //Debug.Log("Kill player");
-			this.scoreGeneral += 5;
+            gO.gameObject.GetComponent<PlayerControl>().detected = false;
+            this.scoreGeneral += 5;
 			this.scoreKills += 1;
             //puntuacio -50;
             Respawn(gO);
@@ -190,7 +192,8 @@ public class PlayerControl : MonoBehaviour {
         {
 
             NewControl.objComplete = true;
-			NewControl.parcialWinner = this.gameObject;
+            gO.gameObject.GetComponent<PlayerControl>().detected = false;
+            NewControl.parcialWinner = this.gameObject;
             //puntuacio +200;
             //recalcular objectiu
             //avisar del nou objectiu
@@ -202,6 +205,8 @@ public class PlayerControl : MonoBehaviour {
     {
         
 		this.gameObject.GetComponent<FieldOfView>().alive = true;
+        this.detected = false;
+       
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
         gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;

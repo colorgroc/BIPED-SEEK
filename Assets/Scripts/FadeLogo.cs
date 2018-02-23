@@ -30,7 +30,7 @@ public class FadeLogo : MonoBehaviour {
     {
         if (!finish)
         {
-            if (ticksDone < 3)
+            if (ticksDone < ticksToWait)
             {
                 FadeInLogo();
             }
@@ -46,11 +46,11 @@ public class FadeLogo : MonoBehaviour {
         }
         else
         {
-            if (ticksDoneGame < 3)
+            if (ticksDoneGame < ticksToWaitGame)
             {
                 FadeInGame();
             }
-            if (ticksDoneGame >= ticksToWait)
+            if (ticksDoneGame >= ticksToWaitGame)
             {
                 FadeOutGame();
 

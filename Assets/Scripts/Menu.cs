@@ -31,6 +31,11 @@ public class Menu : MonoBehaviour {
     // private int select;
     private void Awake()
     {
+       
+    }
+    // Use this for initialization
+    void Start () {
+        //PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
         PlayerPrefs.SetInt("NumMapas", numOfMapas);
 
@@ -46,7 +51,7 @@ public class Menu : MonoBehaviour {
                     PlayerPrefs.SetInt("ScreenMode", 0); //full screen
                 else if (!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
 
-                for (int i = 1; i <= max_players; i++)
+                /*for (int i = 1; i <= max_players; i++)
                 {
                     PlayerPrefs.SetString("Movement_P" + i.ToString(), "V_LPad_" + i.ToString());
                     PlayerPrefs.SetString("Rotation_P" + i.ToString(), "H_RPad_" + i.ToString());
@@ -54,63 +59,61 @@ public class Menu : MonoBehaviour {
                     PlayerPrefs.SetString("Hab1_P" + i.ToString(), "B_" + i.ToString());
                     PlayerPrefs.SetString("Hab2_P" + i.ToString(), "Y_" + i.ToString());
 
-                    /*PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
-                    PlayerPrefs.SetString("Hab1_P" + i.ToString(), "A_" + i.ToString());
-                    PlayerPrefs.SetString("Hab2_P" + i.ToString(), "B_" + i.ToString());*/
+    
 
-                    PlayerPrefs.SetInt("Movement_Value_P" + i.ToString(), 0);
-                    PlayerPrefs.SetInt("Rotation_Value_P" + i.ToString(), 1);
-                    PlayerPrefs.SetInt("Kill_Value_P" + i.ToString(), 3);
-                    PlayerPrefs.SetInt("Hab1_Value_P" + i.ToString(), 0);
-                    PlayerPrefs.SetInt("Hab2_Value_P" + i.ToString(), 1);
-                }
+                    //PlayerPrefs.SetInt("Movement_Value_P" + i.ToString(), 0);
+                    //PlayerPrefs.SetInt("Rotation_Value_P" + i.ToString(), 1);
+                    //PlayerPrefs.SetInt("Kill_Value_P" + i.ToString(), 3);
+                    //PlayerPrefs.SetInt("Hab1_Value_P" + i.ToString(), 0);
+                    //PlayerPrefs.SetInt("Hab2_Value_P" + i.ToString(), 1);
+                }*/
             }
 
-            Dropdown[] dropList1 = mc_p1.GetComponentsInChildren<Dropdown>();
+           /* Dropdown[] dropList1 = mc_p1.GetComponentsInChildren<Dropdown>();
             Dropdown[] dropList2 = mc_p2.GetComponentsInChildren<Dropdown>();
             Dropdown[] dropList3 = mc_p3.GetComponentsInChildren<Dropdown>();
             Dropdown[] dropList4 = mc_p4.GetComponentsInChildren<Dropdown>();
 
             for (int i = 0; i < 5; i++)
             {
-                if (i == 0)
+                if (dropList1[i].transform.parent.name == "Movement")
                 {
                     dropList1[i].value = PlayerPrefs.GetInt("Movement_Value_P1");
                     dropList2[i].value = PlayerPrefs.GetInt("Movement_Value_P2");
                     dropList3[i].value = PlayerPrefs.GetInt("Movement_Value_P3");
                     dropList4[i].value = PlayerPrefs.GetInt("Movement_Value_P4");
                 }
-                else if (i == 1)
+                else if (dropList1[i].transform.parent.name == "Rotation")
                 {
                     dropList1[i].value = PlayerPrefs.GetInt("Rotation_Value_P1");
                     dropList2[i].value = PlayerPrefs.GetInt("Rotation_Value_P2");
                     dropList3[i].value = PlayerPrefs.GetInt("Rotation_Value_P3");
                     dropList4[i].value = PlayerPrefs.GetInt("Rotation_Value_P4");
                 }
-                else if (i == 2)
+                else if (dropList1[i].transform.parent.name == "Kill")
                 {
                     dropList1[i].value = PlayerPrefs.GetInt("Kill_Value_P1");
                     dropList2[i].value = PlayerPrefs.GetInt("Kill_Value_P2");
                     dropList3[i].value = PlayerPrefs.GetInt("Kill_Value_P3");
                     dropList4[i].value = PlayerPrefs.GetInt("Kill_Value_P4");
                 }
-                else if (i == 3)
+                else if (dropList1[i].transform.parent.name == "Hability 1")
                 {
                     dropList1[i].value = PlayerPrefs.GetInt("Hab1_Value_P1");
                     dropList2[i].value = PlayerPrefs.GetInt("Hab1_Value_P2");
                     dropList3[i].value = PlayerPrefs.GetInt("Hab1_Value_P3");
                     dropList4[i].value = PlayerPrefs.GetInt("Hab1_Value_P4");
                 }
-                else if (i == 4)
+                else if (dropList1[i].transform.parent.name == "Hability 2")
                 {
                     dropList1[i].value = PlayerPrefs.GetInt("Hab2_Value_P1");
                     dropList2[i].value = PlayerPrefs.GetInt("Hab2_Value_P2");
                     dropList3[i].value = PlayerPrefs.GetInt("Hab2_Value_P3");
                     dropList4[i].value = PlayerPrefs.GetInt("Hab2_Value_P4");
                 }
-            }
+            }*/
         }
-        else
+        /*else
         {
             for (int i = 1; i <= max_players; i++)
             {
@@ -119,18 +122,9 @@ public class Menu : MonoBehaviour {
                 PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
                 PlayerPrefs.SetString("Hab1_P" + i.ToString(), "B_" + i.ToString());
                 PlayerPrefs.SetString("Hab2_P" + i.ToString(), "Y_" + i.ToString());
-
-                /* PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
-                 PlayerPrefs.SetString("Hab1_P" + i.ToString(), "A_" + i.ToString());
-                 PlayerPrefs.SetString("Hab2_P" + i.ToString(), "B_" + i.ToString());*/
             }
-        }
-    }
-    // Use this for initialization
-    void Start () {
-        //PlayerPrefs.DeleteAll();
+        }*/
 
-       
         options.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);

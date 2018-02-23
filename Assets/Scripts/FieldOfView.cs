@@ -66,6 +66,7 @@ public class FieldOfView : MonoBehaviour {
                         if (target.gameObject.layer == 8)
                         {
                             //ControlScript.detected2 = true;
+                            
                             target.gameObject.GetComponent<PlayerControl>().detected = true;
 
                             if (this.gameObject.GetComponent<PlayerControl>().wannaKill)
@@ -89,39 +90,15 @@ public class FieldOfView : MonoBehaviour {
                         }
                     }
                 }
-               /* else
-                {
-
-                    if (this.gameObject.layer == 8 && target.gameObject.layer == 8)
-                    {
-
-                        foreach (GameObject player in NewControl.players)
-                        {
-                            if(player.gameObject != this.gameObject)
-                                player.GetComponent<PlayerDetection>().detected = false;
-                        }
-
-                    }
-                }*/
+               
 
             }
-            /*else
-            {
-                if (this.gameObject.layer == 8 && target.gameObject.layer == 8)
-                {
-                    foreach (GameObject player in NewControl.players)
-                    {
-                        if (player.gameObject != this.gameObject)
-                            player.GetComponent<PlayerDetection>().detected = false;
-                    }
+         
 
-                }
-            }*/
 
-                   
-		}
+        }
 
-	}
+    }
 
 	public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
 		if (!angleIsGlobal) {
