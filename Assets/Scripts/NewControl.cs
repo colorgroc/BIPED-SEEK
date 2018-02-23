@@ -80,15 +80,7 @@ public class NewControl : MonoBehaviour
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
 
         
-       // timeStartLeft = timeLeft;
-        //RespawnNPCS();
-        //foreach (GameObject player in players)
-        //{
-        //    player.GetComponent<PlayerControl>().timePast = 0;
-        //    player.GetComponent<PlayerControl>().Respawn(player.gameObject);
-        //}
-        //eleccio objectiu
-        //RecalculaObjetivo();
+       
 
     }
     private void Start()
@@ -153,14 +145,7 @@ public class NewControl : MonoBehaviour
             Rondes.timesPlayed++;
             //PlayerPrefs.SetInt("Rondes", Rondes.timesPlayed);
             Start();
-           /* RecalculaObjetivo();
-            foreach (GameObject player in players)
-            {
-				if(player != parcialWinner)
-					player.GetComponent<PlayerControl>().Respawn(player.gameObject);
-            }
-            RespawnNPCS();
-            parcialWinner = null;*/
+           
         }
         if (timeLeft <= 0 && !objComplete)
         {
@@ -171,16 +156,7 @@ public class NewControl : MonoBehaviour
             Rondes.timesPlayed++;
             //PlayerPrefs.SetInt("Rondes", Rondes.timesPlayed);
             Start();
-            /*RecalculaObjetivo();
-            timesPlayed++;
-            timeLeft = timeStartLeft;
-            foreach (GameObject player in players)
-            {
-				if(player != parcialWinner)
-					player.GetComponent<PlayerControl>().Respawn(player.gameObject);
-            }
-            RespawnNPCS();
-			parcialWinner = null;*/
+            
         }
         if (objKilledByGuard)
         {
@@ -188,16 +164,6 @@ public class NewControl : MonoBehaviour
             //PlayerPrefs.SetInt("Rondes", Rondes.timesPlayed);
             Start();
 
-            //Debug.Log("U got killed noob!");
-            //Pause (p);
-            /*RecalculaObjetivo();
-            timesPlayed++;
-            objKilledByGuard = false;
-            foreach (GameObject player in players)
-            {
-				player.GetComponent<PlayerControl>().Respawn(player.gameObject);
-            }
-            RespawnNPCS();*/
         }
 
         if (Rondes.timesPlayed == Rondes.rondas)
@@ -208,8 +174,8 @@ public class NewControl : MonoBehaviour
     private void MapaRandom()
     {
         int mapa = UnityEngine.Random.Range(0, PlayerPrefs.GetInt("NumMapas"));
-        if (mapa + 1 == 1) GameObject.Find("Plaza_2").SetActive(false);
-        if (mapa + 1 == 2) GameObject.Find("Plaza").SetActive(false);
+        if (mapa + 1 == 1) GameObject.Find("Map_2").SetActive(false);
+        if (mapa + 1 == 2) GameObject.Find("Map_1").SetActive(false);
 
     }
 
