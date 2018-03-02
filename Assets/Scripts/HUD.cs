@@ -18,26 +18,23 @@ public class HUD : MonoBehaviour {
     }
     void Start () {
         //player = GetComponent<GameObject>();
-
         if (this.gameObject.name == "Player1HUD")
-            this.player = GameObject.Find("Player 1");
+            player = GameObject.Find("Player 1");
         else if (this.gameObject.name == "Player2HUD")
-            this.player = GameObject.Find("Player 2");
+            player = GameObject.Find("Player 2");
         else if (this.gameObject.name == "Player3HUD")
-            this.player = GameObject.Find("Player 3");
+            player = GameObject.Find("Player 3");
         else if (this.gameObject.name == "Player4HUD")
-            this.player = GameObject.Find("Player 4");
+            player = GameObject.Find("Player 4");
 
-        score.text = this.player.GetComponent<PlayerControl> ().scoreGeneral.ToString();
-		kills.text = this.player.GetComponent<PlayerControl> ().scoreKills.ToString();
-		survived.text = this.player.GetComponent<PlayerControl> ().scoreSurvived.ToString();
-		//playerID.text = this.player.GetComponent<PlayerControl> ().playerID.ToString();
+        this.score.text = this.kills.text = this.survived.text = "0";
+
 	}
 
 	// Update is called once per frame
 	void Update () {
-		score.text = this.player.GetComponent<PlayerControl> ().scoreGeneral.ToString();
-		kills.text = this.player.GetComponent<PlayerControl> ().scoreKills.ToString();
-		survived.text = this.player.GetComponent<PlayerControl> ().scoreSurvived.ToString();
+		this.score.text = this.player.GetComponent<PlayerControl> ().scoreGeneral.ToString();
+		this.kills.text = this.player.GetComponent<PlayerControl> ().scoreKills.ToString();
+		this.survived.text = this.player.GetComponent<PlayerControl> ().scoreSurvived.ToString();
 	}
 }

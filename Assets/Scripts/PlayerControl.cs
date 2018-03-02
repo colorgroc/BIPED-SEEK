@@ -33,64 +33,64 @@ public class PlayerControl : MonoBehaviour {
         this.gameObject.GetComponent<Light>().enabled = false;
         
     
-            if (this.gameObject.name.Equals("Player 1"))
-            {
-            //this.feedback = this.HUD_1.GetComponent<Outline>();
-           // this.feedback = GameObject.Find("Player1HUD").GetComponent<Outline>();
+        if (this.gameObject.name.Equals("Player 1"))
+        {
+        //this.feedback = this.HUD_1.GetComponent<Outline>();
+        // this.feedback = GameObject.Find("Player1HUD").GetComponent<Outline>();
             this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
-                this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
-                this.killButton = PlayerPrefs.GetString("Kill_P1");
-                this.hab1Button = PlayerPrefs.GetString("Hab1_P1");
-                this.hab2Button = PlayerPrefs.GetString("Hab2_P1");
-                /* this.pauseButton = PlayerPrefs.GetString("Pause_P1");
-                    this.submitButton = PlayerPrefs.GetString("Submit_P1");
-                    this.cancelButton = PlayerPrefs.GetString("Cancel_P1");*/
+            this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
+            this.killButton = PlayerPrefs.GetString("Kill_P1");
+            this.hab1Button = PlayerPrefs.GetString("Hab1_P1");
+            this.hab2Button = PlayerPrefs.GetString("Hab2_P1");
+            /* this.pauseButton = PlayerPrefs.GetString("Pause_P1");
+                this.submitButton = PlayerPrefs.GetString("Submit_P1");
+                this.cancelButton = PlayerPrefs.GetString("Cancel_P1");*/
 
                 
-            }
-            else if (this.gameObject.name.Equals("Player 2"))
-            {
-            // this.feedback = this.HUD_2.GetComponent<Outline>();
-            //this.feedback = GameObject.Find("Player2HUD").GetComponent<Outline>();
+        }
+        else if (this.gameObject.name.Equals("Player 2"))
+        {
+        // this.feedback = this.HUD_2.GetComponent<Outline>();
+        //this.feedback = GameObject.Find("Player2HUD").GetComponent<Outline>();
             this.AxisMovement = PlayerPrefs.GetString("Movement_P2");
-                this.AxisRotation = PlayerPrefs.GetString("Rotation_P2");
-                this.killButton = PlayerPrefs.GetString("Kill_P2");
-                this.hab1Button = PlayerPrefs.GetString("Hab1_P2");
-                this.hab2Button = PlayerPrefs.GetString("Hab2_P2");
-                /*this.pauseButton = PlayerPrefs.GetString("Pause_P2");
-                this.submitButton = PlayerPrefs.GetString("Submit_P2");
-                this.cancelButton = PlayerPrefs.GetString("Cancel_P2");*/
+            this.AxisRotation = PlayerPrefs.GetString("Rotation_P2");
+            this.killButton = PlayerPrefs.GetString("Kill_P2");
+            this.hab1Button = PlayerPrefs.GetString("Hab1_P2");
+            this.hab2Button = PlayerPrefs.GetString("Hab2_P2");
+            /*this.pauseButton = PlayerPrefs.GetString("Pause_P2");
+            this.submitButton = PlayerPrefs.GetString("Submit_P2");
+            this.cancelButton = PlayerPrefs.GetString("Cancel_P2");*/
 
            
-            }
-            else if (this.gameObject.name.Equals("Player 3"))
-            {
-            //this.feedback = this.HUD_3.GetComponent<Outline>();
-           // this.feedback = GameObject.Find("Player3HUD").GetComponent<Outline>();
-            this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
-                this.AxisRotation = PlayerPrefs.GetString("Rotation_P3");
-                this.killButton = PlayerPrefs.GetString("Kill_P3");
-                this.hab1Button = PlayerPrefs.GetString("Hab1_P3");
-                this.hab2Button = PlayerPrefs.GetString("Hab2_P3");
-                /* this.pauseButton = PlayerPrefs.GetString("Pause_P3");
-                    this.submitButton = PlayerPrefs.GetString("Submit_P3");
-                    this.cancelButton = PlayerPrefs.GetString("Cancel_P3");*/
-            }
-            else if (this.gameObject.name.Equals("Player 4"))
-            {
-            //this.feedback = this.HUD_4.GetComponent<Outline>();
-            //this.feedback = GameObject.Find("Player4HUD").GetComponent<Outline>();
-            this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
-                this.AxisRotation = PlayerPrefs.GetString("Rotation_P4");
-                this.killButton = PlayerPrefs.GetString("Kill_P4");
-                this.hab1Button = PlayerPrefs.GetString("Hab1_P4");
-                this.hab2Button = PlayerPrefs.GetString("Hab2_P4");
-                /* this.pauseButton = PlayerPrefs.GetString("Pause_P4");
-                    this.submitButton = PlayerPrefs.GetString("Submit_P4");
-                    this.cancelButton = PlayerPrefs.GetString("Cancel_P4");*/
-            }
-            //this.feedback.enabled = false;
-        //}
+        }
+        else if (this.gameObject.name.Equals("Player 3"))
+        {
+        //this.feedback = this.HUD_3.GetComponent<Outline>();
+        // this.feedback = GameObject.Find("Player3HUD").GetComponent<Outline>();
+        this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
+            this.AxisRotation = PlayerPrefs.GetString("Rotation_P3");
+            this.killButton = PlayerPrefs.GetString("Kill_P3");
+            this.hab1Button = PlayerPrefs.GetString("Hab1_P3");
+            this.hab2Button = PlayerPrefs.GetString("Hab2_P3");
+            /* this.pauseButton = PlayerPrefs.GetString("Pause_P3");
+                this.submitButton = PlayerPrefs.GetString("Submit_P3");
+                this.cancelButton = PlayerPrefs.GetString("Cancel_P3");*/
+        }
+        else if (this.gameObject.name.Equals("Player 4"))
+        {
+        //this.feedback = this.HUD_4.GetComponent<Outline>();
+        //this.feedback = GameObject.Find("Player4HUD").GetComponent<Outline>();
+        this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
+            this.AxisRotation = PlayerPrefs.GetString("Rotation_P4");
+            this.killButton = PlayerPrefs.GetString("Kill_P4");
+            this.hab1Button = PlayerPrefs.GetString("Hab1_P4");
+            this.hab2Button = PlayerPrefs.GetString("Hab2_P4");
+            /* this.pauseButton = PlayerPrefs.GetString("Pause_P4");
+                this.submitButton = PlayerPrefs.GetString("Submit_P4");
+                this.cancelButton = PlayerPrefs.GetString("Cancel_P4");*/
+        }
+        //this.feedback.enabled = false;
+    //}
         
         
     }
@@ -112,44 +112,46 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
         if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
 
-        
+        if (Input.GetAxis(this.AxisMovement) != 0)
+            Debug.LogError("Movement");
+        if (Input.GetButtonDown(this.killButton)) Debug.LogError("Kill");
 
-        /*if (this.goodFeedback)
-        {
-            this.feedback.enabled = true;
-            this.feedback.effectColor = Color.green;
-            this.timeFeedback += Time.deltaTime;
-            if (this.timeFeedback >= 0.5) this.goodFeedback = false;
-        }
-        else
-        {
-            this.feedback.enabled = false;
-            this.timeFeedback = 0;
-        }
-        if (this.badFeedback)
-        {
-            this.feedback.enabled = true;
-            this.feedback.effectColor = Color.red;
-            this.timeFeedback += Time.deltaTime;
-            if (this.timeFeedback >= 0.5) this.badFeedback = false;
-        }
-        else
-        {
-            this.feedback.enabled = false;
-            this.timeFeedback = 0;
-        }*/
+            /*if (this.goodFeedback)
+            {
+                this.feedback.enabled = true;
+                this.feedback.effectColor = Color.green;
+                this.timeFeedback += Time.deltaTime;
+                if (this.timeFeedback >= 0.5) this.goodFeedback = false;
+            }
+            else
+            {
+                this.feedback.enabled = false;
+                this.timeFeedback = 0;
+            }
+            if (this.badFeedback)
+            {
+                this.feedback.enabled = true;
+                this.feedback.effectColor = Color.red;
+                this.timeFeedback += Time.deltaTime;
+                if (this.timeFeedback >= 0.5) this.badFeedback = false;
+            }
+            else
+            {
+                this.feedback.enabled = false;
+                this.timeFeedback = 0;
+            }*/
 
 
-        /*CalcCoolDown();
-        if (this.cooledDown) {
-            this.timeCoolDown += Time.deltaTime;
-            if (this.timeCoolDown >= this.coolDown)
-                RespawnCoolDown(this.gameObject);
+            /*CalcCoolDown();
+            if (this.cooledDown) {
+                this.timeCoolDown += Time.deltaTime;
+                if (this.timeCoolDown >= this.coolDown)
+                    RespawnCoolDown(this.gameObject);
 
-        }*/
+            }*/
 
-        //Debug.Log(this.pressed + ", " + this.timePress + ", " + this.wannaKill);
-        if (this.detected)
+            //Debug.Log(this.pressed + ", " + this.timePress + ", " + this.wannaKill);
+            if (this.detected)
         {
             this.gameObject.GetComponent<Light>().enabled = true;
             this.timePast+= Time.deltaTime;
