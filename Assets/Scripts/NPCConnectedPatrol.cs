@@ -57,23 +57,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void Update () {
-		/*if (isDead) {
-			//this.enabled = false;
-			count += Time.deltaTime;
-			if (count >= 3) {
-				player.gameObject.SetActive (true);
-			}
-			//StartCoroutine (Respawn (random, 3));
-			//Invoke ("Respawn", 3);
-		}*/
-		/*if (isDead) {
-			count += Time.deltaTime;
-			if (count >= 3) {
-				count = 0;
-				isDead = false;
-
-			}
-		}*/
+		
 
 		if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
 			_travelling = false;
@@ -118,11 +102,13 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		}
 	    if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
 
-				    collision.gameObject.SetActive (false);
-				    collision.gameObject.GetComponent<FieldOfView> ().alive = false;
-				    collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
+			collision.gameObject.SetActive (false);
+			collision.gameObject.GetComponent<FieldOfView> ().alive = false;
+            collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
+            collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
 
 	    }else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
+            collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
 		    NewControl.objKilledByGuard = true;
 	    }
 	}

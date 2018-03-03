@@ -31,7 +31,8 @@ public class NewControl : MonoBehaviour
 	private int topScore;
     [SerializeField]
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
-    
+    [SerializeField]
+    private Sprite SpriteTipo_1, SpriteTipo_2, SpriteTipo_3, SpriteTipo_4;
     [SerializeField]
     private Text textHUD;
     private int fin;
@@ -55,6 +56,24 @@ public class NewControl : MonoBehaviour
             player.transform.parent = GameObject.Find("Players").transform;
             player.gameObject.name = "Player " + i.ToString();
             player.gameObject.tag = "Player " + i.ToString();
+            if(PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 1)
+            {
+                GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_1;
+            }
+            else if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 2)
+            {
+                GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_2;
+            }
+            else if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 3)
+            {
+                GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_3;
+            }
+            else if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 4)
+            {
+                GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_4;
+            }
+            //Sprite icon = (Sprite)Resources.Load("Icons/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()).ToString());
+            //GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = icon;
             player.gameObject.layer = 8;
 
             //creacion de guards x jugador 
