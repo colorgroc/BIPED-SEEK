@@ -16,7 +16,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private int select_1, select_2, select_3, select_4;
     private static bool ready_P1, ready_P2, ready_P3, ready_P4;
     [SerializeField]
-    private Vector2 outline = new Vector2(10, 10);
+    private Vector2 outline = new Vector2(10, -10);
     [SerializeField]
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
@@ -65,10 +65,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         {
             //butons
             this.characterTypes[i].GetComponent<Outline>().enabled = false;
+            this.characterTypes[i].GetComponent<Outline>().effectDistance = default_outline;
             if (i < 4)
             {
                 characterTypes_P1.Add(this.characterTypes[i].gameObject);
                 characterTypes_P1[0].GetComponent<Outline>().enabled = true;
+                
                 //characterTypes_P1.Sort(SortByName);
             }
             else if (i >= 4 && i < 8)
@@ -100,9 +102,9 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 	void Update () {
         
         //codi de prova
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("Back"))
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("menu");
         }
 
         SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
@@ -543,36 +545,48 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         switch (whichPlayer)
         {
             case 1:
-                characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
-                if (select_1 == 0)
-                    select_1 = 1;
-                else if (select_1 == 2)
-                    select_1 = 3;
-                characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
+                if ((select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
+                    if (select_1 == 0)
+                        select_1 = 1;
+                    else if (select_1 == 2)
+                        select_1 = 3;
+                    characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 2:
-                characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
-                if (select_2 == 0)
-                    select_2 = 1;
-                else if (select_2 == 2)
-                    select_2 = 3;
-                characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
+                if ((select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_1") && (select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
+                    if (select_2 == 0)
+                        select_2 = 1;
+                    else if (select_2 == 2)
+                        select_2 = 3;
+                    characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 3:
-                characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
-                if (select_3 == 0)
-                    select_3 = 1;
-                else if (select_3 == 2)
-                    select_3 = 3;
-                characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
+                if ((select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_1") && (select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
+                    if (select_3 == 0)
+                        select_3 = 1;
+                    else if (select_3 == 2)
+                        select_3 = 3;
+                    characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 4:
-                characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
-                if (select_4 == 0)
-                    select_4 = 1;
-                else if (select_4 == 2)
-                    select_4 = 3;
-                characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
+                if ((select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_1"))
+                {
+                    characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
+                    if (select_4 == 0)
+                        select_4 = 1;
+                    else if (select_4 == 2)
+                        select_4 = 3;
+                    characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
+                }
                 break;
         }
     }
@@ -581,36 +595,48 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         switch (whichPlayer)
         {
             case 1:
-                characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
-                if (select_1 == 1)
-                    select_1 = 0;
-                else if (select_1 == 3)
-                    select_1 = 2;
-                characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
+                if ((select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
+                    if (select_1 == 1)
+                        select_1 = 0;
+                    else if (select_1 == 3)
+                        select_1 = 2;
+                    characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 2:
-                characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
-                if (select_2 == 1)
-                    select_2 = 0;
-                else if (select_2 == 3)
-                    select_2 = 2;
-                characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
+                if ((select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_1") && (select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
+                    if (select_2 == 1)
+                        select_2 = 0;
+                    else if (select_2 == 3)
+                        select_2 = 2;
+                    characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 3:
-                characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
-                if (select_3 == 1)
-                    select_3 = 0;
-                else if (select_3 == 3)
-                    select_3 = 2;
-                characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
+                if ((select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_1") && (select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
+                    if (select_3 == 1)
+                        select_3 = 0;
+                    else if (select_3 == 3)
+                        select_3 = 2;
+                    characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 4:
-                characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
-                if (select_4 == 1)
-                    select_4 = 0;
-                else if (select_4 == 3)
-                    select_4 = 2;
-                characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
+                if ((select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_1"))
+                {
+                    characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
+                    if (select_4 == 1)
+                        select_4 = 0;
+                    else if (select_4 == 3)
+                        select_4 = 2;
+                    characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
+                }
                 break;
         }
     }
@@ -619,36 +645,48 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         switch (whichPlayer)
         {
             case 1:
-                characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
-                if (select_1 == 0)
-                    select_1 = 2;
-                else if (select_1 == 1)
-                    select_1 = 3;
-                characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
+                if ((select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
+                    if (select_1 == 0)
+                        select_1 = 2;
+                    else if (select_1 == 1)
+                        select_1 = 3;
+                    characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 2:
-                characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
-                if (select_2 == 0)
-                    select_2 = 2;
-                else if (select_2 == 1)
-                    select_2 = 3;
-                characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
+                if ((select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_1") && (select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
+                    if (select_2 == 0)
+                        select_2 = 2;
+                    else if (select_2 == 1)
+                        select_2 = 3;
+                    characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 3:
-                characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
-                if (select_3 == 0)
-                    select_3 = 2;
-                else if (select_3 == 1)
-                    select_3 = 3;
-                characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
+                if ((select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_1") && (select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
+                    if (select_3 == 0)
+                        select_3 = 2;
+                    else if (select_3 == 1)
+                        select_3 = 3;
+                    characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 4:
-                characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
-                if (select_4 == 0)
-                    select_4 = 2;
-                else if (select_4 == 1)
-                    select_4 = 3;
-                characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
+                if ((select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_1"))
+                {
+                    characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
+                    if (select_4 == 0)
+                        select_4 = 2;
+                    else if (select_4 == 1)
+                        select_4 = 3;
+                    characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
+                }
                 break;
         }
     }
@@ -657,36 +695,48 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         switch (whichPlayer)
         {
             case 1:
-                characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
-                if (select_1 == 2)
-                    select_1 = 0;
-                else if (select_1 == 3)
-                    select_1 = 1;
-                characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
+                if ((select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_1 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
+                    if (select_1 == 2)
+                        select_1 = 0;
+                    else if (select_1 == 3)
+                        select_1 = 1;
+                    characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 2:
-                characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
-                if (select_2 == 2)
-                    select_2 = 0;
-                else if (select_2 == 3)
-                    select_2 = 1;
-                characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
+                if ((select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_1") && (select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_2 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
+                    if (select_2 == 2)
+                        select_2 = 0;
+                    else if (select_2 == 3)
+                        select_2 = 1;
+                    characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 3:
-                characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
-                if (select_3 == 2)
-                    select_3 = 0;
-                else if (select_3 == 3)
-                    select_3 = 1;
-                characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
+                if ((select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_1") && (select_3 + 1) != PlayerPrefs.GetInt("characterPlayer_4"))
+                {
+                    characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
+                    if (select_3 == 2)
+                        select_3 = 0;
+                    else if (select_3 == 3)
+                        select_3 = 1;
+                    characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
+                }
                 break;
             case 4:
-                characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
-                if (select_4 == 2)
-                    select_4 = 0;
-                else if (select_4 == 3)
-                    select_4 = 1;
-                characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
+                if ((select_4+1) != PlayerPrefs.GetInt("characterPlayer_2") && (select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_3") && (select_4 + 1) != PlayerPrefs.GetInt("characterPlayer_1"))
+                {
+                    characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
+                    if (select_4 == 2)
+                        select_4 = 0;
+                    else if (select_4 == 3)
+                        select_4 = 1;
+                    characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
+                }
                 break;
         }
     }
