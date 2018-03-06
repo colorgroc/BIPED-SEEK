@@ -54,46 +54,64 @@ public class PlayerControl : MonoBehaviour {
             this.feedback = this.feedbacks[0].GetComponent<Image>();
             this.neutralColor = colorP1;
             this.feedback.color = this.neutralColor;
-     
-            this.AxisMovement = PlayerPrefs.GetString("Movement_P1");
+
+            this.AxisMovement = "V_LPad_1";
+            this.AxisRotation = "H_RPad_1";
+            this.killButton = "X_1";
+            this.hab1Button = "Y_1";
+            this.hab2Button = "A_1";
+
+            /*this.AxisMovement = PlayerPrefs.GetString("Movement_P1"); 
             this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
             this.killButton = PlayerPrefs.GetString("Kill_P1");
             this.hab1Button = PlayerPrefs.GetString("Hab1_P1");
-            this.hab2Button = PlayerPrefs.GetString("Hab2_P1");
+            this.hab2Button = PlayerPrefs.GetString("Hab2_P1");*/
             /* this.pauseButton = PlayerPrefs.GetString("Pause_P1");
                 this.submitButton = PlayerPrefs.GetString("Submit_P1");
                 this.cancelButton = PlayerPrefs.GetString("Cancel_P1");*/
 
-                
+
         }
         else if (this.gameObject.name.Equals("Player 2"))
         {
             this.feedback = this.feedbacks[1].GetComponent<Image>();
             this.neutralColor = colorP2;
             this.feedback.color = this.neutralColor;
-  
-            this.AxisMovement = PlayerPrefs.GetString("Movement_P2");
+
+            this.AxisMovement = "V_LPad_2";
+            this.AxisRotation = "H_RPad_2";
+            this.killButton = "X_2";
+            this.hab1Button = "Y_2";
+            this.hab2Button = "A_2";
+
+            /*this.AxisMovement = PlayerPrefs.GetString("Movement_P2");
             this.AxisRotation = PlayerPrefs.GetString("Rotation_P2");
             this.killButton = PlayerPrefs.GetString("Kill_P2");
             this.hab1Button = PlayerPrefs.GetString("Hab1_P2");
-            this.hab2Button = PlayerPrefs.GetString("Hab2_P2");
+            this.hab2Button = PlayerPrefs.GetString("Hab2_P2");*/
             /*this.pauseButton = PlayerPrefs.GetString("Pause_P2");
             this.submitButton = PlayerPrefs.GetString("Submit_P2");
             this.cancelButton = PlayerPrefs.GetString("Cancel_P2");*/
 
-           
+
         }
         else if (this.gameObject.name.Equals("Player 3"))
         {
             this.feedback = this.feedbacks[2].GetComponent<Image>();
             this.neutralColor = colorP3;
             this.feedback.color = this.neutralColor;
-          
-            this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
+
+            this.AxisMovement = "V_LPad_3";
+            this.AxisRotation = "H_RPad_3";
+            this.killButton = "X_3";
+            this.hab1Button = "Y_3";
+            this.hab2Button = "A_3";
+
+            /*this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
             this.AxisRotation = PlayerPrefs.GetString("Rotation_P3");
             this.killButton = PlayerPrefs.GetString("Kill_P3");
             this.hab1Button = PlayerPrefs.GetString("Hab1_P3");
-            this.hab2Button = PlayerPrefs.GetString("Hab2_P3");
+            this.hab2Button = PlayerPrefs.GetString("Hab2_P3");*/
             /* this.pauseButton = PlayerPrefs.GetString("Pause_P3");
                 this.submitButton = PlayerPrefs.GetString("Submit_P3");
                 this.cancelButton = PlayerPrefs.GetString("Cancel_P3");*/
@@ -103,12 +121,18 @@ public class PlayerControl : MonoBehaviour {
             this.feedback = this.feedbacks[3].GetComponent<Image>();
             this.neutralColor = colorP4;
             this.feedback.color = this.neutralColor;
-      
-            this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
+
+            this.AxisMovement = "V_LPad_4";
+            this.AxisRotation = "H_RPad_4";
+            this.killButton = "X_4";
+            this.hab1Button = "Y_4";
+            this.hab2Button = "A_4";
+
+            /*this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
             this.AxisRotation = PlayerPrefs.GetString("Rotation_P4");
             this.killButton = PlayerPrefs.GetString("Kill_P4");
             this.hab1Button = PlayerPrefs.GetString("Hab1_P4");
-            this.hab2Button = PlayerPrefs.GetString("Hab2_P4");
+            this.hab2Button = PlayerPrefs.GetString("Hab2_P4");*/
             /* this.pauseButton = PlayerPrefs.GetString("Pause_P4");
                 this.submitButton = PlayerPrefs.GetString("Submit_P4");
                 this.cancelButton = PlayerPrefs.GetString("Cancel_P4");*/
@@ -135,9 +159,9 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
         if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
 
-        if (Input.GetAxis(this.AxisMovement) != 0)
+        /*if (Input.GetAxis(this.AxisMovement) != 0)
             Debug.LogError("Movement");
-        if (Input.GetButtonDown(this.killButton)) Debug.LogError("Kill");
+        if (Input.GetButtonDown(this.killButton)) Debug.LogError("Kill");*/
 
         if (this.goodFeedback)
         {

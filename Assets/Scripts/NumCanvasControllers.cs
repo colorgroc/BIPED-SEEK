@@ -11,18 +11,20 @@ public class NumCanvasControllers : MonoBehaviour {
     {
         GameObject[] playersControlList = GameObject.FindGameObjectsWithTag("PlayersControllers");
         this.toggles = new List<GameObject>();
-        for (int i = 0; i < playersControlList.Length; i++)
-        {
-            playersControlList[i].gameObject.GetComponent<Toggle>().interactable = false;
-            this.toggles.Add(playersControlList[i].gameObject);
-        }
+       
+            for (int i = 0; i < playersControlList.Length; i++)
+            {
+                playersControlList[i].gameObject.GetComponent<Toggle>().interactable = false;
+                this.toggles.Add(playersControlList[i].gameObject);
+            }
 
-        this.toggles.Sort(SortByName);
+            this.toggles.Sort(SortByName);
 
-        for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
-        {
-            this.toggles[i].gameObject.GetComponent<Toggle>().interactable = true;
-        }
+            for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
+            {
+                this.toggles[i].gameObject.GetComponent<Toggle>().interactable = true;
+            }
+        
     }
 
     private static int SortByName(GameObject o1, GameObject o2)
