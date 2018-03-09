@@ -35,6 +35,37 @@ ModelImporter:
     100054: Sphere004
     100056: Sphere005
     100058: Sphere006
+    100060: Bec
+    100062: Ojo der
+    100064: Ojo izq
+    100066: Cuerpo
+    100068: mixamorig:Head
+    100070: mixamorig:HeadTop_End
+    100072: mixamorig:Hips
+    100074: mixamorig:LeftArm
+    100076: mixamorig:LeftFoot
+    100078: mixamorig:LeftForeArm
+    100080: mixamorig:LeftHand
+    100082: mixamorig:LeftLeg
+    100084: mixamorig:LeftShoulder
+    100086: mixamorig:LeftToe_End
+    100088: mixamorig:LeftToeBase
+    100090: mixamorig:LeftUpLeg
+    100092: mixamorig:Neck
+    100094: mixamorig:RightArm
+    100096: mixamorig:RightFoot
+    100098: mixamorig:RightForeArm
+    100100: mixamorig:RightHand
+    100102: mixamorig:RightLeg
+    100104: mixamorig:RightShoulder
+    100106: mixamorig:RightToe_End
+    100108: mixamorig:RightToeBase
+    100110: mixamorig:RightUpLeg
+    100112: mixamorig:Spine
+    100114: mixamorig:Spine1
+    100116: mixamorig:Spine2
+    100118: Ojo_der
+    100120: Ojo_izq
     400000: Box001
     400002: Box002
     400004: Box003
@@ -65,6 +96,37 @@ ModelImporter:
     400054: Sphere004
     400056: Sphere005
     400058: Sphere006
+    400060: Bec
+    400062: Ojo der
+    400064: Ojo izq
+    400066: Cuerpo
+    400068: mixamorig:Head
+    400070: mixamorig:HeadTop_End
+    400072: mixamorig:Hips
+    400074: mixamorig:LeftArm
+    400076: mixamorig:LeftFoot
+    400078: mixamorig:LeftForeArm
+    400080: mixamorig:LeftHand
+    400082: mixamorig:LeftLeg
+    400084: mixamorig:LeftShoulder
+    400086: mixamorig:LeftToe_End
+    400088: mixamorig:LeftToeBase
+    400090: mixamorig:LeftUpLeg
+    400092: mixamorig:Neck
+    400094: mixamorig:RightArm
+    400096: mixamorig:RightFoot
+    400098: mixamorig:RightForeArm
+    400100: mixamorig:RightHand
+    400102: mixamorig:RightLeg
+    400104: mixamorig:RightShoulder
+    400106: mixamorig:RightToe_End
+    400108: mixamorig:RightToeBase
+    400110: mixamorig:RightUpLeg
+    400112: mixamorig:Spine
+    400114: mixamorig:Spine1
+    400116: mixamorig:Spine2
+    400118: Ojo_der
+    400120: Ojo_izq
     2300000: Box001
     2300002: Box002
     2300004: Box003
@@ -94,6 +156,10 @@ ModelImporter:
     2300052: Sphere004
     2300054: Sphere005
     2300056: Sphere006
+    2300058: //RootNode
+    2300060: Bec
+    2300062: Ojo der
+    2300064: Ojo izq
     3300000: Box001
     3300002: Box002
     3300004: Box003
@@ -123,6 +189,10 @@ ModelImporter:
     3300052: Sphere004
     3300054: Sphere005
     3300056: Sphere006
+    3300058: //RootNode
+    3300060: Bec
+    3300062: Ojo der
+    3300064: Ojo izq
     4300000: Sphere001
     4300002: Capsule001
     4300004: Capsule002
@@ -152,8 +222,39 @@ ModelImporter:
     4300052: Box008
     4300054: Sphere005
     4300056: Sphere006
+    4300058: Cuerpo
+    4300060: Bec
+    4300062: Ojo der
+    4300064: Ojo izq
+    4300066: Ojo_der
+    4300068: Ojo_izq
+    7400000: mixamo.com
     9500000: //RootNode
+    13700000: Bec
+    13700002: Cuerpo
+    13700004: Ojo_der
+    13700006: Ojo_izq
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 41b56cdda1afb7d459a879c5bd9e13ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 02 - Default
+    second: {fileID: 2100000, guid: 9da4b5d25c2308341b52caec7299cf4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 03 - Default
+    second: {fileID: 2100000, guid: c029d975574ada14aa6ebbb9427022ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #0'
+    second: {fileID: 2100000, guid: 41b56cdda1afb7d459a879c5bd9e13ea, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
