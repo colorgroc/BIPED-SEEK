@@ -30,12 +30,17 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     private Color colorP1, colorP2, colorP3, colorP4, GoodFeedback, BadFeedback, WinnerFeedback;
     private Color neutralColor;
+    [SerializeField]
+    private Animator anim;
+
     //[SerializeField]
     //private GameObject HUD_1, HUD_2, HUD_3, HUD_4;
 
     // Use this for initialization
     void Start () {
+        
         //distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
+        this.anim = this.gameObject.GetComponent<Animator>();
         this.gameObject.GetComponent<Light>().enabled = false;
         feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
         this.feedbacks = new List<GameObject>();
@@ -158,6 +163,10 @@ public class PlayerControl : MonoBehaviour {
         transform.Rotate(0, rX * speedRotation, 0);
         if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
         if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
+
+        anim.SetBool("WannaKill", this.wannaKill);
+        if (y != 0) anim.SetBool("isWalking", true);
+        else anim.SetBool("isWalking", false);
 
         /*if (Input.GetAxis(this.AxisMovement) != 0)
             Debug.LogError("Movement");
