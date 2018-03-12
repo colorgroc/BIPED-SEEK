@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 84fae4153cbb73943934ebe3b9a1334c
-timeCreated: 1520880624
+guid: 2d84221d49b78194fadda8a27df700ec
+timeCreated: 1520881531
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: cola
-    100002: Cuerpo
-    100004: //RootNode
+    100000: //RootNode
+    100002: cola
+    100004: Cuerpo
     100006: mixamorig:Head
     100008: mixamorig:HeadTop_End
     100010: mixamorig:Hips
@@ -45,9 +45,9 @@ ModelImporter:
     100074: nariz
     100076: ojos
     100078: orejas
-    400000: cola
-    400002: Cuerpo
-    400004: //RootNode
+    400000: //RootNode
+    400002: cola
+    400004: Cuerpo
     400006: mixamorig:Head
     400008: mixamorig:HeadTop_End
     400010: mixamorig:Hips
@@ -88,11 +88,11 @@ ModelImporter:
     2100000: No Name
     4300000: Cuerpo
     4300002: cola
-    4300004: ojos
-    4300006: orejas
+    4300004: nariz
+    4300006: ojos
     4300008: morro
-    4300010: nariz
-    7400000: mixamo.com
+    4300010: orejas
+    7400000: Walk
     9500000: //RootNode
     13700000: cola
     13700002: Cuerpo
@@ -126,7 +126,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
