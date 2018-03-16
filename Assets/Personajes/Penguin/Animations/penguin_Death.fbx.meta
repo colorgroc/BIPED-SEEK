@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d1568ea0de5ecf84cacc1f758a81b65c
-timeCreated: 1521218596
+guid: be3f3181de3f5a94bb53c22d814b523b
+timeCreated: 1521220174
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -73,7 +73,7 @@ ModelImporter:
     400062: mixamorig:Spine1
     400064: mixamorig:Spine2
     400066: //RootNode
-    7400000: Walking Backward
+    7400000: penguin_Death
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -103,10 +103,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking Backward
+      name: penguin_Death
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 37
+      lastFrame: 89
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
