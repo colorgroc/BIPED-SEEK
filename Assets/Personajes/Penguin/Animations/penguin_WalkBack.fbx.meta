@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b90ee7106e2e8824d8a21678dbcd1f9c
-timeCreated: 1521219515
+guid: d1568ea0de5ecf84cacc1f758a81b65c
+timeCreated: 1521218596
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -73,7 +73,7 @@ ModelImporter:
     400062: mixamorig:Spine1
     400064: mixamorig:Spine2
     400066: //RootNode
-    7400000: penguin_Walk
+    7400000: penguin_WalkBack
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -103,10 +103,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: penguin_Walk
+      name: penguin_WalkBack
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 31
+      lastFrame: 37
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
