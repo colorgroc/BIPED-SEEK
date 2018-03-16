@@ -28,14 +28,14 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
 	public bool isDead;
 	public float count;
-    private Animator anim;
+
 
 
 	// Use this for initialization
 	public void Start () {
 
 		_navMeshAgent = this.GetComponent<NavMeshAgent> ();
-        anim = this.gameObject.GetComponent<Animator>();
+       
 
 		if (_navMeshAgent == null) Debug.LogError ("The nav mesh agent component is not attached to " + gameObject.name);
 		else {
@@ -57,9 +57,9 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void Update () {
-        anim.SetBool("isWalkingForward", _travelling);
+		
 
-        if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
+		if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
 			_travelling = false;
 			_waypointsVisited++;
 
@@ -91,7 +91,6 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		Vector3 targetVector = _currentWaypoint.transform.position;
 		_navMeshAgent.SetDestination (targetVector);
 		_travelling = true;
-        
 	}
 
 	public void ChacePlayer(Vector3 targetVector){
