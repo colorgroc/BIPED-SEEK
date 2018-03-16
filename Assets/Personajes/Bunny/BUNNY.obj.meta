@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 0b3436e537ab7c447a207cadac9aea89
+timeCreated: 1521159376
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: cola
+    100004: Cuerpo
+    100006: dientes
+    100008: morro
+    100010: nariz
+    100012: ojos
+    100014: oreja
+    400000: //RootNode
+    400002: cola
+    400004: Cuerpo
+    400006: dientes
+    400008: morro
+    400010: nariz
+    400012: ojos
+    400014: oreja
+    2300000: cola
+    2300002: Cuerpo
+    2300004: dientes
+    2300006: morro
+    2300008: nariz
+    2300010: ojos
+    2300012: oreja
+    3300000: cola
+    3300002: Cuerpo
+    3300004: dientes
+    3300006: morro
+    3300008: nariz
+    3300010: ojos
+    3300012: oreja
+    4300000: cola
+    4300002: Cuerpo
+    4300004: dientes
+    4300006: morro
+    4300008: nariz
+    4300010: ojos
+    4300012: oreja
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CuerpoMat
+    second: {fileID: 2100000, guid: 4a63d25a82c36f94dbdbc3cbe3374824, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: colaMat
+    second: {fileID: 2100000, guid: 5bf624f3ada5ea54ead71b2e70c7f382, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dientesMat
+    second: {fileID: 2100000, guid: ef8d041beb7973b47a3fee4a497b1c82, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: morroMat
+    second: {fileID: 2100000, guid: 4d6e4b58687113249acf0f6098f242f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: narizMat
+    second: {fileID: 2100000, guid: 689c96fbfa83e4c459ed1b774c49663a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ojosMat
+    second: {fileID: 2100000, guid: 1c6fe8562dc0c8444a0d0261e635069a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: orejaMat
+    second: {fileID: 2100000, guid: f76a837b0779375438b39eaaf45db29f, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

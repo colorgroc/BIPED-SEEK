@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour {
         //distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
         this.anim = this.gameObject.GetComponent<Animator>();
         this.gameObject.GetComponent<Light>().enabled = false;
-        feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
+        this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
         this.feedbacks = new List<GameObject>();
 
         for (int i = 0; i < feedbackList.Length; i++)
@@ -159,14 +159,21 @@ public class PlayerControl : MonoBehaviour {
     {
         float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
         float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
+
         transform.Translate(0, 0, y * speed);
         transform.Rotate(0, rX * speedRotation, 0);
         if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
         if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
 
-        anim.SetBool("WannaKill", this.wannaKill);
-        if (y != 0) anim.SetBool("isWalking", true);
-        else anim.SetBool("isWalking", false);
+        if (y > 0) this.anim.SetBool("isWalkingForward", true);
+        else if (y < 0) this.anim.SetBool("isWalkingBack", true);
+        else
+        {
+            this.anim.SetBool("isWalkingForward", false);
+            this.anim.SetBool("isWalkingBack", false);
+        }
+        this.anim.SetBool("wannaKill", this.wannaKill);
+        
 
         /*if (Input.GetAxis(this.AxisMovement) != 0)
             Debug.LogError("Movement");
