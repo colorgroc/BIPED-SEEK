@@ -230,7 +230,7 @@ public class NewControl : MonoBehaviour
             if (guard != null)
                 guard.GetComponent<NPCConnectedPatrol>().Respawn(guard.gameObject);
         }
-        if (killers.Length > 0)
+        if (killers != null)
         {
             foreach (GameObject killer in killers)
             {

@@ -35,7 +35,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	public void Start () {
 
 		_navMeshAgent = this.GetComponent<NavMeshAgent> ();
-        anim = this.gameObject.GetComponent<Animator>();
+        this.anim = this.gameObject.GetComponent<Animator>();
 
 		if (_navMeshAgent == null) Debug.LogError ("The nav mesh agent component is not attached to " + gameObject.name);
 		else {
