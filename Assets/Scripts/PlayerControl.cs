@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class PlayerControl : MonoBehaviour {
     [SerializeField]
     private float speed, speedRotation;
-    
+    [SerializeField]
+    public static float defaultSpeed = 20;
     //[SerializeField]
     //private int tipo_de_character;
 	//public int playerID;
@@ -44,6 +45,7 @@ public class PlayerControl : MonoBehaviour {
         this.gameObject.GetComponent<Light>().enabled = false;
         this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
         this.feedbacks = new List<GameObject>();
+        PlayerPrefs.SetFloat("Speed", defaultSpeed);
 
         for (int i = 0; i < feedbackList.Length; i++)
         {
@@ -151,6 +153,7 @@ public class PlayerControl : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        speed = PlayerPrefs.GetFloat("Speed");
         if (this.canAct)
         {
             float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;

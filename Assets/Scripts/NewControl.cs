@@ -24,8 +24,8 @@ public class NewControl : MonoBehaviour
     public static int random;
     public static List<GameObject> players = new List<GameObject>();
     private List<GameObject> listPlayers = new List<GameObject>();
-    public GameObject[] guards;
-    public GameObject[] killers;
+    public static GameObject[] guards;
+    public static GameObject[] killers;
 	private bool paused;
 	[SerializeField]
 	private GameObject pausa, objectiveCanvas, finalWinnerCanvas;
@@ -38,7 +38,9 @@ public class NewControl : MonoBehaviour
     private Text textHUD;
     private int fin;
     [SerializeField]
-    private int numGuardsPerType = 10, numRondesPerJugador = 2, numKillers = 7, maxMinutes = 3, minMinutes = 1;
+    private int numGuardsPerType = 10, numRondesPerJugador = 2, maxMinutes = 3, minMinutes = 1;
+    [SerializeField]
+    public static int numKillers = 7;
     // Use this for initialization
     void Awake()
     {
@@ -205,13 +207,13 @@ public class NewControl : MonoBehaviour
         guards = GameObject.FindGameObjectsWithTag("Guard");
     }
 
-    private void KillersCreation()
+   /* private void KillersCreation()
     {
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPointKillers");
         for (int y = 0; y < numKillers; y++)
         {
             int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-            GameObject prefabG = (GameObject)Resources.Load("Prefabs/Kkiler");
+            GameObject prefabG = (GameObject)Resources.Load("Prefabs/Killer");
             // GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_3");
             GameObject killer = (GameObject)Instantiate(prefabG, allMyRespawnPoints[rand].transform.position, allMyRespawnPoints[rand].transform.rotation);
             killer.transform.parent = GameObject.Find("KillerGuards").transform;
@@ -219,7 +221,7 @@ public class NewControl : MonoBehaviour
             killer.gameObject.tag = "Killer Guards";
         }
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
-    }
+    }*/
 
     void RespawnNPCS()
     {
@@ -228,10 +230,13 @@ public class NewControl : MonoBehaviour
             if (guard != null)
                 guard.GetComponent<NPCConnectedPatrol>().Respawn(guard.gameObject);
         }
-        foreach (GameObject killer in killers)
+        if (killers.Length > 0)
         {
-            if(killer != null)
-                killer.GetComponent<NPCConnectedPatrol>().Respawn(killer.gameObject);
+            foreach (GameObject killer in killers)
+            {
+                if (killer != null)
+                    killer.GetComponent<NPCConnectedPatrol>().Respawn(killer.gameObject);
+            }
         }
     }
 
