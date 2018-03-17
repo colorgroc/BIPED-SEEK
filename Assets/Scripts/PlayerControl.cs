@@ -22,8 +22,8 @@ public class PlayerControl : MonoBehaviour {
     public int scoreGeneral, scoreKills, scoreSurvived, random;
    // [HideInInspector]
     public bool wannaKill, onFieldView, detected;
-    [HideInInspector]
-    public float jumpSpeed = 100.0F, timePast;
+    //[HideInInspector]
+    //public float jumpSpeed = 100.0F;//, timePast;
     private Image feedback;
     private List<GameObject> feedbacks;
     private GameObject[] feedbackList;
