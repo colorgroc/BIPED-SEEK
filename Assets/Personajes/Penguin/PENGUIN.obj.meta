@@ -31,6 +31,10 @@ ModelImporter:
     4300002: Cuerpo
     4300004: Ojo_der
     4300006: Ojo_izq
+    6400000: Bec
+    6400002: Cuerpo
+    6400004: Ojo_der
+    6400006: Ojo_izq
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -83,7 +87,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -94,8 +98,6 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

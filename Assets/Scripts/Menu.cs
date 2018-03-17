@@ -20,8 +20,6 @@ public class Menu : MonoBehaviour {
     [SerializeField]
     private Button opt, cred;
     [SerializeField]
-    public static int numOfMapas = 1;
-    [SerializeField]
     GameObject fullScreen, windowed, muted, notMuted;
     [SerializeField]
     GameObject mc_p1, mc_p2, mc_p3, mc_p4;
@@ -31,8 +29,7 @@ public class Menu : MonoBehaviour {
     // private int select;
     private void Awake()
     {
-        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        PlayerPrefs.SetInt("NumMapas", numOfMapas);
+        //PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
 
         if (Application.isEditor == false)
         {
@@ -346,288 +343,95 @@ public class Menu : MonoBehaviour {
         else if (dropList[num].value == 7) button = "L_Trigger_";
         return button;
     }
-    public void ChangeControl_Kill()
-    {
-        int num = 2;
-        if (mc_p1.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Kill_P1", button + "1");
+   
+    /*   public void ChangeControl_Kill()
+       {
+           int num = 2;
+           if (mc_p1.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Kill_P1", button + "1");
 
-        }
-        else if (mc_p2.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Kill_P2", button + "2");
-        }
-        else if (mc_p3.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Kill_P3", button + "3");
-        }
-        else if (mc_p4.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Kill_P4", button + "4");
-        }
-    }
+           }
+           else if (mc_p2.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Kill_P2", button + "2");
+           }
+           else if (mc_p3.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Kill_P3", button + "3");
+           }
+           else if (mc_p4.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Kill_P4", button + "4");
+           }
+       }
 
-    public void ChangeControl_Hab1()
-    {
-        int num = 3;
-        if (mc_p1.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Hab1_P1", button + "1");
-        }
-        else if (mc_p2.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Hab1_P2", button + "2");
-        }
-        else if (mc_p3.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Hab1_P3", button + "3");
-        }
-        else if (mc_p4.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Hab1_P4", button + "4");
-        }
-    }
+       public void ChangeControl_Hab1()
+       {
+           int num = 3;
+           if (mc_p1.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Hab1_P1", button + "1");
+           }
+           else if (mc_p2.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Hab1_P2", button + "2");
+           }
+           else if (mc_p3.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Hab1_P3", button + "3");
+           }
+           else if (mc_p4.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Hab1_P4", button + "4");
+           }
+       }
 
-    public void ChangeControl_Hab2()
-    {
-        int num = 4;
-        if (mc_p1.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Hab2_P1", button + "1");
-        }
-        else if (mc_p2.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Hab2_P2", button + "2");
-        }
-        else if (mc_p3.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Hab2_P3", button + "3");
-        }
-        else if (mc_p4.activeInHierarchy)
-        {
-            string button = "";
-            button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Hab2_P4", button + "4");
-        }
-    }
+       public void ChangeControl_Hab2()
+       {
+           int num = 4;
+           if (mc_p1.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Hab2_P1", button + "1");
+           }
+           else if (mc_p2.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Hab2_P2", button + "2");
+           }
+           else if (mc_p3.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Hab2_P3", button + "3");
+           }
+           else if (mc_p4.activeInHierarchy)
+           {
+               string button = "";
+               button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
+               PlayerPrefs.SetString("Hab2_P4", button + "4");
+           }
+       }*/
 
-    /*public void ChangeControl_Pause()
-    {
-        int num = 5;
-        if (mc_p1.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p1.GetComponentsInChildren<Dropdown>();
 
-            if (dropList[num].value == 0) button = "joystick 1 button 0";
-            else if (dropList[num].value == 1) button = "joystick 1 button 1";
-            else if (dropList[num].value == 2) button = "joystick 1 button 3";
-            else if (dropList[num].value == 3) button = "joystick 1 button 2";
-            else if (dropList[num].value == 4) button = "joystick 1 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 1 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Pause_P1", button);
-        }
-        else if (mc_p2.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p2.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 2 button 0";
-            else if (dropList[num].value == 1) button = "joystick 2 button 1";
-            else if (dropList[num].value == 2) button = "joystick 2 button 3";
-            else if (dropList[num].value == 3) button = "joystick 2 button 2";
-            else if (dropList[num].value == 4) button = "joystick 2 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 2 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Pause_P2", button);
-        }
-        else if (mc_p3.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p3.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 3 button 0";
-            else if (dropList[num].value == 1) button = "joystick 3 button 1";
-            else if (dropList[num].value == 2) button = "joystick 3 button 3";
-            else if (dropList[num].value == 3) button = "joystick 3 button 2";
-            else if (dropList[num].value == 4) button = "joystick 3 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 3 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Pause_P3", button);
-        }
-        else if (mc_p4.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p4.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 4 button 0";
-            else if (dropList[num].value == 1) button = "joystick 4 button 1";
-            else if (dropList[num].value == 2) button = "joystick 4 button 3";
-            else if (dropList[num].value == 3) button = "joystick 4 button 2";
-            else if (dropList[num].value == 4) button = "joystick 4 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 4 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Pause_P4", button);
-        }
-    }
-
-    public void ChangeControl_Submit()
-    {
-        int num = 6;
-        if (mc_p1.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p1.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 1 button 0";
-            else if (dropList[num].value == 1) button = "joystick 1 button 1";
-            else if (dropList[num].value == 2) button = "joystick 1 button 3";
-            else if (dropList[num].value == 3) button = "joystick 1 button 2";
-            else if (dropList[num].value == 4) button = "joystick 1 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 1 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Submit_P1", button);
-        }
-        else if (mc_p2.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p2.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 2 button 0";
-            else if (dropList[num].value == 1) button = "joystick 2 button 1";
-            else if (dropList[num].value == 2) button = "joystick 2 button 3";
-            else if (dropList[num].value == 3) button = "joystick 2 button 2";
-            else if (dropList[num].value == 4) button = "joystick 2 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 2 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Submit_P2", button);
-        }
-        else if (mc_p3.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p3.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 3 button 0";
-            else if (dropList[num].value == 1) button = "joystick 3 button 1";
-            else if (dropList[num].value == 2) button = "joystick 3 button 3";
-            else if (dropList[num].value == 3) button = "joystick 3 button 2";
-            else if (dropList[num].value == 4) button = "joystick 3 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 3 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Submit_P3", button);
-        }
-        else if (mc_p4.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p4.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 4 button 0";
-            else if (dropList[num].value == 1) button = "joystick 4 button 1";
-            else if (dropList[num].value == 2) button = "joystick 4 button 3";
-            else if (dropList[num].value == 3) button = "joystick 4 button 2";
-            else if (dropList[num].value == 4) button = "joystick 4 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 4 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Submit_P4", button);
-        }
-    }
-
-    public void ChangeControl_Cancel()
-    {
-        int num = 7;
-        if (mc_p1.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p1.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 1 button 0";
-            else if (dropList[num].value == 1) button = "joystick 1 button 1";
-            else if (dropList[num].value == 2) button = "joystick 1 button 3";
-            else if (dropList[num].value == 3) button = "joystick 1 button 2";
-            else if (dropList[num].value == 4) button = "joystick 1 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 1 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Cancel_P1", button);
-        }
-        else if (mc_p2.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p2.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 2 button 0";
-            else if (dropList[num].value == 1) button = "joystick 2 button 1";
-            else if (dropList[num].value == 2) button = "joystick 2 button 3";
-            else if (dropList[num].value == 3) button = "joystick 2 button 2";
-            else if (dropList[num].value == 4) button = "joystick 2 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 2 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Cancel_P2", button);
-        }
-        else if (mc_p3.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p3.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 3 button 0";
-            else if (dropList[num].value == 1) button = "joystick 3 button 1";
-            else if (dropList[num].value == 2) button = "joystick 3 button 3";
-            else if (dropList[num].value == 3) button = "joystick 3 button 2";
-            else if (dropList[num].value == 4) button = "joystick 3 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 3 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Cancel_P3", button);
-        }
-        else if (mc_p4.activeInHierarchy)
-        {
-            string button = "";
-            Dropdown[] dropList = mc_p4.GetComponentsInChildren<Dropdown>();
-
-            if (dropList[num].value == 0) button = "joystick 4 button 0";
-            else if (dropList[num].value == 1) button = "joystick 4 button 1";
-            else if (dropList[num].value == 2) button = "joystick 4 button 3";
-            else if (dropList[num].value == 3) button = "joystick 4 button 2";
-            else if (dropList[num].value == 4) button = "joystick 4 button 5";
-            else if (dropList[num].value == 5) button = "Right Trigger";
-            else if (dropList[num].value == 6) button = "joystick 4 button 4";
-            else if (dropList[num].value == 7) button = "Left Trigger";
-            PlayerPrefs.SetString("Cancel_P4", button);
-        }
-    }
-    */
 
 }

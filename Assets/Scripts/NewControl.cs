@@ -23,6 +23,7 @@ public class NewControl : MonoBehaviour
     private GameObject showObjective;
     public static int random;
     public static List<GameObject> players = new List<GameObject>();
+    private List<GameObject> listPlayers = new List<GameObject>();
     public GameObject[] guards;
     public GameObject[] killers;
 	private bool paused;
@@ -42,7 +43,7 @@ public class NewControl : MonoBehaviour
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
         
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-        MapaRandom();
+        //MapaRandom();
         
         fin = UnityEngine.Random.Range(0, 2);
         //creacion jugadores
@@ -97,13 +98,22 @@ public class NewControl : MonoBehaviour
         
         guards = GameObject.FindGameObjectsWithTag("Guard");
         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
+        int passades = 0;
+        while(passades < 2)
+        {
+            for (int i = 0; i < players.Count; i++)
+            {
+                listPlayers.Add(players[i]);
+            }
+            passades++;
+        }
+            
 
-        
-       
 
     }
     private void Start()
     {
+        
         objKilledByGuard = false;
         parcialWinner = null;
         objComplete = false;
@@ -189,13 +199,13 @@ public class NewControl : MonoBehaviour
             finalWinnerCanvas.SetActive(true);
         }
     }
-    private void MapaRandom()
+    /*private void MapaRandom()
     {
         int mapa = UnityEngine.Random.Range(0, PlayerPrefs.GetInt("NumMapas"));
         if (mapa + 1 == 1) GameObject.Find("Map_2").SetActive(false);
         if (mapa + 1 == 2) GameObject.Find("Map_1").SetActive(false);
 
-    }
+    }*/
 
     void RespawnNPCS()
     {
@@ -213,8 +223,9 @@ public class NewControl : MonoBehaviour
 
     void RecalculaObjetivo()
     {
-        random = UnityEngine.Random.Range(0, PlayerPrefs.GetInt("NumPlayers"));
-        objective = GameObject.Find("Player " + (random + 1).ToString());
+        random = UnityEngine.Random.Range(0, listPlayers.Count);
+        objective = GameObject.Find(listPlayers[random].name);
+        listPlayers.RemoveAt(random);
         showObjective = objective;
         ShowObjectiveCanvas();
 

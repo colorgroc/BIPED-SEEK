@@ -9,7 +9,7 @@ public class ObjectiveCanvas : MonoBehaviour {
     public float timeObjective;
     public float time = 3;
     [SerializeField]
-    private Text t;
+    private Text tObjectiu, tRonda;
     public void Start () {
         timeObjective = 0;
 
@@ -19,7 +19,11 @@ public class ObjectiveCanvas : MonoBehaviour {
             else if (NewControl.objective.name.EndsWith("2")) t.text = "Player 2";
             else if (NewControl.objective.name.EndsWith("3")) t.text = "Player 3";
             else if (NewControl.objective.name.EndsWith("4")) t.text = "Player 4";*/
-            t.text = NewControl.objective.name;
+            tObjectiu.text = NewControl.objective.name;
+            if(Rondes.timesPlayed + 1 == Rondes.rondas)
+                tRonda.text = "Last Round";
+            else
+                tRonda.text = "Ronda " + (Rondes.timesPlayed + 1).ToString();
         }
             
          

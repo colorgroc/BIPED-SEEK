@@ -22,10 +22,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
     private GameObject[] characterTypes;
-   
+    private string scene;
     //bool changeStatus;
+    [SerializeField]
+    private int numOfMapas = 4;
 
-    
+
     // Use this for initialization
     void Start() {
 
@@ -39,7 +41,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         select_1 = select_2 = select_3 = select_4 = 0;
         
         //guardar num of players
-        //PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
+        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
         //PlayerPrefs.SetInt("NumPlayers", 2);
 
         //inicialitzar canvas seleccio personatges
@@ -92,9 +94,9 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 //characterTypes_P4.Sort(SortByName);
             }
         }
-        
-        
-        
+
+
+        MapaRandom();
         
     }
 	
@@ -110,20 +112,35 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
 
         
-        //proves per 1 jugador
-        if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");
+       /* //proves per 1 jugador
+        if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");*/
         //quan tothom ready, comença joc
-        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Juego");
-        else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene("Juego");
-        else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene("Juego");
-
+        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene(this.scene);
+        else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene(this.scene);
+        else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene(this.scene);
     }
-    
+    private void MapaRandom()
+    {
+        List<string> mapas = new List<string>();
+        for (int i = 0; i < numOfMapas; i++)
+        {
+            mapas.Add("Mapa_" + (i + 1).ToString());
+        }
+        mapas.Sort(SortByName);
+
+        int mapaAleatrio = UnityEngine.Random.Range(0, mapas.Count);
+        this.scene = mapas[mapaAleatrio];
+        //Debug.Log(this.scene);
+    }
+
     private static int SortByName(GameObject o1, GameObject o2)
     {
         return o1.name.CompareTo(o2.name);
     }
-    
+    private static int SortByName(string o1, string o2)
+    {
+        return o1.CompareTo(o2);
+    }
     void SeleccionJugadores(int numOfPlayers)
     {
         //proves per 1 jugador

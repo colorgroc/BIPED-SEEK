@@ -28,11 +28,11 @@ public class PlayerControl : MonoBehaviour {
     private List<GameObject> feedbacks;
     private GameObject[] feedbackList;
     [SerializeField]
-    private Color colorP1, colorP2, colorP3, colorP4, GoodFeedback, BadFeedback, WinnerFeedback;
+    private Color colorP1, colorP2, colorP3, colorP4, GoodFeedback, BadFeedback, WinnerFeedback, DetectedFeedback;
     private Color neutralColor;
     [SerializeField]
     private Animator anim;
-
+    private bool canAct;
     //[SerializeField]
     //private GameObject HUD_1, HUD_2, HUD_3, HUD_4;
 
@@ -142,38 +142,35 @@ public class PlayerControl : MonoBehaviour {
                 this.submitButton = PlayerPrefs.GetString("Submit_P4");
                 this.cancelButton = PlayerPrefs.GetString("Cancel_P4");*/
         }
- 
-        
-        
+        this.canAct = true;
     }
     private void FixedUpdate()
     {
-       
-        
 
-      
-       
     }
     // Update is called once per frame
     void Update()
     {
-        float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
-        float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
-
-        transform.Translate(0, 0, y * speed);
-        transform.Rotate(0, rX * speedRotation, 0);
-        if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
-        if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
-
-        if (y > 0) this.anim.SetBool("isWalkingForward", true);
-        else if (y < 0) this.anim.SetBool("isWalkingBack", true);
-        else
+        if (this.canAct)
         {
-            this.anim.SetBool("isWalkingForward", false);
-            this.anim.SetBool("isWalkingBack", false);
+            float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
+            float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
+
+            transform.Translate(0, 0, y * speed);
+            transform.Rotate(0, rX * speedRotation, 0);
+            if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
+            if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
+
+            if (y > 0) this.anim.SetBool("isWalkingForward", true);
+            else if (y < 0) this.anim.SetBool("isWalkingBack", true);
+            else
+            {
+                this.anim.SetBool("isWalkingForward", false);
+                this.anim.SetBool("isWalkingBack", false);
+            }
+
+            this.anim.SetBool("wannaKill", this.wannaKill);
         }
-        this.anim.SetBool("wannaKill", this.wannaKill);
-        
 
         /*if (Input.GetAxis(this.AxisMovement) != 0)
             Debug.LogError("Movement");
@@ -197,6 +194,12 @@ public class PlayerControl : MonoBehaviour {
             this.feedback.color = this.WinnerFeedback;
             if (this.timeFeedback >= 0.5) this.winnerFeedback = false;
         }
+        else if (this.detected)
+        {
+            this.timeFeedback += Time.deltaTime;
+            this.feedback.color = this.DetectedFeedback;
+            if (this.timeFeedback >= 5) this.detected = false;
+        }
         else
         {
             this.timeFeedback = 0;
@@ -204,16 +207,7 @@ public class PlayerControl : MonoBehaviour {
         }
 
 
-            /*CalcCoolDown();
-            if (this.cooledDown) {
-                this.timeCoolDown += Time.deltaTime;
-                if (this.timeCoolDown >= this.coolDown)
-                    RespawnCoolDown(this.gameObject);
-
-            }*/
-
-            //Debug.Log(this.pressed + ", " + this.timePress + ", " + this.wannaKill);
-            if (this.detected)
+        /*if (this.detected)
         {
             this.gameObject.GetComponent<Light>().enabled = true;
             this.timePast+= Time.deltaTime;
@@ -226,7 +220,7 @@ public class PlayerControl : MonoBehaviour {
         {
             this.gameObject.GetComponent<Light>().enabled = false;
             this.timePast = 0;
-        }
+        }*/
 
 
     }
@@ -238,6 +232,7 @@ public class PlayerControl : MonoBehaviour {
            
             this.scoreGeneral -= 3;
             this.badFeedback = true;
+            this.canAct = false;
             Destroy(gO);
             Respawn(this.gameObject);
 
@@ -255,6 +250,7 @@ public class PlayerControl : MonoBehaviour {
         else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
         {
             this.winnerFeedback = true;
+            this.canAct = false;
             NewControl.objComplete = true;
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
             NewControl.parcialWinner = this.gameObject;
@@ -265,17 +261,18 @@ public class PlayerControl : MonoBehaviour {
 
     public void Respawn(GameObject gO)
     {
-        
-		this.gameObject.GetComponent<FieldOfView>().alive = true;
+
+        this.gameObject.GetComponent<FieldOfView>().alive = true;
         this.detected = false;
-       
+        this.timeFeedback = 0;
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
         gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
         gO.gameObject.SetActive(true);
+        this.canAct = true;
         //this.isDead = false;
-		//this.gameObject.GetComponent<FieldOfView>().alive = true;
-		/*GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+        //this.gameObject.GetComponent<FieldOfView>().alive = true;
+        /*GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
 		int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
 		GameObject playerNew = Instantiate (player_New, allMyRespawnPoints [random].transform);
 		Destroy (gO);*/

@@ -6,11 +6,11 @@ public class Rondes : MonoBehaviour {
 
     public static int timesPlayed;
     public static int rondas;
-    [SerializeField]
-    private int rondes = 1;
+    private int rondes;
     private void Awake()
     {
-        PlayerPrefs.SetInt("Rondes", 0);
+        rondes = PlayerPrefs.GetInt("NumPlayers") * 2;
+        // PlayerPrefs.SetInt("Rondes", 0);
         timesPlayed = 0;
         rondas = rondes;
         //timesPlayed = PlayerPrefs.GetInt("Rondes");
