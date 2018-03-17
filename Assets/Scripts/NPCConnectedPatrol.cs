@@ -59,7 +59,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	public void Update () {
 
         this.anim.SetBool("isWalkingForward", _travelling);
-
+        _navMeshAgent.speed = PlayerPrefs.GetFloat("Speed");
 		if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
 			_travelling = false;
 			_waypointsVisited++;

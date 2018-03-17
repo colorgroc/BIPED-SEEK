@@ -18,31 +18,37 @@ public class EventosMapa : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
             evento = UnityEngine.Random.Range(0, 4);
-            eventos.Add(evento);    
+            eventos.Add(evento);
+            Debug.Log("Evento: " + evento);
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
-        if (nothing)
-        {
-            timeEvent2 += Time.deltaTime;
-            if(timeEvent2 >= (NewControl.timeLeft / 5))
+        //Debug.Log("i: " + i);
+        if (i < 3) {
+            if (nothing)
             {
-                Default();
-                nothing = false;
+                timeEvent2 += Time.deltaTime;
+                if (timeEvent2 >= (NewControl.timeLeft / 4))
+                {
+                    Default();
+                    nothing = false;
+                }
+            }
+            else
+            {
+                timeEvent1 += Time.deltaTime;
+                // if(timeEvent1 >= (NewControl.timeLeft / 4))
+                if (timeEvent1 >= (NewControl.timeLeft / 4))
+                {
+                    Eventos(i);
+                    i++;
+                    Debug.Log("i: " + i);
+                }
             }
         }
-        else
-        {
-            timeEvent1 += Time.deltaTime;
-            // if(timeEvent1 >= (NewControl.timeLeft / 4))
-            if (timeEvent1 >= (NewControl.timeLeft / 4))
-            {
-                Eventos(i);
-            }
-        }
+
 	}
     private void Eventos(int i)
     {
@@ -66,7 +72,6 @@ public class EventosMapa : MonoBehaviour {
                 break;
         }
         timeEvent1 = timeEvent2 = 0;
-        i++;
         nothing = true;
     }
     private void ChangeSpeed()
@@ -84,13 +89,14 @@ public class EventosMapa : MonoBehaviour {
     {
         for (int i = 0; i < NewControl.guards.Length/2; i++)
         {
-            string type = NewControl.objective.name.Substring(NewControl.objective.name.Length - 4);
+            string type = NewControl.objective.name.Substring(NewControl.objective.name.Length - 1);
+            Debug.Log(type);
             if (NewControl.guards[i].name.Equals("Guard_Tipo_" + type))
             {
                 guardsToDisplay.Add(NewControl.guards[i]);
             }
         }
-        for(int i = 0; i < guardsToDisplay.Count; i++)
+        for(int i = 0; i < (guardsToDisplay.Count/2); i++)
         {
             guardsToDisplay[i].SetActive(false);
         }
@@ -99,12 +105,10 @@ public class EventosMapa : MonoBehaviour {
     {
         if (guardsToDisplay.Count > 0)
         {
+
             foreach (GameObject guard in guardsToDisplay)
             {
-                if (!guard.activeInHierarchy)
-                {
-                    guard.SetActive(true);
-                }
+                guard.SetActive(true);
             }
         }
     }
