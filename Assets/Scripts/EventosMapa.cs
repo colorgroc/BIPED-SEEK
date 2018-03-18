@@ -19,7 +19,7 @@ public class EventosMapa : MonoBehaviour {
         {
             evento = UnityEngine.Random.Range(0, 4);
             eventos.Add(evento);
-            Debug.Log("Evento: " + evento);
+            //Debug.Log("Evento: " + evento);
         }
 	}
 	
@@ -30,6 +30,7 @@ public class EventosMapa : MonoBehaviour {
             if (nothing)
             {
                 timeEvent2 += Time.deltaTime;
+
                 if (timeEvent2 >= (NewControl.timeLeft / 4))
                 {
                     Default();
@@ -39,12 +40,11 @@ public class EventosMapa : MonoBehaviour {
             else
             {
                 timeEvent1 += Time.deltaTime;
-                // if(timeEvent1 >= (NewControl.timeLeft / 4))
                 if (timeEvent1 >= (NewControl.timeLeft / 4))
                 {
                     Eventos(i);
                     i++;
-                    Debug.Log("i: " + i);
+                    //Debug.Log("i: " + i);
                 }
             }
         }
@@ -91,9 +91,12 @@ public class EventosMapa : MonoBehaviour {
         {
             string type = NewControl.objective.name.Substring(NewControl.objective.name.Length - 1);
             Debug.Log(type);
-            if (NewControl.guards[i].name.Equals("Guard_Tipo_" + type))
+            if (NewControl.guards[i] != null)
             {
-                guardsToDisplay.Add(NewControl.guards[i]);
+                if (NewControl.guards[i].name.Equals("Guard_Tipo_" + type))
+                {
+                    guardsToDisplay.Add(NewControl.guards[i]);
+                }
             }
         }
         for(int i = 0; i < (guardsToDisplay.Count/2); i++)
@@ -123,6 +126,7 @@ public class EventosMapa : MonoBehaviour {
             killer.transform.parent = GameObject.Find("Killer Guards").transform;
             killer.gameObject.name = "Killer";
             killer.gameObject.tag = "Killer Guards";
+            killer.gameObject.layer = 9;
         }
         NewControl.killers = GameObject.FindGameObjectsWithTag("Killer Guards");
     }

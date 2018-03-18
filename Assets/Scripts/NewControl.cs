@@ -35,7 +35,7 @@ public class NewControl : MonoBehaviour
     [SerializeField]
     private Sprite SpriteTipo_1, SpriteTipo_2, SpriteTipo_3, SpriteTipo_4;
     [SerializeField]
-    private Text textHUD;
+    private Text textTiempo;
     private int fin;
     [SerializeField]
     private int numGuardsPerType = 10, numRondesPerJugador = 2, maxMinutes = 3, minMinutes = 1;
@@ -75,7 +75,7 @@ public class NewControl : MonoBehaviour
         //eleccio objectiu
         RecalculaObjetivo();
         timeLeft = UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
-        textHUD.text = GetMinutes(timeLeft);
+        textTiempo.text = GetMinutes(timeLeft);
         // RecalculaObjetivo();
     }
 
@@ -87,7 +87,7 @@ public class NewControl : MonoBehaviour
 
         //showObjective = objective;
         timeLeft -= Time.deltaTime;
-        textHUD.text = GetMinutes(timeLeft);
+        textTiempo.text = GetMinutes(timeLeft);
         //asignar ganador final
         foreach (GameObject player in players)
 		{

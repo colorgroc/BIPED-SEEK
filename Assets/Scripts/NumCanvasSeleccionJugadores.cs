@@ -141,6 +141,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     {
         return o1.CompareTo(o2);
     }
+
+    private void Back()
+    {
+        if (Input.GetButton("Back")) SceneManager.LoadScene("menu");
+    }
+
     void SeleccionJugadores(int numOfPlayers)
     {
         //proves per 1 jugador

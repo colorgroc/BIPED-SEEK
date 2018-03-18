@@ -107,6 +107,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 			collision.gameObject.GetComponent<FieldOfView> ().alive = false;
             collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
             collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
+            Debug.Log("colliding");
 
 	    }else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
             collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
