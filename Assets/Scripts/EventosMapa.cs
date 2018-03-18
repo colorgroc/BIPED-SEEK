@@ -18,7 +18,7 @@ public class EventosMapa : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
             evento = UnityEngine.Random.Range(0, 4);
-            eventos.Add(evento);
+            eventos.Add(2);
             //Debug.Log("Evento: " + evento);
         }
 	}
