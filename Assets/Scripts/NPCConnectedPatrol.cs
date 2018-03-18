@@ -35,7 +35,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	public void Start () {
 
 		_navMeshAgent = this.GetComponent<NavMeshAgent> ();
-        anim = this.gameObject.GetComponent<Animator>();
+        this.anim = this.gameObject.GetComponent<Animator>();
 
 		if (_navMeshAgent == null) Debug.LogError ("The nav mesh agent component is not attached to " + gameObject.name);
 		else {
@@ -59,7 +59,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	public void Update () {
 
         this.anim.SetBool("isWalkingForward", _travelling);
-
+        _navMeshAgent.speed = PlayerPrefs.GetFloat("Speed");
 		if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
 			_travelling = false;
 			_waypointsVisited++;
