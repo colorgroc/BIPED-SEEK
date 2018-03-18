@@ -12,7 +12,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     public static List<GameObject> munyequito_P1, munyequito_P2, munyequito_P3, munyequito_P4;
     private List<GameObject> players;
     private int select_1, select_2, select_3, select_4;
-    private static bool ready_P1, ready_P2, ready_P3, ready_P4;
+    public static bool ready_P1, ready_P2, ready_P3, ready_P4;
     [SerializeField]
     private Vector2 outline = new Vector2(10, -10);
     [SerializeField]

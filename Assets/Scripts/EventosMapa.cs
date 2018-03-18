@@ -6,42 +6,56 @@ public class EventosMapa : MonoBehaviour {
 
     // Use this for initialization
     [SerializeField]
-    private float minVel = 10f, maxVel = 30f;
+    private float minVel = 10f, maxVel = 30f, tempsNothing = 30, tempsEvent = 30;
     private List<GameObject> guardsToDisplay = new List<GameObject>();
     private int evento;
     private List<int> eventos = new List<int>();
-    private int i = 0;
+    private int i;
     private float timeEvent1, timeEvent2;
     private bool nothing;
+    private int ronda;
+    [SerializeField]
+    private Canvas canvas;
 
 	void Start () {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < Rondes.rondas; i++)
         {
             evento = UnityEngine.Random.Range(0, 4);
-            eventos.Add(2);
+            eventos.Add(evento);
             //Debug.Log("Evento: " + evento);
         }
-	}
+        ronda = Rondes.timesPlayed;
+        nothing = false;
+        canvas.GetComponent<Canvas>().enabled = false;
+        i = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         //Debug.Log("i: " + i);
-        if (i < 3) {
+        if(ronda < Rondes.timesPlayed)
+        {
+            ronda = Rondes.timesPlayed;
+            //i++;
+            nothing = false;
+        }
+        if (i < eventos.Count && ronda <= Rondes.rondas) {
             if (nothing)
             {
                 timeEvent2 += Time.deltaTime;
-
-                if (timeEvent2 >= (NewControl.timeLeft / 4))
+                //(NewControl.timeLeft / 4)
+                if (timeEvent2 >= tempsNothing)
                 {
                     Default();
-                    nothing = false;
+                    //nothing = false;
                 }
             }
             else
             {
                 timeEvent1 += Time.deltaTime;
-                if (timeEvent1 >= (NewControl.timeLeft / 4))
+                if (timeEvent1 >= tempsEvent)
                 {
+                    canvas.GetComponent<Canvas>().enabled = true;
                     Eventos(i);
                     i++;
                     //Debug.Log("i: " + i);
@@ -90,7 +104,7 @@ public class EventosMapa : MonoBehaviour {
         for (int i = 0; i < NewControl.guards.Length/2; i++)
         {
             string type = NewControl.objective.name.Substring(NewControl.objective.name.Length - 1);
-            Debug.Log(type);
+            //Debug.Log(type);
             if (NewControl.guards[i] != null)
             {
                 if (NewControl.guards[i].name.Equals("Guard_Tipo_" + type))

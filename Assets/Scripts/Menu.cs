@@ -143,7 +143,7 @@ public class Menu : MonoBehaviour {
         }
         else MuteMusic();
 
-        
+        NewControl.finalWinner = null;
     }
 
     // Update is called once per frame
@@ -233,7 +233,7 @@ public class Menu : MonoBehaviour {
         music.mute = false;
         PlayerPrefs.SetInt("isMute", 0);
     }
-    public void MostrarControles_p1()
+    /*public void MostrarControles_p1()
     {
         GameObject.Find("NamePlayer").GetComponent<Text>().text = "Player 1";
         mc_p1.SetActive(true);
@@ -264,7 +264,8 @@ public class Menu : MonoBehaviour {
         mc_p2.SetActive(false);
         mc_p3.SetActive(false);
         mc_p4.SetActive(true);
-    }
+    }*/
+    /*
     public void ChangeControl_Movement()
     {
         int num = 0;
@@ -344,7 +345,7 @@ public class Menu : MonoBehaviour {
         return button;
     }
    
-    /*   public void ChangeControl_Kill()
+      public void ChangeControl_Kill()
        {
            int num = 2;
            if (mc_p1.activeInHierarchy)

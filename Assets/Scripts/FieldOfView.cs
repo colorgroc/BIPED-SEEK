@@ -80,7 +80,7 @@ public class FieldOfView : MonoBehaviour {
             this.visibleTargets.Remove(target);
             this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
             this.gameObject.GetComponent<PlayerControl>().wannaKill = false;
-            Debug.Log("wannaKillBro");
+            //Debug.Log("wannaKillBro");
         }
         
     }

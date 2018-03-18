@@ -7,7 +7,7 @@ public class Rondes : MonoBehaviour {
     public static int timesPlayed;
     public static int rondas;
     private int rondes;
-    private void Awake()
+    private void Start()
     {
         rondes = PlayerPrefs.GetInt("NumPlayers") * 2;
         // PlayerPrefs.SetInt("Rondes", 0);

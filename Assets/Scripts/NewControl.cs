@@ -21,9 +21,9 @@ public class NewControl : MonoBehaviour
     //public List<GameObject> finalWinners = new List<GameObject>();
     [SerializeField]
     private GameObject showObjective;
-    public static int random;
-    public static List<GameObject> players = new List<GameObject>();
-    private List<GameObject> listPlayers = new List<GameObject>();
+    //public static int random;
+    public static List<GameObject> players;// = new List<GameObject>();
+    private List<GameObject> listPlayers;// = new List<GameObject>();
     public static GameObject[] guards;
     public static GameObject[] killers;
 	private bool paused;
@@ -38,7 +38,7 @@ public class NewControl : MonoBehaviour
     private Text textTiempo;
     private int fin;
     [SerializeField]
-    private int numGuardsPerType = 10, numRondesPerJugador = 2, maxMinutes = 3, minMinutes = 1;
+    private int numGuardsPerType = 10, numRondesPerJugador = 2, time = 90;//maxMinutes = 3, minMinutes = 1;
     [SerializeField]
     public static int numKillers = 7;
     // Use this for initialization
@@ -51,19 +51,40 @@ public class NewControl : MonoBehaviour
         PlayersAndGuardsCreation();
 
         //lista adicional para establecer las rondas de cada jugador
-        int passades = 0;
-        while(passades < numRondesPerJugador)
-        {
-            for (int i = 0; i < players.Count; i++)
-            {
-                listPlayers.Add(players[i]);
-            }
-            passades++;
-        }
+       
 
     }
     private void Start()
     {
+        listPlayers = new List<GameObject>();
+        /* numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
+         fin = UnityEngine.Random.Range(0, 2);
+
+         //creacion jugadores
+         PlayersAndGuardsCreation();
+
+         //lista adicional para establecer las rondas de cada jugador
+         int passades = 0;
+         while (passades < numRondesPerJugador)
+         {
+             for (int i = 0; i < players.Count; i++)
+             {
+                 listPlayers.Add(players[i]);
+             }
+             passades++;
+         }*/
+
+        int passades = 0;
+        while (passades < numRondesPerJugador)
+        {
+            for (int i = 0; i < players.Count; i++)
+            {
+                listPlayers.Add(players[i]);
+                Debug.Log(players[i]);
+            }
+            passades++;
+        }
+
         VariablesOnDefault();
         RespawnNPCS();
         foreach (GameObject player in players)
@@ -74,7 +95,7 @@ public class NewControl : MonoBehaviour
         }
         //eleccio objectiu
         RecalculaObjetivo();
-        timeLeft = UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
+        timeLeft = time;//UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
         textTiempo.text = GetMinutes(timeLeft);
         // RecalculaObjetivo();
     }
@@ -152,9 +173,12 @@ public class NewControl : MonoBehaviour
         paused = false;
         pausa.SetActive(false);
         timeStartLeft = timeLeft;
+        showObjective = null;
+        objective = null;
     }
     private void PlayersAndGuardsCreation()
     {
+        players = new List<GameObject>();
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         for (int i = 1; i <= numOfPlayers; i++)
         {
@@ -242,11 +266,14 @@ public class NewControl : MonoBehaviour
 
     void RecalculaObjetivo()
     {
-        random = UnityEngine.Random.Range(0, listPlayers.Count);
-        objective = GameObject.Find(listPlayers[random].name);
-        listPlayers.RemoveAt(random);
-        showObjective = objective;
-        ShowObjectiveCanvas();
+        if (listPlayers.Count > 0)
+        {
+            int random = UnityEngine.Random.Range(0, listPlayers.Count);
+            objective = GameObject.Find(listPlayers[random].name);
+            listPlayers.RemoveAt(random);
+            showObjective = objective;
+            ShowObjectiveCanvas();
+        }
 
     }
     void ShowObjectiveCanvas()
