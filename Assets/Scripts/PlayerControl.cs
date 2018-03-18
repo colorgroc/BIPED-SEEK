@@ -154,8 +154,8 @@ public class PlayerControl : MonoBehaviour {
     void Update()
     {
         speed = PlayerPrefs.GetFloat("Speed");
-        if (this.canAct)
-        {
+       // if (this.canAct)
+       // {
             float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
             float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
 
@@ -173,7 +173,7 @@ public class PlayerControl : MonoBehaviour {
             }
 
             this.anim.SetBool("wannaKill", this.wannaKill);
-        }
+      //  }
 
         /*if (Input.GetAxis(this.AxisMovement) != 0)
             Debug.LogError("Movement");

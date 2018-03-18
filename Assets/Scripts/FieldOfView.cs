@@ -57,35 +57,32 @@ public class FieldOfView : MonoBehaviour {
                             //target.gameObject.GetComponent<PlayerControl>().detected = true; 
                             //Amb feedback
                             this.gameObject.GetComponent<PlayerControl>().detected = true;
-                            if (this.gameObject.GetComponent<PlayerControl>().wannaKill) //&& distToTarget < distanciaQueVolem 
-                            {
-								//Debug.Log("Killing");
-                                this.visibleTargets.Remove(target);
-                                this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
-                                this.gameObject.GetComponent<PlayerControl>().wannaKill = false;
-                            }
+                            WannaKill(target);
                         }
                         else
                         {
-							//if (!target.gameObject.layer == 8) {
-								if (this.gameObject.GetComponent<PlayerControl> ().wannaKill) { //&& distToTarget < distanciaQueVolem 
-									//Debug.Log("Killing");
-									this.visibleTargets.Remove (target);
-									this.gameObject.GetComponent<PlayerControl> ().Kill (target.gameObject);
-									this.gameObject.GetComponent<PlayerControl> ().wannaKill = false;
-								}
-							//}
+                            WannaKill(target);
                         }
                     }
                 }
-               
 
             }
-         
-
-
+ 
         }
 
+    }
+
+    private void WannaKill(Transform target)
+    {
+        if (this.gameObject.GetComponent<PlayerControl>().wannaKill) //&& distToTarget < distanciaQueVolem 
+        {
+            //Debug.Log("Killing");
+            this.visibleTargets.Remove(target);
+            this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
+            this.gameObject.GetComponent<PlayerControl>().wannaKill = false;
+            Debug.Log("wannaKillBro");
+        }
+        
     }
 
 	public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal) {
