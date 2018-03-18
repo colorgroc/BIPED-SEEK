@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 20f0d18a214518b4abbb64caef69c42d
-timeCreated: 1521375074
+guid: d7f512d60974bb74381a2c68a606ecd5
+timeCreated: 1521401836
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -119,7 +119,7 @@ ModelImporter:
       name: Crocodile_Walk
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 52
+      lastFrame: 42
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
