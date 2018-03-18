@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: af8d6e2e16df4754dbe3222d8775f5cf
-timeCreated: 1520881502
+guid: b5b73d861a81c0543b17e902337fbc8b
+timeCreated: 1521331124
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: cola
-    100004: Cuerpo
+    100000: cola
+    100002: Cuerpo
+    100004: //RootNode
     100006: mixamorig:Head
     100008: mixamorig:HeadTop_End
     100010: mixamorig:Hips
@@ -45,9 +45,9 @@ ModelImporter:
     100074: nariz
     100076: ojos
     100078: orejas
-    400000: //RootNode
-    400002: cola
-    400004: Cuerpo
+    400000: cola
+    400002: Cuerpo
+    400004: //RootNode
     400006: mixamorig:Head
     400008: mixamorig:HeadTop_End
     400010: mixamorig:Hips
@@ -85,14 +85,13 @@ ModelImporter:
     400074: nariz
     400076: ojos
     400078: orejas
-    2100000: No Name
     4300000: Cuerpo
     4300002: cola
     4300004: nariz
     4300006: ojos
     4300008: morro
     4300010: orejas
-    7400000: Punch
+    7400000: Bear_Idle
     9500000: //RootNode
     13700000: cola
     13700002: Cuerpo
@@ -100,12 +99,17 @@ ModelImporter:
     13700006: nariz
     13700008: ojos
     13700010: orejas
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 5b7e4c1a7ae044f4d97e642db28f6078, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -128,17 +132,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Punch
+      name: Bear_Idle
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -171,8 +175,6 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
