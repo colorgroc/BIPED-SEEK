@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1f6e451a2ca386c43beea614aed2d940
-timeCreated: 1521338863
+guid: b426df7c9f54c854dacd826a9d55fe0c
+timeCreated: 1521371904
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -8,92 +8,109 @@ ModelImporter:
     100000: //RootNode
     100002: cola
     100004: Cuerpo
-    100006: mixamorig:Head
-    100008: mixamorig:HeadTop_End
-    100010: mixamorig:Hips
-    100012: mixamorig:LeftArm
-    100014: mixamorig:LeftFoot
-    100016: mixamorig:LeftForeArm
-    100018: mixamorig:LeftHand
-    100020: mixamorig:LeftLeg
-    100022: mixamorig:LeftShoulder
-    100024: mixamorig:LeftToe_End
-    100026: mixamorig:LeftToeBase
-    100028: mixamorig:LeftUpLeg
-    100030: mixamorig:Neck
-    100032: mixamorig:RightArm
-    100034: mixamorig:RightFoot
-    100036: mixamorig:RightForeArm
-    100038: mixamorig:RightHand
-    100040: mixamorig:RightLeg
-    100042: mixamorig:RightShoulder
-    100044: mixamorig:RightToe_End
-    100046: mixamorig:RightToeBase
-    100048: mixamorig:RightUpLeg
-    100050: mixamorig:Spine
-    100052: mixamorig:Spine1
-    100054: mixamorig:Spine2
-    100056: morro
-    100058: nariz
-    100060: ojos
-    100062: orejas
+    100006: dientes
+    100008: mixamorig:Head
+    100010: mixamorig:HeadTop_End
+    100012: mixamorig:Hips
+    100014: mixamorig:LeftArm
+    100016: mixamorig:LeftFoot
+    100018: mixamorig:LeftForeArm
+    100020: mixamorig:LeftHand
+    100022: mixamorig:LeftHandIndex1
+    100024: mixamorig:LeftHandIndex2
+    100026: mixamorig:LeftHandIndex3
+    100028: mixamorig:LeftHandIndex4
+    100030: mixamorig:LeftLeg
+    100032: mixamorig:LeftShoulder
+    100034: mixamorig:LeftToe_End
+    100036: mixamorig:LeftToeBase
+    100038: mixamorig:LeftUpLeg
+    100040: mixamorig:Neck
+    100042: mixamorig:RightArm
+    100044: mixamorig:RightFoot
+    100046: mixamorig:RightForeArm
+    100048: mixamorig:RightHand
+    100050: mixamorig:RightHandIndex1
+    100052: mixamorig:RightHandIndex2
+    100054: mixamorig:RightHandIndex3
+    100056: mixamorig:RightHandIndex4
+    100058: mixamorig:RightLeg
+    100060: mixamorig:RightShoulder
+    100062: mixamorig:RightToe_End
+    100064: mixamorig:RightToeBase
+    100066: mixamorig:RightUpLeg
+    100068: mixamorig:Spine
+    100070: mixamorig:Spine1
+    100072: mixamorig:Spine2
+    100074: morro
+    100076: nariz
+    100078: ojos
+    100080: oreja
     400000: //RootNode
     400002: cola
     400004: Cuerpo
-    400006: mixamorig:Head
-    400008: mixamorig:HeadTop_End
-    400010: mixamorig:Hips
-    400012: mixamorig:LeftArm
-    400014: mixamorig:LeftFoot
-    400016: mixamorig:LeftForeArm
-    400018: mixamorig:LeftHand
-    400020: mixamorig:LeftLeg
-    400022: mixamorig:LeftShoulder
-    400024: mixamorig:LeftToe_End
-    400026: mixamorig:LeftToeBase
-    400028: mixamorig:LeftUpLeg
-    400030: mixamorig:Neck
-    400032: mixamorig:RightArm
-    400034: mixamorig:RightFoot
-    400036: mixamorig:RightForeArm
-    400038: mixamorig:RightHand
-    400040: mixamorig:RightLeg
-    400042: mixamorig:RightShoulder
-    400044: mixamorig:RightToe_End
-    400046: mixamorig:RightToeBase
-    400048: mixamorig:RightUpLeg
-    400050: mixamorig:Spine
-    400052: mixamorig:Spine1
-    400054: mixamorig:Spine2
-    400056: morro
-    400058: nariz
-    400060: ojos
-    400062: orejas
+    400006: dientes
+    400008: mixamorig:Head
+    400010: mixamorig:HeadTop_End
+    400012: mixamorig:Hips
+    400014: mixamorig:LeftArm
+    400016: mixamorig:LeftFoot
+    400018: mixamorig:LeftForeArm
+    400020: mixamorig:LeftHand
+    400022: mixamorig:LeftHandIndex1
+    400024: mixamorig:LeftHandIndex2
+    400026: mixamorig:LeftHandIndex3
+    400028: mixamorig:LeftHandIndex4
+    400030: mixamorig:LeftLeg
+    400032: mixamorig:LeftShoulder
+    400034: mixamorig:LeftToe_End
+    400036: mixamorig:LeftToeBase
+    400038: mixamorig:LeftUpLeg
+    400040: mixamorig:Neck
+    400042: mixamorig:RightArm
+    400044: mixamorig:RightFoot
+    400046: mixamorig:RightForeArm
+    400048: mixamorig:RightHand
+    400050: mixamorig:RightHandIndex1
+    400052: mixamorig:RightHandIndex2
+    400054: mixamorig:RightHandIndex3
+    400056: mixamorig:RightHandIndex4
+    400058: mixamorig:RightLeg
+    400060: mixamorig:RightShoulder
+    400062: mixamorig:RightToe_End
+    400064: mixamorig:RightToeBase
+    400066: mixamorig:RightUpLeg
+    400068: mixamorig:Spine
+    400070: mixamorig:Spine1
+    400072: mixamorig:Spine2
+    400074: morro
+    400076: nariz
+    400078: ojos
+    400080: oreja
+    2100000: No Name
     4300000: Cuerpo
     4300002: cola
-    4300004: nariz
-    4300006: ojos
-    4300008: morro
-    4300010: orejas
-    7400000: Bear_Walk_Back
+    4300004: ojos
+    4300006: morro
+    4300008: nariz
+    4300010: oreja
+    4300012: dientes
+    7400000: mixamo.com
+    7400002: Bunny_Death
     9500000: //RootNode
     13700000: cola
     13700002: Cuerpo
-    13700004: morro
-    13700006: nariz
-    13700008: ojos
-    13700010: orejas
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 5b7e4c1a7ae044f4d97e642db28f6078, type: 2}
+    13700004: dientes
+    13700006: morro
+    13700008: nariz
+    13700010: ojos
+    13700012: oreja
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -116,18 +133,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Bear_Walk_Back
+      name: Bunny_Death
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 36
+      lastFrame: 89
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
