@@ -311,7 +311,7 @@ public class NewControl : MonoBehaviour
             Time.timeScale = 1;
             Default();
             paused = false;
-            SceneManager.LoadScene("menu");
+            SceneManager.LoadScene("Menu");
         }
         if (paused)
             Time.timeScale = 0;

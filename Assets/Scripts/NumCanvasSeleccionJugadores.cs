@@ -20,10 +20,9 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
     private GameObject[] characterTypes, munyequitos;
-    private string scene;
+
     //bool changeStatus;
-    [SerializeField]
-    private int numOfMapas = 4;
+
 
 
     // Use this for initialization
@@ -125,7 +124,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         }
 
 
-        MapaRandom();
+        //MapaRandom();
         
     }
 	
@@ -144,32 +143,17 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
        /* //proves per 1 jugador
         if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");*/
         //quan tothom ready, comença joc
-        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene(this.scene);
-        else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene(this.scene);
-        else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene(this.scene);
+        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Loading");
+        else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene("Loading");
+        else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene("Loading");
     }
-    private void MapaRandom()
-    {
-        List<string> mapas = new List<string>();
-        for (int i = 0; i < numOfMapas; i++)
-        {
-            mapas.Add("Mapa_" + (i + 1).ToString());
-        }
-        mapas.Sort(SortByName);
-
-        int mapaAleatrio = UnityEngine.Random.Range(0, mapas.Count);
-        this.scene = mapas[mapaAleatrio];
-        //Debug.Log(this.scene);
-    }
+  
 
     private static int SortByName(GameObject o1, GameObject o2)
     {
         return o1.name.CompareTo(o2.name);
     }
-    private static int SortByName(string o1, string o2)
-    {
-        return o1.CompareTo(o2);
-    }
+  
 
     private void Back()
     {

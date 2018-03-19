@@ -31,7 +31,7 @@ public class WinnerHUD : MonoBehaviour {
 			this.gameObject.SetActive (false);
 			Time.timeScale = 1;
             Default();
-			SceneManager.LoadScene ("menu");
+			SceneManager.LoadScene ("Menu");
 			//SceneManager.LoadScene ("menu", LoadSceneMode.Single);
 		} else Time.timeScale = 0;
         
