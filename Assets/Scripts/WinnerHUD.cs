@@ -40,7 +40,7 @@ public class WinnerHUD : MonoBehaviour {
     void Default()
     {
         NewControl.killers = null;
-        //NewControl.players = null;
+        NewControl.players = null;
         NewControl.guards = null;
         NewControl.numOfPlayers = 0;
         NewControl.objComplete = false;

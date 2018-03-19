@@ -22,7 +22,7 @@ public class NewControl : MonoBehaviour
     [SerializeField]
     private GameObject showObjective;
     //public static int random;
-    public static List<GameObject> players;// = new List<GameObject>();
+    public static List<GameObject> players = new List<GameObject>();
     private List<GameObject> listPlayers;// = new List<GameObject>();
     public static GameObject[] guards;
     public static GameObject[] killers;
@@ -41,12 +41,15 @@ public class NewControl : MonoBehaviour
     private int numGuardsPerType = 10, numRondesPerJugador = 2, time = 90;//maxMinutes = 3, minMinutes = 1;
     [SerializeField]
     public static int numKillers = 7;
+    private List<int> listPos;
+    private List<int> listPosGuards;
     // Use this for initialization
     void Awake()
     {
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
         fin = UnityEngine.Random.Range(0, 2);
-
+        listPos = new List<int>();
+        
         //creacion jugadores
         PlayersAndGuardsCreation();
 
@@ -57,6 +60,7 @@ public class NewControl : MonoBehaviour
     private void Start()
     {
         listPlayers = new List<GameObject>();
+        
         /* numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
          fin = UnityEngine.Random.Range(0, 2);
 
@@ -178,14 +182,20 @@ public class NewControl : MonoBehaviour
     }
     private void PlayersAndGuardsCreation()
     {
-        players = new List<GameObject>();
+        //players = new List<GameObject>();
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         for (int i = 1; i <= numOfPlayers; i++)
         {
+            listPosGuards = new List<int>();
             int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+            if (listPos.Contains(random))
+            {
+                do { random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); } while (listPos.Contains(random));
+            }
+            listPos.Add(random);
             //Debug.Log(PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()));
             //es crea player desde la seleccio escollida (es crida prefab)
-            GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()).ToString());
+             GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()).ToString());
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
             player.transform.parent = GameObject.Find("Players").transform;
             player.gameObject.name = "Player " + i.ToString();
@@ -208,17 +218,24 @@ public class NewControl : MonoBehaviour
             }
 
             player.gameObject.layer = 8;
-
+            //int u = 0;
             //creacion de guards x jugador 
             for (int y = 0; y < numGuardsPerType; y++)
             {
+                    
                 int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+                if (listPosGuards.Contains(random))
+                {
+                    do { random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); } while (listPosGuards.Contains(random));
+                }
+                listPosGuards.Add(random);
                 GameObject prefabG = (GameObject)Resources.Load("Prefabs/Guard_Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
                 // GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_3");
                 GameObject guard = (GameObject)Instantiate(prefabG, allMyRespawnPoints[rand].transform.position, allMyRespawnPoints[rand].transform.rotation);
                 guard.transform.parent = GameObject.Find("Guards").transform;
                 guard.gameObject.name = "Guard_Tipo_" + i.ToString();
                 guard.gameObject.tag = "Guard";
+                
             }
         }
 
@@ -292,12 +309,31 @@ public class NewControl : MonoBehaviour
         {
             pausa.SetActive(false);
             Time.timeScale = 1;
-            SceneManager.LoadScene("menu");
+            Default();
             paused = false;
+            SceneManager.LoadScene("menu");
         }
         if (paused)
             Time.timeScale = 0;
         else Time.timeScale = 1;
+    }
+
+    void Default()
+    {
+        NewControl.killers = null;
+        NewControl.players = null;
+        NewControl.guards = null;
+        NewControl.numOfPlayers = 0;
+        NewControl.objComplete = false;
+        NewControl.objKilledByGuard = false;
+        NewControl.timeLeft = 0;
+        NewControl.objective = null;
+        NewControl.finalWinner = null;
+        NewControl.parcialWinner = null;
+        NumCanvasSeleccionJugadores.ready_P1 = false;
+        NumCanvasSeleccionJugadores.ready_P2 = false;
+        NumCanvasSeleccionJugadores.ready_P3 = false;
+        NumCanvasSeleccionJugadores.ready_P4 = false;
     }
     private string GetMinutes(float timeLeft)
     {

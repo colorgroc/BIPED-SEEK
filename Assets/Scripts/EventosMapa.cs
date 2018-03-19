@@ -125,7 +125,8 @@ public class EventosMapa : MonoBehaviour {
 
             foreach (GameObject guard in guardsToDisplay)
             {
-                guard.SetActive(true);
+                if(guard != null)
+                    guard.SetActive(true);
             }
         }
     }
