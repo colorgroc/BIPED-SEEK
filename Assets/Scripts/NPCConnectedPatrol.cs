@@ -31,13 +31,15 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
     private Animator anim;
 
-	// Use this for initialization
-	public void Start () {
-
-		_navMeshAgent = this.GetComponent<NavMeshAgent> ();
+    // Use this for initialization
+    private void Awake()
+    {
+        
+    }
+    public void Start () {
+        _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
-
-		if (_navMeshAgent == null) Debug.LogError ("The nav mesh agent component is not attached to " + gameObject.name);
+        if (_navMeshAgent == null) Debug.LogError ("The nav mesh agent component is not attached to " + gameObject.name);
 		else {
 			if (_currentWaypoint == null) {
 				allWaypoints = GameObject.FindGameObjectsWithTag ("Waypoint");

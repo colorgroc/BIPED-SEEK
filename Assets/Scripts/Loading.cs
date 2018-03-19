@@ -19,12 +19,13 @@ public class Loading : MonoBehaviour {
         time = 0;
         slider.value = time;
         MapaRandom();
+        //Default();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         time += Time.fixedDeltaTime;
-        Debug.Log(time);
+        //Debug.Log(time);
         slider.value = time;
         if (time >= loadingTime) SceneManager.LoadScene(this.scene);
     }
@@ -46,5 +47,22 @@ public class Loading : MonoBehaviour {
     private static int SortByName(string o1, string o2)
     {
         return o1.CompareTo(o2);
+    }
+    void Default()
+    {
+        NewControl.killers = null;
+        NewControl.players = null;
+        NewControl.guards = null;
+        NewControl.numOfPlayers = 0;
+        NewControl.objComplete = false;
+        NewControl.objKilledByGuard = false;
+        NewControl.timeLeft = 0;
+        NewControl.objective = null;
+        NewControl.finalWinner = null;
+        NewControl.parcialWinner = null;
+        NumCanvasSeleccionJugadores.ready_P1 = false;
+        NumCanvasSeleccionJugadores.ready_P2 = false;
+        NumCanvasSeleccionJugadores.ready_P3 = false;
+        NumCanvasSeleccionJugadores.ready_P4 = false;
     }
 }

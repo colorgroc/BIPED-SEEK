@@ -105,6 +105,6 @@ public class FadeLogo : MonoBehaviour {
         image.color = new Color(color, color, color, 1f);
         color -= 0.01f;
         if (color <= 0f)
-            SceneManager.LoadScene("menu");
+            SceneManager.LoadScene("Menu");
     }
 }

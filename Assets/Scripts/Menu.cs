@@ -144,15 +144,18 @@ public class Menu : MonoBehaviour {
         else MuteMusic();
 
         NewControl.finalWinner = null;
+       // Default();
     }
 
     // Update is called once per frame
     void Update () {
         if (Input.GetButtonDown("Back") && !inMenu) BackToMenu();
+        
 	}
 
     public void GoToPlay()
     {
+        Default();
         SceneManager.LoadScene("Seleccion Personajes");
 
     }
@@ -160,7 +163,25 @@ public class Menu : MonoBehaviour {
     {
         Application.Quit();
     }
-   
+
+    void Default()
+    {
+        NewControl.killers = null;
+        //NewControl.players = null;
+        NewControl.guards = null;
+        NewControl.numOfPlayers = 0;
+        NewControl.objComplete = false;
+        NewControl.objKilledByGuard = false;
+        NewControl.timeLeft = 0;
+        NewControl.objective = null;
+        NewControl.finalWinner = null;
+        NewControl.parcialWinner = null;
+        NumCanvasSeleccionJugadores.ready_P1 = false;
+        NumCanvasSeleccionJugadores.ready_P2 = false;
+        NumCanvasSeleccionJugadores.ready_P3 = false;
+        NumCanvasSeleccionJugadores.ready_P4 = false;
+    }
+
     public void ShowOptions()
     {
         inMenu = false;

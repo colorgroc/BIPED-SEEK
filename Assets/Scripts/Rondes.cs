@@ -7,7 +7,7 @@ public class Rondes : MonoBehaviour {
     public static int timesPlayed;
     public static int rondas;
     private int rondes;
-    private void Start()
+    private void Awake()
     {
         rondes = PlayerPrefs.GetInt("NumPlayers") * 2;
         // PlayerPrefs.SetInt("Rondes", 0);
@@ -16,5 +16,10 @@ public class Rondes : MonoBehaviour {
         //timesPlayed = PlayerPrefs.GetInt("Rondes");
     }
 
+    private void Start()
+    {
 
+
+
+    }
 }

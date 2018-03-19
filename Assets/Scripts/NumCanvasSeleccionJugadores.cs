@@ -134,7 +134,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         //codi de prova
         if (Input.GetButtonDown("Back"))
         {
-            SceneManager.LoadScene("menu");
+            SceneManager.LoadScene("Menu");
         }
 
         SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
@@ -143,7 +143,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
        /* //proves per 1 jugador
         if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");*/
         //quan tothom ready, comença joc
-        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Loading");
+        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Loading"); 
         else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene("Loading");
         else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene("Loading");
     }
@@ -157,7 +157,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
     private void Back()
     {
-        if (Input.GetButton("Back")) SceneManager.LoadScene("menu");
+        if (Input.GetButton("Back")) SceneManager.LoadScene("Menu");
     }
 
     void SeleccionJugadores(int numOfPlayers)

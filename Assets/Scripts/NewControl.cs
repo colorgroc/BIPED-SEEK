@@ -22,7 +22,7 @@ public class NewControl : MonoBehaviour
     [SerializeField]
     private GameObject showObjective;
     //public static int random;
-    public static List<GameObject> players = new List<GameObject>();
+    public static List<GameObject> players;// = new List<GameObject>();
     private List<GameObject> listPlayers;// = new List<GameObject>();
     public static GameObject[] guards;
     public static GameObject[] killers;
@@ -44,22 +44,34 @@ public class NewControl : MonoBehaviour
     private List<int> listPos;
     private List<int> listPosGuards;
     // Use this for initialization
-    void Awake()
+    public void Awake()
     {
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
         fin = UnityEngine.Random.Range(0, 2);
         listPos = new List<int>();
-        
+        listPlayers = new List<GameObject>();
+        players = new List<GameObject>();
+
         //creacion jugadores
         PlayersAndGuardsCreation();
-
         //lista adicional para establecer las rondas de cada jugador
-       
+        int passades = 0;
+        while (passades < numRondesPerJugador)
+        {
+            for (int i = 0; i < players.Count; i++)
+            {
+                listPlayers.Add(players[i]);
+                Debug.Log(players[i]);
+            }
+            passades++;
+        }
+
 
     }
     private void Start()
     {
-        listPlayers = new List<GameObject>();
+        
+        
         
         /* numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
          fin = UnityEngine.Random.Range(0, 2);
@@ -78,16 +90,7 @@ public class NewControl : MonoBehaviour
              passades++;
          }*/
 
-        int passades = 0;
-        while (passades < numRondesPerJugador)
-        {
-            for (int i = 0; i < players.Count; i++)
-            {
-                listPlayers.Add(players[i]);
-                Debug.Log(players[i]);
-            }
-            passades++;
-        }
+        
 
         VariablesOnDefault();
         RespawnNPCS();
@@ -116,22 +119,31 @@ public class NewControl : MonoBehaviour
         //asignar ganador final
         foreach (GameObject player in players)
 		{
-			if (player.GetComponent<PlayerControl> ().scoreGeneral > topScore) {
-				topScore = player.GetComponent<PlayerControl> ().scoreGeneral;
-				finalWinner = player;
-				//finalWinners.Add (player);
+            if (player != null)
+            {
+                if (player.GetComponent<PlayerControl>().scoreGeneral > topScore)
+                {
+                    topScore = player.GetComponent<PlayerControl>().scoreGeneral;
+                    finalWinner = player;
+                    //finalWinners.Add (player);
 
-			} else if (player.GetComponent<PlayerControl> ().scoreGeneral == topScore) {
-				if (finalWinner != null) {
-					
-					if (fin == 1)
-						finalWinner = player;
-				} else {
-					topScore = player.GetComponent<PlayerControl> ().scoreGeneral;
-					finalWinner = player;
-				}
-				
-			}
+                }
+                else if (player.GetComponent<PlayerControl>().scoreGeneral == topScore)
+                {
+                    if (finalWinner != null)
+                    {
+
+                        if (fin == 1)
+                            finalWinner = player;
+                    }
+                    else
+                    {
+                        topScore = player.GetComponent<PlayerControl>().scoreGeneral;
+                        finalWinner = player;
+                    }
+
+                }
+            }
 		}
 		//asignar puntos ganador parcial
 		if (objComplete && parcialWinner != null) //this.gameObject != objective && )
@@ -195,7 +207,7 @@ public class NewControl : MonoBehaviour
             listPos.Add(random);
             //Debug.Log(PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()));
             //es crea player desde la seleccio escollida (es crida prefab)
-             GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()).ToString());
+            GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()).ToString());
             GameObject player = (GameObject)Instantiate(prefab, allMyRespawnPoints[random].transform.position, allMyRespawnPoints[random].transform.rotation);
             player.transform.parent = GameObject.Find("Players").transform;
             player.gameObject.name = "Player " + i.ToString();
@@ -242,7 +254,8 @@ public class NewControl : MonoBehaviour
         //añadir jugadores activos a una lista de control
         for (int i = 1; i <= numOfPlayers; i++)
         {
-            players.Add(GameObject.Find("Player " + i.ToString()));
+            if(GameObject.Find("Player " + i.ToString()) != null)
+                players.Add(GameObject.Find("Player " + i.ToString()));
         }
 
         guards = GameObject.FindGameObjectsWithTag("Guard");
@@ -309,7 +322,7 @@ public class NewControl : MonoBehaviour
         {
             pausa.SetActive(false);
             Time.timeScale = 1;
-            Default();
+           // Default();
             paused = false;
             SceneManager.LoadScene("Menu");
         }
