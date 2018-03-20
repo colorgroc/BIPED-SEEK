@@ -42,6 +42,7 @@ public class EventosMapa : MonoBehaviour {
         if (i < eventos.Count && ronda <= Rondes.rondas) {
             if (nothing)
             {
+                canvas.GetComponent<Canvas>().enabled = false;
                 timeEvent2 += Time.deltaTime;
                 //(NewControl.timeLeft / 4)
                 if (timeEvent2 >= tempsNothing)
@@ -162,5 +163,6 @@ public class EventosMapa : MonoBehaviour {
         KillersDestruction();
         NPCRestablishment();
         DefaultSpeed();
+        
     }
 }
