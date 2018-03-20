@@ -16,6 +16,7 @@ public class FadeLogo : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+
         finish = false;
         alpha = alphaGame = 0f;
         color = 1f;
@@ -28,38 +29,39 @@ public class FadeLogo : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!finish)
-        {
-            if (ticksDone < ticksToWait)
-            {
-                FadeInLogo();
-            }
-            if (ticksDone >= ticksToWait)
-            {
-                FadeOutLogo();
 
-            }
-            else
-            {
-                ticksDone += Time.fixedDeltaTime;
-            }
-        }
-        else
-        {
-            if (ticksDoneGame < ticksToWaitGame)
-            {
-                FadeInGame();
-            }
-            if (ticksDoneGame >= ticksToWaitGame)
-            {
-                FadeOutGame();
+         if (!finish)
+         {
+             if (ticksDone < ticksToWait)
+             {
+                 FadeInLogo();
+             }
+             if (ticksDone >= ticksToWait)
+             {
+                 FadeOutLogo();
 
-            }
-            else
-            {
-                ticksDoneGame += Time.fixedDeltaTime;
-            }
-        }
+             }
+             else
+             {
+                 ticksDone += Time.fixedDeltaTime;
+             }
+         }
+         else
+         {
+             if (ticksDoneGame < ticksToWaitGame)
+             {
+                 FadeInGame();
+             }
+             if (ticksDoneGame >= ticksToWaitGame)
+             {
+                 FadeOutGame();
+
+             }
+             else
+             {
+                 ticksDoneGame += Time.fixedDeltaTime;
+             }
+         }
 
     }
 
@@ -107,4 +109,26 @@ public class FadeLogo : MonoBehaviour {
         if (color <= 0f)
             SceneManager.LoadScene("Menu");
     }
+
+
+   /* public IEnumerator FadeTextToFullAlpha(float t, Image i)
+    {
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+        while (i.color.a < 1.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+            yield return null;
+        }
+    }
+
+    public IEnumerator FadeTextToZeroAlpha(float t, Image i)
+    {
+        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        while (i.color.a > 0.0f)
+        {
+            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+            yield return null;
+        }
+    }*/
+
 }

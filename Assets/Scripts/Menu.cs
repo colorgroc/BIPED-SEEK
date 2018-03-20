@@ -168,6 +168,8 @@ public class Menu : MonoBehaviour {
     {
         NewControl.killers = null;
         //NewControl.players = null;
+        Rondes.timesPlayed = 0;
+        ObjectiveCanvas.timeObjective = 0;
         NewControl.guards = null;
         NewControl.numOfPlayers = 0;
         NewControl.objComplete = false;

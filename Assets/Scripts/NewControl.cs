@@ -43,6 +43,8 @@ public class NewControl : MonoBehaviour
     public static int numKillers = 7;
     private List<int> listPos;
     private List<int> listPosGuards;
+   // [Serializable]
+
     // Use this for initialization
     public void Awake()
     {

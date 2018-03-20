@@ -101,17 +101,26 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision collision){
 		if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards")) {
-			SetDestination ();
+            Debug.Log("Hi");
+            SetDestination ();
+            
+            //Debug.LogError("Hi");
 		}
-	    if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
+        if(this.gameObject.tag.Equals("Guard") && collision.gameObject.layer == 8)
+        {
+            Debug.Log("Dew");
+            SetDestination();
+        }
+        if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
 
-			collision.gameObject.SetActive (false);
-			collision.gameObject.GetComponent<FieldOfView> ().alive = false;
-            collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
-            collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
-            //Debug.Log("colliding");
+		collision.gameObject.SetActive (false);
+		collision.gameObject.GetComponent<FieldOfView> ().alive = false;
+        collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
+        collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
+        //Debug.Log("colliding");
 
-	    }else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
+	    }
+        else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
             collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
 		    NewControl.objKilledByGuard = true;
 	    }

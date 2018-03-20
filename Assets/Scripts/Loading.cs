@@ -24,7 +24,7 @@ public class Loading : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        time += Time.fixedDeltaTime;
+        time += Time.deltaTime;
         //Debug.Log(time);
         slider.value = time;
         if (time >= loadingTime) SceneManager.LoadScene(this.scene);
@@ -41,6 +41,8 @@ public class Loading : MonoBehaviour {
 
         int mapaAleatrio = UnityEngine.Random.Range(0, mapas.Count);
         this.scene = mapas[mapaAleatrio];
+
+        //fer que si this.scene == "Mapa_1" --> PlayerPrefs.SetFloat("AlturaInicial", 10.14516);
         //Debug.Log(this.scene);
     }
 

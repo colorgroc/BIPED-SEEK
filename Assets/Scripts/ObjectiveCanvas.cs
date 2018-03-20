@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ObjectiveCanvas : MonoBehaviour {
 
     // Use this for initialization
-    public float timeObjective;
+    public static float timeObjective;
     public float time = 3;
     [SerializeField]
     private Text tObjectiu, tRonda;
