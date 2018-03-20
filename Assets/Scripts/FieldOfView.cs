@@ -12,7 +12,7 @@ public class FieldOfView : MonoBehaviour {
 	[SerializeField]
 	public LayerMask targetMask;
 	public LayerMask obstacleMask;
-
+    private Animator anim;
     [HideInInspector]
 	//public List<Transform> visibleTargets = new List<Transform>();
 	public List<Transform> visibleTargets = new List<Transform>();
@@ -20,8 +20,8 @@ public class FieldOfView : MonoBehaviour {
 	public bool alive;
     private float distancia;
 	public void Start() {
-
-		viewAngle = 119;
+        this.anim = this.gameObject.GetComponent<Animator>();
+        viewAngle = 119;
 		viewRadius = 30;
 		StartCoroutine ("FindTargetsWithDelay", .2f);
 	}
@@ -78,7 +78,8 @@ public class FieldOfView : MonoBehaviour {
         {
             //Debug.Log("Killing");
             this.visibleTargets.Remove(target);
-            this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
+            if (AnimatorIsPlaying("Punch"))
+                this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
             this.gameObject.GetComponent<PlayerControl>().wannaKill = false;
             //Debug.Log("wannaKillBro");
         }
@@ -100,10 +101,27 @@ public class FieldOfView : MonoBehaviour {
 		yield return true;
 		//}
 	}
-	/*private void FadeOut(GameObject gO){
+    /*private void FadeOut(GameObject gO){
 		//Color colorStart = gO.gameObject.GetComponent<Renderer> ().material.color;
 		Color colorEnd = new Color(0, 1, 1, 1);
 		//gO.gameObject.GetComponent<Renderer> ().material.color = Color.Lerp (colorStart, colorEnd, Mathf.PingPong(Time.deltaTime, 1));
 		gO.gameObject.GetComponent<Renderer> ().material.color = colorEnd;
 	}*/
+
+
+    bool AnimatorIsPlaying(string stateName)
+    {
+        //Debug.Log("hi");
+        return AnimatorIsPlaying() && anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    }
+
+    /* bool AnimatorIsPlaying()
+     {
+         return anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1;
+     }*/
+    bool AnimatorIsPlaying()
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).length >
+               anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
 }

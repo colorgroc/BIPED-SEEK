@@ -101,14 +101,14 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	}
 	void OnCollisionEnter(Collision collision){
 		if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards")) {
-            Debug.Log("Hi");
+            //Debug.Log("Hi");
             SetDestination ();
             
             //Debug.LogError("Hi");
 		}
         if(this.gameObject.tag.Equals("Guard") && collision.gameObject.layer == 8)
         {
-            Debug.Log("Dew");
+           // Debug.Log("Dew");
             SetDestination();
         }
         if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {

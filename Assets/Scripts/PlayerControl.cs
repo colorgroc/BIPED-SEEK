@@ -34,12 +34,15 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     private Animator anim;
     private bool canAct;
+   // [SerializeField]
+    //private AnimationClip clip;
     //[SerializeField]
     //private GameObject HUD_1, HUD_2, HUD_3, HUD_4;
 
     // Use this for initialization
     void Start () {
-        
+        //clip = new AnimationClip();
+       // animation = this.GetComponent<Animation>();
         //distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
         this.anim = this.gameObject.GetComponent<Animator>();
         this.gameObject.GetComponent<Light>().enabled = false;
@@ -156,21 +159,25 @@ public class PlayerControl : MonoBehaviour {
         speed = PlayerPrefs.GetFloat("Speed");
        // if (this.canAct)
        // {
-            float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
-            float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
+        float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
+        float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
 
-            transform.Translate(0, 0, y * speed);
-            transform.Rotate(0, rX * speedRotation, 0);
-            if (Input.GetButtonDown(this.killButton)) this.wannaKill = true;
-            if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
+        transform.Translate(0, 0, y * speed);
+        transform.Rotate(0, rX * speedRotation, 0);
+        if (Input.GetButtonDown(this.killButton))
+        {
+            this.wannaKill = true;
+           // animation.Play();
+        }
+        if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
 
-            if (y > 0) this.anim.SetBool("isWalkingForward", true);
-            else if (y < 0) this.anim.SetBool("isWalkingBack", true);
-            else
-            {
-                this.anim.SetBool("isWalkingForward", false);
-                this.anim.SetBool("isWalkingBack", false);
-            }
+        if (y > 0) this.anim.SetBool("isWalkingForward", true);
+        else if (y < 0) this.anim.SetBool("isWalkingBack", true);
+        else
+        {
+            this.anim.SetBool("isWalkingForward", false);
+            this.anim.SetBool("isWalkingBack", false);
+        }
 
             this.anim.SetBool("wannaKill", this.wannaKill);
       //  }
@@ -230,35 +237,40 @@ public class PlayerControl : MonoBehaviour {
 
     public void Kill(GameObject gO)
     {
-        if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards")) //canviar aixo?
-        {
-           
-            this.scoreGeneral -= 3;
-            this.badFeedback = true;
-            this.canAct = false;
-            Destroy(gO);
-            Respawn(this.gameObject);
+        
+            if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards")) //canviar aixo?
+            {
 
-        }
-        else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
-        {
+                this.scoreGeneral -= 3;
+                this.badFeedback = true;
+                this.canAct = false;
+                Destroy(gO);
+                //if (AnimatorIsPlaying("Punch"))
+                Respawn(this.gameObject);
 
-            gO.gameObject.GetComponent<PlayerControl>().detected = false;
-            this.scoreGeneral += 5;
-			this.scoreKills += 1;
-            this.goodFeedback = true;
+            }
+            else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
+            {
 
-            Respawn(gO);
-        }
-        else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
-        {
-            this.winnerFeedback = true;
-            this.canAct = false;
-            NewControl.objComplete = true;
-            gO.gameObject.GetComponent<PlayerControl>().detected = false;
-            NewControl.parcialWinner = this.gameObject;
+                gO.gameObject.GetComponent<PlayerControl>().detected = false;
+                this.scoreGeneral += 5;
+                this.scoreKills += 1;
+                this.goodFeedback = true;
+           // if (AnimatorIsPlaying("Punch"))
+                Respawn(gO);
+            }
+            else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
+            {
+                this.winnerFeedback = true;
+                this.canAct = false;
+                NewControl.objComplete = true;
+            //if (AnimatorIsPlaying("Punch"))
+                gO.gameObject.GetComponent<PlayerControl>().detected = false;
+                NewControl.parcialWinner = this.gameObject;
 
-        }
+            }
+    
+        
     }
 
 
@@ -322,5 +334,7 @@ public class PlayerControl : MonoBehaviour {
     {
         return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
     }*/
+
+   
 
 }
