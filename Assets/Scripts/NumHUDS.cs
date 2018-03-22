@@ -5,8 +5,9 @@ using UnityEngine;
 public class NumHUDS : MonoBehaviour {
 
     private List<GameObject> huds;
-    // Use this for initialization
-    void Start () {
+
+    void Start ()
+    {
         GameObject[] hudsList = GameObject.FindGameObjectsWithTag("HUD");
         this.huds = new List<GameObject>();
 
@@ -24,9 +25,8 @@ public class NumHUDS : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {	
 	}
 
     private static int SortByName(GameObject o1, GameObject o2)

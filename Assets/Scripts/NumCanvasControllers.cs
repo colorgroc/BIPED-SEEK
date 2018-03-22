@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class NumCanvasControllers : MonoBehaviour {
 
     private List<GameObject> toggles;
-    // Use this for initialization
+
     void Start()
     {
         GameObject[] playersControlList = GameObject.FindGameObjectsWithTag("PlayersControllers");

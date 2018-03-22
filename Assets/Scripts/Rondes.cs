@@ -10,21 +10,15 @@ public class Rondes : MonoBehaviour {
     private void Awake()
     {
         rondes = PlayerPrefs.GetInt("NumPlayers") * 2;
-        // PlayerPrefs.SetInt("Rondes", 0);
         timesPlayed = 0;
         rondas = rondes;
-        //timesPlayed = PlayerPrefs.GetInt("Rondes");
     }
 
     private void Start()
     {
-
-
-
     }
 
     private void Update()
-    {
-        
+    {    
     }
 }

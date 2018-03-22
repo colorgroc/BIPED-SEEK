@@ -23,7 +23,6 @@ public class EventosMapa : MonoBehaviour {
         {
             evento = UnityEngine.Random.Range(0, 4);
             eventos.Add(evento);
-            //Debug.Log("Evento: " + evento);
         }
         ronda = Rondes.timesPlayed;
         nothing = false;
@@ -33,24 +32,24 @@ public class EventosMapa : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Debug.Log("i: " + i);
+
         if(ronda < Rondes.timesPlayed)
         {
             ronda = Rondes.timesPlayed;
-            //i++;
+          
             nothing = false;
         }
         if (i < eventos.Count && ronda <= Rondes.rondas) {
             if (nothing)
             {
                 timeEvent2 += Time.deltaTime;
-                //(NewControl.timeLeft / 4)
+
                 if (timeEvent2 >= tempsNothing)
                 {
                     canvas.GetComponent<Canvas>().enabled = false;
                     nada = false;
                     Default();
-                    //nothing = false;
+
                 }
             }
             else
@@ -62,7 +61,7 @@ public class EventosMapa : MonoBehaviour {
                     Eventos(i);
                     if(!nada) canvas.GetComponent<Canvas>().enabled = true;
                     i++;
-                    //Debug.Log("i: " + i);
+                   
                 }
             }
         }
@@ -78,17 +77,17 @@ public class EventosMapa : MonoBehaviour {
                 Default();
                 break;
             case 1:
-                //Default();
+               
                 nada = false;
                 NPCReduction();
                 break;
             case 2:
-                // Default();
+               
                 nada = false;
                 ChangeSpeed();
                 break;
             case 3:
-                //Default();
+               
                 nada = false;
                 KillersCreation();
                 break;
@@ -97,9 +96,7 @@ public class EventosMapa : MonoBehaviour {
         nothing = true;
     }
     private void ChangeSpeed()
-    {
-        // float speedRandom = UnityEngine.Random.Range(minVel, maxVel);
-        
+    {     
         PlayerPrefs.SetFloat("Speed", PlayerControl.defaultSpeed*3);
     }
     private void DefaultSpeed()
@@ -112,7 +109,7 @@ public class EventosMapa : MonoBehaviour {
         for (int i = 0; i < NewControl.guards.Length/2; i++)
         {
             string type = NewControl.objective.name.Substring(NewControl.objective.name.Length - 1);
-            //Debug.Log(type);
+            
             if (NewControl.guards[i] != null)
             {
                 if (NewControl.guards[i].name.Equals("Guard_Tipo_" + type))

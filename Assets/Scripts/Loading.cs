@@ -13,19 +13,16 @@ public class Loading : MonoBehaviour {
     private int numOfMapas = 4;
     float time;
     private string scene;
-    // Use this for initialization
+
     void Start () {
         slider.maxValue = loadingTime;
         time = 0;
         slider.value = time;
         MapaRandom();
-        //Default();
 	}
 	
-	// Update is called once per frame
 	void Update () {
         time += Time.deltaTime;
-        //Debug.Log(time);
         slider.value = time;
         if (time >= loadingTime) SceneManager.LoadScene(this.scene);
     }
@@ -42,8 +39,6 @@ public class Loading : MonoBehaviour {
         int mapaAleatrio = UnityEngine.Random.Range(0, mapas.Count);
         this.scene = mapas[mapaAleatrio];
 
-        //fer que si this.scene == "Mapa_1" --> PlayerPrefs.SetFloat("AlturaInicial", 10.14516);
-        //Debug.Log(this.scene);
     }
 
     private static int SortByName(string o1, string o2)

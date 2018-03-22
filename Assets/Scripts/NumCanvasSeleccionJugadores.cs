@@ -4,28 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-//using System.Linq;
 
 public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
     public static List<GameObject> characterTypes_P1, characterTypes_P2, characterTypes_P3, characterTypes_P4;
     public static List<GameObject> munyequito_P1, munyequito_P2, munyequito_P3, munyequito_P4;
     private List<GameObject> players;
+
     private int select_1, select_2, select_3, select_4;
     public static bool ready_P1, ready_P2, ready_P3, ready_P4;
+
     [SerializeField]
     private Vector2 outline = new Vector2(10, -10);
     [SerializeField]
+
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
+
     private GameObject[] characterTypes, munyequitos;
 
-    //bool changeStatus;
-
-
-
-    // Use this for initialization
     void Start() {
 
         //inicialitzar variables
@@ -43,7 +41,6 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         
         //guardar num of players
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        //PlayerPrefs.SetInt("NumPlayers", 2);
 
         //inicialitzar canvas seleccio personatges
         for (int i = 0; i < jugadores.Length; i++)
@@ -73,27 +70,22 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             if (i < 4)
             {
                 characterTypes_P1.Add(this.characterTypes[i].gameObject);
-                characterTypes_P1[0].GetComponent<Outline>().enabled = true;
-                
-                //characterTypes_P1.Sort(SortByName);
+                characterTypes_P1[0].GetComponent<Outline>().enabled = true;              
             }
             else if (i >= 4 && i < 8)
             {
                 characterTypes_P2.Add(this.characterTypes[i].gameObject);
                 characterTypes_P2[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P2.Sort(SortByName);
             }
             else if (i >= 8 && i < 12)
             {
                 characterTypes_P3.Add(this.characterTypes[i].gameObject);
                 characterTypes_P3[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P3.Sort(SortByName);
             }
             else
             {
                 characterTypes_P4.Add(this.characterTypes[i].gameObject);
                 characterTypes_P4[0].GetComponent<Outline>().enabled = true;
-                //characterTypes_P4.Sort(SortByName);
             }
         }
 
@@ -122,10 +114,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P4[0].gameObject.SetActive(true);
             }
         }
-
-
-        //MapaRandom();
-        
+        //MapaRandom();     
     }
 	
 	// Update is called once per frame
@@ -212,24 +201,20 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
                 {
                     MoveLeft(1);
-                   // Debug.Log(select_1 + 1);
                 }
                 else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
                 {
                     MoveRight(1);
-                    //Debug.Log(select_1 + 1);
                 }
 
                 //Vertical
                 if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
                 {
                     MoveDown(1);
-                    //Debug.Log(select_1 + 1);
                 }
                 else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
                 {
                     MoveUp(1);
-                    //Debug.Log(select_1 + 1);
                 }
             }
             if (Input.GetButtonDown("A_1"))

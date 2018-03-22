@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-
-
 public class Menu : MonoBehaviour {
 
     [SerializeField]
@@ -25,11 +23,9 @@ public class Menu : MonoBehaviour {
     GameObject mc_p1, mc_p2, mc_p3, mc_p4;
     [SerializeField]
     private int max_players = 4;
-    //private Button[] butons;
-    // private int select;
+
     private void Awake()
     {
-        //PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
 
         if (Application.isEditor == false)
         {
@@ -43,91 +39,22 @@ public class Menu : MonoBehaviour {
                     PlayerPrefs.SetInt("ScreenMode", 0); //full screen
                 else if (!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
 
-                /*for (int i = 1; i <= max_players; i++)
-                {
-                    PlayerPrefs.SetString("Movement_P" + i.ToString(), "V_LPad_" + i.ToString());
-                    PlayerPrefs.SetString("Rotation_P" + i.ToString(), "H_RPad_" + i.ToString());
-                    PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
-                    PlayerPrefs.SetString("Hab1_P" + i.ToString(), "B_" + i.ToString());
-                    PlayerPrefs.SetString("Hab2_P" + i.ToString(), "Y_" + i.ToString());
-
-    
-
-                    //PlayerPrefs.SetInt("Movement_Value_P" + i.ToString(), 0);
-                    //PlayerPrefs.SetInt("Rotation_Value_P" + i.ToString(), 1);
-                    //PlayerPrefs.SetInt("Kill_Value_P" + i.ToString(), 3);
-                    //PlayerPrefs.SetInt("Hab1_Value_P" + i.ToString(), 0);
-                    //PlayerPrefs.SetInt("Hab2_Value_P" + i.ToString(), 1);
-                }*/
+               
             }
 
-            /* Dropdown[] dropList1 = mc_p1.GetComponentsInChildren<Dropdown>();
-             Dropdown[] dropList2 = mc_p2.GetComponentsInChildren<Dropdown>();
-             Dropdown[] dropList3 = mc_p3.GetComponentsInChildren<Dropdown>();
-             Dropdown[] dropList4 = mc_p4.GetComponentsInChildren<Dropdown>();
-
-             for (int i = 0; i < 5; i++)
-             {
-                 if (dropList1[i].transform.parent.name == "Movement")
-                 {
-                     dropList1[i].value = PlayerPrefs.GetInt("Movement_Value_P1");
-                     dropList2[i].value = PlayerPrefs.GetInt("Movement_Value_P2");
-                     dropList3[i].value = PlayerPrefs.GetInt("Movement_Value_P3");
-                     dropList4[i].value = PlayerPrefs.GetInt("Movement_Value_P4");
-                 }
-                 else if (dropList1[i].transform.parent.name == "Rotation")
-                 {
-                     dropList1[i].value = PlayerPrefs.GetInt("Rotation_Value_P1");
-                     dropList2[i].value = PlayerPrefs.GetInt("Rotation_Value_P2");
-                     dropList3[i].value = PlayerPrefs.GetInt("Rotation_Value_P3");
-                     dropList4[i].value = PlayerPrefs.GetInt("Rotation_Value_P4");
-                 }
-                 else if (dropList1[i].transform.parent.name == "Kill")
-                 {
-                     dropList1[i].value = PlayerPrefs.GetInt("Kill_Value_P1");
-                     dropList2[i].value = PlayerPrefs.GetInt("Kill_Value_P2");
-                     dropList3[i].value = PlayerPrefs.GetInt("Kill_Value_P3");
-                     dropList4[i].value = PlayerPrefs.GetInt("Kill_Value_P4");
-                 }
-                 else if (dropList1[i].transform.parent.name == "Hability 1")
-                 {
-                     dropList1[i].value = PlayerPrefs.GetInt("Hab1_Value_P1");
-                     dropList2[i].value = PlayerPrefs.GetInt("Hab1_Value_P2");
-                     dropList3[i].value = PlayerPrefs.GetInt("Hab1_Value_P3");
-                     dropList4[i].value = PlayerPrefs.GetInt("Hab1_Value_P4");
-                 }
-                 else if (dropList1[i].transform.parent.name == "Hability 2")
-                 {
-                     dropList1[i].value = PlayerPrefs.GetInt("Hab2_Value_P1");
-                     dropList2[i].value = PlayerPrefs.GetInt("Hab2_Value_P2");
-                     dropList3[i].value = PlayerPrefs.GetInt("Hab2_Value_P3");
-                     dropList4[i].value = PlayerPrefs.GetInt("Hab2_Value_P4");
-                 }
-             }*/
+            
         }
-        /*else
-        {
-            for (int i = 1; i <= max_players; i++)
-            {
-                PlayerPrefs.SetString("Movement_P" + i.ToString(), "V_LPad_" + i.ToString());
-                PlayerPrefs.SetString("Rotation_P" + i.ToString(), "H_RPad_" + i.ToString());
-                PlayerPrefs.SetString("Kill_P" + i.ToString(), "X_" + i.ToString());
-                PlayerPrefs.SetString("Hab1_P" + i.ToString(), "B_" + i.ToString());
-                PlayerPrefs.SetString("Hab2_P" + i.ToString(), "Y_" + i.ToString());
-            }
-        }*/
+
 
     }
-    // Use this for initialization
+
     void Start () {
-        //PlayerPrefs.DeleteAll();
        
         options.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
         inMenu = true;
        
-        //music.volume = 1f;
         volume.value = PlayerPrefs.GetFloat("MusicVolume");
         music.volume = volume.value;
 
@@ -144,10 +71,9 @@ public class Menu : MonoBehaviour {
         else MuteMusic();
 
         NewControl.finalWinner = null;
-       // Default();
+
     }
 
-    // Update is called once per frame
     void Update () {
         if (Input.GetButtonDown("Back") && !inMenu) BackToMenu();
         
@@ -167,7 +93,6 @@ public class Menu : MonoBehaviour {
     void Default()
     {
         NewControl.killers = null;
-        //NewControl.players = null;
         Rondes.timesPlayed = 0;
         ObjectiveCanvas.timeObjective = 0;
         NewControl.guards = null;
@@ -191,18 +116,17 @@ public class Menu : MonoBehaviour {
         credits.gameObject.SetActive(false);
         options.gameObject.SetActive(true);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(fullScreen);
+
         if (PlayerPrefs.GetInt("ScreenMode") == 0)
         {
-            //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(fullScreen);
             fullScreen.GetComponent<Toggle>().isOn = true;
         }
         else if (PlayerPrefs.GetInt("ScreenMode") == 1) { 
-            //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(windowed);
+
             windowed.GetComponent<Toggle>().isOn = true;
         }
         if (PlayerPrefs.GetInt("isMute") == 0)
         {
-            //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(fullScreen);
             notMuted.GetComponent<Toggle>().isOn = true;
         }
         else if (PlayerPrefs.GetInt("isMute") == 1)
@@ -226,7 +150,6 @@ public class Menu : MonoBehaviour {
         mainMenu.gameObject.SetActive(true);
         credits.gameObject.SetActive(false);
         options.gameObject.SetActive(false);
-        //lastButon.Select();
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(lastButon.gameObject);
     }
     public void FullScreen()
@@ -241,10 +164,8 @@ public class Menu : MonoBehaviour {
     }
     public void SetVolume()
     {
-        //AudioListener.volume = volume.value;
         music.volume = volume.value;
         PlayerPrefs.SetFloat("MusicVolume", music.volume);
-        //Debug.Log("volumen");
     }
     public void MuteMusic()
     {

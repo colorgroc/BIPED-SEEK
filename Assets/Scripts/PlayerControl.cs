@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 
 public class PlayerControl : MonoBehaviour {
+
     [SerializeField]
     private float speed, speedRotation;
     [SerializeField]
     public static float defaultSpeed = 20;
-    //[SerializeField]
-    //private int tipo_de_character;
-	//public int playerID;
     [HideInInspector]
     public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, submitButton, pauseButton, cancelButton, habSpecialButton;
 
@@ -19,12 +17,11 @@ public class PlayerControl : MonoBehaviour {
     private int coolDown;
     private bool pressed, cooledDown, goodFeedback, winnerFeedback;
     public bool badFeedback;
+
     [HideInInspector]
     public int scoreGeneral, scoreKills, scoreWins, random;
-   // [HideInInspector]
     public bool wannaKill, onFieldView, detected;
-    //[HideInInspector]
-    //public float jumpSpeed = 100.0F;//, timePast;
+
     private Image feedback;
     private List<GameObject> feedbacks;
     private GameObject[] feedbackList;
@@ -34,16 +31,10 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     private Animator anim;
     private bool canAct;
-   // [SerializeField]
-    //private AnimationClip clip;
-    //[SerializeField]
-    //private GameObject HUD_1, HUD_2, HUD_3, HUD_4;
 
-    // Use this for initialization
-    void Start () {
-        //clip = new AnimationClip();
-       // animation = this.GetComponent<Animation>();
-        //distToGround = this.gameObject.GetComponent<Collider>().bounds.extents.y;
+    void Start ()
+    {
+
         this.anim = this.gameObject.GetComponent<Animator>();
         this.gameObject.GetComponent<Light>().enabled = false;
         this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
@@ -71,15 +62,6 @@ public class PlayerControl : MonoBehaviour {
             this.hab1Button = "Y_1";
             this.hab2Button = "A_1";
 
-            /*this.AxisMovement = PlayerPrefs.GetString("Movement_P1"); 
-            this.AxisRotation = PlayerPrefs.GetString("Rotation_P1");
-            this.killButton = PlayerPrefs.GetString("Kill_P1");
-            this.hab1Button = PlayerPrefs.GetString("Hab1_P1");
-            this.hab2Button = PlayerPrefs.GetString("Hab2_P1");*/
-            /* this.pauseButton = PlayerPrefs.GetString("Pause_P1");
-                this.submitButton = PlayerPrefs.GetString("Submit_P1");
-                this.cancelButton = PlayerPrefs.GetString("Cancel_P1");*/
-
 
         }
         else if (this.gameObject.name.Equals("Player 2"))
@@ -94,15 +76,7 @@ public class PlayerControl : MonoBehaviour {
             this.hab1Button = "Y_2";
             this.hab2Button = "A_2";
 
-            /*this.AxisMovement = PlayerPrefs.GetString("Movement_P2");
-            this.AxisRotation = PlayerPrefs.GetString("Rotation_P2");
-            this.killButton = PlayerPrefs.GetString("Kill_P2");
-            this.hab1Button = PlayerPrefs.GetString("Hab1_P2");
-            this.hab2Button = PlayerPrefs.GetString("Hab2_P2");*/
-            /*this.pauseButton = PlayerPrefs.GetString("Pause_P2");
-            this.submitButton = PlayerPrefs.GetString("Submit_P2");
-            this.cancelButton = PlayerPrefs.GetString("Cancel_P2");*/
-
+           
 
         }
         else if (this.gameObject.name.Equals("Player 3"))
@@ -117,14 +91,6 @@ public class PlayerControl : MonoBehaviour {
             this.hab1Button = "Y_3";
             this.hab2Button = "A_3";
 
-            /*this.AxisMovement = PlayerPrefs.GetString("Movement_P3");
-            this.AxisRotation = PlayerPrefs.GetString("Rotation_P3");
-            this.killButton = PlayerPrefs.GetString("Kill_P3");
-            this.hab1Button = PlayerPrefs.GetString("Hab1_P3");
-            this.hab2Button = PlayerPrefs.GetString("Hab2_P3");*/
-            /* this.pauseButton = PlayerPrefs.GetString("Pause_P3");
-                this.submitButton = PlayerPrefs.GetString("Submit_P3");
-                this.cancelButton = PlayerPrefs.GetString("Cancel_P3");*/
         }
         else if (this.gameObject.name.Equals("Player 4"))
         {
@@ -137,38 +103,29 @@ public class PlayerControl : MonoBehaviour {
             this.killButton = "X_4";
             this.hab1Button = "Y_4";
             this.hab2Button = "A_4";
-
-            /*this.AxisMovement = PlayerPrefs.GetString("Movement_P4");
-            this.AxisRotation = PlayerPrefs.GetString("Rotation_P4");
-            this.killButton = PlayerPrefs.GetString("Kill_P4");
-            this.hab1Button = PlayerPrefs.GetString("Hab1_P4");
-            this.hab2Button = PlayerPrefs.GetString("Hab2_P4");*/
-            /* this.pauseButton = PlayerPrefs.GetString("Pause_P4");
-                this.submitButton = PlayerPrefs.GetString("Submit_P4");
-                this.cancelButton = PlayerPrefs.GetString("Cancel_P4");*/
+         
         }
         this.canAct = true;
     }
     private void FixedUpdate()
     {
-
     }
-    // Update is called once per frame
+   
     void Update()
     {
         speed = PlayerPrefs.GetFloat("Speed");
-       // if (this.canAct)
-       // {
+
         float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
         float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
 
         transform.Translate(0, 0, y * speed);
         transform.Rotate(0, rX * speedRotation, 0);
+
         if (Input.GetButtonDown(this.killButton))
         {
             this.wannaKill = true;
-           // animation.Play();
         }
+
         if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
 
         if (y > 0) this.anim.SetBool("isWalkingForward", true);
@@ -180,11 +137,6 @@ public class PlayerControl : MonoBehaviour {
         }
 
             this.anim.SetBool("wannaKill", this.wannaKill);
-      //  }
-
-        /*if (Input.GetAxis(this.AxisMovement) != 0)
-            Debug.LogError("Movement");
-        if (Input.GetButtonDown(this.killButton)) Debug.LogError("Kill");*/
 
         if (this.goodFeedback)
         {
@@ -215,23 +167,6 @@ public class PlayerControl : MonoBehaviour {
             this.timeFeedback = 0;
             this.feedback.color = this.neutralColor;
         }
-
-
-        /*if (this.detected)
-        {
-            this.gameObject.GetComponent<Light>().enabled = true;
-            this.timePast+= Time.deltaTime;
-            if (this.timePast > 5)
-            {
-                this.detected = false;
-            }
-        }
-        else
-        {
-            this.gameObject.GetComponent<Light>().enabled = false;
-            this.timePast = 0;
-        }*/
-
 
     }
 
@@ -287,12 +222,6 @@ public class PlayerControl : MonoBehaviour {
         gO.gameObject.SetActive(true);
         gO.gameObject.GetComponent<FieldOfView>().Start();
         this.canAct = true;
-        //this.isDead = false;
-        //this.gameObject.GetComponent<FieldOfView>().alive = true;
-        /*GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-		int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-		GameObject playerNew = Instantiate (player_New, allMyRespawnPoints [random].transform);
-		Destroy (gO);*/
     }
     public void DeadCoolDown(GameObject gO)
     {
@@ -317,25 +246,13 @@ public class PlayerControl : MonoBehaviour {
             
         }
     }
-    /*void CalcCoolDown()
-    {
-        if (NewControl.timeLeft >= 120) this.coolDown = 3;
-        else if(NewControl.timeLeft >= 60 && NewControl.timeLeft < 120) this.coolDown = 4;
-        else if (NewControl.timeLeft >= 30 && NewControl.timeLeft < 60) this.coolDown = 6;
-        else if (NewControl.timeLeft >= 20 && NewControl.timeLeft < 30) this.coolDown = 8;
-        else if (NewControl.timeLeft < 20) this.coolDown = 10;
-
-    }*/
 
     private static int SortByName(GameObject o1, GameObject o2)
     {
         return o1.name.CompareTo(o2.name);
     }
 
-    /*bool IsGrounded()
-    {
-        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
-    }*/
+
 
    
 

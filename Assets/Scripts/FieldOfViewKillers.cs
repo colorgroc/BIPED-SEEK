@@ -4,22 +4,17 @@ using System.Collections.Generic;
 
 public class KillersProperties : MonoBehaviour
 {
-    
-    // Use this for initialization
+
 }
 
 public class FieldOfViewKillers : MonoBehaviour
 {
-	//public float dstToTarget;
-	//public Player player;
-	//public NPCConnectedPatrol npc;
+
 	public float viewRadius;
 	[Range (0, 360)]
 	public float viewAngle;
 
     [HideInInspector]
-    //public bool playerOnFieldView;
-    //public GameObject playerTarget;
     public bool follow;
 
     [SerializeField]
@@ -80,7 +75,6 @@ public class FieldOfViewKillers : MonoBehaviour
 		}
 
 	}
-
 
 	public Vector3 DirFromAngle (float angleInDegrees, bool angleIsGlobal)
 	{

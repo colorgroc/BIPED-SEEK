@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class ObjectiveCanvas : MonoBehaviour {
 
-    // Use this for initialization
     public static float timeObjective;
     public float time = 3;
     [SerializeField]
     private Text tObjectiu, tRonda;
-    public void Start () {
+
+    public void Start ()
+    {
         timeObjective = 0;
         this.gameObject.SetActive(true);
 
@@ -30,14 +31,12 @@ public class ObjectiveCanvas : MonoBehaviour {
 
     }
     private void Update()
-    {
-        
+    {      
     }
 
-    // Update is called once per frame
-    void FixedUpdate () {
+    void FixedUpdate ()
+    {
         timeObjective += Time.fixedDeltaTime;
-        //Debug.Log(timeObjective);
         if (timeObjective >= time) this.gameObject.SetActive(false);
     }
 }

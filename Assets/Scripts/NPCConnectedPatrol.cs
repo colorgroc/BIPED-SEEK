@@ -24,14 +24,12 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
 	float _waitTimer;
 	int _waypointsVisited;
-	//Player player;
 
 	public bool isDead;
 	public float count;
 
     private Animator anim;
 
-    // Use this for initialization
     private void Awake()
     {
         
@@ -57,7 +55,6 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		SetDestination ();
 	}
 	
-	// Update is called once per frame
 	public void Update () {
 
         this.anim.SetBool("isWalkingForward", _travelling);
@@ -81,7 +78,6 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		}
 		if (playerOnFieldView) {
 			ChacePlayer (playerTarget.transform.position);
-			//Debug.Log ("chacing");
 		}
 	}
 
@@ -100,24 +96,20 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		_navMeshAgent.SetDestination (targetVector);
 	}
 	void OnCollisionEnter(Collision collision){
-		if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards")) {
-            //Debug.Log("Hi");
+		if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards"))
+        {
             SetDestination ();
-            
-            //Debug.LogError("Hi");
 		}
         if(this.gameObject.tag.Equals("Guard") && collision.gameObject.layer == 8)
         {
-           // Debug.Log("Dew");
             SetDestination();
         }
         if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
 
-		collision.gameObject.SetActive (false);
-		collision.gameObject.GetComponent<FieldOfView> ().alive = false;
-        collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
-        collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
-        //Debug.Log("colliding");
+		    collision.gameObject.SetActive (false);
+		    collision.gameObject.GetComponent<FieldOfView> ().alive = false;
+            collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
+            collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
 
 	    }
         else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
@@ -127,7 +119,6 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	}
 
 	public void Respawn(GameObject gO){
-		//yield return new WaitForSeconds (delay);
 		
         if (gO.gameObject.tag.Equals("Killer Guards")) {
             GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPointKillers");
