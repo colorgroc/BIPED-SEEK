@@ -16,6 +16,7 @@ public class EventosMapa : MonoBehaviour {
     private int ronda;
     [SerializeField]
     private Canvas canvas;
+    bool nada;
 
 	void Start () {
         for (int i = 0; i < Rondes.rondas; i++)
@@ -42,11 +43,12 @@ public class EventosMapa : MonoBehaviour {
         if (i < eventos.Count && ronda <= Rondes.rondas) {
             if (nothing)
             {
-                canvas.GetComponent<Canvas>().enabled = false;
                 timeEvent2 += Time.deltaTime;
                 //(NewControl.timeLeft / 4)
                 if (timeEvent2 >= tempsNothing)
                 {
+                    canvas.GetComponent<Canvas>().enabled = false;
+                    nada = false;
                     Default();
                     //nothing = false;
                 }
@@ -56,8 +58,9 @@ public class EventosMapa : MonoBehaviour {
                 timeEvent1 += Time.deltaTime;
                 if (timeEvent1 >= tempsEvent)
                 {
-                    canvas.GetComponent<Canvas>().enabled = true;
+                    
                     Eventos(i);
+                    if(!nada) canvas.GetComponent<Canvas>().enabled = true;
                     i++;
                     //Debug.Log("i: " + i);
                 }
@@ -71,18 +74,22 @@ public class EventosMapa : MonoBehaviour {
         switch (eventos[i])
         {
             case 0:
+                nada = true;
                 Default();
                 break;
             case 1:
                 //Default();
+                nada = false;
                 NPCReduction();
                 break;
             case 2:
-               // Default();
+                // Default();
+                nada = false;
                 ChangeSpeed();
                 break;
             case 3:
                 //Default();
+                nada = false;
                 KillersCreation();
                 break;
         }
