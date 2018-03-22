@@ -238,39 +238,37 @@ public class PlayerControl : MonoBehaviour {
     public void Kill(GameObject gO)
     {
         
-            if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards")) //canviar aixo?
-            {
-
-                this.scoreGeneral -= 3;
-                this.badFeedback = true;
-                this.canAct = false;
-                Destroy(gO);
-                //if (AnimatorIsPlaying("Punch"))
-                Respawn(this.gameObject);
-
-            }
-            else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
-            {
-
-                gO.gameObject.GetComponent<PlayerControl>().detected = false;
-                this.scoreGeneral += 5;
-                this.scoreKills += 1;
-                this.goodFeedback = true;
-           // if (AnimatorIsPlaying("Punch"))
-                Respawn(gO);
-            }
-            else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
-            {
-                this.winnerFeedback = true;
-                //this.canAct = false;
+        if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards")) //canviar aixo?
+        {
+            this.detected = false;
+            this.scoreGeneral -= 3;
+            this.badFeedback = true;
+            this.canAct = false;
+            Destroy(gO);
             //if (AnimatorIsPlaying("Punch"))
-                
-                NewControl.parcialWinner = this.gameObject;
-                NewControl.objComplete = true;
-                Rondes.timesPlayed++;
-                gO.gameObject.GetComponent<PlayerControl>().detected = false;
+            Respawn(this.gameObject);
 
-
+        }
+        else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
+        {
+            this.detected = false;
+            gO.gameObject.GetComponent<PlayerControl>().detected = false;
+            this.scoreGeneral += 5;
+            this.scoreKills += 1;
+            this.goodFeedback = true;
+        // if (AnimatorIsPlaying("Punch"))
+            Respawn(gO);
+        }
+        else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
+        {
+            this.winnerFeedback = true;
+            this.detected = false;
+            //this.canAct = false;
+            //if (AnimatorIsPlaying("Punch"))
+            gO.gameObject.GetComponent<PlayerControl>().detected = false;
+            NewControl.parcialWinner = this.gameObject;
+            NewControl.objComplete = true;
+            Rondes.timesPlayed++;
         }
     
         
@@ -287,6 +285,7 @@ public class PlayerControl : MonoBehaviour {
         int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); 
         gO.gameObject.transform.position = new Vector3(allMyRespawnPoints[random].transform.position.x, 10.14516f, allMyRespawnPoints[random].transform.position.z);
         gO.gameObject.SetActive(true);
+        gO.gameObject.GetComponent<FieldOfView>().Start();
         this.canAct = true;
         //this.isDead = false;
         //this.gameObject.GetComponent<FieldOfView>().alive = true;
