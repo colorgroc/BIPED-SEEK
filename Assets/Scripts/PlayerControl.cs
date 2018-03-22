@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour {
     private bool pressed, cooledDown, goodFeedback, winnerFeedback;
     public bool badFeedback;
     [HideInInspector]
-    public int scoreGeneral, scoreKills, scoreSurvived, random;
+    public int scoreGeneral, scoreKills, scoreWins, random;
    // [HideInInspector]
     public bool wannaKill, onFieldView, detected;
     //[HideInInspector]
@@ -262,13 +262,16 @@ public class PlayerControl : MonoBehaviour {
             else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
             {
                 this.winnerFeedback = true;
-                this.canAct = false;
-                NewControl.objComplete = true;
+                //this.canAct = false;
             //if (AnimatorIsPlaying("Punch"))
-                gO.gameObject.GetComponent<PlayerControl>().detected = false;
+                
                 NewControl.parcialWinner = this.gameObject;
+                NewControl.objComplete = true;
+                Rondes.timesPlayed++;
+                gO.gameObject.GetComponent<PlayerControl>().detected = false;
 
-            }
+
+        }
     
         
     }
@@ -281,8 +284,8 @@ public class PlayerControl : MonoBehaviour {
         this.detected = false;
         this.timeFeedback = 0;
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-        int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-        gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
+        int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); 
+        gO.gameObject.transform.position = new Vector3(allMyRespawnPoints[random].transform.position.x, 10.14516f, allMyRespawnPoints[random].transform.position.z);
         gO.gameObject.SetActive(true);
         this.canAct = true;
         //this.isDead = false;

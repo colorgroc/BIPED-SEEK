@@ -22,4 +22,9 @@ public class Rondes : MonoBehaviour {
 
 
     }
+
+    private void Update()
+    {
+        
+    }
 }
