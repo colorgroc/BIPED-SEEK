@@ -224,21 +224,30 @@ public class NewControl : MonoBehaviour
             if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 1)
             {
                 GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_1;
+                Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Bear");
+                player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
             else if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 2)
             {
                 GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_2;
+                Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Bunny");
+                player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
             else if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 3)
             {
                 GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_3;
+                Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Penguin");
+                player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
             else if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 4)
             {
                 GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_4;
+                Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Fox");
+                player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
 
             player.gameObject.layer = 8;
+            
             //int u = 0;
             //creacion de guards x jugador 
             for (int y = 0; y < numGuardsPerType; y++)
@@ -256,6 +265,7 @@ public class NewControl : MonoBehaviour
                 guard.transform.parent = GameObject.Find("Guards").transform;
                 guard.gameObject.name = "Guard_Tipo_" + i.ToString();
                 guard.gameObject.tag = "Guard";
+                guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material;
                 
             }
         }
