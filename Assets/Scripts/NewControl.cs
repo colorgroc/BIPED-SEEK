@@ -77,27 +77,6 @@ public class NewControl : MonoBehaviour
     private void Start()
     {
 
-       // ShowObjectiveCanvas();
-        
-        /* numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
-         fin = UnityEngine.Random.Range(0, 2);
-
-         //creacion jugadores
-         PlayersAndGuardsCreation();
-
-         //lista adicional para establecer las rondas de cada jugador
-         int passades = 0;
-         while (passades < numRondesPerJugador)
-         {
-             for (int i = 0; i < players.Count; i++)
-             {
-                 listPlayers.Add(players[i]);
-             }
-             passades++;
-         }*/
-
-        
-
         VariablesOnDefault();
         RecalculaObjetivo();
         RespawnNPCS();
@@ -111,7 +90,6 @@ public class NewControl : MonoBehaviour
         
         timeLeft = time;//UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
         textTiempo.text = GetMinutes(timeLeft);
-        // RecalculaObjetivo();
     }
 
     // Update is called once per frame
@@ -120,64 +98,29 @@ public class NewControl : MonoBehaviour
         if(!finalWinnerCanvas.activeInHierarchy)
             Pausa();
 
-        //showObjective = objective;
         timeLeft -= Time.deltaTime;
         textTiempo.text = GetMinutes(timeLeft);
-        //asignar ganador final
-  //      foreach (GameObject player in players)
-		//{
-  //          if (player != null) // canviar aixo
-  //          {
-  //              if (player.GetComponent<PlayerControl>().scoreGeneral > topScore)
-  //              {
-  //                  topScore = player.GetComponent<PlayerControl>().scoreGeneral;
-  //                  finalWinner = player;
-  //                  //finalWinners.Add (player);
 
-  //              }
-  //              else if (player.GetComponent<PlayerControl>().scoreGeneral == topScore)
-  //              {
-  //                  if (finalWinner != null)
-  //                  {
-
-  //                      if (fin == 1)
-  //                          finalWinner = player;
-  //                  }
-  //                  else
-  //                  {
-  //                      topScore = player.GetComponent<PlayerControl>().scoreGeneral;
-  //                      finalWinner = player;
-  //                  }
-
-  //              }
-  //          }
-		//}
 		//asignar puntos ganador parcial
-		if (objComplete && parcialWinner != null) //this.gameObject != objective && )
+		if (objComplete && parcialWinner != null) 
         {
-			//Debug.Log("Congratulations to " + this.gameObject.name);
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
-            //Rondes.timesPlayed++;
-            //PlayerPrefs.SetInt("Rondes", Rondes.timesPlayed);
             Start();
            
         }
         if (timeLeft <= 0 && !objComplete)
         {
 			parcialWinner = objective;
-			//Debug.Log("Congratulations to " + this.gameObject.name);
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
 			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
             Rondes.timesPlayed++;
-            //PlayerPrefs.SetInt("Rondes", Rondes.timesPlayed);
             Start();
             
         }
         if (objKilledByGuard)
         {
             Rondes.timesPlayed++;
-            //PlayerPrefs.SetInt("Rondes", Rondes.timesPlayed);
             Start();
 
         }
@@ -202,7 +145,6 @@ public class NewControl : MonoBehaviour
     }
     private void PlayersAndGuardsCreation()
     {
-        //players = new List<GameObject>();
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         for (int i = 1; i <= numOfPlayers; i++)
         {
@@ -213,7 +155,6 @@ public class NewControl : MonoBehaviour
                 do { random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); } while (listPos.Contains(random));
             }
             listPos.Add(random);
-            //Debug.Log(PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()));
             //es crea player desde la seleccio escollida (es crida prefab)
             GameObject prefab = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()).ToString());
             Vector3 pos = new Vector3(allMyRespawnPoints[random].transform.position.x, 10.14516f, allMyRespawnPoints[random].transform.position.z);
@@ -221,6 +162,8 @@ public class NewControl : MonoBehaviour
             player.transform.parent = GameObject.Find("Players").transform;
             player.gameObject.name = "Player " + i.ToString();
             player.gameObject.tag = "Player " + i.ToString();
+            player.gameObject.layer = 8;
+
             if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 1)
             {
                 GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_1;
@@ -248,7 +191,6 @@ public class NewControl : MonoBehaviour
 
             player.gameObject.layer = 8;
             
-            //int u = 0;
             //creacion de guards x jugador 
             for (int y = 0; y < numGuardsPerType; y++)
             {
@@ -260,11 +202,11 @@ public class NewControl : MonoBehaviour
                 }
                 listPosGuards.Add(random);
                 GameObject prefabG = (GameObject)Resources.Load("Prefabs/Guard_Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
-                // GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_3");
                 GameObject guard = (GameObject)Instantiate(prefabG, allMyRespawnPoints[rand].transform.position, allMyRespawnPoints[rand].transform.rotation);
                 guard.transform.parent = GameObject.Find("Guards").transform;
                 guard.gameObject.name = "Guard_Tipo_" + i.ToString();
                 guard.gameObject.tag = "Guard";
+                guard.gameObject.layer = 9;
                 guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material;
                 
             }
@@ -306,21 +248,7 @@ public class NewControl : MonoBehaviour
 
     }
 
-    /* private void KillersCreation()
-     {
-         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPointKillers");
-         for (int y = 0; y < numKillers; y++)
-         {
-             int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-             GameObject prefabG = (GameObject)Resources.Load("Prefabs/Killer");
-             // GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_3");
-             GameObject killer = (GameObject)Instantiate(prefabG, allMyRespawnPoints[rand].transform.position, allMyRespawnPoints[rand].transform.rotation);
-             killer.transform.parent = GameObject.Find("KillerGuards").transform;
-             killer.gameObject.name = "Killer";
-             killer.gameObject.tag = "Killer Guards";
-         }
-         killers = GameObject.FindGameObjectsWithTag("Killer Guards");
-     }*/
+ 
 
     void RespawnNPCS()
     {

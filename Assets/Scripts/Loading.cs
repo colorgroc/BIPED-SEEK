@@ -10,7 +10,7 @@ public class Loading : MonoBehaviour {
     [SerializeField]
     float loadingTime;
     [SerializeField]
-    private int numOfMapas = 4;
+    private int numOfMapas = 3;
     float time;
     private string scene;
 
