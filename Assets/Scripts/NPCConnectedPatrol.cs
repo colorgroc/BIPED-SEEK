@@ -123,7 +123,27 @@ public class NPCConnectedPatrol : MonoBehaviour {
         }
 	}
 
-	public void Respawn(GameObject gO){
+    void OnTriggerEnter(Collider col)
+    {
+        if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
+        {
+            this.anim.SetBool("wannaKill", true);
+            col.gameObject.SetActive(false);
+            col.gameObject.GetComponent<FieldOfView>().alive = false;
+            col.gameObject.GetComponent<PlayerControl>().badFeedback = true;
+            col.gameObject.GetComponent<PlayerControl>().Respawn(col.gameObject);
+            this.anim.SetBool("wannaKill", false);
+
+        }
+        else if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject == NewControl.objective)
+        {
+            this.anim.SetBool("wannaKill", true);
+            col.gameObject.GetComponent<PlayerControl>().badFeedback = true;
+            NewControl.objKilledByGuard = true;
+            this.anim.SetBool("wannaKill", false);
+        }
+    }
+    public void Respawn(GameObject gO){
 		
         if (gO.gameObject.tag.Equals("Killer Guards")) {
             GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPointKillers");

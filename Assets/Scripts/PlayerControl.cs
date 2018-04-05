@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 
 public class PlayerControl : MonoBehaviour {
@@ -32,9 +33,11 @@ public class PlayerControl : MonoBehaviour {
     private Animator anim;
     private bool canAct;
 
+    NavMeshAgent _navMeshAgent;
+
     void Start ()
     {
-
+        _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
         this.gameObject.GetComponent<Light>().enabled = false;
         this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
@@ -121,6 +124,8 @@ public class PlayerControl : MonoBehaviour {
         transform.Translate(0, 0, y * speed);
         transform.Rotate(0, rX * speedRotation, 0);
 
+        _navMeshAgent.SetDestination(transform.position);
+        
         if (Input.GetButtonDown(this.killButton))
         {
             this.wannaKill = true;
