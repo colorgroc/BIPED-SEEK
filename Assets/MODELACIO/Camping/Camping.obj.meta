@@ -1,0 +1,1027 @@
+fileFormatVersion: 2
+guid: 4450354d45162074997417f0bbc0daf5
+timeCreated: 1522863639
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Hoguera
+    100004: Suelo
+    100006: SueloJugable
+    100008: Tienda
+    100010: Tree00
+    100012: Tree02
+    100014: Tree03
+    100016: Tree04
+    100018: Tree05
+    100020: Tree06
+    100022: Tree07
+    100024: Tree08
+    100026: Tree089
+    100028: Tree09
+    100030: Tree10
+    100032: Tree11
+    100034: Tree12
+    100036: Tree13
+    100038: Tree14
+    100040: Tree15
+    100042: Tree16
+    100044: Tree17
+    100046: Tree18
+    100048: Tree19
+    100050: Tree20
+    100052: Tree21
+    100054: Tree22
+    100056: Tree23
+    100058: Tree24
+    100060: Tree25
+    100062: Tree26
+    100064: Tree27
+    100066: Tree28
+    100068: Tree29
+    100070: Tree30
+    100072: Tree31
+    100074: Tree32
+    100076: Tree33
+    100078: Tree34
+    100080: Tree35
+    100082: Tree36
+    100084: Tree37
+    100086: Tree38
+    100088: Tree39
+    100090: Tree40
+    100092: Tree41
+    100094: Tree42
+    100096: Tree43
+    100098: Tree44
+    100100: Tree45
+    100102: Tree46
+    100104: Tree47
+    100106: Tree48
+    100108: Tree49
+    100110: Tree50
+    100112: Tree51
+    100114: Tree52
+    100116: Tree53
+    100118: Tree54
+    100120: Tree55
+    100122: Tree56
+    100124: Tree57
+    100126: Tree58
+    100128: Tree59
+    100130: Tree60
+    100132: Tree61
+    100134: Tree62
+    100136: Tree63
+    100138: Tree64
+    100140: Tree65
+    100142: Tree66
+    100144: Tree67
+    100146: Tree68
+    100148: Tree69
+    100150: Tree70
+    100152: Tree71
+    100154: Tree72
+    100156: Tree73
+    100158: Tree74
+    100160: Tree75
+    100162: Tree76
+    100164: Tree77
+    100166: Tree78
+    100168: Tree79
+    100170: Tree80
+    100172: Tree81
+    100174: Tree82
+    100176: Tree83
+    100178: Tree84
+    100180: Tree85
+    100182: Tree86
+    100184: Tree87
+    100186: TroncoDer
+    100188: TroncoDer002
+    400000: //RootNode
+    400002: Hoguera
+    400004: Suelo
+    400006: SueloJugable
+    400008: Tienda
+    400010: Tree00
+    400012: Tree02
+    400014: Tree03
+    400016: Tree04
+    400018: Tree05
+    400020: Tree06
+    400022: Tree07
+    400024: Tree08
+    400026: Tree089
+    400028: Tree09
+    400030: Tree10
+    400032: Tree11
+    400034: Tree12
+    400036: Tree13
+    400038: Tree14
+    400040: Tree15
+    400042: Tree16
+    400044: Tree17
+    400046: Tree18
+    400048: Tree19
+    400050: Tree20
+    400052: Tree21
+    400054: Tree22
+    400056: Tree23
+    400058: Tree24
+    400060: Tree25
+    400062: Tree26
+    400064: Tree27
+    400066: Tree28
+    400068: Tree29
+    400070: Tree30
+    400072: Tree31
+    400074: Tree32
+    400076: Tree33
+    400078: Tree34
+    400080: Tree35
+    400082: Tree36
+    400084: Tree37
+    400086: Tree38
+    400088: Tree39
+    400090: Tree40
+    400092: Tree41
+    400094: Tree42
+    400096: Tree43
+    400098: Tree44
+    400100: Tree45
+    400102: Tree46
+    400104: Tree47
+    400106: Tree48
+    400108: Tree49
+    400110: Tree50
+    400112: Tree51
+    400114: Tree52
+    400116: Tree53
+    400118: Tree54
+    400120: Tree55
+    400122: Tree56
+    400124: Tree57
+    400126: Tree58
+    400128: Tree59
+    400130: Tree60
+    400132: Tree61
+    400134: Tree62
+    400136: Tree63
+    400138: Tree64
+    400140: Tree65
+    400142: Tree66
+    400144: Tree67
+    400146: Tree68
+    400148: Tree69
+    400150: Tree70
+    400152: Tree71
+    400154: Tree72
+    400156: Tree73
+    400158: Tree74
+    400160: Tree75
+    400162: Tree76
+    400164: Tree77
+    400166: Tree78
+    400168: Tree79
+    400170: Tree80
+    400172: Tree81
+    400174: Tree82
+    400176: Tree83
+    400178: Tree84
+    400180: Tree85
+    400182: Tree86
+    400184: Tree87
+    400186: TroncoDer
+    400188: TroncoDer002
+    2300000: Hoguera
+    2300002: Suelo
+    2300004: SueloJugable
+    2300006: Tienda
+    2300008: Tree00
+    2300010: Tree02
+    2300012: Tree03
+    2300014: Tree04
+    2300016: Tree05
+    2300018: Tree06
+    2300020: Tree07
+    2300022: Tree08
+    2300024: Tree089
+    2300026: Tree09
+    2300028: Tree10
+    2300030: Tree11
+    2300032: Tree12
+    2300034: Tree13
+    2300036: Tree14
+    2300038: Tree15
+    2300040: Tree16
+    2300042: Tree17
+    2300044: Tree18
+    2300046: Tree19
+    2300048: Tree20
+    2300050: Tree21
+    2300052: Tree22
+    2300054: Tree23
+    2300056: Tree24
+    2300058: Tree25
+    2300060: Tree26
+    2300062: Tree27
+    2300064: Tree28
+    2300066: Tree29
+    2300068: Tree30
+    2300070: Tree31
+    2300072: Tree32
+    2300074: Tree33
+    2300076: Tree34
+    2300078: Tree35
+    2300080: Tree36
+    2300082: Tree37
+    2300084: Tree38
+    2300086: Tree39
+    2300088: Tree40
+    2300090: Tree41
+    2300092: Tree42
+    2300094: Tree43
+    2300096: Tree44
+    2300098: Tree45
+    2300100: Tree46
+    2300102: Tree47
+    2300104: Tree48
+    2300106: Tree49
+    2300108: Tree50
+    2300110: Tree51
+    2300112: Tree52
+    2300114: Tree53
+    2300116: Tree54
+    2300118: Tree55
+    2300120: Tree56
+    2300122: Tree57
+    2300124: Tree58
+    2300126: Tree59
+    2300128: Tree60
+    2300130: Tree61
+    2300132: Tree62
+    2300134: Tree63
+    2300136: Tree64
+    2300138: Tree65
+    2300140: Tree66
+    2300142: Tree67
+    2300144: Tree68
+    2300146: Tree69
+    2300148: Tree70
+    2300150: Tree71
+    2300152: Tree72
+    2300154: Tree73
+    2300156: Tree74
+    2300158: Tree75
+    2300160: Tree76
+    2300162: Tree77
+    2300164: Tree78
+    2300166: Tree79
+    2300168: Tree80
+    2300170: Tree81
+    2300172: Tree82
+    2300174: Tree83
+    2300176: Tree84
+    2300178: Tree85
+    2300180: Tree86
+    2300182: Tree87
+    2300184: TroncoDer
+    2300186: TroncoDer002
+    3300000: Hoguera
+    3300002: Suelo
+    3300004: SueloJugable
+    3300006: Tienda
+    3300008: Tree00
+    3300010: Tree02
+    3300012: Tree03
+    3300014: Tree04
+    3300016: Tree05
+    3300018: Tree06
+    3300020: Tree07
+    3300022: Tree08
+    3300024: Tree089
+    3300026: Tree09
+    3300028: Tree10
+    3300030: Tree11
+    3300032: Tree12
+    3300034: Tree13
+    3300036: Tree14
+    3300038: Tree15
+    3300040: Tree16
+    3300042: Tree17
+    3300044: Tree18
+    3300046: Tree19
+    3300048: Tree20
+    3300050: Tree21
+    3300052: Tree22
+    3300054: Tree23
+    3300056: Tree24
+    3300058: Tree25
+    3300060: Tree26
+    3300062: Tree27
+    3300064: Tree28
+    3300066: Tree29
+    3300068: Tree30
+    3300070: Tree31
+    3300072: Tree32
+    3300074: Tree33
+    3300076: Tree34
+    3300078: Tree35
+    3300080: Tree36
+    3300082: Tree37
+    3300084: Tree38
+    3300086: Tree39
+    3300088: Tree40
+    3300090: Tree41
+    3300092: Tree42
+    3300094: Tree43
+    3300096: Tree44
+    3300098: Tree45
+    3300100: Tree46
+    3300102: Tree47
+    3300104: Tree48
+    3300106: Tree49
+    3300108: Tree50
+    3300110: Tree51
+    3300112: Tree52
+    3300114: Tree53
+    3300116: Tree54
+    3300118: Tree55
+    3300120: Tree56
+    3300122: Tree57
+    3300124: Tree58
+    3300126: Tree59
+    3300128: Tree60
+    3300130: Tree61
+    3300132: Tree62
+    3300134: Tree63
+    3300136: Tree64
+    3300138: Tree65
+    3300140: Tree66
+    3300142: Tree67
+    3300144: Tree68
+    3300146: Tree69
+    3300148: Tree70
+    3300150: Tree71
+    3300152: Tree72
+    3300154: Tree73
+    3300156: Tree74
+    3300158: Tree75
+    3300160: Tree76
+    3300162: Tree77
+    3300164: Tree78
+    3300166: Tree79
+    3300168: Tree80
+    3300170: Tree81
+    3300172: Tree82
+    3300174: Tree83
+    3300176: Tree84
+    3300178: Tree85
+    3300180: Tree86
+    3300182: Tree87
+    3300184: TroncoDer
+    3300186: TroncoDer002
+    4300000: Hoguera
+    4300002: Suelo
+    4300004: SueloJugable
+    4300006: Tienda
+    4300008: Tree00
+    4300010: Tree02
+    4300012: Tree03
+    4300014: Tree04
+    4300016: Tree05
+    4300018: Tree06
+    4300020: Tree07
+    4300022: Tree08
+    4300024: Tree089
+    4300026: Tree09
+    4300028: Tree10
+    4300030: Tree11
+    4300032: Tree12
+    4300034: Tree13
+    4300036: Tree14
+    4300038: Tree15
+    4300040: Tree16
+    4300042: Tree17
+    4300044: Tree18
+    4300046: Tree19
+    4300048: Tree20
+    4300050: Tree21
+    4300052: Tree22
+    4300054: Tree23
+    4300056: Tree24
+    4300058: Tree25
+    4300060: Tree26
+    4300062: Tree27
+    4300064: Tree28
+    4300066: Tree29
+    4300068: Tree30
+    4300070: Tree31
+    4300072: Tree32
+    4300074: Tree33
+    4300076: Tree34
+    4300078: Tree35
+    4300080: Tree36
+    4300082: Tree37
+    4300084: Tree38
+    4300086: Tree39
+    4300088: Tree40
+    4300090: Tree41
+    4300092: Tree42
+    4300094: Tree43
+    4300096: Tree44
+    4300098: Tree45
+    4300100: Tree46
+    4300102: Tree47
+    4300104: Tree48
+    4300106: Tree49
+    4300108: Tree50
+    4300110: Tree51
+    4300112: Tree52
+    4300114: Tree53
+    4300116: Tree54
+    4300118: Tree55
+    4300120: Tree56
+    4300122: Tree57
+    4300124: Tree58
+    4300126: Tree59
+    4300128: Tree60
+    4300130: Tree61
+    4300132: Tree62
+    4300134: Tree63
+    4300136: Tree64
+    4300138: Tree65
+    4300140: Tree66
+    4300142: Tree67
+    4300144: Tree68
+    4300146: Tree69
+    4300148: Tree70
+    4300150: Tree71
+    4300152: Tree72
+    4300154: Tree73
+    4300156: Tree74
+    4300158: Tree75
+    4300160: Tree76
+    4300162: Tree77
+    4300164: Tree78
+    4300166: Tree79
+    4300168: Tree80
+    4300170: Tree81
+    4300172: Tree82
+    4300174: Tree83
+    4300176: Tree84
+    4300178: Tree85
+    4300180: Tree86
+    4300182: Tree87
+    4300184: TroncoDer
+    4300186: TroncoDer002
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HogueraMat
+    second: {fileID: 2100000, guid: 9461e9258ef6337408cb8fdf62e63321, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SueloJugableMat
+    second: {fileID: 2100000, guid: 96574adacfe1b0841bac39e3cb9b95ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SueloMat
+    second: {fileID: 2100000, guid: ddc5a01c59bb8e64f9238818fff78241, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TiendaMat
+    second: {fileID: 2100000, guid: e791839408c82a8468aa456f40abbefd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree00Mat
+    second: {fileID: 2100000, guid: a444bfc277bd2ef42bae051e323d2a2d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree02Mat
+    second: {fileID: 2100000, guid: d2db432467b662a45aac92a2594b484c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree03Mat
+    second: {fileID: 2100000, guid: b543ae6292cabc94680b09996a49c0fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree04Mat
+    second: {fileID: 2100000, guid: 3228eeae5172f8e44a81268e202f7f7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree05Mat
+    second: {fileID: 2100000, guid: 8e9ee8bc97f02b64496c59d21265f1f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree06Mat
+    second: {fileID: 2100000, guid: b5c3e9bcee148a0439ef9df385e5bcd3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree07Mat
+    second: {fileID: 2100000, guid: e58c0e5bb1b6b3c45850451a1de557ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree089Mat
+    second: {fileID: 2100000, guid: bc6bbac6f6f2796489aadb61511609f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree08Mat
+    second: {fileID: 2100000, guid: 821c025ffcd42dd42a246e387be06863, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree09Mat
+    second: {fileID: 2100000, guid: a23ed8698afac8a45a726032664c59d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree10Mat
+    second: {fileID: 2100000, guid: cfe52f4d05e86ae4d9f9e73abb9d275b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree11Mat
+    second: {fileID: 2100000, guid: 5254a55fdbba52141b46dee6bd302145, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree12Mat
+    second: {fileID: 2100000, guid: a7be52c902805da4e9ab95e78b17a8de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree13Mat
+    second: {fileID: 2100000, guid: acf607a6476fb764d9662f70bdd0f442, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree14Mat
+    second: {fileID: 2100000, guid: 87d6778c7f5e3c242b8ba5892b3b9682, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree15Mat
+    second: {fileID: 2100000, guid: 98ea85ace1084234f97598246a91cf39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree16Mat
+    second: {fileID: 2100000, guid: 9652d9a60fde2f84795d6805c53822f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree17Mat
+    second: {fileID: 2100000, guid: 8837cc61b23ed5a44a58ce96a88c92d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree18Mat
+    second: {fileID: 2100000, guid: 2e51c4b10b388af4f873e488395de2e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree19Mat
+    second: {fileID: 2100000, guid: 545d06b1e1b2f8248ad2dfaf1ca4ecc0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree20Mat
+    second: {fileID: 2100000, guid: 55b29b271a62fac49b264739948151a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree21Mat
+    second: {fileID: 2100000, guid: ce4eb4fa0e0f1da4e81556430c0d4673, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree22Mat
+    second: {fileID: 2100000, guid: 90d8ce0654fc32a43baf111dd00dfdea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree23Mat
+    second: {fileID: 2100000, guid: 8e3d9dca20ff0b544b2a651eeb3432fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree24Mat
+    second: {fileID: 2100000, guid: 1574bc01b7d35354a9bc261ecfeae652, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree25Mat
+    second: {fileID: 2100000, guid: c4830d40f5f090643ab9bb08a464e86d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree26Mat
+    second: {fileID: 2100000, guid: 7254d305620043e45a61ade2e031658a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree27Mat
+    second: {fileID: 2100000, guid: ba30553dfdaff57498cea63cd2417a57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree28Mat
+    second: {fileID: 2100000, guid: eb18d88947ba9b647b5ccd29504530a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree29Mat
+    second: {fileID: 2100000, guid: 2014682b5af9c464b8b926267a17967b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree30Mat
+    second: {fileID: 2100000, guid: 70a8cee237e1b2349b82e9130c40d59a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree31Mat
+    second: {fileID: 2100000, guid: ba9854e69fe810c428770cfacd23c4cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree32Mat
+    second: {fileID: 2100000, guid: 90969ec77ce2a5844a2a21bb49b1b3b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree33Mat
+    second: {fileID: 2100000, guid: 016f54041f5f3334493de99c90d9eef2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree34Mat
+    second: {fileID: 2100000, guid: 6764b2f6f23583841b7780e5d77418c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree35Mat
+    second: {fileID: 2100000, guid: 9644d4f0afefa964e90598e55b6bc6a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree36Mat
+    second: {fileID: 2100000, guid: d5dfccd3518a0f145a24a22b0f5965bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree37Mat
+    second: {fileID: 2100000, guid: 93ee7eb90ba5ee5488e30d80063bb1d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree38Mat
+    second: {fileID: 2100000, guid: 625c025b25add5f4799b379e9484101d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree39Mat
+    second: {fileID: 2100000, guid: a1ebe8d34c7490e4c9bb090cde8dc64d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree40Mat
+    second: {fileID: 2100000, guid: 41fc61c2daa497e44a9046856f784fd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree41Mat
+    second: {fileID: 2100000, guid: 441237738e3dd4440a5b2bef0c882805, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree42Mat
+    second: {fileID: 2100000, guid: 7df84c11d03f97740a4402e1cf6f298e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree43Mat
+    second: {fileID: 2100000, guid: d44c620b69e96c844b4c65c6c7e6ec97, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree44Mat
+    second: {fileID: 2100000, guid: a93d857315c8f7d48bbfc197c645c74a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree45Mat
+    second: {fileID: 2100000, guid: e69ebc61d121f144b8d57b3bdc25feff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree46Mat
+    second: {fileID: 2100000, guid: f36441b6a1483a14399e29c3fc980c6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree47Mat
+    second: {fileID: 2100000, guid: 320bddfe826e8dd4d90cdd2c34e8bbb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree48Mat
+    second: {fileID: 2100000, guid: 0194317a30b60af4884fdbdd157b005d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree49Mat
+    second: {fileID: 2100000, guid: ea8487e5c9be47d45a962583dd3c172c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree50Mat
+    second: {fileID: 2100000, guid: 6c27b773ae226d940844dffc829294b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree51Mat
+    second: {fileID: 2100000, guid: 5ca5742c49acac44eaea876ee956b4f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree52Mat
+    second: {fileID: 2100000, guid: fe7f37d584a640942af391a005e30f28, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree53Mat
+    second: {fileID: 2100000, guid: 2fa298248d582d24c9f6f47aa61b2142, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree54Mat
+    second: {fileID: 2100000, guid: 6b2a5ef0559545e46ab9df692a60394b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree55Mat
+    second: {fileID: 2100000, guid: 354e8c9a20393354a98736f99d02efbf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree56Mat
+    second: {fileID: 2100000, guid: 42475d90ce0db834ca46f52a0ed30423, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree57Mat
+    second: {fileID: 2100000, guid: de5d3ce93d397a143a98004ef112bdc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree58Mat
+    second: {fileID: 2100000, guid: 18864939d0217144cb5b2b12e90ce5eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree59Mat
+    second: {fileID: 2100000, guid: 038dc8ff1acbf784a81c126799df6003, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree60Mat
+    second: {fileID: 2100000, guid: 244802df52e3ec349910c9a5c71f63a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree61Mat
+    second: {fileID: 2100000, guid: 221055d210e3ca74c9086ef5279c113c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree62Mat
+    second: {fileID: 2100000, guid: f59ac797a63fb5d4793450ff7ecf949b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree63Mat
+    second: {fileID: 2100000, guid: 0adfec4e4089040418fad4ca16aa9eae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree64Mat
+    second: {fileID: 2100000, guid: f96d2c10bcd43f64d9967fef7f220525, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree65Mat
+    second: {fileID: 2100000, guid: b5bb273a67aba0441a61c5e4c1fb83ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree66Mat
+    second: {fileID: 2100000, guid: 5415140706a6a1b42a1cb05e6b9d366e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree67Mat
+    second: {fileID: 2100000, guid: 077953deb3b0f3c47abcf1f9843eb1ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree68Mat
+    second: {fileID: 2100000, guid: 4434ea0c0f2a3bc4285f0d83ac86d80d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree69Mat
+    second: {fileID: 2100000, guid: 16be2a2d43beea640a06a94c7f9ade50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree70Mat
+    second: {fileID: 2100000, guid: 08542d07e896f6a43932bf9de8a8ce43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree71Mat
+    second: {fileID: 2100000, guid: 44df8e071452d7f4c869266f770a91b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree72Mat
+    second: {fileID: 2100000, guid: 166008fee2f2fe54193cc4e92fb2426e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree73Mat
+    second: {fileID: 2100000, guid: 8d80201ae6b24f94fb6c1217b7bfc39c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree74Mat
+    second: {fileID: 2100000, guid: 144adb6cc287f714f82e5ba0603ed852, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree75Mat
+    second: {fileID: 2100000, guid: 7d9c8d3e1df89ee48a84698376d83f1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree76Mat
+    second: {fileID: 2100000, guid: faff959ad3c39a349989bca522a3771a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree77Mat
+    second: {fileID: 2100000, guid: 4f4081d2e530a4a4dbb56669d6c1b4c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree78Mat
+    second: {fileID: 2100000, guid: 23e4a05b9dce93049b508621acd00d64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree79Mat
+    second: {fileID: 2100000, guid: 499f2414918f95f469d5ab924f0b9fb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree80Mat
+    second: {fileID: 2100000, guid: 494fd7473b38ef8438bab1a3bd9e4278, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree81Mat
+    second: {fileID: 2100000, guid: 98ca5d2b440b30b4eb327947203a18af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree82Mat
+    second: {fileID: 2100000, guid: 830b22354725f2141ba9021114f31e15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree83Mat
+    second: {fileID: 2100000, guid: 3c73bdd9a07039e41ab066588f280b0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree84Mat
+    second: {fileID: 2100000, guid: 9952b82afef3c5345b34e1c468828797, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree85Mat
+    second: {fileID: 2100000, guid: ea4bc54ce58a63f4582dbdf5613d842a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree86Mat
+    second: {fileID: 2100000, guid: 1e1a08d5fa6c19e4a8dd2064132cbc4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree87Mat
+    second: {fileID: 2100000, guid: 83b2d30019275c647ae8ad527376cb9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TroncoDer002Mat
+    second: {fileID: 2100000, guid: eef4abd3f881df640a41e6142b3a1994, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TroncoDerMat
+    second: {fileID: 2100000, guid: 072e30545c19cb9408cca5ca606b8e24, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
