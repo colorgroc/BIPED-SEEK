@@ -16,7 +16,7 @@ namespace UnityStandardAssets.ImageEffects
             float dist ,
             RenderTexture source, RenderTexture dest ,
             Material material ,
-            Camera cameraForProjectionMatrix )
+            Camera cameraForOrtographicMatrix )
         {
             // Make the destination texture the target for all rendering
             RenderTexture.active = dest;
@@ -26,11 +26,12 @@ namespace UnityStandardAssets.ImageEffects
             // Set up the simple Matrix
             GL.PushMatrix();
             GL.LoadIdentity();
-            GL.LoadProjectionMatrix(cameraForProjectionMatrix.projectionMatrix);
+            GL.LoadOrtho();
+            //GL.LoadProjectionMatrix(cameraForOrtographicMatrix.projectionMatrix);
 
-            float fovYHalfRad = cameraForProjectionMatrix.fieldOfView * 0.5f * Mathf.Deg2Rad;
+            float fovYHalfRad = cameraForOrtographicMatrix.fieldOfView * 0.5f * Mathf.Deg2Rad;//cameraForOrtographicMatrix.fieldOfView * 0.5f * Mathf.Deg2Rad;
             float cotangent = Mathf.Cos(fovYHalfRad) / Mathf.Sin(fovYHalfRad);
-            float asp = cameraForProjectionMatrix.aspect;
+            float asp = cameraForOrtographicMatrix.aspect;
 
             float x1 = asp/-cotangent;
             float x2 = asp/cotangent;

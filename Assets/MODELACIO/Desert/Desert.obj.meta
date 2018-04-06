@@ -12,6 +12,13 @@ ModelImporter:
     100008: GeoSphere004
     100010: GeoSphere005
     100012: GeoSphere006
+    100014: Cactus
+    100016: RocaCentral
+    100018: RocasDel1
+    100020: RocasDel2
+    100022: RocasDel3
+    100024: Suelo
+    100026: SueloJugable
     400000: Box005
     400002: //RootNode
     400004: GeoSphere002
@@ -19,30 +26,63 @@ ModelImporter:
     400008: GeoSphere004
     400010: GeoSphere005
     400012: GeoSphere006
+    400014: Cactus
+    400016: RocaCentral
+    400018: RocasDel1
+    400020: RocasDel2
+    400022: RocasDel3
+    400024: Suelo
+    400026: SueloJugable
     2300000: Box005
     2300002: GeoSphere002
     2300004: GeoSphere003
     2300006: GeoSphere004
     2300008: GeoSphere005
     2300010: GeoSphere006
+    2300012: Cactus
+    2300014: RocaCentral
+    2300016: RocasDel1
+    2300018: RocasDel2
+    2300020: RocasDel3
+    2300022: Suelo
+    2300024: SueloJugable
     3300000: Box005
     3300002: GeoSphere002
     3300004: GeoSphere003
     3300006: GeoSphere004
     3300008: GeoSphere005
     3300010: GeoSphere006
+    3300012: Cactus
+    3300014: RocaCentral
+    3300016: RocasDel1
+    3300018: RocasDel2
+    3300020: RocasDel3
+    3300022: Suelo
+    3300024: SueloJugable
     4300000: Box005
     4300002: GeoSphere002
     4300004: GeoSphere003
     4300006: GeoSphere004
     4300008: GeoSphere005
     4300010: GeoSphere006
+    4300012: Cactus
+    4300014: RocaCentral
+    4300016: RocasDel1
+    4300018: RocasDel2
+    4300020: RocasDel3
+    4300022: Suelo
+    4300024: SueloJugable
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Box005Mat
     second: {fileID: 2100000, guid: 486caa0bb193e034d8dd37d7211e540a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CactusMat
+    second: {fileID: 2100000, guid: 8fbee5a14a5d8e14b86bc8f5269be94b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -68,6 +108,36 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: GeoSphere006Mat
     second: {fileID: 2100000, guid: 245ee240df9d44f4a88efd866891ee1e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RocaCentralMat
+    second: {fileID: 2100000, guid: b466e5f94d212ea4ba85fd381c134dd0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RocasDel1Mat
+    second: {fileID: 2100000, guid: ec222cfececcb444b98c30c11412c1c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RocasDel2Mat
+    second: {fileID: 2100000, guid: 828c1714fae314548906f0c6b90061cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RocasDel3Mat
+    second: {fileID: 2100000, guid: 92cbd12f6f63ddc4a995eb3c75a01595, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SueloJugableMat
+    second: {fileID: 2100000, guid: 3f1f6be1ada9e2b47838b476d8163ee4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SueloMat
+    second: {fileID: 2100000, guid: 9e993c034774ed44b8ef0fd7157ed7db, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -110,6 +180,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
