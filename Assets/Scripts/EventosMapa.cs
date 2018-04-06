@@ -32,36 +32,39 @@ public class EventosMapa : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        if(ronda < Rondes.timesPlayed)
+        if (NewControl.startGame)
         {
-            ronda = Rondes.timesPlayed;
-          
-            nothing = false;
-        }
-        if (i < eventos.Count && ronda <= Rondes.rondas) {
-            if (nothing)
+            if (ronda < Rondes.timesPlayed)
             {
-                timeEvent2 += Time.deltaTime;
+                ronda = Rondes.timesPlayed;
 
-                if (timeEvent2 >= tempsNothing)
-                {
-                    canvas.GetComponent<Canvas>().enabled = false;
-                    nada = false;
-                    Default();
-
-                }
+                nothing = false;
             }
-            else
+            if (i < eventos.Count && ronda <= Rondes.rondas)
             {
-                timeEvent1 += Time.deltaTime;
-                if (timeEvent1 >= tempsEvent)
+                if (nothing)
                 {
-                    
-                    Eventos(i);
-                    if(!nada) canvas.GetComponent<Canvas>().enabled = true;
-                    i++;
-                   
+                    timeEvent2 += Time.deltaTime;
+
+                    if (timeEvent2 >= tempsNothing)
+                    {
+                        canvas.GetComponent<Canvas>().enabled = false;
+                        nada = false;
+                        Default();
+
+                    }
+                }
+                else
+                {
+                    timeEvent1 += Time.deltaTime;
+                    if (timeEvent1 >= tempsEvent)
+                    {
+
+                        Eventos(i);
+                        if (!nada) canvas.GetComponent<Canvas>().enabled = true;
+                        i++;
+
+                    }
                 }
             }
         }

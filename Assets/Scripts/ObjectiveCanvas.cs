@@ -36,7 +36,10 @@ public class ObjectiveCanvas : MonoBehaviour {
 
     void FixedUpdate ()
     {
-        timeObjective += Time.fixedDeltaTime;
-        if (timeObjective >= time) this.gameObject.SetActive(false);
+        if (NewControl.startGame)
+        {
+            timeObjective += Time.fixedDeltaTime;
+            if (timeObjective >= time) this.gameObject.SetActive(false);
+        }
     }
 }

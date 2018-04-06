@@ -98,14 +98,17 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		_navMeshAgent.SetDestination (targetVector);
 	}
 	void OnCollisionEnter(Collision collision){
-		if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards"))
-        {
-            SetDestination ();
-		}
-        if(this.gameObject.tag.Equals("Guard") && collision.gameObject.layer == 8)
-        {
-            SetDestination();
-        }
+       // if (NewControl.startGame)
+       // {
+            if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards"))
+            {
+                SetDestination();
+            }
+            if (this.gameObject.tag.Equals("Guard") && collision.gameObject.layer == 8)
+            {
+                SetDestination();
+            }
+      //  }
         if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
             this.anim.SetBool("wannaKill", true);
             collision.gameObject.SetActive (false);
@@ -125,6 +128,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+
         if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
         {
             this.anim.SetBool("wannaKill", true);

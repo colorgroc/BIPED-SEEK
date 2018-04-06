@@ -13,10 +13,12 @@ public class NewControl : MonoBehaviour
     public static bool objComplete;
     public static bool objKilledByGuard;
     public static float timeLeft;
+    public static bool startGame;
     private float timeStartLeft;
     public static GameObject objective;
 	public static GameObject parcialWinner;
 	public static GameObject finalWinner;
+
     
     //public List<GameObject> finalWinners = new List<GameObject>();
     [SerializeField]
@@ -36,7 +38,7 @@ public class NewControl : MonoBehaviour
     [SerializeField]
     private Sprite SpriteTipo_1, SpriteTipo_2, SpriteTipo_3, SpriteTipo_4;
     [SerializeField]
-    private Text textTiempo;
+    private Text textTiempo, countDown;
     private int fin;
     [SerializeField]
     private int numGuardsPerType = 10, numRondesPerJugador = 2, time = 90;//maxMinutes = 3, minMinutes = 1;
@@ -46,18 +48,20 @@ public class NewControl : MonoBehaviour
     private List<int> listPosGuards;
     [SerializeField]
     private List<GameObject> scorePlayers;
-   // [Serializable]
+    private float timeBack = 4;
+    private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
+    // [Serializable]
 
     // Use this for initialization
     public void Awake()
     {
+        startGame = false;
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
         fin = UnityEngine.Random.Range(0, 2);
         listPos = new List<int>();
         listPlayers = new List<GameObject>();
         players = new List<GameObject>();
         scorePlayers = new List<GameObject>();
-
         //creacion jugadores
         PlayersAndGuardsCreation();
         //lista adicional para establecer las rondas de cada jugador
@@ -72,9 +76,26 @@ public class NewControl : MonoBehaviour
             passades++;
         }
 
-
+        countDown.gameObject.SetActive(true);
+        //foreach (GameObject player in players)
+        //{
+        //    player.SetActive(false);
+        //    //player.GetComponent<PlayerControl>().enabled = false;
+        //}
+        //foreach (GameObject guard in guards)
+        //{
+        //    guard.SetActive(false);
+        //    //guard.GetComponent<NPCConnectedPatrol>().enabled = false;
+        //    //guard.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        //}
     }
-    private void Start()
+    void Start()
+    {
+        //StartCoroutine(Countdown(3));
+        Time.timeScale = 0;
+        StartGame();
+    }
+    private void StartGame()
     {
 
         VariablesOnDefault();
@@ -90,45 +111,82 @@ public class NewControl : MonoBehaviour
         
         timeLeft = time;//UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
         textTiempo.text = GetMinutes(timeLeft);
+        
     }
-
+    //private void FixedUpdate()
+    //{
+    //    if (!startGame)
+    //    {
+    //        timeBack -= Time.fixedUnscaledDeltaTime;
+    //        Debug.Log(timeBack);
+    //        contrarreloj.text = ((int)timeBack).ToString();
+    //        if (timeBack <= 0)
+    //        {
+    //            contrarreloj.gameObject.SetActive(false);
+    //            Time.timeScale = 1;
+    //            startGame = true;
+    //        }
+    //    }
+    //}
     // Update is called once per frame
     void Update()
     {
-        if(!finalWinnerCanvas.activeInHierarchy)
-            Pausa();
-
-        timeLeft -= Time.deltaTime;
-        textTiempo.text = GetMinutes(timeLeft);
-
-		//asignar puntos ganador parcial
-		if (objComplete && parcialWinner != null) 
+        if (!startGame)
         {
-			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
-			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
-            Start();
+            timeBack -= Time.fixedUnscaledDeltaTime;
+            Debug.Log(timeBack);
+            if ((int)timeBack == 0)
+            {
+                countDown.color = gold_Color;
+                countDown.text = "GO!";
+            }
+            else
+                countDown.text = ((int)timeBack).ToString();
+            if (timeBack <= 0)
+            {
+                countDown.gameObject.SetActive(false);
+                Time.timeScale = 1;
+                startGame = true;
+            }
+        }
+        else
+        {
+            //if (startGame) { 
+            if(!finalWinnerCanvas.activeInHierarchy)
+                Pausa();
+
+            timeLeft -= Time.deltaTime;
+            textTiempo.text = GetMinutes(timeLeft);
+
+		    //asignar puntos ganador parcial
+		    if (objComplete && parcialWinner != null) 
+            {
+			    parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
+			    parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
+                StartGame();
            
-        }
-        if (timeLeft <= 0 && !objComplete)
-        {
-			parcialWinner = objective;
-			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
-			parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
-            Rondes.timesPlayed++;
-            Start();
+            }
+            if (timeLeft <= 0 && !objComplete)
+            {
+			    parcialWinner = objective;
+			    parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
+			    parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
+                Rondes.timesPlayed++;
+                StartGame();
             
-        }
-        if (objKilledByGuard)
-        {
-            Rondes.timesPlayed++;
-            Start();
+            }
+            if (objKilledByGuard)
+            {
+                Rondes.timesPlayed++;
+                StartGame();
 
-        }
+            }
 
-        if (Rondes.timesPlayed == Rondes.rondas)
-        {
-            Winner();
-            finalWinnerCanvas.SetActive(true);
+            if (Rondes.timesPlayed == Rondes.rondas)
+            {
+                Winner();
+                finalWinnerCanvas.SetActive(true);
+            }
         }
     }
     private void VariablesOnDefault()
@@ -325,5 +383,36 @@ public class NewControl : MonoBehaviour
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(timeLeft);
         return string.Format("{0:0}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
+    }
+   
+    IEnumerator Countdown(int seconds)
+    {
+        int count = seconds;
+        
+        while (count > 0)
+        {
+            countDown.text = count.ToString();
+            // display something...
+            yield return new WaitForSeconds(1);
+            count--;
+        }
+
+        // count down is finished...
+        countDown.gameObject.SetActive(false);
+        startGame = true;
+        
+        foreach(GameObject player in players)
+        {
+            player.SetActive(true);
+            //player.GetComponent<PlayerControl>().enabled = true;
+        }
+        foreach (GameObject guard in guards)
+        {
+            guard.SetActive(true);
+            //guard.GetComponent<NPCConnectedPatrol>().enabled = true;
+            //guard.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+        }
+        
+        StartGame();
     }
 }
