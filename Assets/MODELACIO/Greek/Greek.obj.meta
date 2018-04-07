@@ -1,0 +1,687 @@
+fileFormatVersion: 2
+guid: eb971fcecea00154a827459f6acbd195
+timeCreated: 1523020240
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Columns
+    100002: //RootNode
+    100004: Obstacle
+    100006: Suelo
+    100008: Suelo2
+    100010: SueloJugable
+    100012: Object002
+    100014: Object003
+    100016: Object004
+    100018: Object005
+    100020: Object006
+    100022: Object007
+    100024: Object008
+    100026: Object009
+    100028: Object010
+    100030: Object011
+    100032: Object012
+    100034: Object013
+    100036: Object014
+    100038: Object015
+    100040: Object016
+    100042: Object017
+    100044: Object018
+    100046: Object019
+    100048: Object020
+    100050: Object021
+    100052: Object022
+    100054: Object023
+    100056: Object024
+    100058: Columns02
+    100060: Columns03
+    100062: Columns04
+    100064: Columns05
+    100066: Columns06
+    100068: Columns07
+    100070: Columns08
+    100072: Columns09
+    100074: Columns10
+    100076: Columns11
+    100078: Columns12
+    100080: Columns13
+    100082: Columns14
+    100084: Columns15
+    100086: Columns16
+    100088: Columns17
+    100090: Columns18
+    100092: Columns19
+    100094: Columns20
+    100096: Columns21
+    100098: Obstacle2
+    100100: Obstacle4
+    100102: Obstcle3
+    100104: Columna1
+    100106: Columna2
+    100108: Columna3
+    100110: Columna4
+    100112: Columna5
+    100114: Columna6
+    100116: ColumnaEntera
+    100118: ColumnaObstacle
+    100120: ColumnaPeque
+    400000: Columns
+    400002: //RootNode
+    400004: Obstacle
+    400006: Suelo
+    400008: Suelo2
+    400010: SueloJugable
+    400012: Object002
+    400014: Object003
+    400016: Object004
+    400018: Object005
+    400020: Object006
+    400022: Object007
+    400024: Object008
+    400026: Object009
+    400028: Object010
+    400030: Object011
+    400032: Object012
+    400034: Object013
+    400036: Object014
+    400038: Object015
+    400040: Object016
+    400042: Object017
+    400044: Object018
+    400046: Object019
+    400048: Object020
+    400050: Object021
+    400052: Object022
+    400054: Object023
+    400056: Object024
+    400058: Columns02
+    400060: Columns03
+    400062: Columns04
+    400064: Columns05
+    400066: Columns06
+    400068: Columns07
+    400070: Columns08
+    400072: Columns09
+    400074: Columns10
+    400076: Columns11
+    400078: Columns12
+    400080: Columns13
+    400082: Columns14
+    400084: Columns15
+    400086: Columns16
+    400088: Columns17
+    400090: Columns18
+    400092: Columns19
+    400094: Columns20
+    400096: Columns21
+    400098: Obstacle2
+    400100: Obstacle4
+    400102: Obstcle3
+    400104: Columna1
+    400106: Columna2
+    400108: Columna3
+    400110: Columna4
+    400112: Columna5
+    400114: Columna6
+    400116: ColumnaEntera
+    400118: ColumnaObstacle
+    400120: ColumnaPeque
+    2300000: Columns
+    2300002: Obstacle
+    2300004: Suelo
+    2300006: Suelo2
+    2300008: SueloJugable
+    2300010: Object002
+    2300012: Object003
+    2300014: Object004
+    2300016: Object005
+    2300018: Object006
+    2300020: Object007
+    2300022: Object008
+    2300024: Object009
+    2300026: Object010
+    2300028: Object011
+    2300030: Object012
+    2300032: Object013
+    2300034: Object014
+    2300036: Object015
+    2300038: Object016
+    2300040: Object017
+    2300042: Object018
+    2300044: Object019
+    2300046: Object020
+    2300048: Object021
+    2300050: Object022
+    2300052: Object023
+    2300054: Object024
+    2300056: Columns02
+    2300058: Columns03
+    2300060: Columns04
+    2300062: Columns05
+    2300064: Columns06
+    2300066: Columns07
+    2300068: Columns08
+    2300070: Columns09
+    2300072: Columns10
+    2300074: Columns11
+    2300076: Columns12
+    2300078: Columns13
+    2300080: Columns14
+    2300082: Columns15
+    2300084: Columns16
+    2300086: Columns17
+    2300088: Columns18
+    2300090: Columns19
+    2300092: Columns20
+    2300094: Columns21
+    2300096: Obstacle2
+    2300098: Obstacle4
+    2300100: Obstcle3
+    2300102: Columna1
+    2300104: Columna2
+    2300106: Columna3
+    2300108: Columna4
+    2300110: Columna5
+    2300112: Columna6
+    2300114: ColumnaEntera
+    2300116: ColumnaObstacle
+    2300118: ColumnaPeque
+    3300000: Columns
+    3300002: Obstacle
+    3300004: Suelo
+    3300006: Suelo2
+    3300008: SueloJugable
+    3300010: Object002
+    3300012: Object003
+    3300014: Object004
+    3300016: Object005
+    3300018: Object006
+    3300020: Object007
+    3300022: Object008
+    3300024: Object009
+    3300026: Object010
+    3300028: Object011
+    3300030: Object012
+    3300032: Object013
+    3300034: Object014
+    3300036: Object015
+    3300038: Object016
+    3300040: Object017
+    3300042: Object018
+    3300044: Object019
+    3300046: Object020
+    3300048: Object021
+    3300050: Object022
+    3300052: Object023
+    3300054: Object024
+    3300056: Columns02
+    3300058: Columns03
+    3300060: Columns04
+    3300062: Columns05
+    3300064: Columns06
+    3300066: Columns07
+    3300068: Columns08
+    3300070: Columns09
+    3300072: Columns10
+    3300074: Columns11
+    3300076: Columns12
+    3300078: Columns13
+    3300080: Columns14
+    3300082: Columns15
+    3300084: Columns16
+    3300086: Columns17
+    3300088: Columns18
+    3300090: Columns19
+    3300092: Columns20
+    3300094: Columns21
+    3300096: Obstacle2
+    3300098: Obstacle4
+    3300100: Obstcle3
+    3300102: Columna1
+    3300104: Columna2
+    3300106: Columna3
+    3300108: Columna4
+    3300110: Columna5
+    3300112: Columna6
+    3300114: ColumnaEntera
+    3300116: ColumnaObstacle
+    3300118: ColumnaPeque
+    4300000: Columns
+    4300002: Obstacle
+    4300004: Suelo
+    4300006: Suelo2
+    4300008: SueloJugable
+    4300010: Object002
+    4300012: Object003
+    4300014: Object004
+    4300016: Object005
+    4300018: Object006
+    4300020: Object007
+    4300022: Object008
+    4300024: Object009
+    4300026: Object010
+    4300028: Object011
+    4300030: Object012
+    4300032: Object013
+    4300034: Object014
+    4300036: Object015
+    4300038: Object016
+    4300040: Object017
+    4300042: Object018
+    4300044: Object019
+    4300046: Object020
+    4300048: Object021
+    4300050: Object022
+    4300052: Object023
+    4300054: Object024
+    4300056: Columns02
+    4300058: Columns03
+    4300060: Columns04
+    4300062: Columns05
+    4300064: Columns06
+    4300066: Columns07
+    4300068: Columns08
+    4300070: Columns09
+    4300072: Columns10
+    4300074: Columns11
+    4300076: Columns12
+    4300078: Columns13
+    4300080: Columns14
+    4300082: Columns15
+    4300084: Columns16
+    4300086: Columns17
+    4300088: Columns18
+    4300090: Columns19
+    4300092: Columns20
+    4300094: Columns21
+    4300096: Obstacle2
+    4300098: Obstacle4
+    4300100: Obstcle3
+    4300102: Columna1
+    4300104: Columna2
+    4300106: Columna3
+    4300108: Columna4
+    4300110: Columna5
+    4300112: Columna6
+    4300114: ColumnaEntera
+    4300116: ColumnaObstacle
+    4300118: ColumnaPeque
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna1Mat
+    second: {fileID: 2100000, guid: e541c2a269e3e0e4b8ede830abd5a02b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna2Mat
+    second: {fileID: 2100000, guid: 74bb64272f90cbe4d8f4dacb0f68f96e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna3Mat
+    second: {fileID: 2100000, guid: e211a8495f441554abe00be7ed2cf983, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna4Mat
+    second: {fileID: 2100000, guid: 77f69c18818493c47aa97e9b3a363513, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna5Mat
+    second: {fileID: 2100000, guid: 6415e53dc2227d44ba1030956def03e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna6Mat
+    second: {fileID: 2100000, guid: 8213bd4aa2a0cc74ebcf794175e34ee0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColumnaEnteraMat
+    second: {fileID: 2100000, guid: c2a3c05234861054da381a05c1e4c08a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColumnaObstacleMat
+    second: {fileID: 2100000, guid: f40234738d8a1094dba2c038abff23ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColumnaPequeMat
+    second: {fileID: 2100000, guid: 529e7907397d6b049a51e8aa03437b73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns02Mat
+    second: {fileID: 2100000, guid: 44ba4d1e35b20ee4aa879e05e59bb10e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns03Mat
+    second: {fileID: 2100000, guid: ba0ed8bca624b0b468b9b7d37b134d42, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns04Mat
+    second: {fileID: 2100000, guid: 3d644a1e378643845b79b21e4d9fc5ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns05Mat
+    second: {fileID: 2100000, guid: 3fb20d2867a87334b9a22014ba1d40e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns06Mat
+    second: {fileID: 2100000, guid: a0a72aa4fb78fd84b9510ab0394c56d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns07Mat
+    second: {fileID: 2100000, guid: a325fdf242864d14e86d2d472561f224, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns08Mat
+    second: {fileID: 2100000, guid: 0539a3378e75d8c4ba886de0be976289, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns09Mat
+    second: {fileID: 2100000, guid: 5f33dbfcd26fffc418f7428968628b66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns10Mat
+    second: {fileID: 2100000, guid: 7a98ff63484ea2e4e912a25f78f3dbed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns11Mat
+    second: {fileID: 2100000, guid: f2b2ff4f264ef8748b464598aa016cdd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns12Mat
+    second: {fileID: 2100000, guid: ecb102a64382f824489edc3c0c0ed2aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns13Mat
+    second: {fileID: 2100000, guid: 8c8a775b1580b78428ecd58b905af3db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns14Mat
+    second: {fileID: 2100000, guid: 6ca7f2d092cbd8a49be6f4e0a471c101, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns15Mat
+    second: {fileID: 2100000, guid: 452c3bad4c01bd74c941fe2fb4df2998, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns16Mat
+    second: {fileID: 2100000, guid: d3c1705075c716b4bab2f979fcf63404, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns17Mat
+    second: {fileID: 2100000, guid: 7c43e571a359bfe47bc7ad0893c2eb47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns18Mat
+    second: {fileID: 2100000, guid: aaf2ead6dd3bf96489629c8809d3cd9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns19Mat
+    second: {fileID: 2100000, guid: b8b20737b2959134eb9d810980d159f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns20Mat
+    second: {fileID: 2100000, guid: 9717e869a39fb3e469ca74190376e9e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columns21Mat
+    second: {fileID: 2100000, guid: 6f5632cb2dfec88438f9c46d7d17e722, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColumnsMat
+    second: {fileID: 2100000, guid: 77ba1574c6bbc044b9c311c2b05ba6c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object002Mat
+    second: {fileID: 2100000, guid: f0682c75a32bab0449d69177dd490b50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object003Mat
+    second: {fileID: 2100000, guid: 40f4fece436bbd04e95f3b5667fd6cb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object004Mat
+    second: {fileID: 2100000, guid: 79d804075fde1014cb4c4bb39b1f8525, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object005Mat
+    second: {fileID: 2100000, guid: bbd5d048b7599374694420bd019b6df6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object006Mat
+    second: {fileID: 2100000, guid: 4e3fa768f07422e4f9be565af31121a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object007Mat
+    second: {fileID: 2100000, guid: f52b0a7448c1fca4fa10e74a7681a681, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object008Mat
+    second: {fileID: 2100000, guid: ef235ccf30f288b4aad163346f3b56f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object009Mat
+    second: {fileID: 2100000, guid: e6f06b14aae41494fb23405fa17bce51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object010Mat
+    second: {fileID: 2100000, guid: b3a07d3c969874046a74dc4140c84d19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object011Mat
+    second: {fileID: 2100000, guid: cf9671807d6c50b47940b48818d0c5e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object012Mat
+    second: {fileID: 2100000, guid: 151a82bfcfd09a34ab78b5bf0f88e23d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object013Mat
+    second: {fileID: 2100000, guid: 7658085e307410f4ab7aefefb689421f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object014Mat
+    second: {fileID: 2100000, guid: c726f2978f6b6b24f8b3815b4fef399a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object015Mat
+    second: {fileID: 2100000, guid: f514f22aba5c0ef4f8d72886234f4e4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object016Mat
+    second: {fileID: 2100000, guid: 5a30f917233712b4594957082f553a8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object017Mat
+    second: {fileID: 2100000, guid: 8c7702597b492954287dd4fd2d08b7d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object018Mat
+    second: {fileID: 2100000, guid: b661fea2cdc678e46aded538284df889, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object019Mat
+    second: {fileID: 2100000, guid: 52dcb45fd2c718e4699c138c5abfb076, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object020Mat
+    second: {fileID: 2100000, guid: 3d43eeb0f8df01f49bb9c7aa2d269ff4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object021Mat
+    second: {fileID: 2100000, guid: 5ef3825c93378144b8395934607cc7d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object022Mat
+    second: {fileID: 2100000, guid: d54eea882b8b8b84a99b00c82ad44170, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object023Mat
+    second: {fileID: 2100000, guid: 07f9419b12ea9e5459a1f0622e1a0cfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object024Mat
+    second: {fileID: 2100000, guid: a6ac5dc11d274454b9fb832568e2e1ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Obstacle2Mat
+    second: {fileID: 2100000, guid: 32fa31296edd4b24f9242ac5f5565670, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Obstacle4Mat
+    second: {fileID: 2100000, guid: bebdcfee5e7864b448272b33bcb303f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ObstacleMat
+    second: {fileID: 2100000, guid: 877ef7e50128e5e4f96714e490cf20c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Obstcle3Mat
+    second: {fileID: 2100000, guid: 9d56d0d0937e51b4d81f776b1ca46cbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Suelo2Mat
+    second: {fileID: 2100000, guid: c953bd554e9587a4eb4bd81fae411af4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SueloJugableMat
+    second: {fileID: 2100000, guid: 06eb83890cf798e45a37928e0f89eb40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SueloMat
+    second: {fileID: 2100000, guid: 300d79f5e4295714085a4002dc425c9a, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
