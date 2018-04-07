@@ -66,6 +66,25 @@ ModelImporter:
     100116: ColumnaEntera
     100118: ColumnaObstacle
     100120: ColumnaPeque
+    100122: Columna1_01
+    100124: Columna1_02
+    100126: Columna1_03
+    100128: Columna1_04
+    100130: Columna2_01
+    100132: Columna2_02
+    100134: Columna2_03
+    100136: Columna2_04
+    100138: Columna3_01
+    100140: Columna3_02
+    100142: Columna4_01
+    100144: Columna4_02
+    100146: Columna6_01
+    100148: Columna6_02
+    100150: ColumnaEntera01
+    100152: ColumnaEntera02
+    100154: ColumnaEntera03
+    100156: ColumnaEntera04
+    100158: ColumnaEntera05
     400000: Columns
     400002: //RootNode
     400004: Obstacle
@@ -127,6 +146,25 @@ ModelImporter:
     400116: ColumnaEntera
     400118: ColumnaObstacle
     400120: ColumnaPeque
+    400122: Columna1_01
+    400124: Columna1_02
+    400126: Columna1_03
+    400128: Columna1_04
+    400130: Columna2_01
+    400132: Columna2_02
+    400134: Columna2_03
+    400136: Columna2_04
+    400138: Columna3_01
+    400140: Columna3_02
+    400142: Columna4_01
+    400144: Columna4_02
+    400146: Columna6_01
+    400148: Columna6_02
+    400150: ColumnaEntera01
+    400152: ColumnaEntera02
+    400154: ColumnaEntera03
+    400156: ColumnaEntera04
+    400158: ColumnaEntera05
     2300000: Columns
     2300002: Obstacle
     2300004: Suelo
@@ -187,6 +225,25 @@ ModelImporter:
     2300114: ColumnaEntera
     2300116: ColumnaObstacle
     2300118: ColumnaPeque
+    2300120: Columna1_01
+    2300122: Columna1_02
+    2300124: Columna1_03
+    2300126: Columna1_04
+    2300128: Columna2_01
+    2300130: Columna2_02
+    2300132: Columna2_03
+    2300134: Columna2_04
+    2300136: Columna3_01
+    2300138: Columna3_02
+    2300140: Columna4_01
+    2300142: Columna4_02
+    2300144: Columna6_01
+    2300146: Columna6_02
+    2300148: ColumnaEntera01
+    2300150: ColumnaEntera02
+    2300152: ColumnaEntera03
+    2300154: ColumnaEntera04
+    2300156: ColumnaEntera05
     3300000: Columns
     3300002: Obstacle
     3300004: Suelo
@@ -247,6 +304,25 @@ ModelImporter:
     3300114: ColumnaEntera
     3300116: ColumnaObstacle
     3300118: ColumnaPeque
+    3300120: Columna1_01
+    3300122: Columna1_02
+    3300124: Columna1_03
+    3300126: Columna1_04
+    3300128: Columna2_01
+    3300130: Columna2_02
+    3300132: Columna2_03
+    3300134: Columna2_04
+    3300136: Columna3_01
+    3300138: Columna3_02
+    3300140: Columna4_01
+    3300142: Columna4_02
+    3300144: Columna6_01
+    3300146: Columna6_02
+    3300148: ColumnaEntera01
+    3300150: ColumnaEntera02
+    3300152: ColumnaEntera03
+    3300154: ColumnaEntera04
+    3300156: ColumnaEntera05
     4300000: Columns
     4300002: Obstacle
     4300004: Suelo
@@ -307,6 +383,25 @@ ModelImporter:
     4300114: ColumnaEntera
     4300116: ColumnaObstacle
     4300118: ColumnaPeque
+    4300120: Columna1_01
+    4300122: Columna1_02
+    4300124: Columna1_03
+    4300126: Columna1_04
+    4300128: Columna2_01
+    4300130: Columna2_02
+    4300132: Columna2_03
+    4300134: Columna2_04
+    4300136: Columna3_01
+    4300138: Columna3_02
+    4300140: Columna4_01
+    4300142: Columna4_02
+    4300144: Columna6_01
+    4300146: Columna6_02
+    4300148: ColumnaEntera01
+    4300150: ColumnaEntera02
+    4300152: ColumnaEntera03
+    4300154: ColumnaEntera04
+    4300156: ColumnaEntera05
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -316,8 +411,48 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Columna1_01Mat
+    second: {fileID: 2100000, guid: 126ea7369fdce334c895a0370d8a1d10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna1_02Mat
+    second: {fileID: 2100000, guid: 4b4686656e23e5b4bbec6bf5f28482fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna1_03Mat
+    second: {fileID: 2100000, guid: 89c4469dc3b91244aab90a4853992ec4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna1_04Mat
+    second: {fileID: 2100000, guid: 90d38aa5d3b60b343aa1a478ac79f4c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Columna2Mat
     second: {fileID: 2100000, guid: 74bb64272f90cbe4d8f4dacb0f68f96e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna2_01Mat
+    second: {fileID: 2100000, guid: a9a909ca18fecc3468a9be923d49eaf4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna2_02Mat
+    second: {fileID: 2100000, guid: 9dbcfd0592ce78f4b91d10ad9f8ee191, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna2_03Mat
+    second: {fileID: 2100000, guid: 179d9fcc2efa3ff4598d1646cea06684, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna2_04Mat
+    second: {fileID: 2100000, guid: 9ddc11250a8f66c439b8338e3538173b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -326,8 +461,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Columna3_01Mat
+    second: {fileID: 2100000, guid: b77f8e56ff2d2304aa2f70cb66809a84, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna3_02Mat
+    second: {fileID: 2100000, guid: 0b5b393dcd9970b4d96d9522bc7d194f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Columna4Mat
     second: {fileID: 2100000, guid: 77f69c18818493c47aa97e9b3a363513, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna4_01Mat
+    second: {fileID: 2100000, guid: 08dbb3bbd0ed93d4389df263c5419520, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna4_02Mat
+    second: {fileID: 2100000, guid: 5740b2379c0197447bdd9d85348767fc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -338,6 +493,41 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Columna6Mat
     second: {fileID: 2100000, guid: 8213bd4aa2a0cc74ebcf794175e34ee0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna6_01Mat
+    second: {fileID: 2100000, guid: d8327b810c8f1004dbb61f02a0fd1c3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Columna6_02Mat
+    second: {fileID: 2100000, guid: c0ae01256ead78c44ba85e00967e5553, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColumnaEntera01Mat
+    second: {fileID: 2100000, guid: 80d4b1857648e0b4c99e0b242e83ef77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColumnaEntera02Mat
+    second: {fileID: 2100000, guid: ff4c30faa2ed4954086e44ebb322ae50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColumnaEntera03Mat
+    second: {fileID: 2100000, guid: cb36d85bdcdce89479444762b4301f98, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColumnaEntera04Mat
+    second: {fileID: 2100000, guid: c2aec00aa9b9f114ab7b9caaecedf52a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColumnaEntera05Mat
+    second: {fileID: 2100000, guid: 60c042c056010a042be71e7512bbd042, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
