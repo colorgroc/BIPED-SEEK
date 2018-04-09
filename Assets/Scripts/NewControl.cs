@@ -134,7 +134,7 @@ public class NewControl : MonoBehaviour
         if (!startGame)
         {
             timeBack -= Time.fixedUnscaledDeltaTime;
-            Debug.Log(timeBack);
+           // Debug.Log(timeBack);
             if ((int)timeBack == 0)
             {
                 countDown.color = gold_Color;
@@ -221,6 +221,9 @@ public class NewControl : MonoBehaviour
             player.gameObject.name = "Player " + i.ToString();
             player.gameObject.tag = "Player " + i.ToString();
             player.gameObject.layer = 8;
+            AddScript(player);
+            //player.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
+            
 
             if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 1)
             {
@@ -247,26 +250,31 @@ public class NewControl : MonoBehaviour
                 player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
 
-            player.gameObject.layer = 8;
             
             //creacion de guards x jugador 
             for (int y = 0; y < numGuardsPerType; y++)
             {
                     
                 int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-                if (listPosGuards.Contains(random))
+                if (listPosGuards.Contains(rand))
                 {
                     do { random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); } while (listPosGuards.Contains(random));
                 }
-                listPosGuards.Add(random);
-                GameObject prefabG = (GameObject)Resources.Load("Prefabs/Guard_Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
-                GameObject guard = (GameObject)Instantiate(prefabG, allMyRespawnPoints[rand].transform.position, allMyRespawnPoints[rand].transform.rotation);
+                listPosGuards.Add(rand);
+                //GameObject prefabG = (GameObject)Resources.Load("Prefabs/Guard_Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
+                GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
+                Vector3 posG = new Vector3(allMyRespawnPoints[rand].transform.position.x, 10.14516f, allMyRespawnPoints[rand].transform.position.z);
+                GameObject guard = (GameObject)Instantiate(prefabG, posG, allMyRespawnPoints[rand].transform.rotation);
                 guard.transform.parent = GameObject.Find("Guards").transform;
-                guard.gameObject.name = "Guard_Tipo_" + i.ToString();
+                guard.gameObject.name = "Guard_Tipo " + i.ToString();
                 guard.gameObject.tag = "Guard";
                 guard.gameObject.layer = 9;
                 guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material;
+                AddScript(guard);
+                //guard.gameObject.AddComponent<NPCConnectedPatrol>();
                 
+
+                //guard.gameObject.GetComponent<PlayerControl>().enabled = false;
             }
         }
 
@@ -278,6 +286,21 @@ public class NewControl : MonoBehaviour
         }
 
         guards = GameObject.FindGameObjectsWithTag("Guard");
+    }
+    public static void AddScript(GameObject tipo)
+    {
+        if (tipo.CompareTag("Guard"))
+        {
+            tipo.gameObject.GetComponent<PlayerControl>().enabled = false;
+            tipo.gameObject.GetComponent<FieldOfView>().enabled = false;
+            tipo.gameObject.GetComponent<NPCConnectedPatrol>().enabled = true;
+        }
+        else
+        {
+            tipo.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
+            tipo.gameObject.GetComponent<PlayerControl>().enabled = true;
+            tipo.gameObject.GetComponent<FieldOfView>().enabled = true;
+        }
     }
     private void Winner()
     {

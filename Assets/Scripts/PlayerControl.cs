@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class PlayerControl : MonoBehaviour {
 
     [SerializeField]
-    private float speed, speedRotation;
+    private float speed = 20, speedRotation = 140;
     [SerializeField]
     public static float defaultSpeed = 20;
     [HideInInspector]

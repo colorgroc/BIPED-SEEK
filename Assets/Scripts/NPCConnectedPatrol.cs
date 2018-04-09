@@ -39,7 +39,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         this.anim = this.gameObject.GetComponent<Animator>();
         if (_navMeshAgent == null) Debug.LogError ("The nav mesh agent component is not attached to " + gameObject.name);
 		else {
-			if (_currentWaypoint == null) {
+			if (this.gameObject.tag.Equals("Guard") && _currentWaypoint == null) {
 				allWaypoints = GameObject.FindGameObjectsWithTag ("Waypoint");
 
 				if (allWaypoints.Length > 0) {
@@ -52,6 +52,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 				} else Debug.LogError ("Failed to find any waypoints for use in the scene");		
 			}
 		}
+        //_patrolWaiting = true;
 		SetDestination ();
 	}
 	
@@ -60,7 +61,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         this.anim.SetBool("isWalkingForward", _travelling);
         _navMeshAgent.acceleration = PlayerPrefs.GetFloat("Speed");
         _navMeshAgent.speed = PlayerPrefs.GetFloat("Speed");
-        if (_navMeshAgent.speed > PlayerControl.defaultSpeed) _navMeshAgent.stoppingDistance = 2;
+        if (_navMeshAgent.speed > PlayerControl.defaultSpeed) _navMeshAgent.stoppingDistance = 2; else _navMeshAgent.stoppingDistance = 0;
         if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
 			_travelling = false;
 			_waypointsVisited++;
@@ -78,7 +79,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 				SetDestination ();
 			}
 		}
-		if (playerOnFieldView) {
+		if (this.gameObject.tag.Equals("Killer Guards") && playerOnFieldView) {
 			ChacePlayer (playerTarget.transform.position);
 		}
 	}
@@ -88,10 +89,14 @@ public class NPCConnectedPatrol : MonoBehaviour {
 			ConnectedWaypoint nextWaypoint = _currentWaypoint.NextWaypoint (_previousWaypoint);
 			_previousWaypoint = _currentWaypoint;
 			_currentWaypoint = nextWaypoint;
-		} 
-		Vector3 targetVector = _currentWaypoint.transform.position;
-		_navMeshAgent.SetDestination (targetVector);
-		_travelling = true;
+		}
+        Vector3 targetVector = new Vector3();
+        if (_currentWaypoint != null)
+        {
+            targetVector = _currentWaypoint.transform.position;
+            _navMeshAgent.SetDestination(targetVector);
+            _travelling = true;
+        }
 	}
 
 	public void ChacePlayer(Vector3 targetVector){
