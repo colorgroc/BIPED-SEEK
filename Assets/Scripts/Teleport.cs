@@ -14,7 +14,7 @@ public class Teleport : MonoBehaviour {
         cooldown = 0;
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frames
 	void Update () {
         //NewContol.guards;
         if (hab)
@@ -28,11 +28,16 @@ public class Teleport : MonoBehaviour {
         }
         if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !hab)
         {
-            int random = Random.Range(0, NewControl.guards.Length);
-            Vector3 newGuardPos = this.gameObject.transform.position;
-            this.gameObject.transform.position = NewControl.guards[random].transform.position;
-            NewControl.guards[random].transform.position = newGuardPos;
+            TeleportHability();
             hab = true;   
         }
 	}
+
+    void TeleportHability()
+    {
+        int random = Random.Range(0, NewControl.guards.Length);
+        Vector3 newGuardPos = this.gameObject.transform.position;
+        this.gameObject.transform.position = NewControl.guards[random].transform.position;
+        NewControl.guards[random].transform.position = newGuardPos;
+    }
 }

@@ -75,7 +75,7 @@ public class Menu : MonoBehaviour {
     }
 
     void Update () {
-        if (Input.GetButtonDown("Back") && !inMenu) BackToMenu();
+        if ((Input.GetButtonDown("Back") || Input.GetKeyDown(KeyCode.Escape)) && !inMenu) BackToMenu();
         
 	}
 

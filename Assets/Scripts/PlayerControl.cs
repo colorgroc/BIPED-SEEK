@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     public static float defaultSpeed = 20;
     [HideInInspector]
-    public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, submitButton, pauseButton, cancelButton, habSpecialButton;
+    public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, hab3Button, hab4Button, hab5Button;
 
     private float distToGround, count, timeCoolDown, timeFeedback;
     private int coolDown;
@@ -39,7 +39,6 @@ public class PlayerControl : MonoBehaviour {
     {
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
-        this.gameObject.GetComponent<Light>().enabled = false;
         this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
         this.feedbacks = new List<GameObject>();
         PlayerPrefs.SetFloat("Speed", defaultSpeed);

@@ -302,6 +302,23 @@ public class NewControl : MonoBehaviour
             tipo.gameObject.GetComponent<FieldOfView>().enabled = true;
         }
     }
+
+    /*public static void ConvertType(GameObject gO, string type)
+    {
+        if (type.Equals("Guard"))
+        {
+            gO.gameObject.GetComponent<PlayerControl>().enabled = false;
+            gO.gameObject.GetComponent<FieldOfView>().enabled = false;
+            gO.gameObject.GetComponent<NPCConnectedPatrol>().enabled = true;
+        }
+        else
+        {
+            gO.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
+            gO.gameObject.GetComponent<PlayerControl>().enabled = true;
+            gO.gameObject.GetComponent<FieldOfView>().enabled = true;
+        }
+    }*/
+
     private void Winner()
     {
         players.Sort(SortByScore);

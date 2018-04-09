@@ -23,7 +23,7 @@ public class Sprint : MonoBehaviour {
         if (used)
         {
             cooldown += Time.deltaTime;
-            if (cooldown >= timeAbility)
+            if (cooldown >= coolDown)
             {
                 used = false;
                 cooldown = 0;
@@ -33,7 +33,7 @@ public class Sprint : MonoBehaviour {
         if (hab)
         {
             timeAb += Time.deltaTime;
-            if (timeAb >= 10)
+            if (timeAb >= timeAbility)
             {
                 used = true;
                 hab = false;
@@ -42,7 +42,7 @@ public class Sprint : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
+        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab4Button) && !used)
         {
             this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
             hab = true;

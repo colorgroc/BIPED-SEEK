@@ -22,7 +22,7 @@ public class Invisibility : MonoBehaviour {
         if (used)
         {
             cooldown += Time.deltaTime;
-            if (cooldown >= timeAbility)
+            if (cooldown >= coolDown)
             {
                 used = false;
                 cooldown = 0;
@@ -32,7 +32,7 @@ public class Invisibility : MonoBehaviour {
         if (hab)
         {
             timeAb += Time.deltaTime;
-            if (timeAb >= 10)
+            if (timeAb >= timeAbility)
             {
                 used = true;
                 hab = false;

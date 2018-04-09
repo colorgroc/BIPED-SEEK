@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class Immobilizer : MonoBehaviour {
 
-
-    public float viewRadius = 30;
-    [Range(0, 360)]
-    public float viewAngle = 119;
-    [SerializeField]
-    private LayerMask targetMask;
     [SerializeField]
     private float radius = 10f, power = 5f;
 
-    private float cooldown, timeAb, speed;
+    private float cooldown, timeAb;
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
@@ -23,7 +17,6 @@ public class Immobilizer : MonoBehaviour {
     {
         used = false;
         cooldown = 0;
-        speed = this.gameObject.GetComponent<PlayerControl>().GetSpeed();
     }
 
     public void Update()
@@ -31,7 +24,7 @@ public class Immobilizer : MonoBehaviour {
         if (used)
         {
             cooldown += Time.deltaTime;
-            if (cooldown >= timeAbility)
+            if (cooldown >= coolDown)
             {
                 used = false;
                 cooldown = 0;
@@ -41,11 +34,12 @@ public class Immobilizer : MonoBehaviour {
         if (hab)
         {
             timeAb += Time.deltaTime;
-            if (timeAb >= 10)
+            if (timeAb >= timeAbility)
             {
                 used = true;
                 hab = false;
                 timeAb = 0;
+                MoveAgain();
             }
         }
 
