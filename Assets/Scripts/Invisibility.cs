@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Invisibility : MonoBehaviour {
 
-    private float cooldown;
-    private bool hab;
+    private float cooldown, timeAb;
+    private bool hab, used;
     [SerializeField]
-    private int coolDown = 10;
+    private int coolDown = 10, timeAbility = 10;
     // Use this for initialization
     void Start()
     {
-        hab = false;
+        used = false;
         cooldown = 0;
     }
 
@@ -19,19 +19,32 @@ public class Invisibility : MonoBehaviour {
     void Update()
     {
         //NewContol.guards;
-        if (hab)
+        if (used)
         {
             cooldown += Time.deltaTime;
-            if (cooldown >= coolDown)
+            if (cooldown >= timeAbility)
             {
-                hab = false;
+                used = false;
                 cooldown = 0;
             }
         }
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !hab)
+
+        if (hab)
         {
-            this.gameObject.GetComponent<>
+            timeAb += Time.deltaTime;
+            if (timeAb >= 10)
+            {
+                used = true;
+                hab = false;
+                timeAb = 0;
+            }
         }
+
+        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
+        {
+            this.gameObject.GetComponent<Renderer>().GetComponent<MeshRenderer>().enabled = false;
+            hab = true;
+        } 
     }
 
 }

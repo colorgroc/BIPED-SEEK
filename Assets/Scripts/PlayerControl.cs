@@ -214,6 +214,14 @@ public class PlayerControl : MonoBehaviour {
         
     }
 
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+    public float GetSpeed()
+    {
+        return this.speed;
+    }
 
     public void Respawn(GameObject gO)
     {
