@@ -4,78 +4,54 @@ using UnityEngine;
 
 public class Immobilizer : MonoBehaviour {
 
+ //   private SphereCollider zone;
+ //   private float time = 7.0f;
+	
+ //   void Start()
+ //   {
+ //       zone.radius = 10.0f;
+ //   }
 
-    public float viewRadius = 30;
-    [Range(0, 360)]
-    public float viewAngle = 119;
-    [SerializeField]
-    private LayerMask targetMask;
-    [SerializeField]
-    private float radius = 10f, power = 5f;
+	//void Update () {
 
-    private float cooldown, timeAb, speed;
-    private bool hab, used;
-    [SerializeField]
-    private int coolDown = 10, timeAbility = 10;
-    Collider[] colliders;
-    // Use this for initialization
-    void Start()
-    {
-        used = false;
-        cooldown = 0;
-        speed = this.gameObject.GetComponent<PlayerControl>().GetSpeed();
-    }
+ //       zone.isTrigger = true;
+ //       Destroy(gameObject.GetComponent<Immobilizer>(), 10.0f);
 
-    public void Update()
-    {
-        if (used)
-        {
-            cooldown += Time.deltaTime;
-            if (cooldown >= timeAbility)
-            {
-                used = false;
-                cooldown = 0;
-            }
-        }
+ //   }
 
-        if (hab)
-        {
-            timeAb += Time.deltaTime;
-            if (timeAb >= 10)
-            {
-                used = true;
-                hab = false;
-                timeAb = 0;
-            }
-        }
+ //   private void OnTriggerStay(Collider other)
+ //   {
 
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
-        {
-            Inmobilitzar();
-            hab = true;
-        }
-    }
+ //       if (Input.GetButtonDown(gameObject.GetComponent<PlayerControl>().hab1Button))
+ //       {
+ //           Timer_Time(other);
+ //       }
 
-    void Inmobilitzar()
-    {
-        colliders = Physics.OverlapSphere(this.transform.position, radius);
-        foreach (Collider hit in colliders)
-        {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            
-            if (rb != null)
-                rb.Sleep();
-        }
-    }
+ //   }
 
-    void MoveAgain()
-    {
-        foreach (Collider hit in colliders)
-        {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+ //   private void Timer_Time(Collider other)
+ //   {
 
-            if (rb != null && rb.IsSleeping())
-                rb.WakeUp();
-        }
-    }
+ //       if (time > 0)
+ //       {
+ //           time -= Time.deltaTime;
+
+ //           if (other.gameObject.tag == "Player")
+ //           {
+ //               gameObject.GetComponent<PlayerControl>().speed = 0;
+ //           }
+
+ //           if (other.gameObject.tag == "Npc")
+ //           {
+ //               gameObject.GetComponent<NPCConnectedPatrol>()._travelling = false;
+ //           }
+
+ //       } else
+ //       {
+ //           gameObject.GetComponent<PlayerControl>().speed = PlayerControl.defaultSpeed;
+ //           gameObject.GetComponent<NPCConnectedPatrol>()._travelling = true;
+ //       }
+
+ //   }
+
 }
