@@ -7,6 +7,11 @@ using UnityEngine.EventSystems;
 
 public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
+    [SerializeField]
+    private AudioClip onButton, clickButton, backButton;
+    [SerializeField]
+    private AudioSource music, sounds;
+
     public static List<GameObject> characterTypes_P1, characterTypes_P2, characterTypes_P3, characterTypes_P4;
     public static List<GameObject> munyequito_P1, munyequito_P2, munyequito_P3, munyequito_P4;
     private List<GameObject> players;
@@ -25,6 +30,9 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private GameObject[] characterTypes, munyequitos;
 
     void Start() {
+
+        //Music
+        music.volume = PlayerPrefs.GetFloat("MusicVolume");
 
         //inicialitzar variables
         GameObject[] jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
@@ -119,12 +127,9 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+
         //codi de prova
-        if (Input.GetButtonDown("Back"))
-        {
-            SceneManager.LoadScene("Menu");
-        }
+        Back();
 
         SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
 
@@ -146,7 +151,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
     private void Back()
     {
-        if (Input.GetButton("Back")) SceneManager.LoadScene("Menu");
+        if (Input.GetButton("Back"))
+        {
+            sounds.PlayOneShot(backButton, 4.0F);
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     void SeleccionJugadores(int numOfPlayers)
@@ -177,6 +186,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("Submit"))
             {
+                if (!ready_P1) sounds.PlayOneShot(clickButton);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
@@ -185,6 +195,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("Cancel") && ready_P1)
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
@@ -208,17 +219,18 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
+                if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
                 {
                     MoveDown(1);
                 }
-                else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
+                else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
                 {
                     MoveUp(1);
                 }
             }
             if (Input.GetButtonDown("A_1"))
             {
+                if (!ready_P1) sounds.PlayOneShot(clickButton);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1+1);
@@ -227,6 +239,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
@@ -248,17 +261,18 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0)
+                if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") < 0)
                 {
                     MoveDown(2);
                 }
-                else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0)
+                else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") > 0)
                 {
                     MoveUp(2);
                 }
             }
             if (Input.GetButtonDown("A_2"))
             {
+                if (!ready_P2) sounds.PlayOneShot(clickButton);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", select_2+ 1);
@@ -267,6 +281,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_2"))
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
@@ -292,17 +307,18 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
+                if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
                 {
                     MoveDown(1);
                 }
-                else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
+                else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
                 {
                     MoveUp(1);
                 }
             }
             if (Input.GetButtonDown("A_1"))
             {
+                if (!ready_P1) sounds.PlayOneShot(clickButton);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
@@ -311,6 +327,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
@@ -332,17 +349,18 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0)
+                if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") < 0)
                 {
                     MoveDown(2);
                 }
-                else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0)
+                else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") > 0)
                 {
                     MoveUp(2);
                 }
             }
             if (Input.GetButtonDown("A_2"))
             {
+                if (!ready_P2) sounds.PlayOneShot(clickButton);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
@@ -351,6 +369,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_2") && ready_P2)
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
@@ -372,17 +391,18 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") < 0)
+                if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") < 0)
                 {
                     MoveDown(3);
                 }
-                else if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") > 0)
+                else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") > 0)
                 {
                     MoveUp(3);
                 }
             }
             if (Input.GetButtonDown("A_3"))
             {
+                if (!ready_P3) sounds.PlayOneShot(clickButton);
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
@@ -391,6 +411,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_3") && ready_P3)
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_3", 0);
@@ -414,17 +435,18 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") < 0)
+                if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
                 {
                     MoveDown(1);
                 }
-                else if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") > 0)
+                else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
                 {
                     MoveUp(1);
                 }
             }
             if (Input.GetButtonDown("A_1"))
             {
+                if (!ready_P1) sounds.PlayOneShot(clickButton);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
@@ -433,6 +455,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
@@ -454,17 +477,18 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") < 0)
+                if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") < 0)
                 {
                     MoveDown(2);
                 }
-                else if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") > 0)
+                else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") > 0)
                 {
                     MoveUp(2);
                 }
             }
             if (Input.GetButtonDown("A_2"))
             {
+                if (!ready_P2) sounds.PlayOneShot(clickButton);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
@@ -473,6 +497,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_2") && ready_P2)
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
@@ -494,17 +519,18 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") < 0)
+                if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") < 0)
                 {
                     MoveDown(3);
                 }
-                else if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") > 0)
+                else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") > 0)
                 {
                     MoveUp(3);
                 }
             }
             if (Input.GetButtonDown("A_3"))
             {
+                if (!ready_P3) sounds.PlayOneShot(clickButton);
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
@@ -513,6 +539,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_3") && ready_P3)
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_3", 0);
@@ -533,17 +560,18 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
 
                 //Vertical
-                if (Input.GetAxis("V_LPad_4") < 0 || Input.GetAxis("V_Arrows_4") < 0)
+                if (Input.GetAxis("V_LPad_4") > 0 || Input.GetAxis("V_Arrows_4") < 0)
                 {
                     MoveDown(4);
                 }
-                else if (Input.GetAxis("V_LPad_4") > 0 || Input.GetAxis("V_Arrows_4") > 0)
+                else if (Input.GetAxis("V_LPad_4") < 0 || Input.GetAxis("V_Arrows_4") > 0)
                 {
                     MoveUp(4);
                 }
             }
             if (Input.GetButtonDown("A_4"))
             {
+                if(!ready_P4)sounds.PlayOneShot(clickButton);
                 characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P4[select_4].GetComponent<Outline>().effectColor = gold_Color;
                 PlayerPrefs.SetInt("characterPlayer_4", select_4 + 1);
@@ -552,6 +580,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_4") && ready_P4)
             {
+                sounds.PlayOneShot(backButton, 4.0F);
                 characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P4[select_4].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_4", 0);
@@ -569,9 +598,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
                 munyequito_P1[select_1].gameObject.SetActive(false);
                 if (select_1 == 0)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_1 = 1;
+                }
                 else if (select_1 == 2)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_1 = 3;
+                }
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
                 munyequito_P1[select_1].gameObject.SetActive(true);
                 break;
@@ -579,9 +614,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
                 munyequito_P2[select_2].gameObject.SetActive(false);
                 if (select_2 == 0)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_2 = 1;
+                }
                 else if (select_2 == 2)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_2 = 3;
+                }
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
                 munyequito_P2[select_2].gameObject.SetActive(true);
                 break;
@@ -589,9 +630,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
                 munyequito_P3[select_3].gameObject.SetActive(false);
                 if (select_3 == 0)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_3 = 1;
+                }
                 else if (select_3 == 2)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_3 = 3;
+                }
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
                 munyequito_P3[select_3].gameObject.SetActive(true);
                 break;
@@ -599,9 +646,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
                 munyequito_P4[select_4].gameObject.SetActive(false);
                 if (select_4 == 0)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_4 = 1;
+                }
                 else if (select_4 == 2)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_4 = 3;
+                }
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
                 munyequito_P4[select_4].gameObject.SetActive(true);
                 break;
@@ -615,9 +668,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
                 munyequito_P1[select_1].gameObject.SetActive(false);
                 if (select_1 == 1)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_1 = 0;
+                }
                 else if (select_1 == 3)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_1 = 2;
+                }
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
                 munyequito_P1[select_1].gameObject.SetActive(true);
                 break;
@@ -625,9 +684,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
                 munyequito_P2[select_2].gameObject.SetActive(false);
                 if (select_2 == 1)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_2 = 0;
+                }
                 else if (select_2 == 3)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_2 = 2;
+                }
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
                 munyequito_P2[select_2].gameObject.SetActive(true);
                 break;
@@ -635,9 +700,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
                 munyequito_P3[select_3].gameObject.SetActive(false);
                 if (select_3 == 1)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_3 = 0;
+                }
                 else if (select_3 == 3)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_3 = 2;
+                }
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
                 munyequito_P3[select_3].gameObject.SetActive(true);
                 break;
@@ -645,9 +716,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
                 munyequito_P4[select_4].gameObject.SetActive(false);
                 if (select_4 == 1)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_4 = 0;
+                }
                 else if (select_4 == 3)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_4 = 2;
+                }
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
                 munyequito_P4[select_4].gameObject.SetActive(true);
                 break;
@@ -661,9 +738,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
                 munyequito_P1[select_1].gameObject.SetActive(false);
                 if (select_1 == 0)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_1 = 2;
+                }
                 else if (select_1 == 1)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_1 = 3;
+                }
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
                 munyequito_P1[select_1].gameObject.SetActive(true);
                 break;
@@ -671,9 +754,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
                 munyequito_P2[select_2].gameObject.SetActive(false);
                 if (select_2 == 0)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_2 = 2;
+                }
                 else if (select_2 == 1)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_2 = 3;
+                }
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
                 munyequito_P2[select_2].gameObject.SetActive(true);
                 break;
@@ -681,9 +770,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
                 munyequito_P3[select_3].gameObject.SetActive(false);
                 if (select_3 == 0)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_3 = 2;
+                }
                 else if (select_3 == 1)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_3 = 3;
+                }
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
                 munyequito_P3[select_3].gameObject.SetActive(true);
                 break;
@@ -691,9 +786,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
                 munyequito_P4[select_4].gameObject.SetActive(false);
                 if (select_4 == 0)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_4 = 2;
+                }
                 else if (select_4 == 1)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_4 = 3;
+                }
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
                 munyequito_P4[select_4].gameObject.SetActive(true);
                 break;
@@ -707,9 +808,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = false;
                 munyequito_P1[select_1].gameObject.SetActive(false);
                 if (select_1 == 2)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_1 = 0;
+                }
                 else if (select_1 == 3)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_1 = 1;
+                }
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
                 munyequito_P1[select_1].gameObject.SetActive(true);
                 break;
@@ -717,9 +824,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = false;
                 munyequito_P2[select_2].gameObject.SetActive(false);
                 if (select_2 == 2)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_2 = 0;
+                }
                 else if (select_2 == 3)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_2 = 1;
+                }
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
                 munyequito_P2[select_2].gameObject.SetActive(true);
                 break;
@@ -727,9 +840,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = false;
                 munyequito_P3[select_3].gameObject.SetActive(false);
                 if (select_3 == 2)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_3 = 0;
+                }
                 else if (select_3 == 3)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_3 = 1;
+                }
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
                 munyequito_P3[select_3].gameObject.SetActive(true);
                 break;
@@ -737,9 +856,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = false;
                 munyequito_P4[select_4].gameObject.SetActive(false);
                 if (select_4 == 2)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_4 = 0;
+                }
                 else if (select_4 == 3)
+                {
+                    sounds.PlayOneShot(onButton);
                     select_4 = 1;
+                }
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
                 munyequito_P4[select_4].gameObject.SetActive(true);
                 break;
