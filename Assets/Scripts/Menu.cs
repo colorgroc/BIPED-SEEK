@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class Menu : MonoBehaviour {
+public class Menu : MonoBehaviour
+{
 
     [SerializeField]
     private Scrollbar volume;
     [SerializeField]
     private AudioSource music;
+    [SerializeField]
     private AudioClip onButton, clickButton;
     AudioSource source;
     [SerializeField]
@@ -41,23 +43,24 @@ public class Menu : MonoBehaviour {
                     PlayerPrefs.SetInt("ScreenMode", 0); //full screen
                 else if (!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
 
-               
+
             }
 
-            
+
         }
 
 
     }
 
-    void Start () {
+    void Start()
+    {
 
         source = GetComponent<AudioSource>();
         options.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
         inMenu = true;
-       
+
         volume.value = PlayerPrefs.GetFloat("MusicVolume");
         music.volume = volume.value;
 
@@ -77,16 +80,17 @@ public class Menu : MonoBehaviour {
 
     }
 
-    void Update() {
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             source.PlayOneShot(clickButton);
         }
         if (Input.GetButtonDown("Back") && !inMenu)
-        { 
+        {
             BackToMenu();
         }
-	}
+    }
 
     public void GoToPlay()
     {
@@ -130,7 +134,8 @@ public class Menu : MonoBehaviour {
         {
             fullScreen.GetComponent<Toggle>().isOn = true;
         }
-        else if (PlayerPrefs.GetInt("ScreenMode") == 1) { 
+        else if (PlayerPrefs.GetInt("ScreenMode") == 1)
+        {
 
             windowed.GetComponent<Toggle>().isOn = true;
         }
