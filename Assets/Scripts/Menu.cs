@@ -11,10 +11,9 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private Scrollbar volume;
     [SerializeField]
-    private AudioSource music;
+    private AudioSource music, sounds;
     [SerializeField]
     private AudioClip onButton, clickButton;
-    AudioSource source;
     [SerializeField]
     private Canvas mainMenu, options, credits;
     private bool inMenu;
@@ -55,7 +54,6 @@ public class Menu : MonoBehaviour
     void Start()
     {
 
-        source = GetComponent<AudioSource>();
         options.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
@@ -84,7 +82,7 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            source.PlayOneShot(clickButton);
+            sounds.PlayOneShot(clickButton);
         }
         if (Input.GetButtonDown("Back") && !inMenu)
         {

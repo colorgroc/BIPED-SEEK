@@ -8,13 +8,21 @@ public class Teleport : MonoBehaviour {
     private bool hab;
     [SerializeField]
     private int coolDown = 10;
+    List<GameObject> guardsList = new List<GameObject>();
 	// Use this for initialization
 	void Start () {
         hab = false;
         cooldown = 0;
+        foreach(GameObject guard in NewControl.guards)
+        {
+            if(guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
+            {
+                guardsList.Add(guard);
+            }
+        }
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frames
 	void Update () {
         //NewContol.guards;
         if (hab)
@@ -28,11 +36,16 @@ public class Teleport : MonoBehaviour {
         }
         if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !hab)
         {
-            int random = Random.Range(0, NewControl.guards.Length);
-            Vector3 newGuardPos = this.gameObject.transform.position;
-            this.gameObject.transform.position = NewControl.guards[random].transform.position;
-            NewControl.guards[random].transform.position = newGuardPos;
+            TeleportHability();
             hab = true;   
         }
 	}
+
+    void TeleportHability()
+    {
+        int random = Random.Range(0, guardsList.Count);
+        Vector3 newGuardPos = this.gameObject.transform.position;
+        this.gameObject.transform.position = guardsList[random].transform.position;
+        NewControl.guards[random].transform.position = newGuardPos;
+    }
 }
