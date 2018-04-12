@@ -7,23 +7,17 @@ using System;
 
 public class NewControl : MonoBehaviour
 {
-   
-    [SerializeField]
     public static int numOfPlayers;
     public static bool objComplete;
     public static bool objKilledByGuard;
     public static float timeLeft;
     public static bool startGame;
-    private float timeStartLeft;
     public static GameObject objective;
 	public static GameObject parcialWinner;
 	public static GameObject finalWinner;
 
-    
-    //public List<GameObject> finalWinners = new List<GameObject>();
     [SerializeField]
     private GameObject showObjective;
-    //public static int random;
 
     public static List<GameObject> players;// = new List<GameObject>();
     private List<GameObject> listPlayers;// = new List<GameObject>();
@@ -32,14 +26,13 @@ public class NewControl : MonoBehaviour
 	private bool paused;
 	[SerializeField]
 	private GameObject pausa, objectiveCanvas, finalWinnerCanvas;
-	private int topScore;
     [SerializeField]
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
     [SerializeField]
     private Sprite SpriteTipo_1, SpriteTipo_2, SpriteTipo_3, SpriteTipo_4;
     [SerializeField]
     private Text textTiempo, countDown;
-    private int fin;
+    private int fin, topScore, habilitat_1, habilitat_2;
     [SerializeField]
     private int numGuardsPerType = 10, numRondesPerJugador = 2, time = 90;//maxMinutes = 3, minMinutes = 1;
     [SerializeField]
@@ -48,9 +41,13 @@ public class NewControl : MonoBehaviour
     private List<int> listPosGuards;
     [SerializeField]
     private List<GameObject> scorePlayers;
-    private float timeBack = 4;
+    private float timeBack = 4, timeStartLeft;
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
-    // [Serializable]
+
+    public enum Abilities
+    {
+        INVISIBLITY, IMMOBILIZER, REPEL, SPRINT, TELEPORT, CONTROL, SMOKE
+    };
 
     // Use this for initialization
     public void Awake()
@@ -77,21 +74,13 @@ public class NewControl : MonoBehaviour
         }
 
         countDown.gameObject.SetActive(true);
-        //foreach (GameObject player in players)
-        //{
-        //    player.SetActive(false);
-        //    //player.GetComponent<PlayerControl>().enabled = false;
-        //}
-        //foreach (GameObject guard in guards)
-        //{
-        //    guard.SetActive(false);
-        //    //guard.GetComponent<NPCConnectedPatrol>().enabled = false;
-        //    //guard.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        //}
+
+        habilitat_1 = PlayerPrefs.GetInt("Ability 1");
+        habilitat_2 = PlayerPrefs.GetInt("Ability 2");
+
     }
     void Start()
     {
-        //StartCoroutine(Countdown(3));
         Time.timeScale = 0;
         StartGame();
     }
@@ -103,7 +92,6 @@ public class NewControl : MonoBehaviour
         RespawnNPCS();
         foreach (GameObject player in players)
         {
-            //player.GetComponent<PlayerControl>().timePast = 0;
             player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             player.GetComponent<FieldOfView>().Start();
         }
@@ -113,28 +101,14 @@ public class NewControl : MonoBehaviour
         textTiempo.text = GetMinutes(timeLeft);
         
     }
-    //private void FixedUpdate()
-    //{
-    //    if (!startGame)
-    //    {
-    //        timeBack -= Time.fixedUnscaledDeltaTime;
-    //        Debug.Log(timeBack);
-    //        contrarreloj.text = ((int)timeBack).ToString();
-    //        if (timeBack <= 0)
-    //        {
-    //            contrarreloj.gameObject.SetActive(false);
-    //            Time.timeScale = 1;
-    //            startGame = true;
-    //        }
-    //    }
-    //}
+   
     // Update is called once per frame
     void Update()
     {
         if (!startGame)
         {
             timeBack -= Time.fixedUnscaledDeltaTime;
-           // Debug.Log(timeBack);
+
             if ((int)timeBack == 0)
             {
                 countDown.color = gold_Color;
@@ -151,7 +125,7 @@ public class NewControl : MonoBehaviour
         }
         else
         {
-            //if (startGame) { 
+
             if(!finalWinnerCanvas.activeInHierarchy)
                 Pausa();
 
@@ -271,10 +245,7 @@ public class NewControl : MonoBehaviour
                 guard.gameObject.layer = 9;
                 guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material;
                 AddScript(guard);
-                //guard.gameObject.AddComponent<NPCConnectedPatrol>();
-                
-
-                //guard.gameObject.GetComponent<PlayerControl>().enabled = false;
+              
             }
         }
 
@@ -287,21 +258,82 @@ public class NewControl : MonoBehaviour
 
         guards = GameObject.FindGameObjectsWithTag("Guard");
     }
-    public static void AddScript(GameObject tipo)
+    public void AddScript(GameObject tipo)
     {
         if (tipo.CompareTag("Guard"))
         {
             tipo.gameObject.GetComponent<PlayerControl>().enabled = false;
             tipo.gameObject.GetComponent<FieldOfView>().enabled = false;
             tipo.gameObject.GetComponent<NPCConnectedPatrol>().enabled = true;
-            //tipo.gameObject.GetComponent<Smoke>().enabled = false;
+
+            //asignacio habiltats --> al reves q en player (else)
+            if (habilitat_1 == (int)Abilities.CONTROL || habilitat_2 == (int)Abilities.CONTROL)
+            {
+                tipo.gameObject.GetComponent<ControlAbility>().enabled = false;
+                tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = true;
+            }
+            else if (habilitat_1 == (int)Abilities.IMMOBILIZER || habilitat_2 == (int)Abilities.IMMOBILIZER)
+            {
+                tipo.gameObject.GetComponent<Immobilizer>().enabled = false;
+            }
+            else if (habilitat_1 == (int)Abilities.INVISIBLITY || habilitat_2 == (int)Abilities.INVISIBLITY)
+            {
+                tipo.gameObject.GetComponent<Invisibility>().enabled = false;
+            }
+            else if (habilitat_1 == (int)Abilities.REPEL || habilitat_2 == (int)Abilities.REPEL)
+            {
+                tipo.gameObject.GetComponent<Repel>().enabled = false;
+            }
+            else if (habilitat_1 == (int)Abilities.SMOKE || habilitat_2 == (int)Abilities.SMOKE)
+            {
+                tipo.gameObject.GetComponent<Smoke>().enabled = false;
+            }
+            else if (habilitat_1 == (int)Abilities.SPRINT || habilitat_2 == (int)Abilities.SPRINT)
+            {
+                tipo.gameObject.GetComponent<Sprint>().enabled = false;
+            }
+            else if (habilitat_1 == (int)Abilities.TELEPORT || habilitat_2 == (int)Abilities.TELEPORT)
+            {
+                tipo.gameObject.GetComponent<Teleport>().enabled = false;
+            }
         }
         else
         {
             tipo.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
             tipo.gameObject.GetComponent<PlayerControl>().enabled = true;
             tipo.gameObject.GetComponent<FieldOfView>().enabled = true;
-            //tipo.gameObject.GetComponent<Smoke>().enabled = true;
+
+            //asignacio habiltats
+            if(habilitat_1 == (int) Abilities.CONTROL || habilitat_2 == (int)Abilities.CONTROL)
+            {
+                tipo.gameObject.GetComponent<ControlAbility>().enabled = true;
+                tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = false;
+            }
+            else if (habilitat_1 == (int)Abilities.IMMOBILIZER || habilitat_2 == (int)Abilities.IMMOBILIZER)
+            {
+                tipo.gameObject.GetComponent<Immobilizer>().enabled = true;
+            }
+            else if (habilitat_1 == (int)Abilities.INVISIBLITY || habilitat_2 == (int)Abilities.INVISIBLITY)
+            {
+                tipo.gameObject.GetComponent<Invisibility>().enabled = true;
+            }
+            else if (habilitat_1 == (int)Abilities.REPEL || habilitat_2 == (int)Abilities.REPEL)
+            {
+                tipo.gameObject.GetComponent<Repel>().enabled = true;
+            }
+            else if (habilitat_1 == (int)Abilities.SMOKE || habilitat_2 == (int)Abilities.SMOKE)
+            {
+                tipo.gameObject.GetComponent<Smoke>().enabled = true;
+            }
+            else if (habilitat_1 == (int)Abilities.SPRINT || habilitat_2 == (int)Abilities.SPRINT)
+            {
+                tipo.gameObject.GetComponent<Sprint>().enabled = true;
+            }
+            else if (habilitat_1 == (int)Abilities.TELEPORT || habilitat_2 == (int)Abilities.TELEPORT)
+            {
+                tipo.gameObject.GetComponent<Teleport>().enabled = true;
+            }
+
         }
     }
     private void Winner()

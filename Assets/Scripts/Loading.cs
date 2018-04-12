@@ -10,7 +10,7 @@ public class Loading : MonoBehaviour {
     [SerializeField]
     float loadingTime;
     [SerializeField]
-    private int numOfMapas = 3;
+    private int numOfMapas = 3, numOfAbilities = 7, numOfUsedAbilities = 2;
     float time;
     private string scene;
 
@@ -26,7 +26,20 @@ public class Loading : MonoBehaviour {
         slider.value = time;
         if (time >= loadingTime) SceneManager.LoadScene(this.scene);
     }
+    private void RandomAbilities()
+    {
+        List<int> abilities = new List<int>();
+        for(int i = 0; i < numOfAbilities; i++)
+        {
+            abilities.Add(i);
+        }
+        for (int i = 1; i <= numOfUsedAbilities; i++) {
+            int rand = Random.Range(0, abilities.Count);
+            PlayerPrefs.SetInt("Ability " + (i).ToString(), abilities[rand]);
+            abilities.Remove(rand);
+        }
 
+    }
     private void MapaRandom()
     {
         List<string> mapas = new List<string>();
