@@ -294,12 +294,14 @@ public class NewControl : MonoBehaviour
             tipo.gameObject.GetComponent<PlayerControl>().enabled = false;
             tipo.gameObject.GetComponent<FieldOfView>().enabled = false;
             tipo.gameObject.GetComponent<NPCConnectedPatrol>().enabled = true;
+            //tipo.gameObject.GetComponent<Smoke>().enabled = false;
         }
         else
         {
             tipo.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
             tipo.gameObject.GetComponent<PlayerControl>().enabled = true;
             tipo.gameObject.GetComponent<FieldOfView>().enabled = true;
+            //tipo.gameObject.GetComponent<Smoke>().enabled = true;
         }
     }
     private void Winner()

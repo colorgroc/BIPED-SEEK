@@ -15,7 +15,7 @@ public class FieldOfView : MonoBehaviour {
 
     [HideInInspector]
 	public List<Transform> visibleTargets = new List<Transform>();
-	public bool alive;
+	//public bool alive;
     private float distancia;
 
 	public void Start()

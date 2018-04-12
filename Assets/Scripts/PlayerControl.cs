@@ -12,15 +12,16 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     public static float defaultSpeed = 20;
     [HideInInspector]
-    public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, hab3Button, hab4Button, hab5Button;
+    public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, hab3Button, hab4Button, hab5Button, hab6Button;
 
     private float distToGround, count, timeCoolDown, timeFeedback;
+    [SerializeField]
     private int coolDown;
     private bool pressed, cooledDown, goodFeedback, winnerFeedback;
     public bool badFeedback;
 
     [HideInInspector]
-    public int scoreGeneral, scoreKills, scoreWins, random;
+    public int scoreGeneral, scoreKills, scoreWins;
     public bool wannaKill, onFieldView, detected;
 
     private Image feedback;
@@ -31,8 +32,9 @@ public class PlayerControl : MonoBehaviour {
     private Color neutralColor;
     [SerializeField]
     private Animator anim;
-    private bool canAct;
+    //private bool canAct;
 
+    List<GameObject> guardsList = new List<GameObject>();
     NavMeshAgent _navMeshAgent;
 
     void Start ()
@@ -64,6 +66,7 @@ public class PlayerControl : MonoBehaviour {
             this.killButton = "X_1";
             this.hab1Button = "Y_1";
             this.hab2Button = "A_1";
+            this.hab6Button = "B_1";
 
 
         }
@@ -108,7 +111,15 @@ public class PlayerControl : MonoBehaviour {
             this.hab2Button = "A_4";
          
         }
-        this.canAct = true;
+       // this.canAct = true;
+
+        foreach (GameObject guard in NewControl.guards)
+        {
+            if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
+            {
+                guardsList.Add(guard);
+            }
+        }
     }
     private void FixedUpdate()
     {
@@ -173,6 +184,26 @@ public class PlayerControl : MonoBehaviour {
             this.feedback.color = this.neutralColor;
         }
 
+        if (this.cooledDown)
+        {
+            this.gameObject.transform.position = new Vector3(this.transform.position.x, 1000f, this.transform.position.z);
+            this.timeCoolDown -= Time.deltaTime;
+            if(this.timeCoolDown <= 0)
+            {
+                GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+                for (int i = 0; i < guardsList.Count; i++)
+                {
+                    int r = Random.Range(0, guardsList.Count);
+                    int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+                    while(guardsList[r] == null) r = Random.Range(0, guardsList.Count);
+                    if (guardsList[r] != null)
+                        guardsList[r].gameObject.transform.position = new Vector3(allMyRespawnPoints[rand].transform.position.x, 10.14516f, allMyRespawnPoints[rand].transform.position.z);
+                }
+           
+                Respawn(this.gameObject);
+                this.cooledDown = false;
+            }
+        }
     }
 
     public void Kill(GameObject gO)
@@ -183,10 +214,11 @@ public class PlayerControl : MonoBehaviour {
             this.detected = false;
             this.scoreGeneral -= 3;
             this.badFeedback = true;
-            this.canAct = false;
+            //this.canAct = false;
             Destroy(gO);
             //if (AnimatorIsPlaying("Punch"))
-            Respawn(this.gameObject);
+            this.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
+            //Respawn(this.gameObject);
 
         }
         else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
@@ -196,8 +228,9 @@ public class PlayerControl : MonoBehaviour {
             this.scoreGeneral += 5;
             this.scoreKills += 1;
             this.goodFeedback = true;
-        // if (AnimatorIsPlaying("Punch"))
-            Respawn(gO);
+            // if (AnimatorIsPlaying("Punch"))
+            gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
+            //Respawn(gO);
         }
         else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
         {
@@ -226,7 +259,7 @@ public class PlayerControl : MonoBehaviour {
     public void Respawn(GameObject gO)
     {
 
-        this.gameObject.GetComponent<FieldOfView>().alive = true;
+       // this.gameObject.GetComponent<FieldOfView>().alive = true;
         this.detected = false;
         this.timeFeedback = 0;
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
@@ -234,11 +267,16 @@ public class PlayerControl : MonoBehaviour {
         gO.gameObject.transform.position = new Vector3(allMyRespawnPoints[random].transform.position.x, 10.14516f, allMyRespawnPoints[random].transform.position.z);
         gO.gameObject.SetActive(true);
         gO.gameObject.GetComponent<FieldOfView>().Start();
-        this.canAct = true;
+        //this.canAct = true;
     }
-    public void DeadCoolDown(GameObject gO)
+    public void RespawnCoolDown()
     {
-        this.gameObject.GetComponent<FieldOfView>().alive = true;
+        this.cooledDown = true;
+        this.timeCoolDown = this.coolDown;
+        //Respawn();
+    }
+   /* public void DeadCoolDown(GameObject gO)
+    {
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
         gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
@@ -249,7 +287,7 @@ public class PlayerControl : MonoBehaviour {
         gO.gameObject.SetActive(true);
         this.cooledDown = false;
         this.timeCoolDown = 0;
-    }
+    }*/
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Killzone"))

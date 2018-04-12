@@ -117,9 +117,10 @@ public class NPCConnectedPatrol : MonoBehaviour {
         if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
             this.anim.SetBool("wannaKill", true);
             collision.gameObject.SetActive (false);
-		    collision.gameObject.GetComponent<FieldOfView> ().alive = false;
+		   // collision.gameObject.GetComponent<FieldOfView> ().alive = false;
             collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
-            collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
+            collision.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
+            //collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
             this.anim.SetBool("wannaKill", false);
 
         }
@@ -138,9 +139,10 @@ public class NPCConnectedPatrol : MonoBehaviour {
         {
             this.anim.SetBool("wannaKill", true);
             col.gameObject.SetActive(false);
-            col.gameObject.GetComponent<FieldOfView>().alive = false;
+            //col.gameObject.GetComponent<FieldOfView>().alive = false;
             col.gameObject.GetComponent<PlayerControl>().badFeedback = true;
-            col.gameObject.GetComponent<PlayerControl>().Respawn(col.gameObject);
+            col.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
+            //col.gameObject.GetComponent<PlayerControl>().Respawn(col.gameObject);
             this.anim.SetBool("wannaKill", false);
 
         }
