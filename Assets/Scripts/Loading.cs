@@ -10,7 +10,9 @@ public class Loading : MonoBehaviour {
     [SerializeField]
     float loadingTime;
     [SerializeField]
-    private int numOfMapas = 3, numOfAbilities = 7, numOfUsedAbilities = 2;
+    private int numOfMapas = 3, numOfAbilities = 7, numOfUsedAbilities = 2, ability1, ability2;
+    [SerializeField]
+    Text ab1Nom, ab2Nom, ab1Desc, ab2Desc;
     float time;
     private string scene;
 
@@ -19,6 +21,7 @@ public class Loading : MonoBehaviour {
         time = 0;
         slider.value = time;
         MapaRandom();
+        RandomAbilities();
 	}
 	
 	void Update () {
@@ -38,7 +41,48 @@ public class Loading : MonoBehaviour {
             PlayerPrefs.SetInt("Ability " + (i).ToString(), abilities[rand]);
             abilities.Remove(rand);
         }
-
+        ability1 = PlayerPrefs.GetInt("Ability 1");
+        ability2 = PlayerPrefs.GetInt("Ability 2");
+        AbilityAsign(ability1, ab1Nom, ab1Desc);
+        AbilityAsign(ability2, ab2Nom, ab2Desc);
+    }
+    private void AbilityAsign(int ab, Text nom, Text desc)
+    {
+        if (ab == (int)NewControl.Abilities.IMMOBILIZER)
+        {
+            nom.text = "Freeze";
+            desc.text = "Freeze everyone around you during x seconds.";
+        }
+        else if (ab == (int)NewControl.Abilities.INVISIBLITY)
+        {
+            nom.text = "Invisibility";
+            desc.text = "Become invisible during x seconds.";
+        }
+        else if (ab == (int)NewControl.Abilities.REPEL)
+        {
+            nom.text = "Repel";
+            desc.text = "Repel everyone around you.";
+        }
+        else if (ab == (int)NewControl.Abilities.SMOKE)
+        {
+            nom.text = "Smoke Screen";
+            desc.text = "Create smoke during x seconds to hide and escape.";
+        }
+        else if (ab == (int)NewControl.Abilities.SPRINT)
+        {
+            nom.text = "Sprint";
+            desc.text = "Sprint to run away faster or to chase faster during x seconds.";
+        }
+        else if (ab == (int)NewControl.Abilities.TELEPORT)
+        {
+            nom.text = "Teleport";
+            desc.text = "Change position with a random NPC of your type.";
+        }
+        else if (ab == (int)NewControl.Abilities.CONTROL)
+        {
+            nom.text = "NPC Control";
+            desc.text = "Control a random NPC of your type during x seconds. Only movement. Your character will be controlled by the IA. If you character get killed, you die.";
+        }
     }
     private void MapaRandom()
     {

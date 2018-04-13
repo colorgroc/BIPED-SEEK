@@ -43,6 +43,7 @@ ModelImporter:
     100070: Ojo_der
     100072: Ojo_izq
     100074: //RootNode
+    100076: Penguin
     400000: Bec
     400002: Cuerpo
     400004: mixamorig:Head
@@ -81,17 +82,20 @@ ModelImporter:
     400070: Ojo_der
     400072: Ojo_izq
     400074: //RootNode
+    400076: Penguin
     2100000: No Name
     4300000: Cuerpo
     4300002: Bec
     4300004: Ojo_der
     4300006: Ojo_izq
+    4300008: Penguin
     7400000: Penguin_Idle
     9500000: //RootNode
     13700000: Bec
     13700002: Cuerpo
     13700004: Ojo_der
     13700006: Ojo_izq
+    13700008: Penguin
   externalObjects: {}
   materials:
     importMaterials: 0

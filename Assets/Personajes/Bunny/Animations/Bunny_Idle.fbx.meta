@@ -46,6 +46,7 @@ ModelImporter:
     100076: nariz
     100078: ojos
     100080: oreja
+    100082: Bunny
     400000: //RootNode
     400002: cola
     400004: Cuerpo
@@ -87,6 +88,7 @@ ModelImporter:
     400076: nariz
     400078: ojos
     400080: oreja
+    400082: Bunny
     2100000: No Name
     4300000: Cuerpo
     4300002: cola
@@ -95,6 +97,7 @@ ModelImporter:
     4300008: nariz
     4300010: oreja
     4300012: dientes
+    4300014: Bunny
     7400000: Bunny_Idle
     9500000: //RootNode
     13700000: cola
@@ -104,6 +107,7 @@ ModelImporter:
     13700008: nariz
     13700010: ojos
     13700012: oreja
+    13700014: Bunny
   externalObjects: {}
   materials:
     importMaterials: 0

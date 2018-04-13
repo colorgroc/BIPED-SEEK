@@ -26,7 +26,6 @@ public class NewControl : MonoBehaviour
 	private bool paused;
 	[SerializeField]
 	private GameObject pausa, objectiveCanvas, finalWinnerCanvas;
-    [SerializeField]
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
     [SerializeField]
     private Sprite SpriteTipo_1, SpriteTipo_2, SpriteTipo_3, SpriteTipo_4;
@@ -35,7 +34,6 @@ public class NewControl : MonoBehaviour
     private int fin, topScore, habilitat_1, habilitat_2;
     [SerializeField]
     private int numGuardsPerType = 10, numRondesPerJugador = 2, time = 90;//maxMinutes = 3, minMinutes = 1;
-    [SerializeField]
     public static int numKillers = 7;
     private List<int> listPos;
     private List<int> listPosGuards;
@@ -243,7 +241,7 @@ public class NewControl : MonoBehaviour
                 guard.gameObject.name = "Guard_Tipo " + i.ToString();
                 guard.gameObject.tag = "Guard";
                 guard.gameObject.layer = 9;
-                guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material;
+                guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material; 
                 AddScript(guard);
               
             }
@@ -270,7 +268,7 @@ public class NewControl : MonoBehaviour
             if (habilitat_1 == (int)Abilities.CONTROL || habilitat_2 == (int)Abilities.CONTROL)
             {
                 tipo.gameObject.GetComponent<ControlAbility>().enabled = false;
-                tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = true;
+                tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = false;
             }
             else if (habilitat_1 == (int)Abilities.IMMOBILIZER || habilitat_2 == (int)Abilities.IMMOBILIZER)
             {

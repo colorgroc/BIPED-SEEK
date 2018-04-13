@@ -41,7 +41,6 @@ public class PlayerControl : MonoBehaviour {
     {
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
-        this.gameObject.GetComponent<Light>().enabled = false;
         this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
         this.feedbacks = new List<GameObject>();
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
@@ -65,10 +64,15 @@ public class PlayerControl : MonoBehaviour {
             this.AxisRotation = "H_RPad_1";
             this.killButton = "X_1";
             this.hab1Button = "Y_1";
-            this.hab2Button = "A_1";
-            this.hab6Button = "B_1";
+            this.hab2Button = "B_1";
 
+            //axis
+            this.hab3Button = "L_Trigger_1";
+            this.hab4Button = "R_Trigger_1";
 
+            this.hab5Button = "L_Bumper_1";
+            this.hab6Button = "R_Bumper_1";
+        
         }
         else if (this.gameObject.name.Equals("Player 2"))
         {
@@ -80,9 +84,13 @@ public class PlayerControl : MonoBehaviour {
             this.AxisRotation = "H_RPad_2";
             this.killButton = "X_2";
             this.hab1Button = "Y_2";
-            this.hab2Button = "A_2";
+            this.hab2Button = "B_2";
+            //axis
+            this.hab3Button = "L_Trigger_2";
+            this.hab4Button = "R_Trigger_2";
 
-           
+            this.hab5Button = "L_Bumper_2";
+            this.hab6Button = "R_Bumper_2";
 
         }
         else if (this.gameObject.name.Equals("Player 3"))
@@ -95,7 +103,13 @@ public class PlayerControl : MonoBehaviour {
             this.AxisRotation = "H_RPad_3";
             this.killButton = "X_3";
             this.hab1Button = "Y_3";
-            this.hab2Button = "A_3";
+            this.hab2Button = "B_3";
+            //axis
+            this.hab3Button = "L_Trigger_3";
+            this.hab4Button = "R_Trigger_3";
+
+            this.hab5Button = "L_Bumper_3";
+            this.hab6Button = "R_Bumper_3";
 
         }
         else if (this.gameObject.name.Equals("Player 4"))
@@ -108,8 +122,16 @@ public class PlayerControl : MonoBehaviour {
             this.AxisRotation = "H_RPad_4";
             this.killButton = "X_4";
             this.hab1Button = "Y_4";
-            this.hab2Button = "A_4";
-         
+            this.hab2Button = "B_4";
+
+            //son axis
+            this.hab3Button = "L_Trigger_4"; 
+            this.hab4Button = "R_Trigger_4";
+
+            this.hab5Button = "L_Bumper_4";
+            this.hab6Button = "R_Bumper_4";
+
+
         }
        // this.canAct = true;
 

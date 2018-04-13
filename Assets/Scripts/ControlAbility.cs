@@ -79,11 +79,32 @@ public class ControlAbility : MonoBehaviour {
         {
             gO.gameObject.GetComponent<NPCConnectedPatrol>().enabled = true;
             gO.gameObject.GetComponent<PlayerControl>().enabled = false;
-            //gO.gameObject.GetComponent<Immobilizer>().enabled = false;
-            //gO.gameObject.GetComponent<Repel>().enabled = false;
-            //gO.gameObject.GetComponent<Sprint>().enabled = false;
-            //gO.gameObject.GetComponent<Invisibility>().enabled = false;
-            //gO.gameObject.GetComponent<Teleport>().enabled = false;
+
+            if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
+            {
+                gO.gameObject.GetComponent<Immobilizer>().enabled = false;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.INVISIBLITY || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.INVISIBLITY)
+            {
+                gO.gameObject.GetComponent<Invisibility>().enabled = false;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
+            {
+                gO.gameObject.GetComponent<Repel>().enabled = false;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
+            {
+                gO.gameObject.GetComponent<Smoke>().enabled = false;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
+            {
+                gO.gameObject.GetComponent<Sprint>().enabled = false;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.TELEPORT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.TELEPORT)
+            {
+                gO.gameObject.GetComponent<Teleport>().enabled = false;
+            }
+        
         } 
         else if(type.Equals("Guard_Controlled_by_Player"))
         {
@@ -96,12 +117,32 @@ public class ControlAbility : MonoBehaviour {
         {
             gO.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
             gO.gameObject.GetComponent<PlayerControl>().enabled = true;
-            
-            //gO.gameObject.GetComponent<Immobilizer>().enabled = false;
-            //gO.gameObject.GetComponent<Repel>().enabled = false;
-            //gO.gameObject.GetComponent<Sprint>().enabled = false;
-            //gO.gameObject.GetComponent<Invisibility>().enabled = false;
-            //gO.gameObject.GetComponent<Teleport>().enabled = false;
+
+            if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
+            {
+                gO.gameObject.GetComponent<Immobilizer>().enabled = true;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.INVISIBLITY || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.INVISIBLITY)
+            {
+                gO.gameObject.GetComponent<Invisibility>().enabled = true;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
+            {
+                gO.gameObject.GetComponent<Repel>().enabled = true;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
+            {
+                gO.gameObject.GetComponent<Smoke>().enabled = true;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
+            {
+                gO.gameObject.GetComponent<Sprint>().enabled = true;
+            }
+            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.TELEPORT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.TELEPORT)
+            {
+                gO.gameObject.GetComponent<Teleport>().enabled = true;
+            }
+       
         }
         else if (type.Equals("Back_to_Guard"))
         {

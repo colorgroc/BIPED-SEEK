@@ -37,6 +37,7 @@ ModelImporter:
     100058: nariz
     100060: ojos
     100062: orejas
+    100064: Bear
     400000: //RootNode
     400002: cola
     400004: Cuerpo
@@ -69,12 +70,14 @@ ModelImporter:
     400058: nariz
     400060: ojos
     400062: orejas
+    400064: Bear
     4300000: Cuerpo
     4300002: cola
     4300004: nariz
     4300006: ojos
     4300008: morro
     4300010: orejas
+    4300012: Bear
     7400000: Bear_Idle
     9500000: //RootNode
     13700000: cola
@@ -83,6 +86,7 @@ ModelImporter:
     13700006: nariz
     13700008: ojos
     13700010: orejas
+    13700012: Bear
   externalObjects:
   - first:
       type: UnityEngine:Material
