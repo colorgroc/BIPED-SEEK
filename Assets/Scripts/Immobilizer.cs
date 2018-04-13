@@ -12,6 +12,7 @@ public class Immobilizer : MonoBehaviour {
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
     Collider[] colliders;
+    bool ab1 = false, ab2 = false;
     // Use this for initialization
     void Start()
     {
@@ -43,7 +44,11 @@ public class Immobilizer : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
+        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        {
+            Inmobilitzar();
+            hab = true;
+        }else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
         {
             Inmobilitzar();
             hab = true;

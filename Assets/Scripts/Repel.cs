@@ -11,6 +11,7 @@ public class Repel : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
+    bool ab1 = false, ab2 = false;
     // Use this for initialization
     void Start()
     {
@@ -41,7 +42,12 @@ public class Repel : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab3Button) && !used)
+        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        {
+            Repelation();
+            hab = true;
+        }
+        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
         {
             Repelation();
             hab = true;

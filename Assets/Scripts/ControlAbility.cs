@@ -12,6 +12,7 @@ public class ControlAbility : MonoBehaviour {
     private string nameObj;
     private int random;
     List<GameObject> guardsList = new List<GameObject>();
+    bool ab1 = false, ab2 = false;
     // Use this for initialization
     void Start()
     {
@@ -50,7 +51,13 @@ public class ControlAbility : MonoBehaviour {
                 DefaultControl();
             }
         }
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab5Button) && !used)
+        
+        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        {
+            ControlChange();
+            hab = true;
+        }
+        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
         {
             ControlChange();
             hab = true;

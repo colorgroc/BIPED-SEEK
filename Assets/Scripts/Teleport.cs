@@ -9,8 +9,9 @@ public class Teleport : MonoBehaviour {
     [SerializeField]
     private int coolDown = 10;
     List<GameObject> guardsList = new List<GameObject>();
-	// Use this for initialization
-	void Start () {
+    bool ab1 = false, ab2 = false;
+    // Use this for initialization
+    void Start () {
         hab = false;
         cooldown = 0;
         foreach(GameObject guard in NewControl.guards)
@@ -34,12 +35,16 @@ public class Teleport : MonoBehaviour {
                 cooldown = 0;
             }
         }
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !hab)
+        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !hab)
         {
             TeleportHability();
             hab = true;   
+        } else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !hab)
+        {
+            TeleportHability();
+            hab = true;
         }
-	}
+    }
 
     void TeleportHability()
     {

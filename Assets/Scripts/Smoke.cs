@@ -9,6 +9,7 @@ public class Smoke : MonoBehaviour {
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
     GameObject smoke;
+    bool ab1 = false, ab2 = false;
     // Use this for initialization
     void Start()
     {
@@ -42,7 +43,15 @@ public class Smoke : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab6Button) && !used)
+        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        {
+            Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
+            GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
+            s.GetComponent<ParticleSystem>().Play(false);
+
+            hab = true;
+        }
+        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
         {
             Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
             GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);

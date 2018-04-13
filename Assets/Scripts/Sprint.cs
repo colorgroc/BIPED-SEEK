@@ -8,6 +8,7 @@ public class Sprint : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
+    bool ab1 = false, ab2 = false;
     // Use this for initialization
     void Start()
     {
@@ -42,7 +43,12 @@ public class Sprint : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab4Button) && !used)
+        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        {
+            this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
+            hab = true;
+        }
+        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
         {
             this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
             hab = true;
