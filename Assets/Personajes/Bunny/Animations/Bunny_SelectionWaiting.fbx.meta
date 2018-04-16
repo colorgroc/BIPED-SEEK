@@ -1,103 +1,70 @@
 fileFormatVersion: 2
-guid: 6cc424e9fb668eb4197aeb63cd723dd5
-timeCreated: 1521397477
+guid: f86f10d4f9f30eb4eabb6e99e6bf2634
+timeCreated: 1523902219
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: cola
-    100004: Cuerpo
-    100006: dientes
-    100008: mixamorig:Head
-    100010: mixamorig:HeadTop_End
-    100012: mixamorig:Hips
-    100014: mixamorig:LeftArm
-    100016: mixamorig:LeftFoot
-    100018: mixamorig:LeftForeArm
-    100020: mixamorig:LeftHand
-    100022: mixamorig:LeftLeg
-    100024: mixamorig:LeftShoulder
-    100026: mixamorig:LeftToe_End
-    100028: mixamorig:LeftToeBase
-    100030: mixamorig:LeftUpLeg
-    100032: mixamorig:Neck
-    100034: mixamorig:RightArm
-    100036: mixamorig:RightFoot
-    100038: mixamorig:RightForeArm
-    100040: mixamorig:RightHand
-    100042: mixamorig:RightLeg
-    100044: mixamorig:RightShoulder
-    100046: mixamorig:RightToe_End
-    100048: mixamorig:RightToeBase
-    100050: mixamorig:RightUpLeg
-    100052: mixamorig:Spine
-    100054: mixamorig:Spine1
-    100056: mixamorig:Spine2
-    100058: morro
-    100060: nariz
-    100062: ojos
-    100064: oreja
+    100002: mixamorig:Head
+    100004: mixamorig:HeadTop_End
+    100006: mixamorig:Hips
+    100008: mixamorig:LeftArm
+    100010: mixamorig:LeftFoot
+    100012: mixamorig:LeftForeArm
+    100014: mixamorig:LeftHand
+    100016: mixamorig:LeftLeg
+    100018: mixamorig:LeftShoulder
+    100020: mixamorig:LeftToe_End
+    100022: mixamorig:LeftToeBase
+    100024: mixamorig:LeftUpLeg
+    100026: mixamorig:Neck
+    100028: mixamorig:RightArm
+    100030: mixamorig:RightFoot
+    100032: mixamorig:RightForeArm
+    100034: mixamorig:RightHand
+    100036: mixamorig:RightLeg
+    100038: mixamorig:RightShoulder
+    100040: mixamorig:RightToe_End
+    100042: mixamorig:RightToeBase
+    100044: mixamorig:RightUpLeg
+    100046: mixamorig:Spine
+    100048: mixamorig:Spine1
+    100050: mixamorig:Spine2
     400000: //RootNode
-    400002: cola
-    400004: Cuerpo
-    400006: dientes
-    400008: mixamorig:Head
-    400010: mixamorig:HeadTop_End
-    400012: mixamorig:Hips
-    400014: mixamorig:LeftArm
-    400016: mixamorig:LeftFoot
-    400018: mixamorig:LeftForeArm
-    400020: mixamorig:LeftHand
-    400022: mixamorig:LeftLeg
-    400024: mixamorig:LeftShoulder
-    400026: mixamorig:LeftToe_End
-    400028: mixamorig:LeftToeBase
-    400030: mixamorig:LeftUpLeg
-    400032: mixamorig:Neck
-    400034: mixamorig:RightArm
-    400036: mixamorig:RightFoot
-    400038: mixamorig:RightForeArm
-    400040: mixamorig:RightHand
-    400042: mixamorig:RightLeg
-    400044: mixamorig:RightShoulder
-    400046: mixamorig:RightToe_End
-    400048: mixamorig:RightToeBase
-    400050: mixamorig:RightUpLeg
-    400052: mixamorig:Spine
-    400054: mixamorig:Spine1
-    400056: mixamorig:Spine2
-    400058: morro
-    400060: nariz
-    400062: ojos
-    400064: oreja
-    4300000: Cuerpo
-    4300002: cola
-    4300004: ojos
-    4300006: morro
-    4300008: nariz
-    4300010: oreja
-    4300012: dientes
-    7400000: Bunny_GangnamStyle
+    400002: mixamorig:Head
+    400004: mixamorig:HeadTop_End
+    400006: mixamorig:Hips
+    400008: mixamorig:LeftArm
+    400010: mixamorig:LeftFoot
+    400012: mixamorig:LeftForeArm
+    400014: mixamorig:LeftHand
+    400016: mixamorig:LeftLeg
+    400018: mixamorig:LeftShoulder
+    400020: mixamorig:LeftToe_End
+    400022: mixamorig:LeftToeBase
+    400024: mixamorig:LeftUpLeg
+    400026: mixamorig:Neck
+    400028: mixamorig:RightArm
+    400030: mixamorig:RightFoot
+    400032: mixamorig:RightForeArm
+    400034: mixamorig:RightHand
+    400036: mixamorig:RightLeg
+    400038: mixamorig:RightShoulder
+    400040: mixamorig:RightToe_End
+    400042: mixamorig:RightToeBase
+    400044: mixamorig:RightUpLeg
+    400046: mixamorig:Spine
+    400048: mixamorig:Spine1
+    400050: mixamorig:Spine2
+    7400000: Bunny_SelectionWainting
     9500000: //RootNode
-    13700000: cola
-    13700002: Cuerpo
-    13700004: dientes
-    13700006: morro
-    13700008: nariz
-    13700010: ojos
-    13700012: oreja
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 402cb4a47e371f3459a1d2c969ec7979, type: 2}
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -120,10 +87,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Bunny_GangnamStyle
+      name: Bunny_SelectionWainting
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 371
+      lastFrame: 143
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -163,6 +130,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
