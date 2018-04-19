@@ -31,43 +31,51 @@ public class GuardController_ControlAbility : MonoBehaviour
         {
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation = "H_RPad_1";
+            this.canAct = true;
         }
         else if (this.gameObject.name.Equals("IA_Player 2"))
         {
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation = "H_RPad_2";
+            this.canAct = true;
         }
         else if (this.gameObject.name.Equals("IA_Player 3"))
         {
             this.AxisMovement = "V_LPad_3";
             this.AxisRotation = "H_RPad_3";
+            this.canAct = true;
         }
         else if (this.gameObject.name.Equals("IA_Player 4"))
         {
             this.AxisMovement = "V_LPad_4";
             this.AxisRotation = "H_RPad_4";
+            this.canAct = true;
         }
     }
+
 
     // Update is called once per frame
     void Update()
     {
         speed = PlayerPrefs.GetFloat("Speed");
-
-        float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
-        float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
-
-        transform.Translate(0, 0, y * speed);
-        transform.Rotate(0, rX * speedRotation, 0);
-
-        _navMeshAgent.SetDestination(transform.position);
-
-        if (y > 0) this.anim.SetBool("isWalkingForward", true);
-        else if (y < 0) this.anim.SetBool("isWalkingBack", true);
-        else
+        if (this.canAct)
         {
-            this.anim.SetBool("isWalkingForward", false);
-            this.anim.SetBool("isWalkingBack", false);
+            float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
+            float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
+
+            transform.Translate(0, 0, y * speed);
+            transform.Rotate(0, rX * speedRotation, 0);
+
+            _navMeshAgent.SetDestination(transform.position);
+
+
+            if (y > 0) this.anim.SetBool("isWalkingForward", true);
+            else if (y < 0) this.anim.SetBool("isWalkingBack", true);
+            else
+            {
+                this.anim.SetBool("isWalkingForward", false);
+                this.anim.SetBool("isWalkingBack", false);
+            }
         }
 
     }

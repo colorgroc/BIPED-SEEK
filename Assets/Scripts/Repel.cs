@@ -42,12 +42,17 @@ public class Repel : MonoBehaviour {
             }
         }
 
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+       /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
         {
             Repelation();
             hab = true;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
+        {
+            Repelation();
+            hab = true;
+        }*/
+        if(Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
         {
             Repelation();
             hab = true;

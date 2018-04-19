@@ -263,12 +263,20 @@ public class NewControl : MonoBehaviour
             tipo.gameObject.GetComponent<PlayerControl>().enabled = false;
             tipo.gameObject.GetComponent<FieldOfView>().enabled = false;
             tipo.gameObject.GetComponent<NPCConnectedPatrol>().enabled = true;
+            tipo.gameObject.GetComponent<ControlAbility>().enabled = false;
+            tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = true;
+            tipo.gameObject.GetComponent<Immobilizer>().enabled = false;
+            tipo.gameObject.GetComponent<Invisibility>().enabled = false;
+            tipo.gameObject.GetComponent<Repel>().enabled = false;
+            tipo.gameObject.GetComponent<Smoke>().enabled = false;
+            tipo.gameObject.GetComponent<Sprint>().enabled = false;
+            tipo.gameObject.GetComponent<Teleport>().enabled = false;
 
             //asignacio habiltats --> al reves q en player (else)
-            if (habilitat_1 == (int)Abilities.CONTROL || habilitat_2 == (int)Abilities.CONTROL)
+            /*if (habilitat_1 == (int)Abilities.CONTROL || habilitat_2 == (int)Abilities.CONTROL)
             {
                 tipo.gameObject.GetComponent<ControlAbility>().enabled = false;
-                tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = false;
+                tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = true;
             }
             else if (habilitat_1 == (int)Abilities.IMMOBILIZER || habilitat_2 == (int)Abilities.IMMOBILIZER)
             {
@@ -293,7 +301,7 @@ public class NewControl : MonoBehaviour
             else if (habilitat_1 == (int)Abilities.TELEPORT || habilitat_2 == (int)Abilities.TELEPORT)
             {
                 tipo.gameObject.GetComponent<Teleport>().enabled = false;
-            }
+            }*/
         }
         else
         {

@@ -44,11 +44,16 @@ public class Immobilizer : MonoBehaviour {
             }
         }
 
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
-        {
-            Inmobilitzar();
-            hab = true;
-        }else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
+        //if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        //{
+        //    Inmobilitzar();
+        //    hab = true;
+        //}else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
+        //{
+        //    Inmobilitzar();
+        //    hab = true;
+        //}
+        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab4Button) && !used)
         {
             Inmobilitzar();
             hab = true;

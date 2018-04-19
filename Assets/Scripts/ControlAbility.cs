@@ -62,6 +62,11 @@ public class ControlAbility : MonoBehaviour {
             ControlChange();
             hab = true;
         }
+        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab6Button) && !used)
+        {
+            ControlChange();
+            hab = true;
+        }
     }
 
     void ControlChange()
@@ -118,7 +123,7 @@ public class ControlAbility : MonoBehaviour {
             gO.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
             gO.gameObject.GetComponent<GuardController_ControlAbility>().enabled = true;
             nameObj = gO.name;
-            gO.name = "IA_" + gO.name;
+            gO.name = "Player_Guard";
         }
         else if (type.Equals("Back_to_Player"))
         {

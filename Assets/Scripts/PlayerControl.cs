@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour {
     private float speed = 20, speedRotation = 140;
     [SerializeField]
     public static float defaultSpeed = 20;
-    [HideInInspector]
+   // [HideInInspector]
     public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, hab3Button, hab4Button, hab5Button, hab6Button;
 
     private float distToGround, count, timeCoolDown, timeFeedback;
@@ -62,10 +62,14 @@ public class PlayerControl : MonoBehaviour {
 
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation = "H_RPad_1";
-            this.killButton = "X_1";
+            this.killButton = "Start";
             this.hab1Button = "Y_1";
             this.hab2Button = "B_1";
-        
+            this.hab3Button = "A_1";
+            this.hab4Button = "R_Bumper_1";
+            this.hab5Button = "L_Bumper_1";
+            this.hab6Button = "X_1";
+
         }
         else if (this.gameObject.name.Equals("Player 2"))
         {

@@ -37,12 +37,13 @@ public class Invisibility : MonoBehaviour {
                 used = true;
                 hab = false;
                 timeAb = 0;
+                this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
         }
 
         if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
         {
-            this.gameObject.GetComponent<Renderer>().GetComponent<MeshRenderer>().enabled = false;
+            this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
             hab = true;
         } 
     }
