@@ -1,88 +1,28 @@
 fileFormatVersion: 2
-guid: 0b3436e537ab7c447a207cadac9aea89
-timeCreated: 1521159376
+guid: 5c03bfd814551af4d866b2330bfab7d9
+timeCreated: 1522961090
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: cola
-    100004: Cuerpo
-    100006: dientes
-    100008: morro
-    100010: nariz
-    100012: ojos
-    100014: oreja
-    400000: //RootNode
-    400002: cola
-    400004: Cuerpo
-    400006: dientes
-    400008: morro
-    400010: nariz
-    400012: ojos
-    400014: oreja
-    2300000: cola
-    2300002: Cuerpo
-    2300004: dientes
-    2300006: morro
-    2300008: nariz
-    2300010: ojos
-    2300012: oreja
-    3300000: cola
-    3300002: Cuerpo
-    3300004: dientes
-    3300006: morro
-    3300008: nariz
-    3300010: ojos
-    3300012: oreja
-    4300000: cola
-    4300002: Cuerpo
-    4300004: dientes
-    4300006: morro
-    4300008: nariz
-    4300010: ojos
-    4300012: oreja
+    100000: Bunny
+    100002: //RootNode
+    400000: Bunny
+    400002: //RootNode
+    2300000: Bunny
+    3300000: Bunny
+    4300000: Bunny
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: CuerpoMat
-    second: {fileID: 2100000, guid: 31bf302af34f93b409983e476604e0d4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: colaMat
-    second: {fileID: 2100000, guid: ff2112b5d2501634ba2128b5c8469c58, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: dientesMat
-    second: {fileID: 2100000, guid: 1271808adbd8dfe48928e5d19f4c911e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: morroMat
-    second: {fileID: 2100000, guid: a21340ebc51cf9245a7675f2bc42b057, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: narizMat
-    second: {fileID: 2100000, guid: 6ce47c5c86ee48846ba96cf857257dd9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ojosMat
-    second: {fileID: 2100000, guid: af977ec0bce40644fbb9dcf3aa917307, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: orejaMat
-    second: {fileID: 2100000, guid: e203efe6c957fdb4b8f2a84fe32f41e8, type: 2}
+      name: BunnyMat
+    second: {fileID: 2100000, guid: a4df7bddbe9edba48b4e4e2a17a628ca, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -96,7 +36,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -131,7 +71,7 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
-  copyAvatar: 1
+  copyAvatar: 0
   humanDescription:
     serializedVersion: 2
     human: []
@@ -148,9 +88,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 52e37f0878d24c74b81feaa7dc3ff77e,
-    type: 3}
-  animationType: 2
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

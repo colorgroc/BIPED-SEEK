@@ -1,78 +1,28 @@
 fileFormatVersion: 2
-guid: a1d742bb425c6c3469925cf42ac47275
-timeCreated: 1521162275
+guid: f81a1699cc2c909428a9b1f940fc15b3
+timeCreated: 1522961083
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: cola
-    100004: Cuerpo
-    100006: morro
-    100008: nariz
-    100010: ojos
-    100012: orejas
-    400000: //RootNode
-    400002: cola
-    400004: Cuerpo
-    400006: morro
-    400008: nariz
-    400010: ojos
-    400012: orejas
-    2300000: cola
-    2300002: Cuerpo
-    2300004: morro
-    2300006: nariz
-    2300008: ojos
-    2300010: orejas
-    3300000: cola
-    3300002: Cuerpo
-    3300004: morro
-    3300006: nariz
-    3300008: ojos
-    3300010: orejas
-    4300000: cola
-    4300002: Cuerpo
-    4300004: morro
-    4300006: nariz
-    4300008: ojos
-    4300010: orejas
+    100000: Bear
+    100002: //RootNode
+    400000: Bear
+    400002: //RootNode
+    2300000: Bear
+    3300000: Bear
+    4300000: Bear
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: CuerpoMat
-    second: {fileID: 2100000, guid: 4cbe72fa81e0be94b94d387e15cf4bb4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: colaMat
-    second: {fileID: 2100000, guid: 7a8338e060a9236488d4208381eec7e3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: morroMat
-    second: {fileID: 2100000, guid: b7d64038ee8328a4398ec98207577b71, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: narizMat
-    second: {fileID: 2100000, guid: 8aab2440c3f9be0489a78ba26901eba7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ojosMat
-    second: {fileID: 2100000, guid: 11b25ffc569bd1846997a49c754dd04a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: orejasMat
-    second: {fileID: 2100000, guid: 0c2e84a3dc64b01409ae728dbe37eaa3, type: 2}
+      name: BearMat
+    second: {fileID: 2100000, guid: 7e55e96f1930d024bb3c0e7e915f89b1, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -86,7 +36,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -121,7 +71,7 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
-  copyAvatar: 1
+  copyAvatar: 0
   humanDescription:
     serializedVersion: 2
     human: []
@@ -138,9 +88,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2be293a3794f4fe48b9fbf52d27d18b1,
-    type: 3}
-  animationType: 2
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
