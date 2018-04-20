@@ -672,72 +672,72 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_1_01Mat
-    second: {fileID: 2100000, guid: a993e2a4a6c2a1f468e7813ba88a21bf, type: 2}
+    second: {fileID: 2100000, guid: dad5cb1349e24da408e2d5ca641a5f02, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_1_02Mat
-    second: {fileID: 2100000, guid: d239603dea6e05b4cbd5994b14949e02, type: 2}
+    second: {fileID: 2100000, guid: 262bae5ee890a6a45b3b671a7381f604, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_1_03Mat
-    second: {fileID: 2100000, guid: 5f1d9562b4194f3468b50411a75dfafb, type: 2}
+    second: {fileID: 2100000, guid: 35196567e00f73f42bf252d53151d736, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_2_01Mat
-    second: {fileID: 2100000, guid: 821fa2fe92a6a3e48a075f0f43bc5997, type: 2}
+    second: {fileID: 2100000, guid: fa5be67aef0c1ab4baeb70537068cf32, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_2_02Mat
-    second: {fileID: 2100000, guid: d27d1815f989a7040a3a5654639deed1, type: 2}
+    second: {fileID: 2100000, guid: f121346bb93436a42a795cf9dd30a864, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_2_03Mat
-    second: {fileID: 2100000, guid: afe4e6efb1afdbb498d4769498174f7c, type: 2}
+    second: {fileID: 2100000, guid: 6e546b418f68b10498a164b414a4e71b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_3_01Mat
-    second: {fileID: 2100000, guid: 8a66b85126e6b0a44a22df54780294c7, type: 2}
+    second: {fileID: 2100000, guid: e83f9ee7106682a4297c80fe4fa755a0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_3_02Mat
-    second: {fileID: 2100000, guid: 877b742e296f27b4b8e2e225a875ccdb, type: 2}
+    second: {fileID: 2100000, guid: 3a26b0e136f58604eb83877ebf6c2c99, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_3_03Mat
-    second: {fileID: 2100000, guid: 443c6503f958ac647a1a7ab8098ef050, type: 2}
+    second: {fileID: 2100000, guid: 75778948d604a0c49a2c175d050f1029, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_4_01Mat
-    second: {fileID: 2100000, guid: a137cc57ec9d5284bacc502a58aa7332, type: 2}
+    second: {fileID: 2100000, guid: eae75f050976848438123e2b90ae3fed, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_4_02Mat
-    second: {fileID: 2100000, guid: 156dc6a8f52724745a1879bdc97d3ed6, type: 2}
+    second: {fileID: 2100000, guid: 82b8e85ca3998df428fbbfe33a8209ff, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_5_01Mat
-    second: {fileID: 2100000, guid: b4c645cff337fdf4f81846606a00c641, type: 2}
+    second: {fileID: 2100000, guid: 314f61e99c8e2f0418a645f559c28388, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_5_02Mat
-    second: {fileID: 2100000, guid: 66655f20ee5b96c4f8d9b764a3cb38ce, type: 2}
+    second: {fileID: 2100000, guid: 237ca684ab0188c41b14975ea599e23f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_5_03Mat
-    second: {fileID: 2100000, guid: 7ab0a01f53e2be448b781dba14e52594, type: 2}
+    second: {fileID: 2100000, guid: 9ded95a6587c9d34393bf0c6e3423a6b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -747,27 +747,27 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_Entera01Mat
-    second: {fileID: 2100000, guid: c02b4924015b9eb4a8432d1713cc7ab9, type: 2}
+    second: {fileID: 2100000, guid: 4489dd401df8c5e4683991a43e768eaa, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_Entera02Mat
-    second: {fileID: 2100000, guid: 00a7d78625f192244a4b9ca188ac898f, type: 2}
+    second: {fileID: 2100000, guid: 3c7cda8eb012e2a4b848589f7fc918b8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_Entera03Mat
-    second: {fileID: 2100000, guid: fe0e6f140c1966244a85fc0059c012b9, type: 2}
+    second: {fileID: 2100000, guid: 944d28f4776e8c94fa4a14a07f2df14c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_Entera04Mat
-    second: {fileID: 2100000, guid: 578d51c0a8f3ff74d80483ab2bf3eb81, type: 2}
+    second: {fileID: 2100000, guid: 7b8c53cfaa5f23e4a980e0119f382234, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Columna_Entera05Mat
-    second: {fileID: 2100000, guid: bf0218b584ec0e545b6a51bbe900b121, type: 2}
+    second: {fileID: 2100000, guid: a679426a95b75554d85fc99abb61002d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -1012,7 +1012,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Obstacle_01Mat
-    second: {fileID: 2100000, guid: 72483150126583c499c66ba3676a32d6, type: 2}
+    second: {fileID: 2100000, guid: 2d1cf48c54a020c41959461da8f28937, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -1049,7 +1049,7 @@ ModelImporter:
       name: SueloMat
     second: {fileID: 2100000, guid: 300d79f5e4295714085a4002dc425c9a, type: 2}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -1090,6 +1090,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
