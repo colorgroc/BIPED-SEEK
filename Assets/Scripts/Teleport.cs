@@ -47,6 +47,7 @@ public class Teleport : MonoBehaviour {
 
         if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab5Button) && !hab)
         {
+            Debug.Log("Teleport");
             TeleportHability();
             hab = true;
         }

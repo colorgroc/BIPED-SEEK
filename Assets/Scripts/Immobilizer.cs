@@ -55,6 +55,7 @@ public class Immobilizer : MonoBehaviour {
         //}
         if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab4Button) && !used)
         {
+            Debug.Log("Immobile");
             Inmobilitzar();
             hab = true;
         }
@@ -69,6 +70,8 @@ public class Immobilizer : MonoBehaviour {
             
             if (rb != null)
                 rb.Sleep();
+            //en players variable canAct = false --> posarla en el moviment
+            //en guards/killers --> travelling = false;
         }
     }
 

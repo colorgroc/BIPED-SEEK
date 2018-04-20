@@ -9,17 +9,21 @@ public class Sprint : MonoBehaviour {
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
     bool ab1 = false, ab2 = false;
+    [SerializeField]
+    private float sprint = 1.7f;
     // Use this for initialization
     void Start()
     {
         used = false;
         cooldown = 0;
-        speed = this.gameObject.GetComponent<PlayerControl>().GetSpeed();
+        //speed = this.gameObject.GetComponent<PlayerControl>().GetSpeed();
+        speed = PlayerPrefs.GetFloat("Speed");
     }
 
     // Update is called once per frame
     void Update()
     {
+        speed = PlayerPrefs.GetFloat("Speed");
         //NewContol.guards;
         if (used)
         {
@@ -39,18 +43,27 @@ public class Sprint : MonoBehaviour {
                 used = true;
                 hab = false;
                 timeAb = 0;
-                this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed);
+                //this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed);
+                PlayerPrefs.SetFloat("Speed", speed);
             }
         }
 
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+         {
+             this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
+             hab = true;
+         }
+         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
+         {
+             this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
+             hab = true;
+         }*/
+
+        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab3Button) && !used)
         {
-            this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
-            hab = true;
-        }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
-        {
-            this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
+            Debug.Log("Sprint");
+            PlayerPrefs.SetFloat("Speed", speed*sprint);
+            //this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * sprint);
             hab = true;
         }
     }

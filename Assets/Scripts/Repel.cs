@@ -5,7 +5,7 @@ using UnityEngine;
 public class Repel : MonoBehaviour {
 
     [SerializeField]
-    private float radius = 10f, power = 5f;
+    private float radius = 30f, power = 20f;
 
     private float cooldown, timeAb;
     private bool hab, used;
@@ -54,6 +54,7 @@ public class Repel : MonoBehaviour {
         }*/
         if(Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
         {
+            Debug.Log("Repel");
             Repelation();
             hab = true;
         }
@@ -64,6 +65,7 @@ public class Repel : MonoBehaviour {
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, radius);
         foreach (Collider hit in colliders)
         {
+ 
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
             if (rb != null)

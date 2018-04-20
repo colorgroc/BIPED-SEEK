@@ -39,7 +39,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         this.anim = this.gameObject.GetComponent<Animator>();
         if (_navMeshAgent == null) Debug.LogError ("The nav mesh agent component is not attached to " + gameObject.name);
 		else {
-			if (this.gameObject.tag.Equals("Guard") && _currentWaypoint == null) {
+			if (_currentWaypoint == null) {
 				allWaypoints = GameObject.FindGameObjectsWithTag ("Waypoint");
 
 				if (allWaypoints.Length > 0) {
@@ -134,6 +134,14 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+        /*if (col.gameObject.tag.Equals("Guard") || col.gameObject.tag.Equals("Killer Guards"))
+        {
+            SetDestination();
+        }
+        if (this.gameObject.tag.Equals("Guard") && col.gameObject.layer == 8)
+        {
+            SetDestination();
+        }*/
 
         if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
         {

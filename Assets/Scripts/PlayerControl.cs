@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour {
     private float speed = 20, speedRotation = 140;
     [SerializeField]
     public static float defaultSpeed = 20;
-   // [HideInInspector]
+    [HideInInspector]
     public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, hab3Button, hab4Button, hab5Button, hab6Button;
 
     private float distToGround, count, timeCoolDown, timeFeedback;
@@ -79,9 +79,13 @@ public class PlayerControl : MonoBehaviour {
 
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation = "H_RPad_2";
-            this.killButton = "X_2";
+            this.killButton = "Start";
             this.hab1Button = "Y_2";
             this.hab2Button = "B_2";
+            this.hab3Button = "A_2";
+            this.hab4Button = "R_Bumper_2";
+            this.hab5Button = "L_Bumper_2";
+            this.hab6Button = "X_2";
 
         }
         else if (this.gameObject.name.Equals("Player 3"))
@@ -213,7 +217,10 @@ public class PlayerControl : MonoBehaviour {
             this.scoreGeneral -= 3;
             this.badFeedback = true;
             //this.canAct = false;
-            Destroy(gO);
+            //Destroy(gO);
+            if(gO.gameObject.tag.Equals("Guard"))
+                gO.GetComponent<NPCConnectedPatrol>().Respawn(gO);
+            else Destroy(gO);
             //if (AnimatorIsPlaying("Punch"))
             this.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
             //Respawn(this.gameObject);
@@ -247,7 +254,7 @@ public class PlayerControl : MonoBehaviour {
 
     public void SetSpeed(float speed)
     {
-        this.speed = speed;
+        this.speed *= speed;
     }
     public float GetSpeed()
     {

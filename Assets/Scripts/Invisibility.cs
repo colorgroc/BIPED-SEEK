@@ -43,6 +43,7 @@ public class Invisibility : MonoBehaviour {
 
         if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
         {
+            Debug.Log("Invisible");
             this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
             hab = true;
         } 

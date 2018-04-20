@@ -43,7 +43,7 @@ public class Smoke : MonoBehaviour {
             }
         }
 
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+       /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
         {
             Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
             GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
@@ -58,6 +58,6 @@ public class Smoke : MonoBehaviour {
             s.GetComponent<ParticleSystem>().Play(false);
 
             hab = true;
-        }
+        }*/
     }
 }

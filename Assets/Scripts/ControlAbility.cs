@@ -52,7 +52,7 @@ public class ControlAbility : MonoBehaviour {
             }
         }
         
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+       /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
         {
             ControlChange();
             hab = true;
@@ -61,9 +61,10 @@ public class ControlAbility : MonoBehaviour {
         {
             ControlChange();
             hab = true;
-        }
+        }*/
         if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab6Button) && !used)
         {
+            Debug.Log("Control");
             ControlChange();
             hab = true;
         }

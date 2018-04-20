@@ -21,7 +21,9 @@ public class NewControl : MonoBehaviour
 
     public static List<GameObject> players;// = new List<GameObject>();
     private List<GameObject> listPlayers;// = new List<GameObject>();
+    [HideInInspector]
     public static GameObject[] guards;
+    [HideInInspector]
     public static GameObject[] killers;
 	private bool paused;
 	[SerializeField]
@@ -197,25 +199,25 @@ public class NewControl : MonoBehaviour
             //player.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
             
 
-            if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 1)
+            if (PlayerPrefs.GetInt("characterPlayer_" + i.ToString()) == 1)
             {
                 GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_1;
                 Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Bear");
                 player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
-            else if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 2)
+            else if (PlayerPrefs.GetInt("characterPlayer_" + i.ToString()) == 2)
             {
                 GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_2;
                 Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Bunny");
                 player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
-            else if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 3)
+            else if (PlayerPrefs.GetInt("characterPlayer_" + i.ToString()) == 3)
             {
                 GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_3;
                 Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Penguin");
                 player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
-            else if (PlayerPrefs.GetInt("characterPlayer_" + (i).ToString()) == 4)
+            else if (PlayerPrefs.GetInt("characterPlayer_" + i.ToString()) == 4)
             {
                 GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_4;
                 Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Fox");
@@ -263,8 +265,9 @@ public class NewControl : MonoBehaviour
             tipo.gameObject.GetComponent<PlayerControl>().enabled = false;
             tipo.gameObject.GetComponent<FieldOfView>().enabled = false;
             tipo.gameObject.GetComponent<NPCConnectedPatrol>().enabled = true;
+
             tipo.gameObject.GetComponent<ControlAbility>().enabled = false;
-            tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = true;
+            tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = false;
             tipo.gameObject.GetComponent<Immobilizer>().enabled = false;
             tipo.gameObject.GetComponent<Invisibility>().enabled = false;
             tipo.gameObject.GetComponent<Repel>().enabled = false;

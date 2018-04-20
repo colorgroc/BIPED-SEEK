@@ -87,9 +87,9 @@ public class Loading : MonoBehaviour {
     private void MapaRandom()
     {
         List<string> mapas = new List<string>();
-        for (int i = 0; i < numOfMapas; i++)
+        for (int i = 1; i <= numOfMapas; i++)
         {
-            mapas.Add("Mapa_" + (i + 1).ToString());
+            mapas.Add("Mapa_" + i.ToString());
         }
         mapas.Sort(SortByName);
 
