@@ -62,8 +62,8 @@ public class Sprint : MonoBehaviour {
         if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab3Button) && !used)
         {
             Debug.Log("Sprint");
-            PlayerPrefs.SetFloat("Speed", speed*sprint);
-            //this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * sprint);
+            //PlayerPrefs.SetFloat("Speed", speed*sprint);
+            this.gameObject.GetComponent<PlayerControl>().SetSpeed(sprint);
             hab = true;
         }
     }

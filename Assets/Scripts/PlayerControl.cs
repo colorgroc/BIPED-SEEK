@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour {
 
     [HideInInspector]
     public int scoreGeneral, scoreKills, scoreWins;
-    public bool wannaKill, onFieldView, detected;
+    public bool wannaKill, onFieldView, detected, sprint;
 
     private Image feedback;
     private List<GameObject> feedbacks;
@@ -129,7 +129,8 @@ public class PlayerControl : MonoBehaviour {
    
     void Update()
     {
-        speed = PlayerPrefs.GetFloat("Speed");
+        if(!sprint)
+            speed = PlayerPrefs.GetFloat("Speed");
 
         float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
         float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
@@ -252,9 +253,9 @@ public class PlayerControl : MonoBehaviour {
         
     }
 
-    public void SetSpeed(float speed)
+    public void SetSpeed(float sprint)
     {
-        this.speed *= speed;
+        this.speed *= sprint;
     }
     public float GetSpeed()
     {
