@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b6d13fde68e091a45a2a816c9ffcca0f
-timeCreated: 1524179345
+guid: 90de0fdc60c6be742b8dc6596eadc4c0
+timeCreated: 1524216020
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -90,7 +90,7 @@ ModelImporter:
       name: Penguin_SelectionWaiting
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 470
+      lastFrame: 359
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
