@@ -10,7 +10,7 @@ public class Loading : MonoBehaviour {
     [SerializeField]
     float loadingTime;
     [SerializeField]
-    private int numOfMapas = 3, numOfAbilities = 7, numOfUsedAbilities = 2, ability1, ability2;
+    private int numOfMapas = 3, numOfAbilities = 6, numOfUsedAbilities = 2, ability1, ability2;
     [SerializeField]
     Text ab1Nom, ab2Nom, ab1Desc, ab2Desc;
     float time;
@@ -58,11 +58,11 @@ public class Loading : MonoBehaviour {
             nom.text = "Invisibility";
             desc.text = "Become invisible during x seconds.";
         }
-        else if (ab == (int)NewControl.Abilities.REPEL)
+       /* else if (ab == (int)NewControl.Abilities.REPEL)
         {
             nom.text = "Repel";
             desc.text = "Repel everyone around you.";
-        }
+        }*/
         else if (ab == (int)NewControl.Abilities.SMOKE)
         {
             nom.text = "Smoke Screen";

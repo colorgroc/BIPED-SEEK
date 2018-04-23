@@ -18,16 +18,15 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
 	public GameObject playerTarget;
 
-	bool _travelling;
-	bool waiting;
-	public bool playerOnFieldView;
+	bool _travelling, waiting;
+	public bool playerOnFieldView, freezed;
 
 	float _waitTimer;
 	int _waypointsVisited;
 
 	public bool isDead;
 	public float count;
-
+   
     private Animator anim;
 
     private void Awake()
@@ -35,6 +34,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         
     }
     public void Start () {
+        freezed = false;
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
         if (_navMeshAgent == null) Debug.LogError ("The nav mesh agent component is not attached to " + gameObject.name);
@@ -62,14 +62,18 @@ public class NPCConnectedPatrol : MonoBehaviour {
         _navMeshAgent.acceleration = PlayerPrefs.GetFloat("Speed");
         _navMeshAgent.speed = PlayerPrefs.GetFloat("Speed");
         if (_navMeshAgent.speed > PlayerControl.defaultSpeed) _navMeshAgent.stoppingDistance = 2; else _navMeshAgent.stoppingDistance = 0;
+        
+        if(freezed) _navMeshAgent.isStopped = true;
+        else _navMeshAgent.isStopped = false;
+
         if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
 			_travelling = false;
 			_waypointsVisited++;
 
-			if (_patrolWaiting) {
+			if (_patrolWaiting || freezed) {
 				waiting = true;
 				_waitTimer = 0f;
-			} else
+			} else 
 				SetDestination ();
 		}
 		if (waiting) {
@@ -85,17 +89,23 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	}
 
 	public void SetDestination(){
-		if (_waypointsVisited > 0) {
-			ConnectedWaypoint nextWaypoint = _currentWaypoint.NextWaypoint (_previousWaypoint);
-			_previousWaypoint = _currentWaypoint;
-			_currentWaypoint = nextWaypoint;
-		}
+       
+        if (_waypointsVisited > 0)
+        {
+            ConnectedWaypoint nextWaypoint = _currentWaypoint.NextWaypoint(_previousWaypoint);
+            _previousWaypoint = _currentWaypoint;
+            _currentWaypoint = nextWaypoint;
+        }
         Vector3 targetVector = new Vector3();
         if (_currentWaypoint != null)
         {
             targetVector = _currentWaypoint.transform.position;
-            _navMeshAgent.SetDestination(targetVector);
-            _travelling = true;
+           // if (!freezed)
+           // {
+                //Debug.Log("freezed");
+                _navMeshAgent.SetDestination(targetVector);
+                _travelling = true;
+          //  }
         }
 	}
 

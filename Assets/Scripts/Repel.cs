@@ -42,22 +42,23 @@ public class Repel : MonoBehaviour {
             }
         }
 
-       /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
-        {
-            Repelation();
-            hab = true;
-        }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
-        {
-            Repelation();
-            hab = true;
-        }*/
-        if(Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
+         {
+             Repelation();
+             hab = true;
+         }
+         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
+         {
+             Repelation();
+             hab = true;
+         }*/
+        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
         {
             Debug.Log("Repel");
             Repelation();
             hab = true;
         }
+       
     }
 
     void Repelation()
@@ -68,8 +69,25 @@ public class Repel : MonoBehaviour {
  
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-            if (rb != null)
-                rb.AddExplosionForce(power, this.transform.position, radius, 3.0F);
+            if (rb != null && this.gameObject.GetComponent<Rigidbody>() != rb)
+            {
+                
+                Debug.Log("boom");
+               // hit.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+                Vector3 dirToTarget = -(rb.transform.position - transform.position).normalized;
+                float dstToTarget = Vector3.Distance(transform.position, rb.transform.position);
+
+                //if (rb.gameObject.tag.Equals("Guard"))
+                    //rb.gameObject.GetComponent<NPCConnectedPatrol>().freezed = true;
+                //{
+                //    rb.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(dirToTarget*power);
+                //}
+                // Vector3 impulso = (dirToTarget/dstToTarget)*power;
+                // rb.AddForce(impulso);
+               // rb.AddForce(dirToTarget * power);
+               // rb.AddExplosionForce(power, this.transform.position, radius, 3.0F);
+                //hit.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+            }
         }
     }
 

@@ -46,7 +46,7 @@ public class NewControl : MonoBehaviour
 
     public enum Abilities
     {
-        INVISIBLITY, IMMOBILIZER, REPEL, SPRINT, TELEPORT, CONTROL, SMOKE
+        INVISIBLITY, IMMOBILIZER, SPRINT, TELEPORT, CONTROL, SMOKE//, REPEL
     };
 
     // Use this for initialization
@@ -270,7 +270,7 @@ public class NewControl : MonoBehaviour
             tipo.gameObject.GetComponent<GuardController_ControlAbility>().enabled = false;
             tipo.gameObject.GetComponent<Immobilizer>().enabled = false;
             tipo.gameObject.GetComponent<Invisibility>().enabled = false;
-            tipo.gameObject.GetComponent<Repel>().enabled = false;
+           // tipo.gameObject.GetComponent<Repel>().enabled = false;
             tipo.gameObject.GetComponent<Smoke>().enabled = false;
             tipo.gameObject.GetComponent<Sprint>().enabled = false;
             tipo.gameObject.GetComponent<Teleport>().enabled = false;
@@ -326,10 +326,10 @@ public class NewControl : MonoBehaviour
             {
                 tipo.gameObject.GetComponent<Invisibility>().enabled = true;
             }
-            else if (habilitat_1 == (int)Abilities.REPEL || habilitat_2 == (int)Abilities.REPEL)
+           /* else if (habilitat_1 == (int)Abilities.REPEL || habilitat_2 == (int)Abilities.REPEL)
             {
                 tipo.gameObject.GetComponent<Repel>().enabled = true;
-            }
+            }*/
             else if (habilitat_1 == (int)Abilities.SMOKE || habilitat_2 == (int)Abilities.SMOKE)
             {
                 tipo.gameObject.GetComponent<Smoke>().enabled = true;

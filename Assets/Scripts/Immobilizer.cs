@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Immobilizer : MonoBehaviour {
 
-    [SerializeField]
-    private float radius = 10f, power = 5f;
-
+    //[SerializeField]
+    public float radius = 10f;
     private float cooldown, timeAb;
     private bool hab, used;
     [SerializeField]
@@ -44,16 +43,16 @@ public class Immobilizer : MonoBehaviour {
             }
         }
 
-        //if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        //if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
         //{
         //    Inmobilitzar();
         //    hab = true;
-        //}else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
+        //}else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         //{
         //    Inmobilitzar();
         //    hab = true;
         //}
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab4Button) && !used)
+        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab4Button) && !used && !hab)
         {
             Debug.Log("Immobile");
             Inmobilitzar();
@@ -66,10 +65,21 @@ public class Immobilizer : MonoBehaviour {
         colliders = Physics.OverlapSphere(this.transform.position, radius);
         foreach (Collider hit in colliders)
         {
+         
             Rigidbody rb = hit.GetComponent<Rigidbody>();
-            
-            if (rb != null)
-                rb.Sleep();
+            if (rb != null && this.gameObject.GetComponent<Rigidbody>() != rb)
+            {
+                //rb.Sleep();
+                if (rb.gameObject.tag.Equals("Guard"))
+                {
+                    Debug.Log("wasup");
+                    hit.GetComponent<NPCConnectedPatrol>().freezed = true;
+                }
+                else
+                {
+                    hit.GetComponent<PlayerControl>().canAct = false;
+                }
+            }
             //en players variable canAct = false --> posarla en el moviment
             //en guards/killers --> travelling = false;
         }
@@ -81,8 +91,18 @@ public class Immobilizer : MonoBehaviour {
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-            if (rb != null && rb.IsSleeping())
-                rb.WakeUp();
+            if (rb != null)
+            {// && rb.IsSleeping())
+             //rb.WakeUp();
+                if (rb.gameObject.tag.Equals("Guard"))
+                {
+                    hit.GetComponent<NPCConnectedPatrol>().freezed = false;
+                }
+                else
+                {
+                    hit.GetComponent<PlayerControl>().canAct = true;
+                }
+            }
         }
     }
 }

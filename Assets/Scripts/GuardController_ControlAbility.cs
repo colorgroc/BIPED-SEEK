@@ -27,25 +27,25 @@ public class GuardController_ControlAbility : MonoBehaviour
 
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
 
-        if (this.gameObject.name.Equals("IA_Player 1"))
+        if (this.gameObject.name.Equals("Player_Guard_1"))
         {
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation = "H_RPad_1";
             this.canAct = true;
         }
-        else if (this.gameObject.name.Equals("IA_Player 2"))
+        else if (this.gameObject.name.Equals("Player_Guard_2"))
         {
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation = "H_RPad_2";
             this.canAct = true;
         }
-        else if (this.gameObject.name.Equals("IA_Player 3"))
+        else if (this.gameObject.name.Equals("Player_Guard_3"))
         {
             this.AxisMovement = "V_LPad_3";
             this.AxisRotation = "H_RPad_3";
             this.canAct = true;
         }
-        else if (this.gameObject.name.Equals("IA_Player 4"))
+        else if (this.gameObject.name.Equals("Player_Guard_4"))
         {
             this.AxisMovement = "V_LPad_4";
             this.AxisRotation = "H_RPad_4";

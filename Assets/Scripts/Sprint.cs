@@ -43,26 +43,29 @@ public class Sprint : MonoBehaviour {
                 used = true;
                 hab = false;
                 timeAb = 0;
-                //this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed);
-                PlayerPrefs.SetFloat("Speed", speed);
+                this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed);
+                this.gameObject.GetComponent<PlayerControl>().sprint = false;
+                // PlayerPrefs.SetFloat("Speed", speed);
+
             }
         }
 
-        /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
+        /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
          {
              this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
              hab = true;
          }
-         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
+         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
          {
              this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
              hab = true;
          }*/
 
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab3Button) && !used)
+        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab3Button) && !used && !hab)
         {
             Debug.Log("Sprint");
             //PlayerPrefs.SetFloat("Speed", speed*sprint);
+            this.gameObject.GetComponent<PlayerControl>().sprint = true;
             this.gameObject.GetComponent<PlayerControl>().SetSpeed(sprint);
             hab = true;
         }

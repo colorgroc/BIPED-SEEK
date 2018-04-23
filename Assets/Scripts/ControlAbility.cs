@@ -51,17 +51,17 @@ public class ControlAbility : MonoBehaviour {
                 DefaultControl();
             }
         }
-        
-       /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used)
-        {
-            ControlChange();
-            hab = true;
-        }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used)
-        {
-            ControlChange();
-            hab = true;
-        }*/
+
+        /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
+         {
+             ControlChange();
+             hab = true;
+         }
+         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
+         {
+             ControlChange();
+             hab = true;
+         }*/
         if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab6Button) && !used)
         {
             Debug.Log("Control");
@@ -82,8 +82,10 @@ public class ControlAbility : MonoBehaviour {
     {
         guardsList[random] = guard; //si no va, comentar aixo i descomentar lu d sota
         //ConvertType(guardsList[random], "Back_to_Guard");
+        //player = this.gameObject;
         ConvertType(player, "Back_to_Player");
-        
+        ConvertType(guard, "Back_to_Guard");
+
     }
 
     private void ConvertType(GameObject gO, string type)
@@ -101,10 +103,10 @@ public class ControlAbility : MonoBehaviour {
             {
                 gO.gameObject.GetComponent<Invisibility>().enabled = false;
             }
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
+           /* else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
             {
                 gO.gameObject.GetComponent<Repel>().enabled = false;
-            }
+            }*/
             else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
             {
                 gO.gameObject.GetComponent<Smoke>().enabled = false;
@@ -124,12 +126,13 @@ public class ControlAbility : MonoBehaviour {
             gO.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
             gO.gameObject.GetComponent<GuardController_ControlAbility>().enabled = true;
             nameObj = gO.name;
-            gO.name = "Player_Guard";
+            gO.name = "Player_Guard_" + this.name.Substring(this.name.Length - 1);
         }
         else if (type.Equals("Back_to_Player"))
         {
             gO.gameObject.GetComponent<NPCConnectedPatrol>().enabled = false;
             gO.gameObject.GetComponent<PlayerControl>().enabled = true;
+            gO.gameObject.name = player.name;
 
             if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
             {
@@ -139,10 +142,10 @@ public class ControlAbility : MonoBehaviour {
             {
                 gO.gameObject.GetComponent<Invisibility>().enabled = true;
             }
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
+           /* else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
             {
                 gO.gameObject.GetComponent<Repel>().enabled = true;
-            }
+            }*/
             else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
             {
                 gO.gameObject.GetComponent<Smoke>().enabled = true;

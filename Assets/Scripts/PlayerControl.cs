@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour {
 
     [HideInInspector]
     public int scoreGeneral, scoreKills, scoreWins;
-    public bool wannaKill, onFieldView, detected, sprint;
+    public bool wannaKill, onFieldView, detected, sprint, canAct;
 
     private Image feedback;
     private List<GameObject> feedbacks;
@@ -44,6 +44,7 @@ public class PlayerControl : MonoBehaviour {
         this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
         this.feedbacks = new List<GameObject>();
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
+        this.canAct = true;
 
         for (int i = 0; i < feedbackList.Length; i++)
         {
@@ -131,31 +132,34 @@ public class PlayerControl : MonoBehaviour {
     {
         if(!sprint)
             speed = PlayerPrefs.GetFloat("Speed");
-
-        float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
-        float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
-
-        transform.Translate(0, 0, y * speed);
-        transform.Rotate(0, rX * speedRotation, 0);
-
-        _navMeshAgent.SetDestination(transform.position);
-        
-        if (Input.GetButtonDown(this.killButton))
+        if (this.canAct)
         {
-            this.wannaKill = true;
-        }
+            float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
+            float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
 
-        if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
+            transform.Translate(0, 0, y * speed);
+            transform.Rotate(0, rX * speedRotation, 0);
 
-        if (y > 0) this.anim.SetBool("isWalkingForward", true);
-        else if (y < 0) this.anim.SetBool("isWalkingBack", true);
-        else
-        {
-            this.anim.SetBool("isWalkingForward", false);
-            this.anim.SetBool("isWalkingBack", false);
-        }
+            _navMeshAgent.SetDestination(transform.position);
+
+            if (Input.GetButtonDown(this.killButton))
+            {
+                this.wannaKill = true;
+            }
+
+            if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
+
+            if (y > 0) this.anim.SetBool("isWalkingForward", true);
+            else if (y < 0) this.anim.SetBool("isWalkingBack", true);
+            else
+            {
+                this.anim.SetBool("isWalkingForward", false);
+                this.anim.SetBool("isWalkingBack", false);
+            }
 
             this.anim.SetBool("wannaKill", this.wannaKill);
+
+        }
 
         if (this.goodFeedback)
         {
