@@ -57,12 +57,12 @@ public class FieldOfView : MonoBehaviour {
                             //target.gameObject.GetComponent<PlayerControl>().detected = true; 
                             //Amb feedback
                             this.gameObject.GetComponent<PlayerControl>().detected = true;
-                            WannaKill(target);
+                            //WannaKill(target);
                         }
-                        else
-                        {
-                            WannaKill(target);
-                        }
+                        //else
+                        //{
+                        //    WannaKill(target);
+                        //}
                     }
                 }
 
@@ -77,8 +77,8 @@ public class FieldOfView : MonoBehaviour {
         if (this.gameObject.GetComponent<PlayerControl>().wannaKill) //&& distToTarget < distanciaQueVolem 
         {
             this.visibleTargets.Remove(target);
-            if (AnimatorIsPlaying("Punch"))
-                this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
+            //if (AnimatorIsPlaying("Punch"))
+            this.gameObject.GetComponent<PlayerControl>().Kill(target.gameObject);
             this.gameObject.GetComponent<PlayerControl>().wannaKill = false;
         }
         

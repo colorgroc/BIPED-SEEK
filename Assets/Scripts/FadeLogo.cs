@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class FadeLogo : MonoBehaviour {
 
-    public SpriteRenderer icon;
-    public Image gameTitle;
-    public Image image;
+    public Image icon, gameTitle, image;
     public int ticksToWait, ticksToWaitGame;
     private float ticksDone, ticksDoneGame;
     private float alpha, color, alphaGame;
     private bool finish;
+    public float duration = 3f;
+
     // Use this for initialization
     void Start()
     {
@@ -24,47 +24,45 @@ public class FadeLogo : MonoBehaviour {
         gameTitle.color = new Color(1f, 1f, 1f, alphaGame);
         image.color = new Color(1f, 1f, 1f, 1f);
         ticksDone = ticksDoneGame = 0;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
+        if (!finish)
+        {
+            if (ticksDone < ticksToWait)
+            {
+                FadeInLogo();
+            }
+            if (ticksDone >= ticksToWait)
+            {
+                FadeOutLogo();
 
-         if (!finish)
-         {
-             if (ticksDone < ticksToWait)
-             {
-                 FadeInLogo();
-             }
-             if (ticksDone >= ticksToWait)
-             {
-                 FadeOutLogo();
+            }
+            else
+            {
+                ticksDone += Time.fixedDeltaTime;
+                Debug.Log(ticksDone);
+            }
+        }
+        else
+        {
+            if (ticksDoneGame < ticksToWaitGame)
+            {
+                FadeInGame();
+            }
+            if (ticksDoneGame >= ticksToWaitGame)
+            {
+                FadeOutGame();
 
-             }
-             else
-             {
-                 ticksDone += Time.fixedDeltaTime;
-             }
-         }
-         else
-         {
-             if (ticksDoneGame < ticksToWaitGame)
-             {
-                 FadeInGame();
-             }
-             if (ticksDoneGame >= ticksToWaitGame)
-             {
-                 FadeOutGame();
-
-             }
-             else
-             {
-                 ticksDoneGame += Time.fixedDeltaTime;
-             }
-         }
-
+            }
+            else
+            {
+                ticksDoneGame += Time.fixedDeltaTime;
+            }
+        }
     }
-
 
     void FadeOutLogo()
     {
@@ -110,25 +108,6 @@ public class FadeLogo : MonoBehaviour {
             SceneManager.LoadScene("Menu");
     }
 
-
-   /* public IEnumerator FadeTextToFullAlpha(float t, Image i)
-    {
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
-        while (i.color.a < 1.0f)
-        {
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
-            yield return null;
-        }
-    }
-
-    public IEnumerator FadeTextToZeroAlpha(float t, Image i)
-    {
-        i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
-        while (i.color.a > 0.0f)
-        {
-            i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
-            yield return null;
-        }
-    }*/
+  
 
 }

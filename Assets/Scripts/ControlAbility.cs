@@ -52,22 +52,22 @@ public class ControlAbility : MonoBehaviour {
             }
         }
 
-        /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
-         {
-             ControlChange();
-             hab = true;
-         }
-         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
-         {
-             ControlChange();
-             hab = true;
-         }*/
-        if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab6Button) && !used)
+        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
         {
-            Debug.Log("Control");
             ControlChange();
             hab = true;
         }
+        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
+        {
+            ControlChange();
+            hab = true;
+        }
+        //if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab6Button) && !used)
+        //{
+        //    Debug.Log("Control");
+        //    ControlChange();
+        //    hab = true;
+        //}
     }
 
     void ControlChange()

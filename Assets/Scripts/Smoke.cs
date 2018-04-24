@@ -43,21 +43,21 @@ public class Smoke : MonoBehaviour {
             }
         }
 
-        /* if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
-         {
-             Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
-             GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
-             s.GetComponent<ParticleSystem>().Play(false);
+        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
+        {
+            Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
+            GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
+            s.GetComponent<ParticleSystem>().Play(false);
 
-             hab = true;
-         }
-         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
-         {
-             Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
-             GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
-             s.GetComponent<ParticleSystem>().Play(false);
+            hab = true;
+        }
+        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
+        {
+            Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
+            GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
+            s.GetComponent<ParticleSystem>().Play(false);
 
-             hab = true;
-         }*/
+            hab = true;
+        }
     }
 }

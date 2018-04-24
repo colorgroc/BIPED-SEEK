@@ -45,6 +45,7 @@ public class PlayerControl : MonoBehaviour {
         this.feedbacks = new List<GameObject>();
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
         this.canAct = true;
+        this.gameObject.GetComponentInChildren<Kill>().enabled = false;
 
         for (int i = 0; i < feedbackList.Length; i++)
         {
@@ -63,14 +64,10 @@ public class PlayerControl : MonoBehaviour {
 
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation = "H_RPad_1";
-            this.killButton = "Start";
+            this.killButton = "X_1";
             this.hab1Button = "Y_1";
             this.hab2Button = "B_1";
-            this.hab3Button = "A_1";
-            this.hab4Button = "R_Bumper_1";
-            this.hab5Button = "L_Bumper_1";
-            this.hab6Button = "X_1";
-
+           
         }
         else if (this.gameObject.name.Equals("Player 2"))
         {
@@ -80,13 +77,10 @@ public class PlayerControl : MonoBehaviour {
 
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation = "H_RPad_2";
-            this.killButton = "Start";
+            this.killButton = "X_2";
             this.hab1Button = "Y_2";
             this.hab2Button = "B_2";
-            this.hab3Button = "A_2";
-            this.hab4Button = "R_Bumper_2";
-            this.hab5Button = "L_Bumper_2";
-            this.hab6Button = "X_2";
+       
 
         }
         else if (this.gameObject.name.Equals("Player 3"))
@@ -158,6 +152,7 @@ public class PlayerControl : MonoBehaviour {
             }
 
             this.anim.SetBool("wannaKill", this.wannaKill);
+            this.gameObject.GetComponentInChildren<Kill>().enabled = this.wannaKill;
 
         }
 
