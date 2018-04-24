@@ -45,7 +45,8 @@ public class PlayerControl : MonoBehaviour {
         this.feedbacks = new List<GameObject>();
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
         this.canAct = true;
-        this.gameObject.GetComponentInChildren<Kill>().enabled = false;
+     
+       // this.gameObject.GetComponent<Kill>().enabled = false;
 
         for (int i = 0; i < feedbackList.Length; i++)
         {
@@ -152,7 +153,7 @@ public class PlayerControl : MonoBehaviour {
             }
 
             this.anim.SetBool("wannaKill", this.wannaKill);
-            this.gameObject.GetComponentInChildren<Kill>().enabled = this.wannaKill;
+         
 
         }
 
@@ -218,9 +219,10 @@ public class PlayerControl : MonoBehaviour {
             this.badFeedback = true;
             //this.canAct = false;
             //Destroy(gO);
-            if(gO.gameObject.tag.Equals("Guard"))
+            if (gO.gameObject.tag.Equals("Guard"))
                 gO.GetComponent<NPCConnectedPatrol>().Respawn(gO);
-            else Destroy(gO);
+            else if (gO.gameObject.tag.Equals("Killer Guards"))
+                Destroy(gO);
             //if (AnimatorIsPlaying("Punch"))
             this.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
             //Respawn(this.gameObject);
@@ -270,7 +272,7 @@ public class PlayerControl : MonoBehaviour {
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
         int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); 
         gO.gameObject.transform.position = new Vector3(allMyRespawnPoints[random].transform.position.x, 10.14516f, allMyRespawnPoints[random].transform.position.z);
-        gO.gameObject.SetActive(true);
+       // gO.gameObject.SetActive(true);
         gO.gameObject.GetComponent<FieldOfView>().Start();
         //this.canAct = true;
     }
@@ -293,7 +295,7 @@ public class PlayerControl : MonoBehaviour {
         this.cooledDown = false;
         this.timeCoolDown = 0;
     }*/
-    void OnCollisionEnter(Collision collision)
+   /* void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag.Equals("Killzone"))
         {
@@ -301,7 +303,7 @@ public class PlayerControl : MonoBehaviour {
             Respawn(this.gameObject);
             
         }
-    }
+    }*/
 
     private static int SortByName(GameObject o1, GameObject o2)
     {

@@ -7,17 +7,17 @@ using UnityEngine.SceneManagement;
 public class FadeLogo : MonoBehaviour {
 
     public Image icon, gameTitle, image;
-    public int ticksToWait, ticksToWaitGame;
-    private float ticksDone, ticksDoneGame;
+    public int timeToShowLogo, timeToShowGame, timeBetween;
+    private float ticksDone, ticksDoneGame, timePast;
     private float alpha, color, alphaGame;
-    private bool finish;
-    public float duration = 3f;
+    private bool finish, finish2;
 
     // Use this for initialization
     void Start()
     {
 
-        finish = false;
+        finish = finish2 = false;
+        timePast = 0;
         alpha = alphaGame = 0f;
         color = 1f;
         icon.color = new Color(1f, 1f, 1f, alpha);
@@ -31,11 +31,11 @@ public class FadeLogo : MonoBehaviour {
     {
         if (!finish)
         {
-            if (ticksDone < ticksToWait)
+            if (ticksDone < timeToShowLogo)
             {
                 FadeInLogo();
             }
-            if (ticksDone >= ticksToWait)
+            if (ticksDone >= timeToShowLogo)
             {
                 FadeOutLogo();
 
@@ -48,11 +48,17 @@ public class FadeLogo : MonoBehaviour {
         }
         else
         {
-            if (ticksDoneGame < ticksToWaitGame)
+            timePast += Time.fixedDeltaTime;
+            if (timePast >= timeBetween) finish2 = true;
+        }
+
+        if (finish2)
+        {
+            if (ticksDoneGame < timeToShowGame)
             {
                 FadeInGame();
             }
-            if (ticksDoneGame >= ticksToWaitGame)
+            if (ticksDoneGame >= timeToShowGame)
             {
                 FadeOutGame();
 
@@ -89,6 +95,7 @@ public class FadeLogo : MonoBehaviour {
             alphaGame -= 0.01f;
         if (alphaGame <= 0f)
         {
+            finish2 = false;
             FadeScene();
         }
     }

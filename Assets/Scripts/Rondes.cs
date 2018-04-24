@@ -9,7 +9,7 @@ public class Rondes : MonoBehaviour {
     private int rondes;
     private void Awake()
     {
-        rondes = PlayerPrefs.GetInt("NumPlayers") * 2;
+        rondes = NewControl.numRondesPerJugador * 2;
         timesPlayed = 0;
         rondas = rondes;
     }

@@ -35,7 +35,8 @@ public class NewControl : MonoBehaviour
     private Text textTiempo, countDown;
     private int fin, topScore, habilitat_1, habilitat_2;
     [SerializeField]
-    private int numGuardsPerType = 10, numRondesPerJugador = 2, time = 90;//maxMinutes = 3, minMinutes = 1;
+    private int numGuardsPerType = 10, time = 90;//maxMinutes = 3, minMinutes = 1;
+    public static int numRondesPerJugador = 1;
     public static int numKillers = 7;
     private List<int> listPos;
     private List<int> listPosGuards;
@@ -54,6 +55,7 @@ public class NewControl : MonoBehaviour
     {
         startGame = false;
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
+        //PlayerPrefs.SetInt("NumRondesPerJugador", numRondesPerJugador);
         fin = UnityEngine.Random.Range(0, 2);
         listPos = new List<int>();
         listPlayers = new List<GameObject>();
@@ -68,7 +70,6 @@ public class NewControl : MonoBehaviour
             for (int i = 0; i < players.Count; i++)
             {
                 listPlayers.Add(players[i]);
-                Debug.Log(players[i]);
             }
             passades++;
         }
@@ -243,7 +244,9 @@ public class NewControl : MonoBehaviour
                 guard.gameObject.name = "Guard_Tipo " + i.ToString();
                 guard.gameObject.tag = "Guard";
                 guard.gameObject.layer = 9;
-                guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material; 
+                guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material;
+                //Destroy(guard.gameObject.GetComponentInChildren<CapsuleCollider>());
+                Destroy(guard.gameObject.GetComponentInChildren<Kill>());
                 AddScript(guard);
               
             }
@@ -397,6 +400,7 @@ public class NewControl : MonoBehaviour
         {
             int random = UnityEngine.Random.Range(0, listPlayers.Count);
             objective = GameObject.Find(listPlayers[random].name);
+            Debug.Log(listPlayers[random]);
             listPlayers.RemoveAt(random);
             showObjective = objective;
             ShowObjectiveCanvas();
