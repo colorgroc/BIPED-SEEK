@@ -27,6 +27,11 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private int max_players = 4;
 
+    [SerializeField]
+    private Image menuBg, optionsBg, creditsBg;
+    [SerializeField]
+    private Sprite bg1, bg2, bg3, bg4, bg5;
+
     private void Awake()
     {
 
@@ -57,7 +62,7 @@ public class Menu : MonoBehaviour
         credits.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
         inMenu = true;
-        
+        RandomBackground(menuBg);
 
         volume.value = PlayerPrefs.GetFloat("MusicVolume");
         music.volume = volume.value;
@@ -89,7 +94,15 @@ public class Menu : MonoBehaviour
             BackToMenu();
         }
     }
-
+    void RandomBackground(Image canvas)
+    {
+        int rand = (int)Random.Range(0, 5);
+        if (rand == 0) canvas.sprite = bg1;
+        else if (rand == 1) canvas.sprite = bg2;
+        else if (rand == 2) canvas.sprite = bg3;
+        else if (rand == 3) canvas.sprite = bg4;
+        else if (rand == 4) canvas.sprite = bg5;
+    }
     public void GoToPlay()
     {
         sounds.mute = false;
@@ -128,6 +141,7 @@ public class Menu : MonoBehaviour
 
     public void ShowOptions()
     {
+        RandomBackground(optionsBg);
         sounds.mute = false;
         sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
@@ -158,6 +172,7 @@ public class Menu : MonoBehaviour
     }
     public void ShowCredits()
     {
+        RandomBackground(creditsBg);
         sounds.mute = false;
         sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
@@ -170,6 +185,7 @@ public class Menu : MonoBehaviour
     }
     public void BackToMenu()
     {
+        RandomBackground(menuBg);
         sounds.mute = false;
         sounds.volume = 1;
         sounds.PlayOneShot(backButton, 4.0F);

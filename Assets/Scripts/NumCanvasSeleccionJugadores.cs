@@ -11,6 +11,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private AudioClip onButton, clickButton, backButton;
     [SerializeField]
     private AudioSource music, sounds;
+    [SerializeField]
+    private Text restriccion;
 
     public static List<GameObject> characterTypes_P1, characterTypes_P2, characterTypes_P3, characterTypes_P4;
     public static List<GameObject> munyequito_P1, munyequito_P2, munyequito_P3, munyequito_P4;
@@ -46,7 +48,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         munyequito_P4 = new List<GameObject>();
         players = new List<GameObject>();
         select_1 = select_2 = select_3 = select_4 = 0;
-        
+        this.restriccion.enabled = false;
+
         //guardar num of players
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
 
@@ -70,56 +73,59 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 this.munyequitos = GameObject.FindGameObjectsWithTag("Muñequito");
             }
         }
-        for(int i = 0; i< this.characterTypes.Length; i++)
+        if (PlayerPrefs.GetInt("NumPlayers") >= 1)
         {
-            //butons
-            this.characterTypes[i].GetComponent<Outline>().enabled = false;
-            this.characterTypes[i].GetComponent<Outline>().effectDistance = default_outline;
-            if (i < 4)
+            for (int i = 0; i < this.characterTypes.Length; i++)
             {
-                characterTypes_P1.Add(this.characterTypes[i].gameObject);
-                characterTypes_P1[0].GetComponent<Outline>().enabled = true;              
+                //butons
+                this.characterTypes[i].GetComponent<Outline>().enabled = false;
+                this.characterTypes[i].GetComponent<Outline>().effectDistance = default_outline;
+                if (i < 4)
+                {
+                    characterTypes_P1.Add(this.characterTypes[i].gameObject);
+                    characterTypes_P1[0].GetComponent<Outline>().enabled = true;
+                }
+                else if (i >= 4 && i < 8)
+                {
+                    characterTypes_P2.Add(this.characterTypes[i].gameObject);
+                    characterTypes_P2[0].GetComponent<Outline>().enabled = true;
+                }
+                else if (i >= 8 && i < 12)
+                {
+                    characterTypes_P3.Add(this.characterTypes[i].gameObject);
+                    characterTypes_P3[0].GetComponent<Outline>().enabled = true;
+                }
+                else
+                {
+                    characterTypes_P4.Add(this.characterTypes[i].gameObject);
+                    characterTypes_P4[0].GetComponent<Outline>().enabled = true;
+                }
             }
-            else if (i >= 4 && i < 8)
-            {
-                characterTypes_P2.Add(this.characterTypes[i].gameObject);
-                characterTypes_P2[0].GetComponent<Outline>().enabled = true;
-            }
-            else if (i >= 8 && i < 12)
-            {
-                characterTypes_P3.Add(this.characterTypes[i].gameObject);
-                characterTypes_P3[0].GetComponent<Outline>().enabled = true;
-            }
-            else
-            {
-                characterTypes_P4.Add(this.characterTypes[i].gameObject);
-                characterTypes_P4[0].GetComponent<Outline>().enabled = true;
-            }
-        }
 
-        for (int i = 0; i < this.munyequitos.Length; i++)
-        {
-            //muñequitos ballant
-            this.munyequitos[i].gameObject.SetActive(false);
-            if (i < 4)
+            for (int i = 0; i < this.munyequitos.Length; i++)
             {
-                munyequito_P1.Add(this.munyequitos[i].gameObject);
-                munyequito_P1[0].gameObject.SetActive(true);
-            }
-            else if (i >= 4 && i < 8)
-            {
-                munyequito_P2.Add(this.munyequitos[i].gameObject);
-                munyequito_P2[0].gameObject.SetActive(true);
-            }
-            else if (i >= 8 && i < 12)
-            {
-                munyequito_P3.Add(this.munyequitos[i].gameObject);
-                munyequito_P3[0].gameObject.SetActive(true);
-            }
-            else
-            {
-                munyequito_P4.Add(this.munyequitos[i].gameObject);
-                munyequito_P4[0].gameObject.SetActive(true);
+                //muñequitos ballant
+                this.munyequitos[i].gameObject.SetActive(false);
+                if (i < 4)
+                {
+                    munyequito_P1.Add(this.munyequitos[i].gameObject);
+                    munyequito_P1[0].gameObject.SetActive(true);
+                }
+                else if (i >= 4 && i < 8)
+                {
+                    munyequito_P2.Add(this.munyequitos[i].gameObject);
+                    munyequito_P2[0].gameObject.SetActive(true);
+                }
+                else if (i >= 8 && i < 12)
+                {
+                    munyequito_P3.Add(this.munyequitos[i].gameObject);
+                    munyequito_P3[0].gameObject.SetActive(true);
+                }
+                else
+                {
+                    munyequito_P4.Add(this.munyequitos[i].gameObject);
+                    munyequito_P4[0].gameObject.SetActive(true);
+                }
             }
         }
         //MapaRandom();     
@@ -130,6 +136,10 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         //codi de prova
         Back();
+        //guardar num of players
+        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
+        if (PlayerPrefs.GetInt("NumPlayers") < 2) this.restriccion.enabled = true;
+        else this.restriccion.enabled = false;
 
         SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
 
