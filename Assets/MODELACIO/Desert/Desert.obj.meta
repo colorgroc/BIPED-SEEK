@@ -19,6 +19,25 @@ ModelImporter:
     100022: RocasDel3
     100024: Suelo
     100026: SueloJugable
+    100028: Cactus001
+    100030: Cactus002
+    100032: Cactus003
+    100034: Cactus004
+    100036: Cactus005
+    100038: Cactus006
+    100040: Cactus007
+    100042: Cactus008
+    100044: Cactus009
+    100046: Cactus010
+    100048: Mini_Stones
+    100050: Stones01
+    100052: Stones02
+    100054: Stones03
+    100056: Stones04
+    100058: Stones_2_01
+    100060: Stones_2_02
+    100062: Stones_2_03
+    100064: Stones_2_04
     400000: Box005
     400002: //RootNode
     400004: GeoSphere002
@@ -33,6 +52,25 @@ ModelImporter:
     400022: RocasDel3
     400024: Suelo
     400026: SueloJugable
+    400028: Cactus001
+    400030: Cactus002
+    400032: Cactus003
+    400034: Cactus004
+    400036: Cactus005
+    400038: Cactus006
+    400040: Cactus007
+    400042: Cactus008
+    400044: Cactus009
+    400046: Cactus010
+    400048: Mini_Stones
+    400050: Stones01
+    400052: Stones02
+    400054: Stones03
+    400056: Stones04
+    400058: Stones_2_01
+    400060: Stones_2_02
+    400062: Stones_2_03
+    400064: Stones_2_04
     2300000: Box005
     2300002: GeoSphere002
     2300004: GeoSphere003
@@ -46,6 +84,25 @@ ModelImporter:
     2300020: RocasDel3
     2300022: Suelo
     2300024: SueloJugable
+    2300026: Cactus001
+    2300028: Cactus002
+    2300030: Cactus003
+    2300032: Cactus004
+    2300034: Cactus005
+    2300036: Cactus006
+    2300038: Cactus007
+    2300040: Cactus008
+    2300042: Cactus009
+    2300044: Cactus010
+    2300046: Mini_Stones
+    2300048: Stones01
+    2300050: Stones02
+    2300052: Stones03
+    2300054: Stones04
+    2300056: Stones_2_01
+    2300058: Stones_2_02
+    2300060: Stones_2_03
+    2300062: Stones_2_04
     3300000: Box005
     3300002: GeoSphere002
     3300004: GeoSphere003
@@ -59,6 +116,25 @@ ModelImporter:
     3300020: RocasDel3
     3300022: Suelo
     3300024: SueloJugable
+    3300026: Cactus001
+    3300028: Cactus002
+    3300030: Cactus003
+    3300032: Cactus004
+    3300034: Cactus005
+    3300036: Cactus006
+    3300038: Cactus007
+    3300040: Cactus008
+    3300042: Cactus009
+    3300044: Cactus010
+    3300046: Mini_Stones
+    3300048: Stones01
+    3300050: Stones02
+    3300052: Stones03
+    3300054: Stones04
+    3300056: Stones_2_01
+    3300058: Stones_2_02
+    3300060: Stones_2_03
+    3300062: Stones_2_04
     4300000: Box005
     4300002: GeoSphere002
     4300004: GeoSphere003
@@ -72,12 +148,81 @@ ModelImporter:
     4300020: RocasDel3
     4300022: Suelo
     4300024: SueloJugable
+    4300026: Cactus001
+    4300028: Cactus002
+    4300030: Cactus003
+    4300032: Cactus004
+    4300034: Cactus005
+    4300036: Cactus006
+    4300038: Cactus007
+    4300040: Cactus008
+    4300042: Cactus009
+    4300044: Cactus010
+    4300046: Mini_Stones
+    4300048: Stones01
+    4300050: Stones02
+    4300052: Stones03
+    4300054: Stones04
+    4300056: Stones_2_01
+    4300058: Stones_2_02
+    4300060: Stones_2_03
+    4300062: Stones_2_04
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Box005Mat
     second: {fileID: 2100000, guid: 486caa0bb193e034d8dd37d7211e540a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus001Mat
+    second: {fileID: 2100000, guid: df3133e40fb508346b1fcde6d968230c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus002Mat
+    second: {fileID: 2100000, guid: 1013a64178fab964ebff5526a2a515ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus003Mat
+    second: {fileID: 2100000, guid: 7e7edf34a1ec0fa4886436208803650e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus004Mat
+    second: {fileID: 2100000, guid: b995173ab2e12284f8a264aef0b9be70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus005Mat
+    second: {fileID: 2100000, guid: 024bc8f6914c5284d8dfd523b5022f48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus006Mat
+    second: {fileID: 2100000, guid: 309e6c9de60b9624da107557d70178f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus007Mat
+    second: {fileID: 2100000, guid: c20fa75a72add544787554a4566f82a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus008Mat
+    second: {fileID: 2100000, guid: dfdb3b504167f47479debf7a7373f858, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus009Mat
+    second: {fileID: 2100000, guid: c0c970540f80c3b4e975afa70be69157, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus010Mat
+    second: {fileID: 2100000, guid: afb55daa1a4b1d04aac944ced4154b7d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -111,6 +256,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Mini_StonesMat
+    second: {fileID: 2100000, guid: 76386ccc147c6914cae764cecd93b660, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: RocaCentralMat
     second: {fileID: 2100000, guid: b466e5f94d212ea4ba85fd381c134dd0, type: 2}
   - first:
@@ -128,6 +278,46 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: RocasDel3Mat
     second: {fileID: 2100000, guid: 92cbd12f6f63ddc4a995eb3c75a01595, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stones01Mat
+    second: {fileID: 2100000, guid: 149f300260389b046b2b4c03acce2c0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stones02Mat
+    second: {fileID: 2100000, guid: c8fdfad6d0b5a1542a5c1d281ccfd2c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stones03Mat
+    second: {fileID: 2100000, guid: 7e545f9ecb01e454fa54c05c2bf072bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stones04Mat
+    second: {fileID: 2100000, guid: 14988c5d56a79c04eaccc83dff719f38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stones_2_01Mat
+    second: {fileID: 2100000, guid: 0d643cc8d94ddf449ad7c8984b6118eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stones_2_02Mat
+    second: {fileID: 2100000, guid: 1150c9bfa78794542a0c6bd4c97650b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stones_2_03Mat
+    second: {fileID: 2100000, guid: 081e40a5bec1f754ab2e523752d7fe70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stones_2_04Mat
+    second: {fileID: 2100000, guid: 6367bb4789516544d93fede3ea290039, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -180,8 +370,6 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

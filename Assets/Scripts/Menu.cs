@@ -44,23 +44,24 @@ public class Menu : MonoBehaviour
 
 
             }
-
-
         }
-
-
+        sounds.GetComponent<AudioSource>().enabled = false;
+        sounds.mute = true;
+        sounds.volume = 0;
     }
 
     void Start()
     {
+        
         options.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
         inMenu = true;
+        
 
         volume.value = PlayerPrefs.GetFloat("MusicVolume");
         music.volume = volume.value;
-        sounds.volume = 0;
+        
 
         if (PlayerPrefs.GetInt("ScreenMode") == 0)
         {
@@ -73,11 +74,12 @@ public class Menu : MonoBehaviour
             SoundMusic();
         }
         else MuteMusic();
+        sounds.mute = true;
+        sounds.volume = 0;
 
-        sounds.volume = 1;
 
         NewControl.finalWinner = null;
-
+        sounds.GetComponent<AudioSource>().enabled = true;
     }
 
     void Update()
@@ -90,6 +92,8 @@ public class Menu : MonoBehaviour
 
     public void GoToPlay()
     {
+        sounds.mute = false;
+        sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
         Default();
         SceneManager.LoadScene("Seleccion Personajes");
@@ -97,6 +101,8 @@ public class Menu : MonoBehaviour
     }
     public void Exit()
     {
+        sounds.mute = false;
+        sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
         Application.Quit();
     }
@@ -122,6 +128,8 @@ public class Menu : MonoBehaviour
 
     public void ShowOptions()
     {
+        sounds.mute = false;
+        sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
         inMenu = false;
         mainMenu.gameObject.SetActive(false);
@@ -150,6 +158,8 @@ public class Menu : MonoBehaviour
     }
     public void ShowCredits()
     {
+        sounds.mute = false;
+        sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
         inMenu = false;
         mainMenu.gameObject.SetActive(false);
@@ -160,6 +170,8 @@ public class Menu : MonoBehaviour
     }
     public void BackToMenu()
     {
+        sounds.mute = false;
+        sounds.volume = 1;
         sounds.PlayOneShot(backButton, 4.0F);
         inMenu = true;
         mainMenu.gameObject.SetActive(true);
@@ -169,6 +181,8 @@ public class Menu : MonoBehaviour
     }
     public void FullScreen()
     {
+        sounds.mute = false;
+        sounds.volume = 1;
         sounds.PlayOneShot(onButton);
         Screen.fullScreen = true;
         PlayerPrefs.SetInt("ScreenMode", 0);
@@ -185,6 +199,8 @@ public class Menu : MonoBehaviour
     }
     public void MuteMusic()
     {
+        sounds.mute = false;
+        sounds.volume = 1;
         sounds.PlayOneShot(onButton);
         music.mute = true;
         PlayerPrefs.SetInt("isMute", 1);

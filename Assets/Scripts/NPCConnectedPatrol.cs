@@ -6,9 +6,6 @@ using UnityEngine.AI;
 public class NPCConnectedPatrol : MonoBehaviour {
 
 	[SerializeField]
-	bool _patrolWaiting;
-
-	[SerializeField]
 	float _totalWaitTime = 3f;
 
 	NavMeshAgent _navMeshAgent;
@@ -25,7 +22,6 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	int _waypointsVisited;
 
 	public bool isDead;
-	public float count;
    
     private Animator anim;
 
@@ -52,7 +48,6 @@ public class NPCConnectedPatrol : MonoBehaviour {
 				} else Debug.LogError ("Failed to find any waypoints for use in the scene");		
 			}
 		}
-        //_patrolWaiting = true;
 		SetDestination ();
 	}
 	
@@ -65,18 +60,21 @@ public class NPCConnectedPatrol : MonoBehaviour {
         
         if(freezed) _navMeshAgent.isStopped = true;
         else _navMeshAgent.isStopped = false;
-
+       // Debug.Log(_travelling);
         if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
 			_travelling = false;
 			_waypointsVisited++;
+            waiting = true;
+            _waitTimer = 0f;
 
-			if (_patrolWaiting || freezed) {
-				waiting = true;
-				_waitTimer = 0f;
-			} else 
-				SetDestination ();
 		}
-		if (waiting) {
+        if (freezed)
+        {
+            waiting = true;
+            _waitTimer = 0f;
+        }
+        
+        if (waiting) {
 			_waitTimer += Time.deltaTime;
 			if (_waitTimer >= _totalWaitTime) {
 				waiting = false;
