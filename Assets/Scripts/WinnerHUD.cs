@@ -15,6 +15,9 @@ public class WinnerHUD : MonoBehaviour {
     {
     }
     void Start () {
+
+        NewControl.Winner();
+
         //asignacio copa i animal del guanyador
         if (NewControl.finalWinner != null)
         {
@@ -110,98 +113,7 @@ public class WinnerHUD : MonoBehaviour {
     }
 	void Update()
     {
-        //asignacio copa i animal del guanyador
-        if (NewControl.finalWinner != null)
-        {
-            player.text = NewControl.finalWinner.name;
-
-            if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("1"))
-            {
-                cup.sprite = cup1;
-
-                if (PlayerPrefs.GetInt("characterPlayer_1") == 1)
-                {
-                    animal.sprite = animal1;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_1") == 2)
-                {
-                    animal.sprite = animal2;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_1") == 3)
-                {
-                    animal.sprite = animal3;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_1") == 4)
-                {
-                    animal.sprite = animal4;
-                }
-            }
-            else if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("2"))
-            {
-                cup.sprite = cup2;
-
-                if (PlayerPrefs.GetInt("characterPlayer_2") == 1)
-                {
-                    animal.sprite = animal1;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_2") == 2)
-                {
-                    animal.sprite = animal2;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_2") == 3)
-                {
-                    animal.sprite = animal3;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_2") == 4)
-                {
-                    animal.sprite = animal4;
-                }
-            }
-            else if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("3"))
-            {
-                cup.sprite = cup3;
-
-                if (PlayerPrefs.GetInt("characterPlayer_3") == 1)
-                {
-                    animal.sprite = animal1;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_3") == 2)
-                {
-                    animal.sprite = animal2;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_3") == 3)
-                {
-                    animal.sprite = animal3;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_3") == 4)
-                {
-                    animal.sprite = animal4;
-                }
-            }
-            else if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("4"))
-            {
-                cup.sprite = cup4;
-
-                if (PlayerPrefs.GetInt("characterPlayer_4") == 1)
-                {
-                    animal.sprite = animal1;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_4") == 2)
-                {
-                    animal.sprite = animal2;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_4") == 3)
-                {
-                    animal.sprite = animal3;
-                }
-                else if (PlayerPrefs.GetInt("characterPlayer_4") == 4)
-                {
-                    animal.sprite = animal4;
-                }
-            }
-            // cup.sprite = (Sprite)Resources.Load("Winner/WINNER_" + NewControl.finalWinner.name);
-            //animal.sprite = (Sprite)Resources.Load("Winner/WINNER_" + PlayerPrefs.GetInt("characterPlayer_" + NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1)).ToString());
-        }
+       
 
         if (Input.GetButtonDown("Submit")) {
 			this.gameObject.SetActive (false);

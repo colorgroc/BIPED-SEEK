@@ -6,27 +6,30 @@ using UnityEngine.SceneManagement;
 
 public class Loading : MonoBehaviour {
     [SerializeField]
-    Slider slider;
+    Scrollbar slider;
     [SerializeField]
     float loadingTime;
     [SerializeField]
     private int numOfMapas = 3, numOfAbilities = 6, numOfUsedAbilities = 2, ability1, ability2;
     [SerializeField]
-    Text ab1Nom, ab2Nom, ab1Desc, ab2Desc;
+    Text ab1Nom, ab2Nom, ab1Desc, ab2Desc, totalCargado;
     float time;
     private string scene;
-
+    private int temp;
     void Start () {
-        slider.maxValue = loadingTime;
-        time = 0;
+       // slider.maxValue = loadingTime;
+        time = temp = 0;
         slider.value = time;
         MapaRandom();
         RandomAbilities();
+
 	}
 	
 	void Update () {
         time += Time.deltaTime;
-        slider.value = time;
+        slider.value = time/10;
+        temp++;
+        totalCargado.text = (temp/6).ToString();
         if (time >= loadingTime) SceneManager.LoadScene(this.scene);
     }
     private void RandomAbilities()
@@ -81,7 +84,7 @@ public class Loading : MonoBehaviour {
         else if (ab == (int)NewControl.Abilities.CONTROL)
         {
             nom.text = "NPC Control";
-            desc.text = "Control a random NPC of your type during x seconds. Only movement. Your character will be controlled by the IA. If you character get killed, you die.";
+            desc.text = "Control a random NPC of your type during x seconds. Your character will be controlled by the IA.";
         }
     }
     private void MapaRandom()
