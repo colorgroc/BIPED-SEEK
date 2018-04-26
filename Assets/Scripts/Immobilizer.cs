@@ -11,12 +11,14 @@ public class Immobilizer : MonoBehaviour {
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
     Collider[] colliders;
-    bool ab1 = false, ab2 = false;
+    public bool ab1 = false, ab2 = false;
     // Use this for initialization
     void Start()
     {
         used = false;
         cooldown = 0;
+        this.ab1 = this.ab2 = false;
+        Asignation();
     }
 
     public void Update()
@@ -104,6 +106,18 @@ public class Immobilizer : MonoBehaviour {
                     hit.GetComponent<PlayerControl>().canAct = true;
                 }
             }
+        }
+    }
+
+    void Asignation()
+    {
+        if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER)
+        {
+            this.ab1 = true;
+        }
+        else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
+        {
+            this.ab2 = true;
         }
     }
 }

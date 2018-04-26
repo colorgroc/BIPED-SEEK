@@ -8,7 +8,7 @@ public class Sprint : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
-    bool ab1 = false, ab2 = false;
+    public bool ab1 = false, ab2 = false;
     [SerializeField]
     private float sprint = 1.7f;
     // Use this for initialization
@@ -18,6 +18,8 @@ public class Sprint : MonoBehaviour {
         cooldown = 0;
         //speed = this.gameObject.GetComponent<PlayerControl>().GetSpeed();
         speed = PlayerPrefs.GetFloat("Speed");
+        this.ab1 = this.ab2 = false;
+        Asignation();
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class Sprint : MonoBehaviour {
                 hab = false;
                 timeAb = 0;
                 this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed);
-                this.gameObject.GetComponent<PlayerControl>().sprint = false;
+                this.gameObject.GetComponent<PlayerControl>()._sprint = false;
                 // PlayerPrefs.SetFloat("Speed", speed);
 
             }
@@ -71,5 +73,15 @@ public class Sprint : MonoBehaviour {
         //}
     }
 
-
+    void Asignation()
+    {
+        if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT)
+        {
+            this.ab1 = true;
+        }
+        else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
+        {
+            this.ab2 = true;
+        }
+    }
 }

@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour {
 
     [HideInInspector]
     public int scoreGeneral, scoreKills, scoreWins;
-    public bool wannaKill, onFieldView, detected, sprint, canAct;
+    public bool wannaKill, onFieldView, detected, _sprint, canAct;
 
     private Image feedback;
     private List<GameObject> feedbacks;
@@ -32,6 +32,7 @@ public class PlayerControl : MonoBehaviour {
     private Color neutralColor;
     [SerializeField]
     private Animator anim;
+
     //private bool canAct;
 
     List<GameObject> guardsList = new List<GameObject>();
@@ -125,7 +126,7 @@ public class PlayerControl : MonoBehaviour {
    
     void Update()
     {
-        if(!sprint)
+        if(!_sprint)
             speed = PlayerPrefs.GetFloat("Speed");
         if (this.canAct)
         {

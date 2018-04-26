@@ -8,12 +8,14 @@ public class Invisibility : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
-    bool ab1 = false, ab2 = false;
+    public bool ab1 = false, ab2 = false;
     // Use this for initialization
     void Start()
     {
         used = false;
         cooldown = 0;
+        this.ab1 = this.ab2 = false;
+        Asignation();
     }
 
     // Update is called once per frame
@@ -60,5 +62,15 @@ public class Invisibility : MonoBehaviour {
         //    hab = true;
         //} 
     }
-
+    void Asignation()
+    {
+        if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.TELEPORT)
+        {
+            this.ab1 = true;
+        }
+        else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.TELEPORT)
+        {
+            this.ab2 = true;
+        }
+    }
 }

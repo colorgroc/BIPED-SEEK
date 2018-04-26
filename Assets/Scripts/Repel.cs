@@ -11,12 +11,14 @@ public class Repel : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
-    bool ab1 = false, ab2 = false;
+    public bool ab1 = false, ab2 = false;
     // Use this for initialization
     void Start()
     {
         used = false;
         cooldown = 0;
+        this.ab1 = this.ab2 = false;
+        //Asignation();
     }
 
     public void Update()
@@ -90,6 +92,16 @@ public class Repel : MonoBehaviour {
             }
         }
     }
-
+    //void Asignation()
+    //{
+    //    if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL)
+    //    {
+    //        this.ab1 = true;
+    //    }
+    //    else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
+    //    {
+    //        this.ab2 = true;
+    //    }
+    //}
 
 }

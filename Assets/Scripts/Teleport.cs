@@ -9,11 +9,14 @@ public class Teleport : MonoBehaviour {
     [SerializeField]
     private int coolDown = 10;
     List<GameObject> guardsList = new List<GameObject>();
-    bool ab1 = false, ab2 = false;
+    public bool ab1 = false, ab2 = false;
     // Use this for initialization
     void Start () {
         hab = false;
         cooldown = 0;
+        this.ab1 = this.ab2 = false;
+        Asignation();
+
         foreach(GameObject guard in NewControl.guards)
         {
             if(guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
@@ -60,5 +63,17 @@ public class Teleport : MonoBehaviour {
         Vector3 newGuardPos = this.gameObject.transform.position;
         this.gameObject.transform.position = guardsList[random].transform.position;
         NewControl.guards[random].transform.position = newGuardPos;
+    }
+
+    void Asignation()
+    {
+        if(PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.TELEPORT)
+        {
+            this.ab1 = true;
+        }
+        else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.TELEPORT)
+        {
+            this.ab2 = true;
+        }
     }
 }
