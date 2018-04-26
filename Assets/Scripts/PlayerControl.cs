@@ -191,8 +191,9 @@ public class PlayerControl : MonoBehaviour {
         if (this.cooledDown)
         {
             this.gameObject.transform.position = new Vector3(this.transform.position.x, 1000f, this.transform.position.z);
-            this.timeCoolDown -= Time.deltaTime;
-            if(this.timeCoolDown <= 0)
+            this.timeCoolDown += Time.deltaTime;
+            GameObject.Find("IconPlayer_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).GetComponent<Image>().fillAmount = this.timeCoolDown / this.coolDown;
+            if (this.timeCoolDown >= this.coolDown)
             {
                 GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
                 for (int i = 0; i < guardsList.Count; i++)
@@ -280,7 +281,7 @@ public class PlayerControl : MonoBehaviour {
     public void RespawnCoolDown()
     {
         this.cooledDown = true;
-        this.timeCoolDown = this.coolDown;
+        this.timeCoolDown = 0;
         //Respawn();
     }
    /* public void DeadCoolDown(GameObject gO)

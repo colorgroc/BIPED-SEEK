@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Immobilizer : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class Immobilizer : MonoBehaviour {
     private int coolDown = 10, timeAbility = 10;
     Collider[] colliders;
     public bool ab1 = false, ab2 = false;
+    public Image iconAb;
     // Use this for initialization
     void Start()
     {
@@ -26,6 +28,7 @@ public class Immobilizer : MonoBehaviour {
         if (used)
         {
             cooldown += Time.deltaTime;
+            IconRespawn();
             if (cooldown >= coolDown)
             {
                 used = false;
@@ -49,11 +52,13 @@ public class Immobilizer : MonoBehaviour {
         {
             Inmobilitzar();
             hab = true;
+            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
             Inmobilitzar();
             hab = true;
+            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
         //if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab4Button) && !used && !hab)
         //{
@@ -73,9 +78,9 @@ public class Immobilizer : MonoBehaviour {
             if (rb != null && this.gameObject.GetComponent<Rigidbody>() != rb)
             {
                 //rb.Sleep();
-                if (rb.gameObject.tag.Equals("Guard"))
+                if (rb.gameObject.tag.Equals("Guard") || rb.gameObject.tag.Equals("Killer Guards"))
                 {
-                    Debug.Log("wasup");
+                    //Debug.Log("wasup");
                     hit.GetComponent<NPCConnectedPatrol>().freezed = true;
                 }
                 else
@@ -114,10 +119,27 @@ public class Immobilizer : MonoBehaviour {
         if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER)
         {
             this.ab1 = true;
+            this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
+            this.iconAb.GetComponent<Image>().fillAmount = 1;
+            //grisa
+            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
         }
         else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
         {
             this.ab2 = true;
+            this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
+            this.iconAb.GetComponent<Image>().fillAmount = 1;
+            //grisa
+            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+        }
+    }
+    void IconRespawn()
+    {
+        if (this.ab1 || this.ab2)
+        {
+            this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
         }
     }
 }

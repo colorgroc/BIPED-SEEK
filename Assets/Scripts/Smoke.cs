@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Smoke : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class Smoke : MonoBehaviour {
     private int coolDown = 10, timeAbility = 10;
     GameObject smoke;
     public bool ab1 = false, ab2 = false;
+    public Image iconAb;
     // Use this for initialization
     void Start()
     {
@@ -27,6 +29,7 @@ public class Smoke : MonoBehaviour {
         if (used)
         {
             cooldown += Time.deltaTime;
+            IconRespawn();
             if (cooldown >= coolDown)
             {
                 used = false;
@@ -50,7 +53,7 @@ public class Smoke : MonoBehaviour {
             Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
             GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
             s.GetComponent<ParticleSystem>().Play(false);
-
+            this.iconAb.GetComponent<Image>().fillAmount = 0;
             hab = true;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
@@ -58,20 +61,36 @@ public class Smoke : MonoBehaviour {
             Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
             GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
             s.GetComponent<ParticleSystem>().Play(false);
-
+            this.iconAb.GetComponent<Image>().fillAmount = 0;
             hab = true;
         }
     }
-
+    void IconRespawn()
+    {
+        if (this.ab1 || this.ab2)
+        {
+            this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+        }
+    }
     void Asignation()
     {
         if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE)
         {
             this.ab1 = true;
+            this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+            this.iconAb.GetComponent<Image>().fillAmount = 1;
+            //grisa
+            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
         }
         else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
         {
             this.ab2 = true;
+            this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+            this.iconAb.GetComponent<Image>().fillAmount = 1;
+            //grisa
+            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
         }
     }
 }

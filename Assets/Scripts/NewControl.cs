@@ -354,33 +354,7 @@ public class NewControl : MonoBehaviour
             else return o1.GetComponent<PlayerControl>().scoreWins.CompareTo(o2.GetComponent<PlayerControl>().scoreWins);
         }
         else return o1.GetComponent<PlayerControl>().scoreGeneral.CompareTo(o2.GetComponent<PlayerControl>().scoreGeneral);
-        //if (Compare(o1.GetComponent<PlayerControl>().scoreGeneral, o2.GetComponent<PlayerControl>().scoreGeneral) == -1)
-        //{
-        //    if (Compare(o1.GetComponent<PlayerControl>().scoreWins, o2.GetComponent<PlayerControl>().scoreWins) == -1)
-        //    {
-        //        if (Compare(o1.GetComponent<PlayerControl>().scoreKills, o2.GetComponent<PlayerControl>().scoreKills) == -1)
-        //        {
-        //            return (o1.GetComponent<PlayerControl>().scoreGeneral + 1);
-        //        }
-        //        else return Compare(o1.GetComponent<PlayerControl>().scoreKills, o2.GetComponent<PlayerControl>().scoreKills);
-        //    }
-        //    else return Compare(o1.GetComponent<PlayerControl>().scoreWins, o2.GetComponent<PlayerControl>().scoreWins);
-        //}
-        //else
-        //    return Compare(o1.GetComponent<PlayerControl>().scoreGeneral, o2.GetComponent<PlayerControl>().scoreGeneral);
     }
-
-   //private static int Compare(int o1, int o2)
-   // {
-   //     int ret = -1;
-   //     if (o1 == o2)
-   //         ret = -1;
-   //     else if (o1 > 02)
-   //         ret = o1;
-   //     else if (o1 < o2)
-   //         ret = o2;
-   //     return ret;
-   // }
 
 
     void RespawnNPCS()

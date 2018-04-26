@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sprint : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class Sprint : MonoBehaviour {
     public bool ab1 = false, ab2 = false;
     [SerializeField]
     private float sprint = 1.7f;
+    public Image iconAb;
     // Use this for initialization
     void Start()
     {
@@ -30,6 +32,7 @@ public class Sprint : MonoBehaviour {
         if (used)
         {
             cooldown += Time.deltaTime;
+            IconRespawn();
             if (cooldown >= coolDown)
             {
                 used = false;
@@ -56,11 +59,13 @@ public class Sprint : MonoBehaviour {
         {
             this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
             hab = true;
+            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
             this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
             hab = true;
+            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
 
         //if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab3Button) && !used && !hab)
@@ -78,10 +83,27 @@ public class Sprint : MonoBehaviour {
         if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT)
         {
             this.ab1 = true;
+            this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
+            this.iconAb.GetComponent<Image>().fillAmount = 1;
+            //grisa
+            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
         }
         else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
         {
             this.ab2 = true;
+            this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
+            this.iconAb.GetComponent<Image>().fillAmount = 1;
+            //grisa
+            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+        }
+    }
+    void IconRespawn()
+    {
+        if (this.ab1 || this.ab2)
+        {
+            this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
         }
     }
 }
