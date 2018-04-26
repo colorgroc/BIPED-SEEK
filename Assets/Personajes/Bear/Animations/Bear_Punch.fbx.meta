@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b629eeded3ccebc42b23b28ae9c34f0d
-timeCreated: 1523899440
+guid: 36f22910cf3c77b40970052b480dcf42
+timeCreated: 1524742185
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -57,7 +57,8 @@ ModelImporter:
     400046: mixamorig:Spine
     400048: mixamorig:Spine1
     400050: mixamorig:Spine2
-    7400000: Bear_Punch
+    7400000: mixamo.com
+    7400002: Bear_Punch
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -90,7 +91,7 @@ ModelImporter:
       name: Bear_Punch
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 21
+      lastFrame: 26
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
