@@ -58,7 +58,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         _navMeshAgent.speed = PlayerPrefs.GetFloat("Speed");
         if (_navMeshAgent.speed > PlayerControl.defaultSpeed) _navMeshAgent.stoppingDistance = 2; else _navMeshAgent.stoppingDistance = 0;
         
-        if(freezed) _navMeshAgent.isStopped = true;
+        if(this.freezed) _navMeshAgent.isStopped = true;
         else _navMeshAgent.isStopped = false;
        // Debug.Log(_travelling);
         if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
@@ -68,12 +68,12 @@ public class NPCConnectedPatrol : MonoBehaviour {
             _waitTimer = 0f;
 
 		}
-        if (freezed)
+        if (this.freezed)
         {
             waiting = true;
             _waitTimer = 0f;
         }
-        
+        this.anim.SetBool("isFreezed", this.freezed);
         if (waiting) {
 			_waitTimer += Time.deltaTime;
 			if (_waitTimer >= _totalWaitTime) {
@@ -124,9 +124,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
       //  }
         if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
             this.anim.SetBool("wannaKill", true);
-            //collision.gameObject.SetActive (false);
-		   // collision.gameObject.GetComponent<FieldOfView> ().alive = false;
-            collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
+
             collision.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
             //collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
             this.anim.SetBool("wannaKill", false);
@@ -134,7 +132,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         }
         else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
             this.anim.SetBool("wannaKill", true);
-            collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
+            //collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
 		    NewControl.objKilledByGuard = true;
             this.anim.SetBool("wannaKill", false);
         }
@@ -142,21 +140,12 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        /*if (col.gameObject.tag.Equals("Guard") || col.gameObject.tag.Equals("Killer Guards"))
-        {
-            SetDestination();
-        }
-        if (this.gameObject.tag.Equals("Guard") && col.gameObject.layer == 8)
-        {
-            SetDestination();
-        }*/
+       
 
         if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
         {
             this.anim.SetBool("wannaKill", true);
-           // col.gameObject.SetActive(false);
-            //col.gameObject.GetComponent<FieldOfView>().alive = false;
-            col.gameObject.GetComponent<PlayerControl>().badFeedback = true;
+
             col.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
             //col.gameObject.GetComponent<PlayerControl>().Respawn(col.gameObject);
             this.anim.SetBool("wannaKill", false);
@@ -165,7 +154,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         else if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject == NewControl.objective)
         {
             this.anim.SetBool("wannaKill", true);
-            col.gameObject.GetComponent<PlayerControl>().badFeedback = true;
+           // col.gameObject.GetComponent<PlayerControl>().badFeedback = true;
             NewControl.objKilledByGuard = true;
             this.anim.SetBool("wannaKill", false);
         }

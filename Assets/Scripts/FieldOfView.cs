@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Animations;
 
 public class FieldOfView : MonoBehaviour {
 
@@ -99,14 +100,22 @@ public class FieldOfView : MonoBehaviour {
         yield return true;
 	}
 
-    bool AnimatorIsPlaying(string stateName)
-    {    
-        return AnimatorIsPlaying() && anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
-    }
+    //bool AnimatorIsPlaying(string stateName)
+    //{    
+    //    return AnimatorIsPlaying() && anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    //}
 
-    bool AnimatorIsPlaying()
-    {
-        return anim.GetCurrentAnimatorStateInfo(0).length >
-               anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-    }
+    //bool AnimatorIsPlaying()
+    //{
+    //    return anim.GetCurrentAnimatorStateInfo(0).length >
+    //           anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    //}
+
+    //private bool AnimationFinished()
+    //{
+    //    if (UnityEngine.AnimationState.time >= AnimationState.length)
+    //    {
+    //        // animation finished...
+    //    }
+    //}
 }

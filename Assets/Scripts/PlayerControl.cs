@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-
 public class PlayerControl : MonoBehaviour {
 
     [SerializeField]
@@ -17,8 +16,8 @@ public class PlayerControl : MonoBehaviour {
     private float distToGround, count, timeCoolDown, timeFeedback;
     [SerializeField]
     private int coolDown;
-    private bool pressed, cooledDown, goodFeedback, winnerFeedback;
-    public bool badFeedback;
+    private bool pressed, cooledDown;//, goodFeedback, winnerFeedback;
+    //public bool badFeedback;
 
     [HideInInspector]
     public int scoreGeneral, scoreKills, scoreWins;
@@ -28,11 +27,10 @@ public class PlayerControl : MonoBehaviour {
     private List<GameObject> feedbacks;
     private GameObject[] feedbackList;
     [SerializeField]
-    private Color colorP1, colorP2, colorP3, colorP4, GoodFeedback, BadFeedback, WinnerFeedback, DetectedFeedback;
+    private Color colorP1, colorP2, colorP3, colorP4, DetectedFeedback;
     private Color neutralColor;
     [SerializeField]
     private Animator anim;
-
     //private bool canAct;
 
     List<GameObject> guardsList = new List<GameObject>();
@@ -141,6 +139,7 @@ public class PlayerControl : MonoBehaviour {
             if (Input.GetButtonDown(this.killButton))
             {
                 this.wannaKill = true;
+                //clip.Play("Punch");
             }
 
             if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
@@ -154,30 +153,11 @@ public class PlayerControl : MonoBehaviour {
             }
 
             this.anim.SetBool("wannaKill", this.wannaKill);
-         
-
         }
-
-        if (this.goodFeedback)
+        this.anim.SetBool("isFreezed", this.canAct);
+        if (this.detected)
         {
-            this.timeFeedback += Time.deltaTime;
-            this.feedback.color = this.GoodFeedback;
-            if (this.timeFeedback >= 0.5) this.goodFeedback = false;
-        }
-        else if (this.badFeedback)
-        {
-            this.timeFeedback += Time.deltaTime;
-            this.feedback.color = this.BadFeedback;
-            if (this.timeFeedback >= 0.5) this.badFeedback = false;
-        }
-        else if (this.winnerFeedback)
-        {
-            this.timeFeedback += Time.deltaTime;
-            this.feedback.color = this.WinnerFeedback;
-            if (this.timeFeedback >= 0.5) this.winnerFeedback = false;
-        }
-        else if (this.detected)
-        {
+            
             this.timeFeedback += Time.deltaTime;
             this.feedback.color = this.DetectedFeedback;
             if (this.timeFeedback >= 5) this.detected = false;
@@ -218,35 +198,28 @@ public class PlayerControl : MonoBehaviour {
         {
             this.detected = false;
             this.scoreGeneral -= 3;
-            this.badFeedback = true;
-            //this.canAct = false;
-            //Destroy(gO);
+
             if (gO.gameObject.tag.Equals("Guard"))
                 gO.GetComponent<NPCConnectedPatrol>().Respawn(gO);
             else if (gO.gameObject.tag.Equals("Killer Guards"))
                 Destroy(gO);
-            //if (AnimatorIsPlaying("Punch"))
             this.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
-            //Respawn(this.gameObject);
 
         }
         else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
         {
-            this.detected = false;
-            gO.gameObject.GetComponent<PlayerControl>().detected = false;
-            this.scoreGeneral += 5;
-            this.scoreKills += 1;
-            this.goodFeedback = true;
-            // if (AnimatorIsPlaying("Punch"))
-            gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
-            //Respawn(gO);
+                gO.GetComponent<Animator>().Play("Death");
+                this.detected = false;
+                gO.gameObject.GetComponent<PlayerControl>().detected = false;
+                this.scoreGeneral += 5;
+                this.scoreKills += 1;
+                gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
+
         }
         else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
         {
-            this.winnerFeedback = true;
+            gO.GetComponent<Animator>().Play("Death");
             this.detected = false;
-            //this.canAct = false;
-            //if (AnimatorIsPlaying("Punch"))
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
             NewControl.parcialWinner = this.gameObject;
             NewControl.objComplete = true;
@@ -268,52 +241,42 @@ public class PlayerControl : MonoBehaviour {
     public void Respawn(GameObject gO)
     {
 
-       // this.gameObject.GetComponent<FieldOfView>().alive = true;
-        this.detected = false;
-        this.timeFeedback = 0;
-        GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-        int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); 
-        gO.gameObject.transform.position = new Vector3(allMyRespawnPoints[random].transform.position.x, 10.14516f, allMyRespawnPoints[random].transform.position.z);
-       // gO.gameObject.SetActive(true);
-        gO.gameObject.GetComponent<FieldOfView>().Start();
+            gO.GetComponent<PlayerControl>().detected = false;
+            gO.GetComponent<PlayerControl>().timeFeedback = 0;
+            GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+            int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+            gO.gameObject.transform.position = new Vector3(allMyRespawnPoints[random].transform.position.x, 10.14516f, allMyRespawnPoints[random].transform.position.z);
+            // gO.gameObject.SetActive(true);
+            gO.gameObject.GetComponent<FieldOfView>().Start();
+
         //this.canAct = true;
     }
     public void RespawnCoolDown()
     {
-        this.cooledDown = true;
-        this.timeCoolDown = 0;
+       
+            this.cooledDown = true;
+            this.timeCoolDown = 0;
         //Respawn();
     }
-   /* public void DeadCoolDown(GameObject gO)
-    {
-        GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-        int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-        gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
-        this.cooledDown = true;   
-    }
-    public void RespawnCoolDown(GameObject gO)
-    {
-        gO.gameObject.SetActive(true);
-        this.cooledDown = false;
-        this.timeCoolDown = 0;
-    }*/
-   /* void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag.Equals("Killzone"))
-        {
-            this.gameObject.SetActive(false);
-            Respawn(this.gameObject);
-            
-        }
-    }*/
+  
 
     private static int SortByName(GameObject o1, GameObject o2)
     {
         return o1.name.CompareTo(o2.name);
     }
 
+    bool AnimatorIsPlaying(string stateName, Animator anim)
+    {
+        return AnimatorIsPlaying(anim) && anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    }
+
+    bool AnimatorIsPlaying(Animator anim)
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).length >
+               anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+    }
+    
 
 
-   
 
 }
