@@ -50,16 +50,17 @@ public class Smoke : MonoBehaviour {
 
         if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
         {
-            Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
-            GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
+            //Quaternion quad = new Quaternion(this.transform.rotation.w, 90, this.transform.rotation.y, this.transform.rotation.z);
+            GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
             s.GetComponent<ParticleSystem>().Play(false);
             this.iconAb.GetComponent<Image>().fillAmount = 0;
             hab = true;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
-            Quaternion quad = new Quaternion(this.transform.rotation.w, -90, this.transform.rotation.y, this.transform.rotation.z);
-            GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, 13.4f, this.transform.position.z), quad);
+           // Quaternion quad = new Quaternion(this.transform.rotation.w, 90, this.transform.rotation.y, this.transform.rotation.z);
+            //Vector3 q = this.transform.rotation.eulerAngles;
+            GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
             s.GetComponent<ParticleSystem>().Play(false);
             this.iconAb.GetComponent<Image>().fillAmount = 0;
             hab = true;

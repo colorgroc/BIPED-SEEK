@@ -86,7 +86,7 @@ public class Teleport : MonoBehaviour {
             this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_teleport;
             this.iconAb.GetComponent<Image>().fillAmount = 1;
             //grisa
-            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_teleport;
         }
         else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.TELEPORT)
         {
@@ -95,7 +95,7 @@ public class Teleport : MonoBehaviour {
             this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_teleport;
             this.iconAb.GetComponent<Image>().fillAmount = 1;
             //grisa
-            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_teleport;
 
         }
 

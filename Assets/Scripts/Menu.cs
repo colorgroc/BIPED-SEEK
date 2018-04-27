@@ -46,9 +46,10 @@ public class Menu : MonoBehaviour
                 if (Screen.fullScreen)
                     PlayerPrefs.SetInt("ScreenMode", 0); //full screen
                 else if (!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
-
+                Tutorial.showIt = true;
 
             }
+            else Tutorial.showIt = false;
         }
         sounds.GetComponent<AudioSource>().enabled = false;
         sounds.mute = true;
