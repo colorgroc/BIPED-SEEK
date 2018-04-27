@@ -9,13 +9,18 @@ public class Sprint : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
+    [SerializeField]
+    private AudioClip abilitySound;
     public bool ab1 = false, ab2 = false;
     [SerializeField]
     private float sprint = 1.7f;
     public Image iconAb;
+    private AudioSource soundSource;
+
     // Use this for initialization
     void Start()
     {
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         used = false;
         cooldown = 0;
         //speed = this.gameObject.GetComponent<PlayerControl>().GetSpeed();
@@ -43,6 +48,7 @@ public class Sprint : MonoBehaviour {
         if (hab)
         {
             timeAb += Time.deltaTime;
+            if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
             if (timeAb >= timeAbility)
             {
                 used = true;

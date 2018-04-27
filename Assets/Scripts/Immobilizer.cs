@@ -11,12 +11,17 @@ public class Immobilizer : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
+    [SerializeField]
+    private AudioClip abilitySound;
     Collider[] colliders;
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
+    private AudioSource soundSource;
+
     // Use this for initialization
     void Start()
     {
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         used = false;
         cooldown = 0;
         this.ab1 = this.ab2 = false;
@@ -39,6 +44,7 @@ public class Immobilizer : MonoBehaviour {
         if (hab)
         {
             timeAb += Time.deltaTime;
+            if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
             if (timeAb >= timeAbility)
             {
                 used = true;

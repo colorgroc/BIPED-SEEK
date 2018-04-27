@@ -9,12 +9,17 @@ public class Smoke : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
+    [SerializeField]
+    private AudioClip abilitySound;
     GameObject smoke;
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
+    private AudioSource soundSource;
+
     // Use this for initialization
     void Start()
     {
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         smoke = (GameObject)Resources.Load("Prefabs/Smoke");
         used = false;
         cooldown = 0;
@@ -40,6 +45,7 @@ public class Smoke : MonoBehaviour {
         if (hab)
         {
             timeAb += Time.deltaTime;
+            if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
             if (timeAb >= timeAbility)
             {
                 used = true;

@@ -9,11 +9,17 @@ public class Teleport : MonoBehaviour {
     private bool hab;
     [SerializeField]
     private int coolDown = 10;
+    [SerializeField]
+    private AudioClip abilitySound;
     List<GameObject> guardsList = new List<GameObject>();
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
+    private AudioSource soundSource;
+
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         hab = false;
         cooldown = 0;
         this.ab1 = this.ab2 = false;
@@ -34,6 +40,7 @@ public class Teleport : MonoBehaviour {
         if (hab)
         {
             cooldown += Time.deltaTime;
+            if (cooldown == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
             IconRespawn();
             if (cooldown >= coolDown)
             {

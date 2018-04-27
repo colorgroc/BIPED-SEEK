@@ -47,6 +47,8 @@ public class NewControl : MonoBehaviour
 
 
 
+
+
     public enum Abilities
     {
         INVISIBLITY, IMMOBILIZER, SPRINT, TELEPORT, CONTROL, SMOKE//, REPEL

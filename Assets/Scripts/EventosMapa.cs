@@ -16,9 +16,13 @@ public class EventosMapa : MonoBehaviour {
     private int ronda;
     [SerializeField]
     private Canvas canvas;
+    [SerializeField]
+    private AudioClip eventSound;
     bool nada;
+    private AudioSource soundSource;
 
-	void Start () {
+    void Start () {
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         for (int i = 0; i < Rondes.rondas; i++)
         {
             evento = UnityEngine.Random.Range(0, 4);
@@ -45,7 +49,7 @@ public class EventosMapa : MonoBehaviour {
                 if (nothing)
                 {
                     timeEvent2 += Time.deltaTime;
-
+                    //if (timeEvent2 == Time.deltaTime) soundSource.PlayOneShot(eventSound);
                     if (timeEvent2 >= tempsNothing)
                     {
                         canvas.GetComponent<Canvas>().enabled = false;
@@ -57,6 +61,7 @@ public class EventosMapa : MonoBehaviour {
                 else
                 {
                     timeEvent1 += Time.deltaTime;
+                    //if (timeEvent1 == Time.deltaTime) soundSource.PlayOneShot(eventSound);
                     if (timeEvent1 >= tempsEvent)
                     {
 

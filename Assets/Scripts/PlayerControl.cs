@@ -16,6 +16,9 @@ public class PlayerControl : MonoBehaviour {
     private float distToGround, count, timeCoolDown, timeFeedback;
     [SerializeField]
     private int coolDown;
+    [SerializeField]
+    private AudioClip killPlayerSound;
+    private AudioSource soundSource;
     private bool pressed, cooledDown;//, goodFeedback, winnerFeedback;
     //public bool badFeedback;
 
@@ -38,6 +41,7 @@ public class PlayerControl : MonoBehaviour {
 
     void Start ()
     {
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
         this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
@@ -193,7 +197,7 @@ public class PlayerControl : MonoBehaviour {
 
     public void Kill(GameObject gO)
     {
-        
+        //soundSource.PlayOneShot(killPlayerSound);
         if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards")) //canviar aixo?
         {
             this.detected = false;
