@@ -47,8 +47,9 @@ public class Sprint : MonoBehaviour {
 
         if (hab)
         {
+            //soundSource.PlayOneShot(abilitySound);
             timeAb += Time.deltaTime;
-            if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
+            //if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
             if (timeAb >= timeAbility)
             {
                 used = true;
@@ -63,12 +64,14 @@ public class Sprint : MonoBehaviour {
 
         if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
         {
+            soundSource.PlayOneShot(abilitySound);
             this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
             hab = true;
             this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
+            soundSource.PlayOneShot(abilitySound);
             this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed * 1.7f);
             hab = true;
             this.iconAb.GetComponent<Image>().fillAmount = 0;

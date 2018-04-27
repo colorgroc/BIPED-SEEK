@@ -53,8 +53,9 @@ public class ControlAbility : MonoBehaviour {
 
         if (hab)
         {
+           
             timeAb += Time.deltaTime;
-            if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
+           // if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
             if (timeAb >= timeAbility)
             {
                 used = true;
@@ -66,12 +67,14 @@ public class ControlAbility : MonoBehaviour {
 
         if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
         {
+            soundSource.PlayOneShot(abilitySound);
             ControlChange();
             hab = true;
             this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
+            soundSource.PlayOneShot(abilitySound);
             ControlChange();
             hab = true;
             this.iconAb.GetComponent<Image>().fillAmount = 0;

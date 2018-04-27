@@ -207,17 +207,19 @@ public class PlayerControl : MonoBehaviour {
                 gO.GetComponent<NPCConnectedPatrol>().Respawn(gO);
             else if (gO.gameObject.tag.Equals("Killer Guards"))
                 Destroy(gO);
+            soundSource.PlayOneShot(killPlayerSound);
             this.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
         }
         else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
         {
-                gO.GetComponent<Animator>().Play("Death");
-                this.detected = false;
-                gO.gameObject.GetComponent<PlayerControl>().detected = false;
-                this.scoreGeneral += 5;
-                this.scoreKills += 1;
-                gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
+            gO.GetComponent<Animator>().Play("Death");
+            this.detected = false;
+            gO.gameObject.GetComponent<PlayerControl>().detected = false;
+            this.scoreGeneral += 5;
+            this.scoreKills += 1;
+            soundSource.PlayOneShot(killPlayerSound);
+            gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
         }
         else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
@@ -228,6 +230,7 @@ public class PlayerControl : MonoBehaviour {
             NewControl.parcialWinner = this.gameObject;
             NewControl.objComplete = true;
             Rondes.timesPlayed++;
+            soundSource.PlayOneShot(killPlayerSound);
         }
     
         

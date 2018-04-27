@@ -44,8 +44,9 @@ public class Smoke : MonoBehaviour {
 
         if (hab)
         {
+            soundSource.PlayOneShot(abilitySound);
             timeAb += Time.deltaTime;
-            if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
+            //if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
             if (timeAb >= timeAbility)
             {
                 used = true;
@@ -61,6 +62,7 @@ public class Smoke : MonoBehaviour {
             s.GetComponent<ParticleSystem>().Play(false);
             this.iconAb.GetComponent<Image>().fillAmount = 0;
             hab = true;
+            soundSource.PlayOneShot(abilitySound);
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
@@ -70,6 +72,7 @@ public class Smoke : MonoBehaviour {
             s.GetComponent<ParticleSystem>().Play(false);
             this.iconAb.GetComponent<Image>().fillAmount = 0;
             hab = true;
+            soundSource.PlayOneShot(abilitySound);
         }
     }
     void IconRespawn()

@@ -39,8 +39,9 @@ public class Teleport : MonoBehaviour {
         //NewContol.guards;
         if (hab)
         {
+            
             cooldown += Time.deltaTime;
-            if (cooldown == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
+           // if (cooldown == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
             IconRespawn();
             if (cooldown >= coolDown)
             {
@@ -53,12 +54,14 @@ public class Teleport : MonoBehaviour {
             TeleportHability();
             hab = true;
             this.iconAb.GetComponent<Image>().fillAmount = 0;
+            soundSource.PlayOneShot(abilitySound);
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !hab)
         {
             TeleportHability();
             hab = true;
             this.iconAb.GetComponent<Image>().fillAmount = 0;
+            soundSource.PlayOneShot(abilitySound);
         }
 
         //if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab5Button) && !hab)

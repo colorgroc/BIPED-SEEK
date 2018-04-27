@@ -100,6 +100,7 @@ public class EventosMapa : MonoBehaviour {
                 KillersCreation();
                 break;
         }
+        soundSource.PlayOneShot(eventSound);
         timeEvent1 = timeEvent2 = 0;
         nothing = true;
     }
