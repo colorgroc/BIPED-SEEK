@@ -25,7 +25,7 @@ public class NewControl : MonoBehaviour
     public static GameObject[] guards;
     [HideInInspector]
     public static GameObject[] killers;
-    private bool paused;
+    public static bool paused;
     [SerializeField]
     private GameObject pausa, objectiveCanvas, finalWinnerCanvas;
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
@@ -111,7 +111,7 @@ public class NewControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!startGame)
+        if (!startGame && !Tutorial.showIt)
         {
             timeBack -= Time.fixedUnscaledDeltaTime;
 
@@ -399,7 +399,7 @@ public class NewControl : MonoBehaviour
             paused = !paused;
             pausa.SetActive(paused);
         }
-        if (Input.GetButtonDown("Submit") && paused)
+        if (Input.GetButtonDown("Submit") && paused && !Tutorial.showIt)
         {
             pausa.SetActive(false);
             Time.timeScale = 1;

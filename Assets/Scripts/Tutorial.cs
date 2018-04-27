@@ -7,30 +7,47 @@ public class Tutorial : MonoBehaviour {
 
     public static bool showIt;
     [SerializeField]
-    private Canvas panel, tutorial;
+    private Canvas panel, tutorial, mapaEvent, feedbackCanvas;
     [SerializeField]
-    private GameObject tutorialGb, welcome, HUD;
+    private GameObject tutorialGb, welcome, HUD, score, abilities, feedback, icon, rounds, objective, events;
     [SerializeField]
-    private Text welcome1, welcome2, score, abilities, feedback, icon, rounds, objective, events, play;
+    private Text welcome1, welcome2, play;
     private int OK;
+    [SerializeField]
+    Image feedBack;
+    [SerializeField]
+    Color feedCol;
+
     // Use this for initialization
     void Start () {
         if (showIt)
         {
-            Time.timeScale = 0;
+            Debug.Log("siTuto");
+            NewControl.paused = true;
             tutorialGb.SetActive(true);
             panel.enabled = tutorial.enabled = true;
             welcome.SetActive(true);
             welcome1.enabled = true;
+            
         }
         else {
+            Debug.Log("noTuto");
             //Time.timeScale = 1;
             tutorialGb.SetActive(false);
             panel.enabled = tutorial.enabled = false;
         }
 
         HUD.SetActive(false);
-        welcome2.enabled = score.enabled = abilities.enabled = feedback.enabled = icon.enabled = rounds.enabled = objective.enabled = events.enabled = false;
+        score.SetActive(false);
+        abilities.SetActive(false);
+        feedback.SetActive(false);
+        icon.SetActive(false);
+        rounds.SetActive(false);
+        objective.SetActive(false);
+        events.SetActive(false);
+        mapaEvent.enabled = false;
+        feedBack.enabled = false;
+        welcome2.enabled = play.enabled = false;
         OK = 0;
         
     }
@@ -52,41 +69,48 @@ public class Tutorial : MonoBehaviour {
                 welcome2.enabled = false;
                 welcome.SetActive(false);
                 HUD.SetActive(true);
-                score.enabled = true;
+                score.SetActive(true);
             }
             else if (OK == 3)
-            {     
-                score.enabled = false;
-                abilities.enabled = true;
+            {
+                score.SetActive(false);
+                abilities.SetActive(true);
             }
             else if (OK == 4)
             {
-                abilities.enabled = false;
-                feedback.enabled = true;
+                abilities.SetActive(false);
+                feedback.SetActive(true);
+                feedBack.enabled = true;
+                feedBack.color = feedCol;
             }
             else if (OK == 5)
             {
-                feedback.enabled = false;
-                icon.enabled = true;
+                feedback.SetActive(false);
+                icon.SetActive(true);
+                feedbackCanvas.enabled = true;
+                //feedBack.enabled = false;
+                
             }
             else if (OK == 6)
             {
-                icon.enabled = false;
-                rounds.enabled = true;
+                icon.SetActive(false);
+                rounds.SetActive(true);
             }
             else if (OK == 7)
             {
-                rounds.enabled = false;
-                objective.enabled = true;
+                rounds.SetActive(false);
+                objective.SetActive(true);
             }
             else if (OK == 8)
             {
-                objective.enabled = false;
-                events.enabled = true;
+                objective.SetActive(false);
+                events.SetActive(true);
+                mapaEvent.enabled = true;
             }
             else if (OK == 9)
             {
-                events.enabled = false;
+                events.SetActive(false);
+                mapaEvent.enabled = false;
                 HUD.SetActive(false);
                 play.enabled = true;
             }
@@ -96,7 +120,9 @@ public class Tutorial : MonoBehaviour {
                 tutorial.enabled = false;
                 panel.enabled = false;
                 tutorialGb.SetActive(false);
-                Time.timeScale = 1;
+                feedBack.enabled = true;
+                NewControl.paused = false;
+                showIt = false;
             }
         }
     }
