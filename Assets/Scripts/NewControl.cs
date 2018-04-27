@@ -36,7 +36,7 @@ public class NewControl : MonoBehaviour
     private int fin, topScore, habilitat_1, habilitat_2;
     [SerializeField]
     private int numGuardsPerType = 10, time = 90;//maxMinutes = 3, minMinutes = 1;
-    public static int numRondesPerJugador = 1;
+    public static int numRondesPerJugador = 2;
     public static int numKillers = 7;
     private List<int> listPos;
     private List<int> listPosGuards;

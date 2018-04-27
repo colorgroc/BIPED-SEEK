@@ -24,7 +24,7 @@ public class Tutorial : MonoBehaviour {
             welcome1.enabled = true;
         }
         else {
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
             tutorialGb.SetActive(false);
             panel.enabled = tutorial.enabled = false;
         }

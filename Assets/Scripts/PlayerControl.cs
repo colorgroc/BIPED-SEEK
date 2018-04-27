@@ -154,7 +154,7 @@ public class PlayerControl : MonoBehaviour {
 
             this.anim.SetBool("wannaKill", this.wannaKill);
         }
-        this.anim.SetBool("isFreezed", this.canAct);
+        this.anim.SetBool("isFreezed", !this.canAct);
         if (this.detected)
         {
             

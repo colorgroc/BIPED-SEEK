@@ -51,6 +51,7 @@ public class Menu : MonoBehaviour
             }
             else Tutorial.showIt = false;
         }
+        else Tutorial.showIt = false;
         sounds.GetComponent<AudioSource>().enabled = false;
         sounds.mute = true;
         sounds.volume = 0;
