@@ -21,7 +21,7 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private Button opt, cred;
     [SerializeField]
-    GameObject fullScreen, windowed, muted, notMuted;
+    GameObject fullScreen, muted;
     [SerializeField]
     GameObject mc_p1, mc_p2, mc_p3, mc_p4;
     [SerializeField]
@@ -49,7 +49,7 @@ public class Menu : MonoBehaviour
                 Tutorial.showIt = true;
 
             }
-            else Tutorial.showIt = false;
+            //else Tutorial.showIt = false;
         }
         else Tutorial.showIt = true;
         sounds.GetComponent<AudioSource>().enabled = false;
@@ -153,22 +153,22 @@ public class Menu : MonoBehaviour
         options.gameObject.SetActive(true);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(fullScreen);
 
-        if (PlayerPrefs.GetInt("ScreenMode") == 0)
+        if (PlayerPrefs.GetInt("ScreenMode") == 0) //On
         {
-            fullScreen.GetComponent<Toggle>().isOn = true;
+            fullScreen.GetComponent<Dropdown>().value = 0;
         }
-        else if (PlayerPrefs.GetInt("ScreenMode") == 1)
+        else if (PlayerPrefs.GetInt("ScreenMode") == 1) //windowed (off)
         {
 
-            windowed.GetComponent<Toggle>().isOn = true;
+            fullScreen.GetComponent<Dropdown>().value = 1;
         }
-        if (PlayerPrefs.GetInt("isMute") == 0)
+        if (PlayerPrefs.GetInt("isMute") == 0) //MusicOn
         {
-            notMuted.GetComponent<Toggle>().isOn = true;
+            muted.GetComponent<Dropdown>().value = 0;
         }
-        else if (PlayerPrefs.GetInt("isMute") == 1)
+        else if (PlayerPrefs.GetInt("isMute") == 1)//MusicOff
         {
-            muted.GetComponent<Toggle>().isOn = true;
+            muted.GetComponent<Dropdown>().value = 1;
         }
         lastButon = opt;
     }

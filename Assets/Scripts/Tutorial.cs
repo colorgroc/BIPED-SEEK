@@ -20,6 +20,7 @@ public class Tutorial : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        showIt = true;
         if (showIt)
         {
             Debug.Log("siTuto");
