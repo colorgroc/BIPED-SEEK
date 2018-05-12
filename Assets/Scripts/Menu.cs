@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
 public class Menu : MonoBehaviour
@@ -21,12 +22,12 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private Button opt, cred;
     [SerializeField]
-    GameObject fullScreen, muted;
+    GameObject fullScreen, muted, tutorial;
     [SerializeField]
     GameObject mc_p1, mc_p2, mc_p3, mc_p4;
     [SerializeField]
     private int max_players = 4;
-
+    public static bool inDropdown, inVolume;
     [SerializeField]
     private Image menuBg, optionsBg, creditsBg;
     [SerializeField]
@@ -46,12 +47,13 @@ public class Menu : MonoBehaviour
                 if (Screen.fullScreen)
                     PlayerPrefs.SetInt("ScreenMode", 0); //full screen
                 else if (!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
+                //PlayerPrefs.SetInt("Tutorial", 1); //1 = si
                 Tutorial.showIt = true;
 
             }
             //else Tutorial.showIt = false;
         }
-        else Tutorial.showIt = true;
+        //else Tutorial.showIt = true;
         sounds.GetComponent<AudioSource>().enabled = false;
         sounds.mute = true;
         sounds.volume = 0;
@@ -91,11 +93,19 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Back") && !inMenu)
+        if (Input.GetButtonDown("Cancel") && !inMenu && !inDropdown && !inVolume)
         {
             BackToMenu();
         }
+        // Count is 4 when its open, and 3 when closed.
+        if (fullScreen.GetComponent<Dropdown>().transform.childCount == 3 && muted.GetComponent<Dropdown>().transform.childCount == 3 && tutorial.GetComponent<Dropdown>().transform.childCount == 3)
+        {
+            inDropdown = false;
+        }
+        else inDropdown = true;
     }
+    
+  
     void RandomBackground(Image canvas)
     {
         int rand = (int)Random.Range(0, 5);
@@ -197,6 +207,41 @@ public class Menu : MonoBehaviour
         options.gameObject.SetActive(false);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(lastButon.gameObject);
     }
+    //public void ChangeInDropdown()
+    //{
+    //    inDropdown = !inDropdown;
+    //}
+   public void TutorialValue()
+    {
+        if (fullScreen.GetComponent<Dropdown>().value == 0)
+        {
+            Tutorial.showIt = true;
+            sounds.mute = false;
+            sounds.volume = 1;
+            sounds.PlayOneShot(onButton);
+        }
+        else if (fullScreen.GetComponent<Dropdown>().value == 1)
+        {
+            Tutorial.showIt = false;
+            sounds.mute = false;
+            sounds.volume = 1;
+            sounds.PlayOneShot(onButton);
+        }
+    }
+    public void ScreenValue()
+    {
+        if (fullScreen.GetComponent<Dropdown>().value == 0)
+            FullScreen();
+        else if (fullScreen.GetComponent<Dropdown>().value == 1)
+            WindowScreen();
+    }
+    public void MusicValue()
+    {
+        if (muted.GetComponent<Dropdown>().value == 0)
+            SoundMusic();
+        else if (muted.GetComponent<Dropdown>().value == 1)
+            MuteMusic();
+    }
     public void FullScreen()
     {
         sounds.mute = false;
@@ -207,6 +252,9 @@ public class Menu : MonoBehaviour
     }
     public void WindowScreen()
     {
+        sounds.mute = false;
+        sounds.volume = 1;
+        sounds.PlayOneShot(onButton);
         Screen.fullScreen = false;
         PlayerPrefs.SetInt("ScreenMode", 1);
     }
@@ -225,6 +273,9 @@ public class Menu : MonoBehaviour
     }
     public void SoundMusic()
     {
+        sounds.mute = false;
+        sounds.volume = 1;
+        sounds.PlayOneShot(onButton);
         music.mute = false;
         PlayerPrefs.SetInt("isMute", 0);
     }

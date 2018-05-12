@@ -396,7 +396,7 @@ public class NewControl : MonoBehaviour
     }
     private void Pausa()
     {
-        if (Input.GetButtonDown("Start"))
+        if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")))
         {
             paused = !paused;
             pausa.SetActive(paused);
@@ -409,6 +409,11 @@ public class NewControl : MonoBehaviour
             paused = false;
             SceneManager.LoadScene("Menu");
         }
+       /* if(paused && Input.GetButtonDown("Cancel"))
+        {
+            paused = false;
+            pausa.SetActive(paused);  
+        }*/
         if (paused)
             Time.timeScale = 0;
         else Time.timeScale = 1;

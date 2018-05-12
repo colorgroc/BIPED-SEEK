@@ -14,7 +14,7 @@ public class Clouds : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         this.transform.Translate(0, 0, velocity);
         if (this.transform.position.x >= final.position.x)

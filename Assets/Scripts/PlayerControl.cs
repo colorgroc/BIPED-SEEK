@@ -128,8 +128,11 @@ public class PlayerControl : MonoBehaviour {
    
     void Update()
     {
-        if(!_sprint)
+        anim.SetBool("isRunning", _sprint);
+        if (!_sprint)
+        {
             speed = PlayerPrefs.GetFloat("Speed");
+        }
         if (this.canAct)
         {
             float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;

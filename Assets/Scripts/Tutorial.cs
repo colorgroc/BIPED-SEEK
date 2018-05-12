@@ -20,10 +20,10 @@ public class Tutorial : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        showIt = true;
+        //showIt = true;
         if (showIt)
         {
-            Debug.Log("siTuto");
+            //Debug.Log("siTuto");
             NewControl.paused = true;
             tutorialGb.SetActive(true);
             panel.enabled = tutorial.enabled = true;
@@ -32,7 +32,7 @@ public class Tutorial : MonoBehaviour {
             
         }
         else {
-            Debug.Log("noTuto");
+            //Debug.Log("noTuto");
             //Time.timeScale = 1;
             tutorialGb.SetActive(false);
             panel.enabled = tutorial.enabled = false;
@@ -59,7 +59,14 @@ public class Tutorial : MonoBehaviour {
         {
             OK++;
         }
-        if (Input.GetButtonUp("Submit"))
+        else if (Input.GetButtonDown("Cancel"))
+        {
+            OK--;
+        }
+
+        if (OK < 0) OK = 0;
+
+        if (Input.GetButtonUp("Submit") || Input.GetButtonDown("Cancel"))
         {
             if(OK == 1)
             {

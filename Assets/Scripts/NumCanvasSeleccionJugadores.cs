@@ -20,7 +20,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
     private int select_1, select_2, select_3, select_4;
     public static bool ready_P1, ready_P2, ready_P3, ready_P4;
-
+    private bool cancel_1, cancel_2, cancel_3, cancel_4, moved;
     [SerializeField]
     private Vector2 outline = new Vector2(10, -10);
     [SerializeField]
@@ -135,7 +135,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 	void Update () {
 
         //codi de prova
-        Back();
+       // Back();
         //guardar num of players
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
         if (PlayerPrefs.GetInt("NumPlayers") < 2) this.restriccion.enabled = true;
@@ -143,7 +143,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
 
-        
+        //reset cancel buton
+
        /* //proves per 1 jugador
         if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");*/
         //quan tothom ready, comença joc
@@ -159,14 +160,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     }
   
 
-    private void Back()
-    {
-        if (Input.GetButton("Back"))
-        {
-            sounds.PlayOneShot(backButton, 4.0F);
-            SceneManager.LoadScene("Menu");
-        }
-    }
+    //private void Back()
+    //{
+    //    if (Input.GetButton("Cancel") && ((!cancel_1 || !cancel_2 || !cancel_3 || !cancel_4)))// || (!ready_P1 && !ready_P2 && !ready_P3 && !ready_P4)))
+    //    {
+    //        sounds.PlayOneShot(backButton, 4.0F);
+    //        SceneManager.LoadScene("Menu");
+    //    }
+    //}
 
     void SeleccionJugadores(int numOfPlayers)
     {
@@ -202,6 +203,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
+                cancel_1 = false;
             }
             if (Input.GetButtonDown("Cancel") && ready_P1)
             {
@@ -211,7 +213,13 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
                 ready_P1 = false;
+                cancel_1 = true;
             }
+            else if(Input.GetButtonDown("Cancel") && ((!cancel_1 && !ready_P1) || (cancel_1))){
+                sounds.PlayOneShot(backButton, 4.0F);
+                 SceneManager.LoadScene("Menu");
+            }
+
         }
         if (numOfPlayers == 2) 
         {
@@ -246,6 +254,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_1", select_1+1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
+                cancel_1 = false;
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
@@ -255,8 +264,13 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
                 ready_P1 = false;
+                cancel_1 = true;
             }
-
+            else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            {
+                sounds.PlayOneShot(backButton, 4.0F);
+                SceneManager.LoadScene("Menu");
+            }
             //-------------------------Moviments player 2-----------------------------------
             //Horitzontal
             if (!ready_P2)
@@ -288,6 +302,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_2", select_2+ 1);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
                 ready_P2 = true;
+                cancel_2 = false;
             }
             if (Input.GetButtonDown("B_2"))
             {
@@ -297,6 +312,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
                 ready_P2 = false;
+                cancel_2 = true;
+            }
+            else if (Input.GetButtonDown("B_2") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            {
+                sounds.PlayOneShot(backButton, 4.0F);
+                SceneManager.LoadScene("Menu");
             }
 
 
@@ -334,6 +355,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
+                cancel_1 = true;
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
@@ -343,6 +365,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
                 ready_P1 = false;
+                cancel_1 = true;
+            }
+            else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            {
+                sounds.PlayOneShot(backButton, 4.0F);
+                SceneManager.LoadScene("Menu");
             }
 
             //-------------------------Moviments player 2-----------------------------------
@@ -376,6 +404,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
                 ready_P2 = true;
+                cancel_2 = false;
             }
             if (Input.GetButtonDown("B_2") && ready_P2)
             {
@@ -385,6 +414,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
                 ready_P2 = false;
+                cancel_2 = true;
+            }
+            else if (Input.GetButtonDown("B_2") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            {
+                sounds.PlayOneShot(backButton, 4.0F);
+                SceneManager.LoadScene("Menu");
             }
 
             //-------------------------Moviments player 3-----------------------------------
@@ -418,6 +453,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
                 GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
                 ready_P3 = true;
+                cancel_3 = false;
             }
             if (Input.GetButtonDown("B_3") && ready_P3)
             {
@@ -427,6 +463,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_3", 0);
                 GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
                 ready_P3 = false;
+                cancel_3 = true;
+            }
+            else if (Input.GetButtonDown("B_3") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            {
+                sounds.PlayOneShot(backButton, 4.0F);
+                SceneManager.LoadScene("Menu");
             }
         }
         else if (numOfPlayers == 4)
@@ -462,6 +504,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
+                cancel_1 = false;
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
@@ -471,6 +514,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
                 ready_P1 = false;
+                cancel_1 = true;
+            }
+            else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            {
+                sounds.PlayOneShot(backButton, 4.0F);
+                SceneManager.LoadScene("Menu");
             }
 
             //-------------------------Moviments player 2-----------------------------------
@@ -504,6 +553,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
                 ready_P2 = true;
+                cancel_2 = false;
             }
             if (Input.GetButtonDown("B_2") && ready_P2)
             {
@@ -513,6 +563,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
                 ready_P2 = false;
+                cancel_2 = true;
+            }
+            else if (Input.GetButtonDown("B_2") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            {
+                sounds.PlayOneShot(backButton, 4.0F);
+                SceneManager.LoadScene("Menu");
             }
 
             //-------------------------Moviments player 3-----------------------------------
@@ -546,6 +602,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
                 GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
                 ready_P3 = true;
+                cancel_3 = false;
             }
             if (Input.GetButtonDown("B_3") && ready_P3)
             {
@@ -555,7 +612,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_3", 0);
                 GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
                 ready_P3 = false;
+                cancel_3 = true;
             }
+            else if (Input.GetButtonDown("B_3") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            {
+                sounds.PlayOneShot(backButton, 4.0F);
+                SceneManager.LoadScene("Menu");
+            }
+
             //-------------------------Moviments player 4-----------------------------------
             //Horitzontal
             if (!ready_P4)
@@ -587,6 +651,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_4", select_4 + 1);
                 GameObject.Find("Ready_4").GetComponent<Text>().enabled = true;
                 ready_P4 = true;
+                cancel_4 = false;
             }
             if (Input.GetButtonDown("B_4") && ready_P4)
             {
@@ -596,6 +661,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_4", 0);
                 GameObject.Find("Ready_4").GetComponent<Text>().enabled = false;
                 ready_P4 = false;
+                cancel_4 = true;
+            }
+            else if (Input.GetButtonDown("B_4") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            {
+                sounds.PlayOneShot(backButton, 4.0F);
+                SceneManager.LoadScene("Menu");
             }
         }
     }

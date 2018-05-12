@@ -84,23 +84,22 @@ public class EventosMapa : MonoBehaviour {
                 nada = true;
                 Default();
                 break;
-            case 1:
-               
+            case 1: 
                 nada = false;
                 NPCReduction();
+                soundSource.PlayOneShot(eventSound);
                 break;
-            case 2:
-               
+            case 2:      
                 nada = false;
                 ChangeSpeed();
+                soundSource.PlayOneShot(eventSound);
                 break;
-            case 3:
-               
+            case 3:           
                 nada = false;
                 KillersCreation();
+                soundSource.PlayOneShot(eventSound);
                 break;
         }
-        soundSource.PlayOneShot(eventSound);
         timeEvent1 = timeEvent2 = 0;
         nothing = true;
     }

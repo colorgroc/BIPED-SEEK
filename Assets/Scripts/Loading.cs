@@ -16,6 +16,11 @@ public class Loading : MonoBehaviour {
     float time;
     private string scene;
     private int temp;
+    [SerializeField]
+    private Image iAb1, iAb2;
+    [SerializeField]
+    private Sprite freeze, control, invisible, teleport, sprint, smoke;
+
     void Start () {
        // slider.maxValue = loadingTime;
         time = temp = 0;
@@ -25,8 +30,8 @@ public class Loading : MonoBehaviour {
 
 	}
 	
-	void Update () {
-        time += Time.deltaTime;
+	void FixedUpdate () {
+        time += Time.fixedDeltaTime;
         slider.value = time/10;
         temp++;
         totalCargado.text = (temp/6).ToString();
@@ -46,20 +51,22 @@ public class Loading : MonoBehaviour {
         }
         ability1 = PlayerPrefs.GetInt("Ability 1");
         ability2 = PlayerPrefs.GetInt("Ability 2");
-        AbilityAsign(ability1, ab1Nom, ab1Desc);
-        AbilityAsign(ability2, ab2Nom, ab2Desc);
+        AbilityAsign(ability1, ab1Nom, ab1Desc, iAb1);
+        AbilityAsign(ability2, ab2Nom, ab2Desc, iAb2);
     }
-    private void AbilityAsign(int ab, Text nom, Text desc)
+    private void AbilityAsign(int ab, Text nom, Text desc, Image i)
     {
         if (ab == (int)NewControl.Abilities.IMMOBILIZER)
         {
             nom.text = "Freeze";
             desc.text = "Freeze everyone around you during x seconds.";
+            i.sprite = freeze;
         }
         else if (ab == (int)NewControl.Abilities.INVISIBLITY)
         {
             nom.text = "Invisibility";
             desc.text = "Become invisible during x seconds.";
+            i.sprite = invisible;
         }
        /* else if (ab == (int)NewControl.Abilities.REPEL)
         {
@@ -70,21 +77,25 @@ public class Loading : MonoBehaviour {
         {
             nom.text = "Smoke Screen";
             desc.text = "Create smoke during x seconds to hide and escape.";
+            i.sprite = smoke;
         }
         else if (ab == (int)NewControl.Abilities.SPRINT)
         {
             nom.text = "Sprint";
             desc.text = "Sprint to run away faster or to chase faster during x seconds.";
+            i.sprite = sprint;
         }
         else if (ab == (int)NewControl.Abilities.TELEPORT)
         {
             nom.text = "Teleport";
             desc.text = "Change position with a random NPC of your type.";
+            i.sprite = teleport;
         }
         else if (ab == (int)NewControl.Abilities.CONTROL)
         {
             nom.text = "NPC Control";
             desc.text = "Control a random NPC of your type during x seconds. Your character will be controlled by the IA.";
+            i.sprite = control;
         }
     }
     private void MapaRandom()

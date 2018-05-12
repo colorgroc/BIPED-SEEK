@@ -14,7 +14,7 @@ class TextFadeIn_Out : MonoBehaviour
     }
     private void Update()
     {
-        time += Time.deltaTime;
+        time += Time.fixedDeltaTime;
 
         if (time >= duration)
         {
