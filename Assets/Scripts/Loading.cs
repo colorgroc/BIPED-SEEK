@@ -33,7 +33,7 @@ public class Loading : MonoBehaviour {
 	void FixedUpdate () {
         time += Time.fixedDeltaTime;
         slider.value = time/10;
-        temp++;
+        temp++;//= (int) Time.fixedDeltaTime;
         totalCargado.text = (temp/6).ToString();
         if (time >= loadingTime) SceneManager.LoadScene(this.scene);
     }

@@ -23,6 +23,7 @@ public class Sprint : MonoBehaviour {
         soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         used = false;
         cooldown = 0;
+        timeAb = timeAbility;
         //speed = this.gameObject.GetComponent<PlayerControl>().GetSpeed();
         speed = PlayerPrefs.GetFloat("Speed");
         this.ab1 = this.ab2 = false;
@@ -47,17 +48,15 @@ public class Sprint : MonoBehaviour {
 
         if (hab)
         {
-            //soundSource.PlayOneShot(abilitySound);
-            timeAb += Time.deltaTime;
-            //if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
-            if (timeAb >= timeAbility)
+            timeAb -= Time.deltaTime;
+            IconDuration();
+            if (timeAb <= 0)
             {
                 used = true;
                 hab = false;
-                timeAb = 0;
+                timeAb = timeAbility;
                 this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed);
                 this.gameObject.GetComponent<PlayerControl>()._sprint = false;
-                // PlayerPrefs.SetFloat("Speed", speed);
 
             }
         }
@@ -68,7 +67,6 @@ public class Sprint : MonoBehaviour {
             this.gameObject.GetComponent<PlayerControl>()._sprint = true;
             this.gameObject.GetComponent<PlayerControl>().SetSpeed(sprint);
             hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
@@ -76,17 +74,7 @@ public class Sprint : MonoBehaviour {
             this.gameObject.GetComponent<PlayerControl>()._sprint = true;
             this.gameObject.GetComponent<PlayerControl>().SetSpeed(sprint);
             hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
-
-        //if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab3Button) && !used && !hab)
-        //{
-        //    Debug.Log("Sprint");
-        //    //PlayerPrefs.SetFloat("Speed", speed*sprint);
-        //    this.gameObject.GetComponent<PlayerControl>().sprint = true;
-        //    this.gameObject.GetComponent<PlayerControl>().SetSpeed(sprint);
-        //    hab = true;
-        //}
     }
 
     void Asignation()
@@ -115,6 +103,13 @@ public class Sprint : MonoBehaviour {
         if (this.ab1 || this.ab2)
         {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+        }
+    }
+    void IconDuration()
+    {
+        if (this.ab1 || this.ab2)
+        {
+            this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
         }
     }
 }

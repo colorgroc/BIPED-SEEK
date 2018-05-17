@@ -23,6 +23,7 @@ public class Smoke : MonoBehaviour {
         smoke = (GameObject)Resources.Load("Prefabs/Smoke");
         used = false;
         cooldown = 0;
+        timeAb = timeAbility;
         this.ab1 = this.ab2 = false;
         Asignation();
     }
@@ -45,32 +46,27 @@ public class Smoke : MonoBehaviour {
         if (hab)
         {
             soundSource.PlayOneShot(abilitySound);
-            timeAb += Time.deltaTime;
-            //if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
-            if (timeAb >= timeAbility)
+            timeAb -= Time.deltaTime;
+            IconDuration();
+            if (timeAb <= 0)
             {
                 used = true;
                 hab = false;
-                timeAb = 0;
+                timeAb = timeAbility;
             }
         }
 
         if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
         {
-            //Quaternion quad = new Quaternion(this.transform.rotation.w, 90, this.transform.rotation.y, this.transform.rotation.z);
             GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
             s.GetComponent<ParticleSystem>().Play(false);
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
             hab = true;
             soundSource.PlayOneShot(abilitySound);
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
-           // Quaternion quad = new Quaternion(this.transform.rotation.w, 90, this.transform.rotation.y, this.transform.rotation.z);
-            //Vector3 q = this.transform.rotation.eulerAngles;
             GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
             s.GetComponent<ParticleSystem>().Play(false);
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
             hab = true;
             soundSource.PlayOneShot(abilitySound);
         }
@@ -82,6 +78,15 @@ public class Smoke : MonoBehaviour {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
         }
     }
+
+    void IconDuration()
+    {
+        if (this.ab1 || this.ab2)
+        {
+            this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
+        }
+    }
+
     void Asignation()
     {
         if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE)

@@ -24,6 +24,7 @@ public class Immobilizer : MonoBehaviour {
         soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         used = false;
         cooldown = 0;
+        timeAb = timeAbility;
         this.ab1 = this.ab2 = false;
         Asignation();
     }
@@ -43,35 +44,29 @@ public class Immobilizer : MonoBehaviour {
 
         if (hab)
         {
-            timeAb += Time.deltaTime;
-            if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
-            if (timeAb >= timeAbility)
+            timeAb -= Time.deltaTime;
+            IconDuration();
+            if (timeAb >= 0)
             {
                 used = true;
                 hab = false;
-                timeAb = 0;
+                timeAb = timeAbility;
                 MoveAgain();
             }
         }
 
         if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab)
         {
+            soundSource.PlayOneShot(abilitySound);
             Inmobilitzar();
             hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
+            soundSource.PlayOneShot(abilitySound);
             Inmobilitzar();
             hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
-        //if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab4Button) && !used && !hab)
-        //{
-        //    Debug.Log("Immobile");
-        //    Inmobilitzar();
-        //    hab = true;
-        //}
     }
 
     void Inmobilitzar()
@@ -83,10 +78,8 @@ public class Immobilizer : MonoBehaviour {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null && this.gameObject.GetComponent<Rigidbody>() != rb)
             {
-                //rb.Sleep();
                 if (rb.gameObject.tag.Equals("Guard") || rb.gameObject.tag.Equals("Killer Guards"))
                 {
-                    //Debug.Log("wasup");
                     hit.GetComponent<NPCConnectedPatrol>().freezed = true;
                 }
                 else
@@ -94,8 +87,6 @@ public class Immobilizer : MonoBehaviour {
                     hit.GetComponent<PlayerControl>().canAct = false;
                 }
             }
-            //en players variable canAct = false --> posarla en el moviment
-            //en guards/killers --> travelling = false;
         }
     }
 
@@ -146,6 +137,14 @@ public class Immobilizer : MonoBehaviour {
         if (this.ab1 || this.ab2)
         {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+        }
+    }
+
+    void IconDuration()
+    {
+        if (this.ab1 || this.ab2)
+        {
+            this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
         }
     }
 }

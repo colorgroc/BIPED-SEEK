@@ -36,12 +36,9 @@ public class Teleport : MonoBehaviour {
 	
 	// Update is called once per frames
 	void Update () {
-        //NewContol.guards;
         if (hab)
-        {
-            
+        {   
             cooldown += Time.deltaTime;
-           // if (cooldown == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
             IconRespawn();
             if (cooldown >= coolDown)
             {
@@ -63,13 +60,6 @@ public class Teleport : MonoBehaviour {
             this.iconAb.GetComponent<Image>().fillAmount = 0;
             soundSource.PlayOneShot(abilitySound);
         }
-
-        //if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab5Button) && !hab)
-        //{
-        //    Debug.Log("Teleport");
-        //    TeleportHability();
-        //    hab = true;
-        //}
     }
 
     void IconRespawn()

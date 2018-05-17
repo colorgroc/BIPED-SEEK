@@ -21,6 +21,7 @@ public class Invisibility : MonoBehaviour {
         soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         used = false;
         cooldown = 0;
+        timeAb = timeAbility;
         this.ab1 = this.ab2 = false;
         Asignation();
     }
@@ -28,7 +29,6 @@ public class Invisibility : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //NewContol.guards;
         if (used)
         {
             cooldown += Time.deltaTime;
@@ -42,14 +42,13 @@ public class Invisibility : MonoBehaviour {
 
         if (hab)
         {
-            //soundSource.PlayOneShot(abilitySound);
-            timeAb += Time.deltaTime;
-            //if(timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
-            if (timeAb >= timeAbility)
+            timeAb -= Time.deltaTime;
+            IconDuration();
+            if (timeAb <= 0)
             {
                 used = true;
                 hab = false;
-                timeAb = 0;
+                timeAb = timeAbility;
                 this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
         }
@@ -59,22 +58,13 @@ public class Invisibility : MonoBehaviour {
             soundSource.PlayOneShot(abilitySound);
             this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
             hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
             soundSource.PlayOneShot(abilitySound);
             this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
             hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
-
-        //if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
-        //{
-        //    Debug.Log("Invisible");
-        //    this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
-        //    hab = true;
-        //} 
     }
     void Asignation()
     {
@@ -102,6 +92,13 @@ public class Invisibility : MonoBehaviour {
         if (this.ab1 || this.ab2)
         {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+        }
+    }
+    void IconDuration()
+    {
+        if (this.ab1 || this.ab2)
+        {
+            this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
         }
     }
 }

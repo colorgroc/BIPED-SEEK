@@ -32,6 +32,7 @@ public class Menu : MonoBehaviour
     private Image menuBg, optionsBg, creditsBg;
     [SerializeField]
     private Sprite bg1, bg2, bg3, bg4, bg5;
+    GameObject lastSelect;
 
     private void Awake()
     {
@@ -61,7 +62,7 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
-        
+        lastSelect = new GameObject();
         options.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
@@ -103,6 +104,11 @@ public class Menu : MonoBehaviour
             inDropdown = false;
         }
         else inDropdown = true;
+
+        if(inMenu && EventSystem.current.currentSelectedGameObject == null)
+            EventSystem.current.SetSelectedGameObject(lastSelect);
+        else if(inMenu && EventSystem.current.currentSelectedGameObject != null)
+            lastSelect = EventSystem.current.currentSelectedGameObject;
     }
     
   

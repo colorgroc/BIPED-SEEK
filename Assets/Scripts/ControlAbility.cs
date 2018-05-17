@@ -25,6 +25,7 @@ public class ControlAbility : MonoBehaviour {
         soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         hab = false;
         cooldown = 0;
+        timeAb = timeAbility;
         this.ab1 = this.ab2 = false;
         Asignation();
 
@@ -54,13 +55,14 @@ public class ControlAbility : MonoBehaviour {
         if (hab)
         {
            
-            timeAb += Time.deltaTime;
+            timeAb -= Time.deltaTime;
+            IconDuration();
            // if (timeAb == Time.deltaTime) soundSource.PlayOneShot(abilitySound);
-            if (timeAb >= timeAbility)
+            if (timeAb <= 0)
             {
                 used = true;
                 hab = false;
-                timeAb = 0;
+                timeAb = timeAbility;
                 DefaultControl();
             }
         }
@@ -70,21 +72,13 @@ public class ControlAbility : MonoBehaviour {
             soundSource.PlayOneShot(abilitySound);
             ControlChange();
             hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
         else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab)
         {
             soundSource.PlayOneShot(abilitySound);
             ControlChange();
             hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
         }
-        //if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab6Button) && !used)
-        //{
-        //    Debug.Log("Control");
-        //    ControlChange();
-        //    hab = true;
-        //}
     }
 
     void ControlChange()
@@ -212,6 +206,13 @@ public class ControlAbility : MonoBehaviour {
         if (this.ab1 || this.ab2)
         {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+        }
+    }
+    void IconDuration()
+    {
+        if (this.ab1 || this.ab2)
+        {
+            this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
         }
     }
 }

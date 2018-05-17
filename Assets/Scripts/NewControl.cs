@@ -16,9 +16,6 @@ public class NewControl : MonoBehaviour
     public static GameObject parcialWinner;
     public static GameObject finalWinner;
 
-    [SerializeField]
-    private GameObject showObjective;
-
     public static List<GameObject> players;// = new List<GameObject>();
     private List<GameObject> listPlayers;// = new List<GameObject>();
     [HideInInspector]
@@ -67,7 +64,7 @@ public class NewControl : MonoBehaviour
         scorePlayers = new List<GameObject>();
         habilitat_1 = PlayerPrefs.GetInt("Ability 1");
         habilitat_2 = PlayerPrefs.GetInt("Ability 2");
-        Debug.Log(habilitat_1 + "; " + habilitat_2);
+        //Debug.Log(habilitat_1 + "; " + habilitat_2);
         //creacion jugadores
         PlayersAndGuardsCreation();
         //lista adicional para establecer las rondas de cada jugador
@@ -82,9 +79,6 @@ public class NewControl : MonoBehaviour
         }
 
         countDown.gameObject.SetActive(true);
-
-
-
     }
     void Start()
     {
@@ -109,13 +103,19 @@ public class NewControl : MonoBehaviour
         textTiempo.text = GetMinutes(timeLeft);
 
     }
-
+    //private void FixedUpdate()
+    //{
+    //    if (!startGame && !Tutorial.showIt)
+    //    {
+    //        timeBack -= Time.unscaledTime;
+    //    }
+    //}
     // Update is called once per frame
     void Update()
     {
         if (!startGame && !Tutorial.showIt)
         {
-            timeBack -= Time.fixedUnscaledDeltaTime;
+            timeBack -= Time.fixedUnscaledDeltaTime*0.1f;
 
             if ((int)timeBack == 0)
             {
@@ -180,7 +180,6 @@ public class NewControl : MonoBehaviour
         paused = false;
         pausa.SetActive(false);
         timeStartLeft = timeLeft;
-        showObjective = null;
         objective = null;
     }
     private void PlayersAndGuardsCreation()
@@ -384,14 +383,13 @@ public class NewControl : MonoBehaviour
             objective = GameObject.Find(listPlayers[random].name);
             Debug.Log(listPlayers[random]);
             listPlayers.RemoveAt(random);
-            showObjective = objective;
             ShowObjectiveCanvas();
         }
 
     }
     void ShowObjectiveCanvas()
     {
-        objectiveCanvas.SetActive(true);
+        //objectiveCanvas.SetActive(true);
         objectiveCanvas.GetComponent<ObjectiveCanvas>().Start();
     }
     private void Pausa()
@@ -451,7 +449,7 @@ public class NewControl : MonoBehaviour
             countDown.text = count.ToString();
             // display something...
             yield return new WaitForSeconds(1);
-            count--;
+            count -= (int)Time.fixedDeltaTime;
         }
 
         // count down is finished...

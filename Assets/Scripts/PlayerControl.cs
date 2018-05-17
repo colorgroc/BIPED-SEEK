@@ -69,8 +69,8 @@ public class PlayerControl : MonoBehaviour {
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation = "H_RPad_1";
             this.killButton = "X_1";
-            this.hab1Button = "Y_1";
-            this.hab2Button = "B_1";
+            this.hab1Button = "LB_1";
+            this.hab2Button = "RB_1";
            
         }
         else if (this.gameObject.name.Equals("Player 2"))
@@ -82,8 +82,8 @@ public class PlayerControl : MonoBehaviour {
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation = "H_RPad_2";
             this.killButton = "X_2";
-            this.hab1Button = "Y_2";
-            this.hab2Button = "B_2";
+            this.hab1Button = "LB_2";
+            this.hab2Button = "RB_2";
        
 
         }

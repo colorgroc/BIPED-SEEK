@@ -24,14 +24,5 @@ public class Kill : MonoBehaviour {
 
             this.gameObject.GetComponentInParent<PlayerControl>().wannaKill = false;
         }
-
-        // if (this.gameObject.GetComponentInParent<PlayerControl>().wannaKill) 
-        //{
-        //if (AnimatorIsPlaying("Punch"))
-        /* Debug.Log("Killed");
-         if (this.gameObject.transform.parent != other.gameObject)
-             this.gameObject.GetComponentInParent<PlayerControl>().Kill(other.gameObject);*/
-        //  this.gameObject.GetComponentInParent<PlayerControl>().wannaKill = false;
-        // }
     }
 }

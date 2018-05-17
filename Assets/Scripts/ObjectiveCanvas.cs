@@ -30,16 +30,13 @@ public class ObjectiveCanvas : MonoBehaviour {
             tRonda.text = "Ronda " + (Rondes.timesPlayed + 1).ToString();
 
     }
-    private void Update()
-    {      
-    }
 
-    void FixedUpdate ()
-    {
-        if (NewControl.startGame)
-        {
-            timeObjective += Time.fixedDeltaTime;
-            if (timeObjective >= time) this.gameObject.SetActive(false);
-        }
-    }
+    //void FixedUpdate ()
+    //{
+    //    if (NewControl.startGame)
+    //    {
+    //        timeObjective += Time.fixedDeltaTime;
+    //        if (timeObjective >= time) this.gameObject.SetActive(false);
+    //    }
+    //}
 }
