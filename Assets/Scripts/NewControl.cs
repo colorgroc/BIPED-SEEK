@@ -41,7 +41,7 @@ public class NewControl : MonoBehaviour
     private static List<GameObject> scorePlayers;
     private float timeBack = 4, timeStartLeft;
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
-
+    Resolution res;
 
 
 
@@ -82,6 +82,14 @@ public class NewControl : MonoBehaviour
     }
     void Start()
     {
+        //control HZ monitors
+        res = Screen.currentResolution;
+        if (res.refreshRate == 60)
+            QualitySettings.vSyncCount = 1;
+        if (res.refreshRate == 120)
+            QualitySettings.vSyncCount = 2;
+        print(QualitySettings.vSyncCount);
+
         Time.timeScale = 0;
 
         StartGame();
@@ -115,7 +123,7 @@ public class NewControl : MonoBehaviour
     {
         if (!startGame && !Tutorial.showIt)
         {
-            timeBack -= Time.fixedUnscaledDeltaTime*0.1f;
+            timeBack -= Time.fixedUnscaledDeltaTime;
 
             if ((int)timeBack == 0)
             {

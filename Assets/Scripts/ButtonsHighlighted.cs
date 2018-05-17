@@ -26,7 +26,7 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
         z = initialScale.z;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (selected)
         {

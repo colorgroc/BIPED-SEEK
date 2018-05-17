@@ -20,9 +20,18 @@ public class Loading : MonoBehaviour {
     private Image iAb1, iAb2;
     [SerializeField]
     private Sprite freeze, control, invisible, teleport, sprint, smoke;
+    Resolution res;
 
     void Start () {
-       // slider.maxValue = loadingTime;
+
+        //control HZ monitors
+        res = Screen.currentResolution;
+        if (res.refreshRate == 60)
+            QualitySettings.vSyncCount = 1;
+        if (res.refreshRate == 120)
+            QualitySettings.vSyncCount = 2;
+        print(QualitySettings.vSyncCount);
+
         time = temp = 0;
         slider.value = time;
         MapaRandom();
@@ -32,9 +41,9 @@ public class Loading : MonoBehaviour {
 	
 	void FixedUpdate () {
         time += Time.fixedDeltaTime;
-        slider.value = time/10;
+        slider.value = time/loadingTime;
         temp++;//= (int) Time.fixedDeltaTime;
-        totalCargado.text = (temp/6).ToString();
+        totalCargado.text = ((int)(temp/loadingTime*2)).ToString();
         if (time >= loadingTime) SceneManager.LoadScene(this.scene);
     }
     private void RandomAbilities()

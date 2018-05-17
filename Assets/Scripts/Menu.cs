@@ -33,6 +33,7 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private Sprite bg1, bg2, bg3, bg4, bg5;
     GameObject lastSelect;
+    Resolution res;
 
     private void Awake()
     {
@@ -62,6 +63,14 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
+        //control HZ monitors
+        res = Screen.currentResolution;
+        if (res.refreshRate == 60)
+            QualitySettings.vSyncCount = 1;
+        if (res.refreshRate == 120)
+            QualitySettings.vSyncCount = 2;
+        print(QualitySettings.vSyncCount);
+
         lastSelect = new GameObject();
         options.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
