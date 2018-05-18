@@ -55,23 +55,22 @@ public class Smoke : MonoBehaviour {
             }
         }
 
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
         {
-            GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
-            s.GetComponent<ParticleSystem>().Play(false);
-            hab = true;
-            soundSource.PlayOneShot(abilitySound);
-        }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
-        {
-            GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
-            s.GetComponent<ParticleSystem>().Play(false);
-            hab = true;
-            soundSource.PlayOneShot(abilitySound);
+            //TirarSmoke
+            this.gameObject.GetComponent<Animator>().SetTrigger("Smoke");
+
         }
 
         if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;
         else if (!this.gameObject.GetComponent<PlayerControl>().cooledDown && !hab && !used) this.iconAb.GetComponent<Image>().fillAmount = 1;
+    }
+    void TirarSmoke()
+    {
+        GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
+        s.GetComponent<ParticleSystem>().Play(false);
+        hab = true;
+        soundSource.PlayOneShot(abilitySound);
     }
     void IconRespawn()
     {

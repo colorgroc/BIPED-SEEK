@@ -46,23 +46,21 @@ public class Teleport : MonoBehaviour {
                 cooldown = 0;
             }
         }
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (((this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button)) || (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button))) && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
         {
-            TeleportHability();
-            hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
-            soundSource.PlayOneShot(abilitySound);
-        }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
-        {
-            TeleportHability();
-            hab = true;
-            this.iconAb.GetComponent<Image>().fillAmount = 0;
-            soundSource.PlayOneShot(abilitySound);
+            this.gameObject.GetComponent<Animator>().SetTrigger("Teleport");
         }
 
         if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;
         else if(!this.gameObject.GetComponent<PlayerControl>().cooledDown && !hab) this.iconAb.GetComponent<Image>().fillAmount = 1;
+    }
+
+    void Teleporting()
+    {
+        TeleportHability();
+        hab = true;
+        this.iconAb.GetComponent<Image>().fillAmount = 0;
+        soundSource.PlayOneShot(abilitySound);
     }
 
     void IconRespawn()

@@ -67,22 +67,20 @@ public class ControlAbility : MonoBehaviour {
             }
         }
 
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
         {
-            soundSource.PlayOneShot(abilitySound);
-            ControlChange();
-            hab = true;
+            this.gameObject.GetComponent<Animator>().SetTrigger("Control");       
         }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
-        {
-            soundSource.PlayOneShot(abilitySound);
-            ControlChange();
-            hab = true;
-        }
+
         if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;
         else if (!this.gameObject.GetComponent<PlayerControl>().cooledDown && !hab && !used) this.iconAb.GetComponent<Image>().fillAmount = 1;
     }
-
+    void Control()
+    {
+        soundSource.PlayOneShot(abilitySound);
+        ControlChange();
+        hab = true;
+    }
     void ControlChange()
     {
         random = Random.Range(0, guardsList.Count);

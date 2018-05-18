@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Immobilizer : MonoBehaviour {
 
     //[SerializeField]
-    public float radius = 10f;
+    public float radius = 30f;
     private float cooldown, timeAb;
     private bool hab, used;
     [SerializeField]
@@ -46,7 +46,7 @@ public class Immobilizer : MonoBehaviour {
         {
             timeAb -= Time.deltaTime;
             IconDuration();
-            if (timeAb >= 0)
+            if (timeAb <= 0)
             {
                 used = true;
                 hab = false;
@@ -55,39 +55,40 @@ public class Immobilizer : MonoBehaviour {
             }
         }
 
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
         {
-            soundSource.PlayOneShot(abilitySound);
-            Inmobilitzar();
-            hab = true;
-        }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
-        {
-            soundSource.PlayOneShot(abilitySound);
-            Inmobilitzar();
-            hab = true;
+            this.gameObject.GetComponent<Animator>().SetTrigger("Immobilitzar"); 
+            //Congelar();
         }
 
         if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;
         else if (!this.gameObject.GetComponent<PlayerControl>().cooledDown && !hab && !used) this.iconAb.GetComponent<Image>().fillAmount = 1;
     }
-
+    void Congelar()
+    {
+        soundSource.PlayOneShot(abilitySound);
+        Inmobilitzar();
+        hab = true;
+    }
     void Inmobilitzar()
     {
         colliders = Physics.OverlapSphere(this.transform.position, radius);
         foreach (Collider hit in colliders)
         {
-         
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb != null && this.gameObject.GetComponent<Rigidbody>() != rb)
+            if (hit.gameObject.name != "mixamorig:LeftHand")
             {
-                if (rb.gameObject.tag.Equals("Guard") || rb.gameObject.tag.Equals("Killer Guards"))
+                //Debug.Log(hit.gameObject.name);
+                //GameObject rb = hit.GetComponent<Rigidbody>().gameObject;
+                if (hit.gameObject != null && this.gameObject != hit.gameObject)
                 {
-                    hit.GetComponent<NPCConnectedPatrol>().freezed = true;
-                }
-                else
-                {
-                    hit.GetComponent<PlayerControl>().canAct = false;
+                    if (hit.gameObject.tag.Equals("Guard") || hit.gameObject.tag.Equals("Killer Guards"))
+                    {
+                        hit.GetComponent<NPCConnectedPatrol>().freezed = true;
+                    }
+                    else
+                    {
+                        hit.GetComponent<PlayerControl>().canAct = false;
+                    }
                 }
             }
         }

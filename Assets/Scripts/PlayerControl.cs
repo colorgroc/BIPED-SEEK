@@ -181,9 +181,9 @@ public class PlayerControl : MonoBehaviour {
             this.anim.SetBool("wannaKill", this.wannaKill);
         }
         this.anim.SetBool("isFreezed", !this.canAct);
+        //Debug.Log(this.canAct);
         if (this.detected)
-        {
-            
+        {    
             this.timeFeedback += Time.deltaTime;
             this.feedback.color = this.DetectedFeedback;
             if (this.timeFeedback >= 5) this.detected = false;

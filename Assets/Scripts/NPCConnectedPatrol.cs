@@ -57,7 +57,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         }
     }
     public void Start () {
-        freezed = false;
+        this.freezed = false;
         SetDestination();
         this.anim.SetBool("isWalkingForward", _travelling);
 
@@ -79,7 +79,12 @@ public class NPCConnectedPatrol : MonoBehaviour {
         else
             _navMeshAgent.stoppingDistance = 0;
 
-        if (this.freezed) _navMeshAgent.isStopped = true;
+        if (this.freezed)
+        {
+            _navMeshAgent.isStopped = true;
+            waiting = true;
+            _waitTimer = 0f;
+        }
         else _navMeshAgent.isStopped = false;
        // Debug.Log(_travelling);
         if (_travelling && _navMeshAgent.remainingDistance <= 0.5f) {
@@ -89,11 +94,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
             _waitTimer = 0f;
 
 		}
-        if (this.freezed)
-        {
-            waiting = true;
-            _waitTimer = 0f;
-        }
+
         this.anim.SetBool("isFreezed", this.freezed);
         if (waiting) {
 			_waitTimer += Time.deltaTime;

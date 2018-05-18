@@ -61,23 +61,24 @@ public class Sprint : MonoBehaviour {
             }
         }
 
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
         {
-            soundSource.PlayOneShot(abilitySound);
-            this.gameObject.GetComponent<PlayerControl>()._sprint = true;
-            this.gameObject.GetComponent<PlayerControl>().SetSpeed(sprint);
-            hab = true;
-        }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
-        {
-            soundSource.PlayOneShot(abilitySound);
-            this.gameObject.GetComponent<PlayerControl>()._sprint = true;
-            this.gameObject.GetComponent<PlayerControl>().SetSpeed(sprint);
-            hab = true;
+            //si hi ha animacio abans d fer l'sprint posar aixo
+            //this.gameObject.GetComponent<Animator>().SetTrigger("Sprint");
+            //si no, posar aixo
+            Speed();
         }
 
         if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;
         else if (!this.gameObject.GetComponent<PlayerControl>().cooledDown && !hab && !used) this.iconAb.GetComponent<Image>().fillAmount = 1;
+    }
+
+    void Speed()
+    {
+        soundSource.PlayOneShot(abilitySound);
+        this.gameObject.GetComponent<PlayerControl>()._sprint = true;
+        this.gameObject.GetComponent<PlayerControl>().SetSpeed(sprint);
+        hab = true;
     }
 
     void Asignation()

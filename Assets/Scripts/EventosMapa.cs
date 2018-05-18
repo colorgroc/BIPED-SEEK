@@ -25,7 +25,7 @@ public class EventosMapa : MonoBehaviour {
         soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         for (int i = 0; i < Rondes.rondas; i++)
         {
-            evento = UnityEngine.Random.Range(0, 4);
+            evento = UnityEngine.Random.Range(0, 5);
             eventos.Add(evento);
         }
         ronda = Rondes.timesPlayed;
@@ -85,7 +85,7 @@ public class EventosMapa : MonoBehaviour {
                 break;
             case 1: 
                 //nada = false;
-                NPCReduction();
+                NPCReductionObjective();
                 soundSource.PlayOneShot(eventSound);
                 canvas.GetComponent<Canvas>().enabled = true;
                 CameraShake.Shake(1f, 4f);
@@ -104,6 +104,12 @@ public class EventosMapa : MonoBehaviour {
                 canvas.GetComponent<Canvas>().enabled = true;
                 CameraShake.Shake(1f, 4f);
                 break;
+            case 4:
+                NPCReductionNonObjective();
+                soundSource.PlayOneShot(eventSound);
+                canvas.GetComponent<Canvas>().enabled = true;
+                CameraShake.Shake(1f, 4f);
+                break;
         }
         timeEvent1 = timeEvent2 = 0;
         nothing = true;
@@ -117,7 +123,7 @@ public class EventosMapa : MonoBehaviour {
         PlayerPrefs.SetFloat("Speed", PlayerControl.defaultSpeed);
     }
 
-    private void NPCReduction()
+    private void NPCReductionObjective()
     {
         for (int i = 0; i < NewControl.guards.Length/2; i++)
         {
@@ -140,14 +146,39 @@ public class EventosMapa : MonoBehaviour {
     {
         if (guardsToDisplay.Count > 0)
         {
-
             foreach (GameObject guard in guardsToDisplay)
             {
-                if(guard != null)
+                if (guard != null && !guard.activeInHierarchy)
+                {
                     guard.SetActive(true);
+                }
             }
         }
+        guardsToDisplay.Clear();
     }
+
+    private void NPCReductionNonObjective()
+    {
+        for (int i = 0; i < NewControl.guards.Length; i++)
+        {
+            string type = NewControl.objective.name.Substring(NewControl.objective.name.Length - 1);
+            int rand;
+            do { rand = Random.Range(1, PlayerPrefs.GetInt("NumPlayers") + 1); } while (rand.ToString() == type);
+              
+            if (NewControl.guards[i] != null)
+            {
+                if (NewControl.guards[i].name.Equals("Guard_Tipo " + rand.ToString()))
+                {
+                    guardsToDisplay.Add(NewControl.guards[i]);
+                }
+            }
+        }
+        for (int i = 0; i < (guardsToDisplay.Count / 2); i++)
+        {
+            guardsToDisplay[i].SetActive(false);
+        }
+    }
+
     private void KillersCreation()
     {
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPointKillers");

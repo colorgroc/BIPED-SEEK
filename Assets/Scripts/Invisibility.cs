@@ -53,22 +53,22 @@ public class Invisibility : MonoBehaviour {
             }
         }
 
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
         {
-            soundSource.PlayOneShot(abilitySound);
-            this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
-            hab = true;
-        }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
-        {
-            soundSource.PlayOneShot(abilitySound);
-            this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
-            hab = true;
+            this.gameObject.GetComponent<Animator>().SetTrigger("Invisible");
         }
 
         if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;
         else if (!this.gameObject.GetComponent<PlayerControl>().cooledDown && !hab && !used) this.iconAb.GetComponent<Image>().fillAmount = 1;
     }
+
+    void Invisible()
+    {
+        soundSource.PlayOneShot(abilitySound);
+        this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
+        hab = true;
+    }
+
     void Asignation()
     {
         if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.INVISIBLITY)
