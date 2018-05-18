@@ -8,7 +8,7 @@ public class HUD : MonoBehaviour {
 	public Text score;
 	public Text kills;
 	public Text survived;
-    [SerializeField]
+    public GameObject player1, player2;
     private GameObject player;
 
     private void Awake()
@@ -16,14 +16,23 @@ public class HUD : MonoBehaviour {
         this.score.text = this.kills.text = this.survived.text = "0";
     }
     void Start () {
-        if (this.gameObject.name == "Player1HUD")
-            this.player = GameObject.Find("Player 1");
-        else if (this.gameObject.name == "Player2HUD")
-            this.player = GameObject.Find("Player 2");
-        else if (this.gameObject.name == "Player3HUD")
-            this.player = GameObject.Find("Player 3");
-        else if (this.gameObject.name == "Player4HUD")
-            this.player = GameObject.Find("Player 4");
+        if (!Tutorial.showIt)
+        {
+            if (this.gameObject.name == "Player1HUD")
+                this.player = GameObject.Find("Player 1");
+            else if (this.gameObject.name == "Player2HUD")
+                this.player = GameObject.Find("Player 2");
+            else if (this.gameObject.name == "Player3HUD")
+                this.player = GameObject.Find("Player 3");
+            else if (this.gameObject.name == "Player4HUD")
+                this.player = GameObject.Find("Player 4");
+        } else
+        {
+            if (this.gameObject.name == "Player1HUD")
+                this.player = player1;
+            else if (this.gameObject.name == "Player2HUD")
+                this.player = player2;
+        }
 
 	}
 

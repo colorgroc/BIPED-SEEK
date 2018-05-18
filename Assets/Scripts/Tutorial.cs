@@ -25,7 +25,7 @@ public class Tutorial : MonoBehaviour {
         if (showIt)
         {
             //Time.timeScale = 0;
-            Debug.Log("siTuto");
+            //Debug.Log("siTuto");
             NewControl.paused = true;
             tutorialGb.SetActive(true);
             panel.enabled = tutorial.enabled = true;
@@ -89,15 +89,15 @@ public class Tutorial : MonoBehaviour {
             else if (OK == 4)
             {
                 abilities.SetActive(false);
-               // feedback.SetActive(true);
-                feedBack.enabled = true;
+                feedback.SetActive(true);
+                //feedBack.enabled = true;
                 feedBack.color = feedCol;
             }
             else if (OK == 5)
             {
-                //feedback.SetActive(false);
+                feedback.SetActive(false);
                 icon.SetActive(true);
-                feedBack.GetComponent<Image>().color = feedCol;
+                feedBack.color = normalCol;
                 //feedbackCanvas.enabled = true;
                 //feedBack.enabled = false;
 
@@ -106,7 +106,6 @@ public class Tutorial : MonoBehaviour {
             {
                 icon.SetActive(false);
                 rounds.SetActive(true);
-                feedBack.GetComponent<Image>().color = normalCol;
             }
             else if (OK == 7)
             {

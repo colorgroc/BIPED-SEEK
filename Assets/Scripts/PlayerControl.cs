@@ -49,8 +49,8 @@ public class PlayerControl : MonoBehaviour {
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
         this.canAct = true;
 
-        //if(Tutorial.showIt)
-        //    guards = GameObject.FindGameObjectsWithTag("Guard");
+        if (Tutorial.showIt)
+            guards = GameObject.FindGameObjectsWithTag("Guard");
 
         for (int i = 0; i < feedbackList.Length; i++)
         {
@@ -115,8 +115,8 @@ public class PlayerControl : MonoBehaviour {
         }
         // this.canAct = true;
 
-        //if (!Tutorial.showIt)
-        //{
+        if (!Tutorial.showIt)
+        {
             foreach (GameObject guard in NewControl.guards)
             {
                 if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
@@ -124,17 +124,17 @@ public class PlayerControl : MonoBehaviour {
                     guardsList.Add(guard);
                 }
             }
-       // }
-        //else
-        //{
-        //    foreach (GameObject guard in guards)
-        //    {
-        //        if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
-        //        {
-        //            guardsList.Add(guard);
-        //        }
-        //    }
-        //}
+        }
+        else
+        {
+            foreach (GameObject guard in guards)
+            {
+                if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
+                {
+                    guardsList.Add(guard);
+                }
+            }
+        }
     }
 
    
@@ -228,7 +228,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
         {
-            gO.GetComponent<Animator>().Play("Death");
+            //gO.GetComponent<Animator>().Play("Death");
             this.detected = false;
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
             this.scoreGeneral += 5;
@@ -239,11 +239,14 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
         {
-            gO.GetComponent<Animator>().Play("Death");
+            //gO.GetComponent<Animator>().Play("Death");
             this.detected = false;
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
-            NewControl.parcialWinner = this.gameObject;
-            NewControl.objComplete = true;
+            if (!Tutorial.showIt)
+            {
+                NewControl.parcialWinner = this.gameObject;
+                NewControl.objComplete = true;
+            }
             Rondes.timesPlayed++;
             soundSource.PlayOneShot(killObjectiveSound);
         }

@@ -43,9 +43,6 @@ public class NewControl : MonoBehaviour
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
     Resolution res;
 
-
-
-
     public enum Abilities
     {
         INVISIBLITY, IMMOBILIZER, SPRINT, TELEPORT, CONTROL, SMOKE//, REPEL
@@ -110,13 +107,7 @@ public class NewControl : MonoBehaviour
         textTiempo.text = GetMinutes(timeLeft);
 
     }
-    //private void FixedUpdate()
-    //{
-    //    if (!startGame && !Tutorial.showIt)
-    //    {
-    //        timeBack -= Time.unscaledTime;
-    //    }
-    //}
+
     // Update is called once per frame
     void Update()
     {
