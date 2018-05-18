@@ -49,9 +49,9 @@ public class Menu : MonoBehaviour
                 if (Screen.fullScreen)
                     PlayerPrefs.SetInt("ScreenMode", 0); //full screen
                 else if (!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
-                //PlayerPrefs.SetInt("Tutorial", 0); //1 = si
-                //tutorialMenu.SetActive(true);
-                //Tutorial.showIt = true;
+                PlayerPrefs.SetInt("Tutorial", 0); //1 = si
+                tutorialMenu.SetActive(true);
+                Tutorial.showIt = true;
             }
             //else Tutorial.showIt = false;
         }
@@ -83,13 +83,13 @@ public class Menu : MonoBehaviour
 
         if (PlayerPrefs.GetInt("Tutorial") == 0)
         {
-           // Tutorial.showIt = true;
-            //tutorialMenu.SetActive(true);
+            Tutorial.showIt = true;
+            tutorialMenu.SetActive(true);
         }
         else
         {
-            //Tutorial.showIt = false;
-            //tutorialMenu.SetActive(false);
+            Tutorial.showIt = false;
+            tutorialMenu.SetActive(false);
         }
 
         if (PlayerPrefs.GetInt("ScreenMode") == 0)
@@ -142,7 +142,7 @@ public class Menu : MonoBehaviour
     }
     public void GoToPlay()
     {
-        //Tutorial.showIt = false;
+        Tutorial.showIt = false;
         sounds.mute = false;
         sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
@@ -208,14 +208,14 @@ public class Menu : MonoBehaviour
         else if (PlayerPrefs.GetInt("Tutorial") == 0)//TutorialOn
         {
             tutorialOptions.GetComponent<Dropdown>().value = 0;
-            //tutorialMenu.SetActive(true);
-           // Tutorial.showIt = true;
+            tutorialMenu.SetActive(true);
+            Tutorial.showIt = true;
         }
         else if (PlayerPrefs.GetInt("Tutorial") == 1)//TutorialOff
         {
             tutorialOptions.GetComponent<Dropdown>().value = 1;
-            //tutorialMenu.SetActive(false);
-            //Tutorial.showIt = false;
+            tutorialMenu.SetActive(false);
+            Tutorial.showIt = false;
         }
         lastButon = opt;
     }
@@ -234,7 +234,7 @@ public class Menu : MonoBehaviour
     }
     public void GoToTutorial()
     {
-     //   Tutorial.showIt = true;
+        Tutorial.showIt = true;
         SceneManager.LoadScene("Tutorial");
     }
     public void BackToMenu()
@@ -249,29 +249,26 @@ public class Menu : MonoBehaviour
         options.gameObject.SetActive(false);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(lastButon.gameObject);
     }
-    //public void ChangeInDropdown()
-    //{
-    //    inDropdown = !inDropdown;
-    //}
+
    public void TutorialValue()
     {
         if (tutorialOptions.GetComponent<Dropdown>().value == 0)
         {
-            //tutorialMenu.SetActive(true);
+            tutorialMenu.SetActive(true);
             sounds.mute = false;
             sounds.volume = 1;
             sounds.PlayOneShot(onButton);
-            //PlayerPrefs.SetInt("Tutorial", 0);
-            //Tutorial.showIt = true;
+            PlayerPrefs.SetInt("Tutorial", 0);
+            Tutorial.showIt = true;
         }
         else if (tutorialOptions.GetComponent<Dropdown>().value == 1)
         {
-            //tutorialMenu.SetActive(false);
+            tutorialMenu.SetActive(false);
             sounds.mute = false;
             sounds.volume = 1;
             sounds.PlayOneShot(onButton);
-            //PlayerPrefs.SetInt("Tutorial", 1);
-            //Tutorial.showIt = false;
+            PlayerPrefs.SetInt("Tutorial", 1);
+            Tutorial.showIt = false;
         }
     }
     public void ScreenValue()
