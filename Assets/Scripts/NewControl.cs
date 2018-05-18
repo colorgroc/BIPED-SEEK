@@ -82,15 +82,14 @@ public class NewControl : MonoBehaviour
     }
     void Start()
     {
+        Time.timeScale = 0;
         //control HZ monitors
         res = Screen.currentResolution;
         if (res.refreshRate == 60)
             QualitySettings.vSyncCount = 1;
         if (res.refreshRate == 120)
             QualitySettings.vSyncCount = 2;
-        print(QualitySettings.vSyncCount);
-
-        Time.timeScale = 0;
+        print(QualitySettings.vSyncCount);  
 
         StartGame();
     }
@@ -402,12 +401,12 @@ public class NewControl : MonoBehaviour
     }
     private void Pausa()
     {
-        if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")))
+        if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")) && !Tutorial.showIt)
         {
             paused = !paused;
             pausa.SetActive(paused);
         }
-        if (Input.GetButtonDown("Submit") && paused && !Tutorial.showIt)
+        if (Input.GetButtonDown("Main Menu") && paused && !Tutorial.showIt)
         {
             pausa.SetActive(false);
             Time.timeScale = 1;

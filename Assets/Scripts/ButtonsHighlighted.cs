@@ -68,7 +68,7 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
         //do your stuff when selected
         if (isVolume)
         {
-            Menu.inVolume = true;
+            //Menu.inVolume = true;
             this.GetComponentInChildren<Outline>().enabled = true;
         }
         if (isDropdown)
@@ -80,14 +80,14 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
             this.transform.localScale = new Vector3(0.06f, 0.14f, 0.15f);
             //StartCoroutine(FadeINFadeOut(FadeTimer, fadeCoroutine));
         }
-        Debug.Log("Select");
+       // Debug.Log("Select");
     }
     public void OnDeselect(BaseEventData eventData)
     {
         //do your stuff when not selected
         if (isVolume)
         {
-            Menu.inVolume = false;
+            //Menu.inVolume = false;
             this.GetComponentInChildren<Outline>().enabled = false;
         }
         if (isDropdown)
@@ -98,7 +98,7 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
             this.transform.localScale = initialScale;
            // this.transform.GetComponent<Image>().CrossFadeAlpha(1, 0, true);
         }
-        Debug.Log("Deselect");
+      //  Debug.Log("Deselect");
     }
 
     IEnumerator FadeINFadeOut(float FadeTime, float fadeCoroutine)

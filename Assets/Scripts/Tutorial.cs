@@ -7,7 +7,7 @@ public class Tutorial : MonoBehaviour {
 
     public static bool showIt;
     [SerializeField]
-    private Canvas panel, tutorial, mapaEvent, feedbackCanvas;
+    private Canvas panel, tutorial, mapaEvent;//, feedbackCanvas;
     [SerializeField]
     private GameObject tutorialGb, welcome, HUD, score, abilities, feedback, icon, rounds, objective, events;
     [SerializeField]
@@ -16,14 +16,16 @@ public class Tutorial : MonoBehaviour {
     [SerializeField]
     Image feedBack;
     [SerializeField]
-    Color feedCol;
+    Color feedCol, normalCol;
 
     // Use this for initialization
     void Start () {
-        //showIt = true;
+        Debug.Log(PlayerPrefs.GetInt("Tutorial"));
+        showIt = true;
         if (showIt)
         {
-            //Debug.Log("siTuto");
+            //Time.timeScale = 0;
+            Debug.Log("siTuto");
             NewControl.paused = true;
             tutorialGb.SetActive(true);
             panel.enabled = tutorial.enabled = true;
@@ -32,7 +34,7 @@ public class Tutorial : MonoBehaviour {
             
         }
         else {
-            //Debug.Log("noTuto");
+            Debug.Log("noTuto");
             //Time.timeScale = 1;
             tutorialGb.SetActive(false);
             panel.enabled = tutorial.enabled = false;
@@ -41,7 +43,7 @@ public class Tutorial : MonoBehaviour {
         HUD.SetActive(false);
         score.SetActive(false);
         abilities.SetActive(false);
-        feedback.SetActive(false);
+        //feedback.SetActive(false);
         icon.SetActive(false);
         rounds.SetActive(false);
         objective.SetActive(false);
@@ -87,22 +89,24 @@ public class Tutorial : MonoBehaviour {
             else if (OK == 4)
             {
                 abilities.SetActive(false);
-                feedback.SetActive(true);
+               // feedback.SetActive(true);
                 feedBack.enabled = true;
                 feedBack.color = feedCol;
             }
             else if (OK == 5)
             {
-                feedback.SetActive(false);
+                //feedback.SetActive(false);
                 icon.SetActive(true);
-                feedbackCanvas.enabled = true;
+                feedBack.GetComponent<Image>().color = feedCol;
+                //feedbackCanvas.enabled = true;
                 //feedBack.enabled = false;
-                
+
             }
             else if (OK == 6)
             {
                 icon.SetActive(false);
                 rounds.SetActive(true);
+                feedBack.GetComponent<Image>().color = normalCol;
             }
             else if (OK == 7)
             {
@@ -128,7 +132,6 @@ public class Tutorial : MonoBehaviour {
                 tutorial.enabled = false;
                 panel.enabled = false;
                 tutorialGb.SetActive(false);
-                feedBack.enabled = true;
                 NewControl.paused = false;
                 showIt = false;
             }

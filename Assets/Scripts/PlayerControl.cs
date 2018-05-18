@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     private Animator anim;
     //private bool canAct;
-
+    private GameObject[] guards;
     List<GameObject> guardsList = new List<GameObject>();
     NavMeshAgent _navMeshAgent;
 
@@ -48,8 +48,9 @@ public class PlayerControl : MonoBehaviour {
         this.feedbacks = new List<GameObject>();
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
         this.canAct = true;
-     
-       // this.gameObject.GetComponent<Kill>().enabled = false;
+
+        //if(Tutorial.showIt)
+        //    guards = GameObject.FindGameObjectsWithTag("Guard");
 
         for (int i = 0; i < feedbackList.Length; i++)
         {
@@ -112,19 +113,30 @@ public class PlayerControl : MonoBehaviour {
             this.hab1Button = "LB_4";
             this.hab2Button = "RB_4";
         }
-       // this.canAct = true;
+        // this.canAct = true;
 
-        foreach (GameObject guard in NewControl.guards)
-        {
-            if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
+        //if (!Tutorial.showIt)
+        //{
+            foreach (GameObject guard in NewControl.guards)
             {
-                guardsList.Add(guard);
+                if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
+                {
+                    guardsList.Add(guard);
+                }
             }
-        }
+       // }
+        //else
+        //{
+        //    foreach (GameObject guard in guards)
+        //    {
+        //        if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
+        //        {
+        //            guardsList.Add(guard);
+        //        }
+        //    }
+        //}
     }
-    private void FixedUpdate()
-    {
-    }
+
    
     void Update()
     {

@@ -22,12 +22,12 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private Button opt, cred;
     [SerializeField]
-    GameObject fullScreen, muted, tutorial;
+    GameObject fullScreen, muted, tutorialOptions, tutorialMenu;
     [SerializeField]
     GameObject mc_p1, mc_p2, mc_p3, mc_p4;
     [SerializeField]
     private int max_players = 4;
-    public static bool inDropdown, inVolume;
+    public static bool inDropdown;//, inVolume;
     [SerializeField]
     private Image menuBg, optionsBg, creditsBg;
     [SerializeField]
@@ -49,9 +49,9 @@ public class Menu : MonoBehaviour
                 if (Screen.fullScreen)
                     PlayerPrefs.SetInt("ScreenMode", 0); //full screen
                 else if (!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
-                //PlayerPrefs.SetInt("Tutorial", 1); //1 = si
-                Tutorial.showIt = true;
-
+                //PlayerPrefs.SetInt("Tutorial", 0); //1 = si
+                //tutorialMenu.SetActive(true);
+                //Tutorial.showIt = true;
             }
             //else Tutorial.showIt = false;
         }
@@ -69,7 +69,7 @@ public class Menu : MonoBehaviour
             QualitySettings.vSyncCount = 1;
         if (res.refreshRate == 120)
             QualitySettings.vSyncCount = 2;
-        print(QualitySettings.vSyncCount);
+        //print(QualitySettings.vSyncCount);
 
         lastSelect = new GameObject();
         options.gameObject.SetActive(false);
@@ -80,7 +80,17 @@ public class Menu : MonoBehaviour
 
         volume.value = PlayerPrefs.GetFloat("MusicVolume");
         music.volume = volume.value;
-        
+
+        if (PlayerPrefs.GetInt("Tutorial") == 0)
+        {
+           // Tutorial.showIt = true;
+            //tutorialMenu.SetActive(true);
+        }
+        else
+        {
+            //Tutorial.showIt = false;
+            //tutorialMenu.SetActive(false);
+        }
 
         if (PlayerPrefs.GetInt("ScreenMode") == 0)
         {
@@ -103,12 +113,12 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !inMenu && !inDropdown && !inVolume)
+        if (Input.GetButtonDown("Cancel") && !inMenu && !inDropdown)
         {
             BackToMenu();
         }
         // Count is 4 when its open, and 3 when closed.
-        if (fullScreen.GetComponent<Dropdown>().transform.childCount == 3 && muted.GetComponent<Dropdown>().transform.childCount == 3 && tutorial.GetComponent<Dropdown>().transform.childCount == 3)
+        if (fullScreen.GetComponent<Dropdown>().transform.childCount == 3 && muted.GetComponent<Dropdown>().transform.childCount == 3 && tutorialOptions.GetComponent<Dropdown>().transform.childCount == 3)
         {
             inDropdown = false;
         }
@@ -132,6 +142,7 @@ public class Menu : MonoBehaviour
     }
     public void GoToPlay()
     {
+        //Tutorial.showIt = false;
         sounds.mute = false;
         sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
@@ -184,7 +195,6 @@ public class Menu : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("ScreenMode") == 1) //windowed (off)
         {
-
             fullScreen.GetComponent<Dropdown>().value = 1;
         }
         if (PlayerPrefs.GetInt("isMute") == 0) //MusicOn
@@ -194,6 +204,18 @@ public class Menu : MonoBehaviour
         else if (PlayerPrefs.GetInt("isMute") == 1)//MusicOff
         {
             muted.GetComponent<Dropdown>().value = 1;
+        }
+        else if (PlayerPrefs.GetInt("Tutorial") == 0)//TutorialOn
+        {
+            tutorialOptions.GetComponent<Dropdown>().value = 0;
+            //tutorialMenu.SetActive(true);
+           // Tutorial.showIt = true;
+        }
+        else if (PlayerPrefs.GetInt("Tutorial") == 1)//TutorialOff
+        {
+            tutorialOptions.GetComponent<Dropdown>().value = 1;
+            //tutorialMenu.SetActive(false);
+            //Tutorial.showIt = false;
         }
         lastButon = opt;
     }
@@ -209,6 +231,11 @@ public class Menu : MonoBehaviour
         options.gameObject.SetActive(false);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
         lastButon = cred;
+    }
+    public void GoToTutorial()
+    {
+     //   Tutorial.showIt = true;
+        SceneManager.LoadScene("Tutorial");
     }
     public void BackToMenu()
     {
@@ -228,19 +255,23 @@ public class Menu : MonoBehaviour
     //}
    public void TutorialValue()
     {
-        if (fullScreen.GetComponent<Dropdown>().value == 0)
+        if (tutorialOptions.GetComponent<Dropdown>().value == 0)
         {
-            Tutorial.showIt = true;
+            //tutorialMenu.SetActive(true);
             sounds.mute = false;
             sounds.volume = 1;
             sounds.PlayOneShot(onButton);
+            //PlayerPrefs.SetInt("Tutorial", 0);
+            //Tutorial.showIt = true;
         }
-        else if (fullScreen.GetComponent<Dropdown>().value == 1)
+        else if (tutorialOptions.GetComponent<Dropdown>().value == 1)
         {
-            Tutorial.showIt = false;
+            //tutorialMenu.SetActive(false);
             sounds.mute = false;
             sounds.volume = 1;
             sounds.PlayOneShot(onButton);
+            //PlayerPrefs.SetInt("Tutorial", 1);
+            //Tutorial.showIt = false;
         }
     }
     public void ScreenValue()

@@ -118,7 +118,7 @@ public class WinnerHUD : MonoBehaviour {
     {
        
 
-        if (Input.GetButtonDown("Submit")) {
+        if (Input.GetButtonDown("Main Menu")) {
 			this.gameObject.SetActive (false);
 			Time.timeScale = 1;
  

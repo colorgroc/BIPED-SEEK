@@ -99,23 +99,4 @@ public class FieldOfView : MonoBehaviour {
 		gO.gameObject.GetComponent<Renderer> ().material.color = colorEnd;
         yield return true;
 	}
-
-    //bool AnimatorIsPlaying(string stateName)
-    //{    
-    //    return AnimatorIsPlaying() && anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
-    //}
-
-    //bool AnimatorIsPlaying()
-    //{
-    //    return anim.GetCurrentAnimatorStateInfo(0).length >
-    //           anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-    //}
-
-    //private bool AnimationFinished()
-    //{
-    //    if (UnityEngine.AnimationState.time >= AnimationState.length)
-    //    {
-    //        // animation finished...
-    //    }
-    //}
 }
