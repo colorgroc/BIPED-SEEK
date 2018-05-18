@@ -17,9 +17,9 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     private int coolDown;
     [SerializeField]
-    private AudioClip killPlayerSound;
+    private AudioClip killPlayerSound, killNPCSound, killObjectiveSound, punchSound;
     private AudioSource soundSource;
-    private bool pressed, cooledDown;//, goodFeedback, winnerFeedback;
+    public bool pressed, cooledDown;//, goodFeedback, winnerFeedback;
     //public bool badFeedback;
 
     [HideInInspector]
@@ -96,8 +96,8 @@ public class PlayerControl : MonoBehaviour {
             this.AxisMovement = "V_LPad_3";
             this.AxisRotation = "H_RPad_3";
             this.killButton = "X_3";
-            this.hab1Button = "Y_3";
-            this.hab2Button = "B_3";
+            this.hab1Button = "LB_3";
+            this.hab2Button = "RB_3";
 
         }
         else if (this.gameObject.name.Equals("Player 4"))
@@ -109,8 +109,8 @@ public class PlayerControl : MonoBehaviour {
             this.AxisMovement = "V_LPad_4";
             this.AxisRotation = "H_RPad_4";
             this.killButton = "X_4";
-            this.hab1Button = "Y_4";
-            this.hab2Button = "B_4";
+            this.hab1Button = "LB_4";
+            this.hab2Button = "RB_4";
         }
        // this.canAct = true;
 
@@ -146,7 +146,7 @@ public class PlayerControl : MonoBehaviour {
             if (Input.GetButtonDown(this.killButton))
             {
                 this.wannaKill = true;
-                //clip.Play("Punch");
+                soundSource.PlayOneShot(punchSound);
             }
 
             if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
@@ -210,7 +210,7 @@ public class PlayerControl : MonoBehaviour {
                 gO.GetComponent<NPCConnectedPatrol>().Respawn(gO);
             else if (gO.gameObject.tag.Equals("Killer Guards"))
                 Destroy(gO);
-            soundSource.PlayOneShot(killPlayerSound);
+            soundSource.PlayOneShot(killNPCSound);
             this.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
         }
@@ -233,7 +233,7 @@ public class PlayerControl : MonoBehaviour {
             NewControl.parcialWinner = this.gameObject;
             NewControl.objComplete = true;
             Rondes.timesPlayed++;
-            soundSource.PlayOneShot(killPlayerSound);
+            soundSource.PlayOneShot(killObjectiveSound);
         }
     
         

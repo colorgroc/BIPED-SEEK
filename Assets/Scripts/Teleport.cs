@@ -46,14 +46,14 @@ public class Teleport : MonoBehaviour {
                 cooldown = 0;
             }
         }
-        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !hab)
+        if (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
         {
             TeleportHability();
             hab = true;
             this.iconAb.GetComponent<Image>().fillAmount = 0;
             soundSource.PlayOneShot(abilitySound);
         }
-        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !hab)
+        else if (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button) && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
         {
             TeleportHability();
             hab = true;

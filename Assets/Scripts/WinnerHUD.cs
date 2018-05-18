@@ -10,14 +10,17 @@ public class WinnerHUD : MonoBehaviour {
     public Image cup, animal;
     [SerializeField]
     private Sprite cup1, cup2, cup3, cup4, animal1, animal2, animal3, animal4;
+    [SerializeField]
+    private AudioClip winnerSound;
+    private AudioSource soundSource;
 
     private void Awake()
     {
     }
     void Start () {
-
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         NewControl.Winner();
-
+        soundSource.PlayOneShot(winnerSound);
         //asignacio copa i animal del guanyador
         if (NewControl.finalWinner != null)
         {
