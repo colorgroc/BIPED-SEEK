@@ -18,13 +18,14 @@ public class Tutorial_InGame : MonoBehaviour {
     private float timeGame = 60, timeLeft;
     [SerializeField]
     private Text textTiempo;
+    public static bool showIt;
     //[SerializeField]
     //Color feedCol, normalCol;
     //public Material glowP1, glowP2, outlineP1, outlineP2;
     // Use this for initialization
     private void Awake()
     {
-        Tutorial.showIt = true;
+        showIt = true;
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         time = time2 = OK = 0;

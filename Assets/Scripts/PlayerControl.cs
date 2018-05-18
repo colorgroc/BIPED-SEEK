@@ -49,7 +49,7 @@ public class PlayerControl : MonoBehaviour {
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
         this.canAct = true;
 
-        if (Tutorial.showIt)
+        if (Tutorial_InGame.showIt)
             guards = GameObject.FindGameObjectsWithTag("Guard");
 
         for (int i = 0; i < feedbackList.Length; i++)
@@ -115,7 +115,7 @@ public class PlayerControl : MonoBehaviour {
         }
         // this.canAct = true;
 
-        if (!Tutorial.showIt)
+        if (!Tutorial_InGame.showIt)
         {
             foreach (GameObject guard in NewControl.guards)
             {
@@ -140,7 +140,7 @@ public class PlayerControl : MonoBehaviour {
    
     void Update()
     {
-        anim.SetBool("isRunning", _sprint);
+        
         if (!_sprint)
         {
             speed = PlayerPrefs.GetFloat("Speed");
@@ -170,6 +170,8 @@ public class PlayerControl : MonoBehaviour {
                 this.anim.SetBool("isWalkingForward", false);
                 this.anim.SetBool("isWalkingBack", false);
             }
+            if(y != 0 && (_sprint || speed > defaultSpeed)) anim.SetBool("isRunning", true);
+            else anim.SetBool("isRunning", false);
 
             this.anim.SetBool("wannaKill", this.wannaKill);
         }
@@ -242,7 +244,7 @@ public class PlayerControl : MonoBehaviour {
             //gO.GetComponent<Animator>().Play("Death");
             this.detected = false;
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
-            if (!Tutorial.showIt)
+            if (!Tutorial_InGame.showIt)
             {
                 NewControl.parcialWinner = this.gameObject;
                 NewControl.objComplete = true;

@@ -18,7 +18,7 @@ public class EventosMapa : MonoBehaviour {
     private Canvas canvas;
     [SerializeField]
     private AudioClip eventSound;
-    bool nada;
+   // bool nada;
     private AudioSource soundSource;
 
     void Start () {
@@ -53,7 +53,7 @@ public class EventosMapa : MonoBehaviour {
                     if (timeEvent2 >= tempsNothing)
                     {
                         canvas.GetComponent<Canvas>().enabled = false;
-                        nada = false;
+                        //nada = false;
                         Default();
 
                     }
@@ -64,9 +64,8 @@ public class EventosMapa : MonoBehaviour {
                     //if (timeEvent1 == Time.deltaTime) soundSource.PlayOneShot(eventSound);
                     if (timeEvent1 >= tempsEvent)
                     {
-
                         Eventos(i);
-                        if (!nada) canvas.GetComponent<Canvas>().enabled = true;
+                        //if (!nada) canvas.GetComponent<Canvas>().enabled = true;
                         i++;
 
                     }
@@ -81,23 +80,29 @@ public class EventosMapa : MonoBehaviour {
         switch (eventos[i])
         {
             case 0:
-                nada = true;
+                //nada = true;
                 Default();
                 break;
             case 1: 
-                nada = false;
+                //nada = false;
                 NPCReduction();
                 soundSource.PlayOneShot(eventSound);
+                canvas.GetComponent<Canvas>().enabled = true;
+                CameraShake.Shake(1f, 4f);
                 break;
             case 2:      
-                nada = false;
+                //nada = false;
                 ChangeSpeed();
                 soundSource.PlayOneShot(eventSound);
+                canvas.GetComponent<Canvas>().enabled = true;
+                CameraShake.Shake(1f, 4f);
                 break;
             case 3:           
-                nada = false;
+               // nada = false;
                 KillersCreation();
                 soundSource.PlayOneShot(eventSound);
+                canvas.GetComponent<Canvas>().enabled = true;
+                CameraShake.Shake(1f, 4f);
                 break;
         }
         timeEvent1 = timeEvent2 = 0;
@@ -120,7 +125,7 @@ public class EventosMapa : MonoBehaviour {
             
             if (NewControl.guards[i] != null)
             {
-                if (NewControl.guards[i].name.Equals("Guard_Tipo_" + type))
+                if (NewControl.guards[i].name.Equals("Guard_Tipo " + type))
                 {
                     guardsToDisplay.Add(NewControl.guards[i]);
                 }

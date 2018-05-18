@@ -51,7 +51,7 @@ public class Menu : MonoBehaviour
                 else if (!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
                 PlayerPrefs.SetInt("Tutorial", 0); //1 = si
                 tutorialMenu.SetActive(true);
-                Tutorial.showIt = true;
+                Tutorial_InGame.showIt = true;
             }
             //else Tutorial.showIt = false;
         }
@@ -83,12 +83,12 @@ public class Menu : MonoBehaviour
 
         if (PlayerPrefs.GetInt("Tutorial") == 0)
         {
-            Tutorial.showIt = true;
+            Tutorial_InGame.showIt = true;
             tutorialMenu.SetActive(true);
         }
         else
         {
-            Tutorial.showIt = false;
+            Tutorial_InGame.showIt = false;
             tutorialMenu.SetActive(false);
         }
 
@@ -142,7 +142,7 @@ public class Menu : MonoBehaviour
     }
     public void GoToPlay()
     {
-        Tutorial.showIt = false;
+        Tutorial_InGame.showIt = false;
         sounds.mute = false;
         sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
@@ -209,13 +209,13 @@ public class Menu : MonoBehaviour
         {
             tutorialOptions.GetComponent<Dropdown>().value = 0;
             tutorialMenu.SetActive(true);
-            Tutorial.showIt = true;
+            Tutorial_InGame.showIt = true;
         }
         else if (PlayerPrefs.GetInt("Tutorial") == 1)//TutorialOff
         {
             tutorialOptions.GetComponent<Dropdown>().value = 1;
             tutorialMenu.SetActive(false);
-            Tutorial.showIt = false;
+            Tutorial_InGame.showIt = false;
         }
         lastButon = opt;
     }
@@ -234,7 +234,7 @@ public class Menu : MonoBehaviour
     }
     public void GoToTutorial()
     {
-        Tutorial.showIt = true;
+        Tutorial_InGame.showIt = true;
         SceneManager.LoadScene("Tutorial");
     }
     public void BackToMenu()
@@ -259,7 +259,7 @@ public class Menu : MonoBehaviour
             sounds.volume = 1;
             sounds.PlayOneShot(onButton);
             PlayerPrefs.SetInt("Tutorial", 0);
-            Tutorial.showIt = true;
+            Tutorial_InGame.showIt = true;
         }
         else if (tutorialOptions.GetComponent<Dropdown>().value == 1)
         {
@@ -268,7 +268,7 @@ public class Menu : MonoBehaviour
             sounds.volume = 1;
             sounds.PlayOneShot(onButton);
             PlayerPrefs.SetInt("Tutorial", 1);
-            Tutorial.showIt = false;
+            Tutorial_InGame.showIt = false;
         }
     }
     public void ScreenValue()

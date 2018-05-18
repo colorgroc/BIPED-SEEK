@@ -111,7 +111,7 @@ public class NewControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!startGame && !Tutorial.showIt)
+        if (!startGame && !Tutorial_InGame.showIt)
         {
             timeBack -= Time.fixedUnscaledDeltaTime;
 
@@ -392,12 +392,12 @@ public class NewControl : MonoBehaviour
     }
     private void Pausa()
     {
-        if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")) && !Tutorial.showIt)
+        if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")) && !Tutorial_InGame.showIt)
         {
             paused = !paused;
             pausa.SetActive(paused);
         }
-        if (Input.GetButtonDown("Main Menu") && paused && !Tutorial.showIt)
+        if (Input.GetButtonDown("Main Menu") && paused && !Tutorial_InGame.showIt)
         {
             pausa.SetActive(false);
             Time.timeScale = 1;

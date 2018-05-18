@@ -22,7 +22,9 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	int _waypointsVisited;
 
 	public bool isDead;
-   
+    [SerializeField]
+    private AudioClip killPlayerSound, killObjectiveSound;
+    private AudioSource soundSource;
     private Animator anim;
 
     private void Awake()
@@ -56,9 +58,17 @@ public class NPCConnectedPatrol : MonoBehaviour {
         this.anim.SetBool("isWalkingForward", _travelling);
         _navMeshAgent.acceleration = PlayerPrefs.GetFloat("Speed");
         _navMeshAgent.speed = PlayerPrefs.GetFloat("Speed");
-        if (_navMeshAgent.speed > PlayerControl.defaultSpeed) _navMeshAgent.stoppingDistance = 2; else _navMeshAgent.stoppingDistance = 0;
-        
-        if(this.freezed) _navMeshAgent.isStopped = true;
+
+        if(_navMeshAgent.speed > PlayerControl.defaultSpeed && _travelling)
+            anim.SetBool("isRunning", true);
+        else anim.SetBool("isRunning", false);
+
+        if (_navMeshAgent.speed > PlayerControl.defaultSpeed)
+            _navMeshAgent.stoppingDistance = 2;
+        else
+            _navMeshAgent.stoppingDistance = 0;
+
+        if (this.freezed) _navMeshAgent.isStopped = true;
         else _navMeshAgent.isStopped = false;
        // Debug.Log(_travelling);
         if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
@@ -122,31 +132,42 @@ public class NPCConnectedPatrol : MonoBehaviour {
                 SetDestination();
             }
       //  }
-        if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
+       if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
             this.anim.SetBool("wannaKill", true);
 
             collision.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
+            soundSource.PlayOneShot(killPlayerSound);
             //collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
             this.anim.SetBool("wannaKill", false);
 
         }
         else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
             this.anim.SetBool("wannaKill", true);
+            soundSource.PlayOneShot(killObjectiveSound);
             //collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
-		    NewControl.objKilledByGuard = true;
+            NewControl.objKilledByGuard = true;
             this.anim.SetBool("wannaKill", false);
         }
 	}
 
     void OnTriggerEnter(Collider col)
     {
-       
 
-        if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
+        //if (col.gameObject.tag.Equals("Guard") || col.gameObject.tag.Equals("Killer Guards"))
+        //{
+        //    SetDestination();
+        //}
+        //else if (this.gameObject.tag.Equals("Guard") && col.gameObject.layer == 8)
+        //{
+        //    SetDestination();
+        //}
+
+         if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
         {
             this.anim.SetBool("wannaKill", true);
 
             col.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
+            soundSource.PlayOneShot(killPlayerSound);
             //col.gameObject.GetComponent<PlayerControl>().Respawn(col.gameObject);
             this.anim.SetBool("wannaKill", false);
 
@@ -156,6 +177,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
             this.anim.SetBool("wannaKill", true);
            // col.gameObject.GetComponent<PlayerControl>().badFeedback = true;
             NewControl.objKilledByGuard = true;
+            soundSource.PlayOneShot(killObjectiveSound);
             this.anim.SetBool("wannaKill", false);
         }
     }
