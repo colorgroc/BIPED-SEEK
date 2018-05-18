@@ -160,7 +160,6 @@ public class PlayerControl : MonoBehaviour {
                 this.wannaKill = true;
                 soundSource.PlayOneShot(punchSound);
             }
-
             if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
 
             if (y > 0) this.anim.SetBool("isWalkingForward", true);
@@ -172,7 +171,13 @@ public class PlayerControl : MonoBehaviour {
             }
             if(y != 0 && (_sprint || speed > defaultSpeed)) anim.SetBool("isRunning", true);
             else anim.SetBool("isRunning", false);
-
+            if (y == 0 && rX > 0) anim.SetBool("Rot_Right", true);
+            else if(y == 0 && rX < 0) anim.SetBool("Rot_Left", true);
+            else
+            {
+                anim.SetBool("Rot_Right", false);
+                anim.SetBool("Rot_Left", false);
+            }
             this.anim.SetBool("wannaKill", this.wannaKill);
         }
         this.anim.SetBool("isFreezed", !this.canAct);

@@ -29,33 +29,44 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
     private void Awake()
     {
-        
+        _navMeshAgent = this.GetComponent<NavMeshAgent>();
+        this.anim = this.gameObject.GetComponent<Animator>();
+        if (_navMeshAgent == null) Debug.LogError("The nav mesh agent component is not attached to " + gameObject.name);
+        else
+        {
+            if (_currentWaypoint == null)
+            {
+                allWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+
+                if (allWaypoints.Length > 0)
+                {
+                    while (_currentWaypoint == null)
+                    {
+                        int random = UnityEngine.Random.Range(0, allWaypoints.Length);
+                        ConnectedWaypoint startingWaypoint = allWaypoints[random].GetComponent<ConnectedWaypoint>();
+
+                        if (startingWaypoint != null)
+                        {
+                            _currentWaypoint = startingWaypoint;
+                            //this.anim.SetBool("isWalkingForward", false);
+                        }
+                    }
+                }
+                else Debug.LogError("Failed to find any waypoints for use in the scene");
+            }
+        }
     }
     public void Start () {
         freezed = false;
-        _navMeshAgent = this.GetComponent<NavMeshAgent>();
-        this.anim = this.gameObject.GetComponent<Animator>();
-        if (_navMeshAgent == null) Debug.LogError ("The nav mesh agent component is not attached to " + gameObject.name);
-		else {
-			if (_currentWaypoint == null) {
-				allWaypoints = GameObject.FindGameObjectsWithTag ("Waypoint");
+        SetDestination();
+        this.anim.SetBool("isWalkingForward", _travelling);
 
-				if (allWaypoints.Length > 0) {
-					while (_currentWaypoint == null) {
-						int random = UnityEngine.Random.Range (0, allWaypoints.Length);
-						ConnectedWaypoint startingWaypoint = allWaypoints [random].GetComponent<ConnectedWaypoint> ();
-
-						if (startingWaypoint != null) _currentWaypoint = startingWaypoint;
-					}
-				} else Debug.LogError ("Failed to find any waypoints for use in the scene");		
-			}
-		}
-		SetDestination ();
-	}
+    }
 	
 	public void Update () {
 
         this.anim.SetBool("isWalkingForward", _travelling);
+
         _navMeshAgent.acceleration = PlayerPrefs.GetFloat("Speed");
         _navMeshAgent.speed = PlayerPrefs.GetFloat("Speed");
 
@@ -71,7 +82,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         if (this.freezed) _navMeshAgent.isStopped = true;
         else _navMeshAgent.isStopped = false;
        // Debug.Log(_travelling);
-        if (_travelling && _navMeshAgent.remainingDistance <= 1.0f) {
+        if (_travelling && _navMeshAgent.remainingDistance <= 0.5f) {
 			_travelling = false;
 			_waypointsVisited++;
             waiting = true;
@@ -104,16 +115,14 @@ public class NPCConnectedPatrol : MonoBehaviour {
             _previousWaypoint = _currentWaypoint;
             _currentWaypoint = nextWaypoint;
         }
-        Vector3 targetVector = new Vector3();
+        //Vector3 targetVector = new Vector3();
         if (_currentWaypoint != null)
         {
-            targetVector = _currentWaypoint.transform.position;
-           // if (!freezed)
-           // {
-                //Debug.Log("freezed");
-                _navMeshAgent.SetDestination(targetVector);
-                _travelling = true;
-          //  }
+            Vector3 targetVector = _currentWaypoint.transform.position;
+
+            _navMeshAgent.SetDestination(targetVector);
+            _travelling = true;
+
         }
 	}
 
@@ -134,7 +143,9 @@ public class NPCConnectedPatrol : MonoBehaviour {
       //  }
        if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
             this.anim.SetBool("wannaKill", true);
-
+            Vector3 pos = collision.gameObject.transform.position;
+            Quaternion rot = collision.gameObject.transform.rotation;
+            Death.AnimDeath(collision.gameObject, pos, rot);
             collision.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
             soundSource.PlayOneShot(killPlayerSound);
             //collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);

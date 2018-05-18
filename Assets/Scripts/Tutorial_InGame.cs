@@ -7,21 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
-    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, welcome1, welcome2, thereUR, objetive, player1, player2, HUD, box, objectiveCanvas, goKill, goKill2, guards, score2, score3, winner, finnish, events, mapEvent, getClose;
+    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, HUD, box, goKill, goKill2, guards, score2, score3, winner, finnish, events, mapEvent, getClose;
     public Text titol;
     bool once, _once, _Once, __Once, __once;
     //public GameObject player1, player2, HUD, box, objectiveCanvas;
     private float time, time2;
     //private bool proceed;
     private int OK;
-    public Behaviour haloP1, haloP2;
     private float timeGame = 60, timeLeft;
     [SerializeField]
     private Text textTiempo;
     public static bool showIt;
-    //[SerializeField]
-    //Color feedCol, normalCol;
-    //public Material glowP1, glowP2, outlineP1, outlineP2;
+    public Material glowP1, glowP2, outlineP1, outlineP2;
+    private Material[] p1mat, p2mat;
     // Use this for initialization
     private void Awake()
     {
@@ -29,7 +27,6 @@ public class Tutorial_InGame : MonoBehaviour {
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         time = time2 = OK = 0;
-        haloP1.enabled = false;
         box.SetActive(true);
         welcome2.SetActive(false);
         thereUR.SetActive(false);
@@ -49,18 +46,17 @@ public class Tutorial_InGame : MonoBehaviour {
         events.SetActive(false);
         mapEvent.SetActive(false);
         getClose.SetActive(false);
+        p1mat = player1.GetComponentInChildren<Renderer>().materials;
+        p2mat = player2.GetComponentInChildren<Renderer>().materials;
         //feedBackIm.color = normalCol;
         //objective = player2;
     }
     void Start () {
         timeLeft = timeGame;//UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
         textTiempo.text = GetMinutes(timeLeft);
-    }
-    void ShowObjectiveCanvas()
-    {
-        //objectiveCanvas.SetActive(true);
         objectiveCanvas.GetComponent<ObjectiveCanvas>().Start();
     }
+
     // Update is called once per frame
     void Update () {
 
@@ -198,7 +194,9 @@ public class Tutorial_InGame : MonoBehaviour {
                 {
                     //guards.SetActive(true);
                     player2.SetActive(true);
-                    haloP2.enabled = true;
+                    p2mat[1] = glowP2;
+                    p2mat[2] = outlineP2;
+                    player2.GetComponentInChildren<Renderer>().materials = p2mat;
                     box.SetActive(false);
                     Time.timeScale = 1;
                 }
@@ -257,8 +255,10 @@ public class Tutorial_InGame : MonoBehaviour {
         }
         if(OK == 2 && time > 3 && (Input.GetAxis(player1.GetComponent<PlayerControl>().AxisMovement) * Time.deltaTime) != 0 && !once)
         {
-            haloP1.enabled = true;
-            
+            p1mat[1] = glowP1;
+            p1mat[2] = outlineP1;
+            player1.GetComponentInChildren<Renderer>().materials = p1mat;
+
         }
         if (OK == 2 && time > 6 && !once) 
         {

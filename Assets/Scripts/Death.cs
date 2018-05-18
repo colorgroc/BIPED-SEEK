@@ -8,7 +8,9 @@ public class Death : MonoBehaviour {
     {
         GameObject animDeath = null;
         Material mat;
-        mat = gameObject.GetComponentInChildren<Renderer>().material;
+        if (!Tutorial_InGame.showIt)
+            mat = gameObject.GetComponentInChildren<Renderer>().material;
+        else mat = gameObject.GetComponentInChildren<Renderer>().materials[0];
         if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Bear")
             animDeath = (GameObject)Resources.Load("Prefabs/Tipo_1_Death");
         else if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Bunny")
