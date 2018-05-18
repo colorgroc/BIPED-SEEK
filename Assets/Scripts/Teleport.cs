@@ -60,6 +60,9 @@ public class Teleport : MonoBehaviour {
             this.iconAb.GetComponent<Image>().fillAmount = 0;
             soundSource.PlayOneShot(abilitySound);
         }
+
+        if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;
+        else if(!this.gameObject.GetComponent<PlayerControl>().cooledDown && !hab) this.iconAb.GetComponent<Image>().fillAmount = 1;
     }
 
     void IconRespawn()

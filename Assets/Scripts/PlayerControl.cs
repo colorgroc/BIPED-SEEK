@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     private AudioClip killPlayerSound, killNPCSound, killObjectiveSound, punchSound;
     private AudioSource soundSource;
-    public bool pressed, cooledDown;//, goodFeedback, winnerFeedback;
+    public bool cooledDown;//, goodFeedback, winnerFeedback;
     //public bool badFeedback;
 
     [HideInInspector]

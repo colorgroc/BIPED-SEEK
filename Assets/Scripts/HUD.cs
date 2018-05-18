@@ -10,7 +10,8 @@ public class HUD : MonoBehaviour {
 	public Text survived;
     public GameObject player1, player2;
     private GameObject player;
-
+    [SerializeField]
+    private Color normal, grey;
     private void Awake()
     {
         this.score.text = this.kills.text = this.survived.text = "0";
@@ -42,5 +43,9 @@ public class HUD : MonoBehaviour {
         this.score.text = this.player.GetComponent<PlayerControl> ().scoreGeneral.ToString();
 		this.kills.text = this.player.GetComponent<PlayerControl> ().scoreKills.ToString();
 		this.survived.text = this.player.GetComponent<PlayerControl> ().scoreWins.ToString();
-	}
+        if (this.player.GetComponent<PlayerControl>().cooledDown)
+        {
+            this.gameObject.GetComponent<Image>().color = grey;
+        } else this.gameObject.GetComponent<Image>().color = normal;
+    }
 }
