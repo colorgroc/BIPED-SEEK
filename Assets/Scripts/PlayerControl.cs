@@ -226,10 +226,15 @@ public class PlayerControl : MonoBehaviour {
             this.scoreGeneral -= 3;
 
             if (gO.gameObject.tag.Equals("Guard"))
+            {
                 gO.GetComponent<NPCConnectedPatrol>().Respawn(gO);
+            }
             else if (gO.gameObject.tag.Equals("Killer Guards"))
-                Destroy(gO);
+            {
+                Destroy(gO.gameObject);
+            }
             soundSource.PlayOneShot(killNPCSound);
+            Death.AnimDeath(this.gameObject, this.gameObject.transform.position, this.gameObject.transform.rotation);
             this.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
         }

@@ -143,9 +143,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
       //  }
        if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
             this.anim.SetBool("wannaKill", true);
-            Vector3 pos = collision.gameObject.transform.position;
-            Quaternion rot = collision.gameObject.transform.rotation;
-            Death.AnimDeath(collision.gameObject, pos, rot);
+            Death.AnimDeath(collision.gameObject, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
             collision.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
             soundSource.PlayOneShot(killPlayerSound);
             //collision.gameObject.GetComponent<PlayerControl> ().Respawn(collision.gameObject);
@@ -155,6 +153,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
             this.anim.SetBool("wannaKill", true);
             soundSource.PlayOneShot(killObjectiveSound);
+            Death.AnimDeath(collision.gameObject, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
             //collision.gameObject.GetComponent<PlayerControl>().badFeedback = true;
             NewControl.objKilledByGuard = true;
             this.anim.SetBool("wannaKill", false);

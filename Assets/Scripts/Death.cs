@@ -8,7 +8,8 @@ public class Death : MonoBehaviour {
     {
         GameObject animDeath = null;
         Material mat;
-        if (!Tutorial_InGame.showIt)
+        Material[] mats;
+        if (!Tutorial_InGame.showIt && !gameObject.tag.Equals("Killer Guards"))
             mat = gameObject.GetComponentInChildren<Renderer>().material;
         else mat = gameObject.GetComponentInChildren<Renderer>().materials[0];
         if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Bear")
@@ -21,11 +22,18 @@ public class Death : MonoBehaviour {
             animDeath = (GameObject)Resources.Load("Prefabs/Tipo_4_Death");
 
         if (gameObject.tag.Equals("Killer Guards"))
+        {
             animDeath = (GameObject)Resources.Load("Prefabs/Killer_Death");
+        }
 
         GameObject prefab = (GameObject)Instantiate(animDeath, pos, rotation);
         //prefab.transform.parent = gameObject.transform.parent;
-        prefab.GetComponentInChildren<Renderer>().material = mat;
+        if(gameObject.tag.Equals("Killer Guards"))
+        {
+            mats = gameObject.GetComponentInChildren<Renderer>().materials;
+            prefab.GetComponentInChildren<Renderer>().materials = mats;
+        }else prefab.GetComponentInChildren<Renderer>().material = mat;
+
     }
 }
 

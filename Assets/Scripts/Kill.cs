@@ -18,12 +18,8 @@ public class Kill : MonoBehaviour {
         {
             if (other.gameObject != null && other.gameObject.tag != "Death")// && other.gameObject.name != this.gameObject.transform.parent.name)
             {
-                //Debug.Log("Killed");
-                Vector3 pos = other.gameObject.transform.position;
-                Quaternion rot = other.gameObject.transform.rotation;
-                Death.AnimDeath(other.gameObject, pos, rot);
-                this.gameObject.GetComponentInParent<PlayerControl>().Kill(other.gameObject);
-                
+                Death.AnimDeath(other.gameObject, other.gameObject.transform.position, other.gameObject.transform.rotation);
+                this.gameObject.GetComponentInParent<PlayerControl>().Kill(other.gameObject);     
             }
 
             this.gameObject.GetComponentInParent<PlayerControl>().wannaKill = false;
