@@ -27,7 +27,7 @@ public class NewControl : MonoBehaviour
     private GameObject pausa, objectiveCanvas, finalWinnerCanvas;
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
     [SerializeField]
-    private Sprite SpriteTipo_1, SpriteTipo_2, SpriteTipo_3, SpriteTipo_4;
+    private Sprite SpriteTipo_1_Blue, SpriteTipo_2_Blue, SpriteTipo_3_Blue, SpriteTipo_4_Blue, SpriteTipo_1_Red, SpriteTipo_2_Red, SpriteTipo_3_Red, SpriteTipo_4_Red, SpriteTipo_1_Green, SpriteTipo_2_Green, SpriteTipo_3_Green, SpriteTipo_4_Green, SpriteTipo_1_Yellow, SpriteTipo_2_Yellow, SpriteTipo_3_Yellow, SpriteTipo_4_Yellow;
     [SerializeField]
     private Text textTiempo, countDown;
     private int topScore, habilitat_1, habilitat_2;//, fin;
@@ -206,29 +206,100 @@ public class NewControl : MonoBehaviour
 
             if (PlayerPrefs.GetInt("characterPlayer_" + i.ToString()) == 1)
             {
-                GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_1;
-                GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_1;
+                if (i == 1) {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_1_Blue;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_1_Blue;
+                }
+                else if (i == 2) {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_1_Red;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_1_Red;
+                }
+                else if (i == 3)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_1_Green;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_1_Green;
+                }
+                else if (i == 4)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_1_Yellow;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_1_Yellow;
+                }
+                    
                 Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Bear");
                 player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
             else if (PlayerPrefs.GetInt("characterPlayer_" + i.ToString()) == 2)
             {
-                GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_2;
-                GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_2;
+                if (i == 1)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_2_Blue;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_2_Blue;
+                }
+                else if (i == 2)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_2_Red;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_2_Red;
+                }
+                else if (i == 3)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_2_Green;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_2_Green;
+                }
+                else if (i == 4)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_2_Yellow;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_2_Yellow;
+                }
                 Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Bunny");
                 player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
             else if (PlayerPrefs.GetInt("characterPlayer_" + i.ToString()) == 3)
             {
-                GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_3;
-                GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_3;
+                if (i == 1)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_3_Blue;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_3_Blue;
+                }
+                else if (i == 2)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_3_Red;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_3_Red;
+                }
+                else if (i == 3)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_3_Green;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_3_Green;
+                }
+                else if (i == 4)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_3_Yellow;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_3_Yellow;
+                }
                 Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Penguin");
                 player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }
             else if (PlayerPrefs.GetInt("characterPlayer_" + i.ToString()) == 4)
             {
-                GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_4;
-                GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_4;
+                if (i == 1)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_4_Blue;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_4_Blue;
+                }
+                else if (i == 2)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_4_Red;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_4_Red;
+                }
+                else if (i == 3)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_4_Green;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_4_Green;
+                }
+                else if (i == 4)
+                {
+                    GameObject.Find("IconPlayer_" + i.ToString()).GetComponent<Image>().sprite = SpriteTipo_4_Yellow;
+                    GameObject.Find("IconPlayer_" + i.ToString() + "_Grey").GetComponent<Image>().sprite = SpriteTipo_4_Yellow;
+                }
                 Material mat = (Material)Resources.Load("Materials/Player " + i.ToString() + "/Fox");
                 player.gameObject.GetComponentInChildren<Renderer>().material = mat;
             }

@@ -25,7 +25,10 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private Vector2 outline = new Vector2(10, -10);
     [SerializeField]
 
-    private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
+    private Color32 blue_color = new Color32(80, 165, 248, 255);
+    private Color32 red_color = new Color32(174, 44, 44, 255);
+    private Color32 green_color = new Color32(2, 117, 16, 255);
+    private Color32 yellow_color = new Color32(255, 215, 0, 255);
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
 
@@ -199,7 +202,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if (!ready_P1) sounds.PlayOneShot(clickButton);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
@@ -250,7 +253,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if (!ready_P1) sounds.PlayOneShot(clickButton);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1+1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
@@ -298,7 +301,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if (!ready_P2) sounds.PlayOneShot(clickButton);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
                 PlayerPrefs.SetInt("characterPlayer_2", select_2+ 1);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
                 ready_P2 = true;
@@ -352,7 +355,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if (!ready_P1) sounds.PlayOneShot(clickButton);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
@@ -401,7 +404,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if (!ready_P2) sounds.PlayOneShot(clickButton);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
                 PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
                 ready_P2 = true;
@@ -450,7 +453,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if (!ready_P3) sounds.PlayOneShot(clickButton);
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
                 PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
                 GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
                 ready_P3 = true;
@@ -501,7 +504,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if (!ready_P1) sounds.PlayOneShot(clickButton);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
@@ -550,7 +553,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if (!ready_P2) sounds.PlayOneShot(clickButton);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
                 PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
                 GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
                 ready_P2 = true;
@@ -599,7 +602,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if (!ready_P3) sounds.PlayOneShot(clickButton);
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
                 PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
                 GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
                 ready_P3 = true;
@@ -648,7 +651,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 if(!ready_P4)sounds.PlayOneShot(clickButton);
                 characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P4[select_4].GetComponent<Outline>().effectColor = gold_Color;
+                characterTypes_P4[select_4].GetComponent<Outline>().effectColor = yellow_color;
                 PlayerPrefs.SetInt("characterPlayer_4", select_4 + 1);
                 GameObject.Find("Ready_4").GetComponent<Text>().enabled = true;
                 ready_P4 = true;
