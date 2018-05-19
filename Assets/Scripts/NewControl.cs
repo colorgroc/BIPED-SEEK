@@ -30,16 +30,16 @@ public class NewControl : MonoBehaviour
     private Sprite SpriteTipo_1, SpriteTipo_2, SpriteTipo_3, SpriteTipo_4;
     [SerializeField]
     private Text textTiempo, countDown;
-    private int fin, topScore, habilitat_1, habilitat_2;
+    private int topScore, habilitat_1, habilitat_2;//, fin;
     [SerializeField]
     private int numGuardsPerType = 10, time = 90;//maxMinutes = 3, minMinutes = 1;
     public static int numRondesPerJugador = 2;
     public static int numKillers = 7;
     private List<int> listPos;
     private List<int> listPosGuards;
-   // [SerializeField]
-    private static List<GameObject> scorePlayers;
-    private float timeBack = 4, timeStartLeft;
+    // [SerializeField]
+    //private static List<GameObject> scorePlayers;
+    private float timeBack = 4;//, timeStartLeft;
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
     Resolution res;
 
@@ -54,11 +54,11 @@ public class NewControl : MonoBehaviour
         startGame = false;
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
         //PlayerPrefs.SetInt("NumRondesPerJugador", numRondesPerJugador);
-        fin = UnityEngine.Random.Range(0, 2);
+        //fin = UnityEngine.Random.Range(0, 2);
         listPos = new List<int>();
         listPlayers = new List<GameObject>();
         players = new List<GameObject>();
-        scorePlayers = new List<GameObject>();
+        //scorePlayers = new List<GameObject>();
         habilitat_1 = PlayerPrefs.GetInt("Ability 1");
         habilitat_2 = PlayerPrefs.GetInt("Ability 2");
         //Debug.Log(habilitat_1 + "; " + habilitat_2);
@@ -177,7 +177,7 @@ public class NewControl : MonoBehaviour
         finalWinnerCanvas.SetActive(false);
         paused = false;
         pausa.SetActive(false);
-        timeStartLeft = timeLeft;
+        //timeStartLeft = timeLeft;
         objective = null;
     }
     private void PlayersAndGuardsCreation()
@@ -334,7 +334,7 @@ public class NewControl : MonoBehaviour
     public static void Winner()
     {
         players.Sort(SortByScore);
-        scorePlayers = players;
+        //scorePlayers = players;
         if (players[players.Count - 1] != null)
             finalWinner = players[players.Count - 1];
     }

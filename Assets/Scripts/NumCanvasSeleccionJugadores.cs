@@ -314,7 +314,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 ready_P2 = false;
                 cancel_2 = true;
             }
-            else if (Input.GetButtonDown("B_2") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
                 sounds.PlayOneShot(backButton, 4.0F);
                 SceneManager.LoadScene("Menu");
@@ -416,7 +416,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 ready_P2 = false;
                 cancel_2 = true;
             }
-            else if (Input.GetButtonDown("B_2") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
                 sounds.PlayOneShot(backButton, 4.0F);
                 SceneManager.LoadScene("Menu");
@@ -465,7 +465,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 ready_P3 = false;
                 cancel_3 = true;
             }
-            else if (Input.GetButtonDown("B_3") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
             {
                 sounds.PlayOneShot(backButton, 4.0F);
                 SceneManager.LoadScene("Menu");
@@ -565,7 +565,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 ready_P2 = false;
                 cancel_2 = true;
             }
-            else if (Input.GetButtonDown("B_2") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
                 sounds.PlayOneShot(backButton, 4.0F);
                 SceneManager.LoadScene("Menu");
@@ -614,7 +614,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 ready_P3 = false;
                 cancel_3 = true;
             }
-            else if (Input.GetButtonDown("B_3") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
             {
                 sounds.PlayOneShot(backButton, 4.0F);
                 SceneManager.LoadScene("Menu");
@@ -663,7 +663,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 ready_P4 = false;
                 cancel_4 = true;
             }
-            else if (Input.GetButtonDown("B_4") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            else if (Input.GetButtonDown("B_4") && ((!cancel_4 && !ready_P4) || (cancel_4)))
             {
                 sounds.PlayOneShot(backButton, 4.0F);
                 SceneManager.LoadScene("Menu");
