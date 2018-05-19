@@ -10,7 +10,8 @@ public class Loading : MonoBehaviour {
     [SerializeField]
     float loadingTime;
     [SerializeField]
-    private int numOfMapas = 3, numOfAbilities = 6, numOfUsedAbilities = 2, ability1, ability2;
+    private int numOfMapas = 3, numOfAbilities = 6, numOfUsedAbilities = 2;
+    private int ability1, ability2;
     [SerializeField]
     Text ab1Nom, ab2Nom, ab1Desc, ab2Desc, totalCargado;
     float time;

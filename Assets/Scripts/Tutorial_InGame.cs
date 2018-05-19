@@ -14,12 +14,19 @@ public class Tutorial_InGame : MonoBehaviour {
     private float time, time2;
     //private bool proceed;
     private int OK;
-    private float timeGame = 60, timeLeft;
+    private float timeGame = 120, timeLeft;
     [SerializeField]
     private Text textTiempo;
     public static bool showIt;
     public Material glowP1, glowP2, outlineP1, outlineP2;
     private Material[] p1mat, p2mat;
+    [SerializeField]
+    private int numOfAbilities = 6, numOfUsedAbilities = 2;
+    private int ability1, ability2;
+    //[SerializeField]
+    //private Image iAb1, iAb2;
+    [SerializeField]
+    private Sprite freeze, control, invisible, teleport, sprint, smoke;
     // Use this for initialization
     private void Awake()
     {
@@ -48,6 +55,9 @@ public class Tutorial_InGame : MonoBehaviour {
         getClose.SetActive(false);
         p1mat = player1.GetComponentInChildren<Renderer>().materials;
         p2mat = player2.GetComponentInChildren<Renderer>().materials;
+        //RandomAbilities();
+        PlayerPrefs.SetInt("Ability 1", (int)NewControl.Abilities.SMOKE);
+        PlayerPrefs.SetInt("Ability 2", (int)NewControl.Abilities.IMMOBILIZER);
         //feedBackIm.color = normalCol;
         //objective = player2;
     }
@@ -323,4 +333,5 @@ public class Tutorial_InGame : MonoBehaviour {
         TimeSpan timeSpan = TimeSpan.FromSeconds(timeLeft);
         return string.Format("{0:0}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
     }
+
 }
