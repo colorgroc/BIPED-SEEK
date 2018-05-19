@@ -179,6 +179,21 @@ public class NewControl : MonoBehaviour
         pausa.SetActive(false);
         //timeStartLeft = timeLeft;
         objective = null;
+        foreach(GameObject player in players)
+        {
+            if (PlayerPrefs.GetInt("Ability 1") == (int)Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)Abilities.SMOKE)
+                player.GetComponent<Smoke>().Restart();
+            if (PlayerPrefs.GetInt("Ability 1") == (int)Abilities.IMMOBILIZER || PlayerPrefs.GetInt("Ability 2") == (int)Abilities.IMMOBILIZER)
+                player.GetComponent<Immobilizer>().Restart();
+            if (PlayerPrefs.GetInt("Ability 1") == (int)Abilities.INVISIBLITY || PlayerPrefs.GetInt("Ability 2") == (int)Abilities.INVISIBLITY)
+                player.GetComponent<Invisibility>().Restart();
+            if (PlayerPrefs.GetInt("Ability 1") == (int)Abilities.TELEPORT || PlayerPrefs.GetInt("Ability 2") == (int)Abilities.TELEPORT)
+                player.GetComponent<Teleport>().Restart();
+            if (PlayerPrefs.GetInt("Ability 1") == (int)Abilities.SPRINT || PlayerPrefs.GetInt("Ability 2") == (int)Abilities.SPRINT)
+                player.GetComponent<Sprint>().Restart();
+            if (PlayerPrefs.GetInt("Ability 1") == (int)Abilities.CONTROL || PlayerPrefs.GetInt("Ability 2") == (int)Abilities.CONTROL)
+                player.GetComponent<ControlAbility>().Restart();
+        }
     }
     private void PlayersAndGuardsCreation()
     {
@@ -385,10 +400,6 @@ public class NewControl : MonoBehaviour
         {
             tipo.gameObject.GetComponent<AbilitiesControl>().invisibility.enabled = true;
         }
-        /* else if (habilitat_1 == (int)Abilities.REPEL || habilitat_2 == (int)Abilities.REPEL)
-         {
-             tipo.gameObject.GetComponent<Repel>().enabled = true;
-         }*/
         else if ((habilitat == (int)Abilities.SMOKE))
         {
             tipo.gameObject.GetComponent<AbilitiesControl>().smoke.enabled = true;
@@ -480,11 +491,6 @@ public class NewControl : MonoBehaviour
             paused = false;
             SceneManager.LoadScene("Menu");
         }
-       /* if(paused && Input.GetButtonDown("Cancel"))
-        {
-            paused = false;
-            pausa.SetActive(paused);  
-        }*/
         if (paused)
             Time.timeScale = 0;
         else Time.timeScale = 1;

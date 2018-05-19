@@ -33,9 +33,13 @@ public class Teleport : MonoBehaviour {
             }
         }
 	}
-	
-	// Update is called once per frames
-	void Update () {
+    public void Restart()
+    {
+        cooldown = 0;
+        hab = false;
+    }
+    // Update is called once per frames
+    void Update () {
         if (hab)
         {   
             cooldown += Time.deltaTime;

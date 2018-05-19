@@ -25,7 +25,13 @@ public class Invisibility : MonoBehaviour {
         this.ab1 = this.ab2 = false;
         Asignation();
     }
-
+    public void Restart()
+    {
+        cooldown = 0;
+        hab = used = false;
+        timeAb = timeAbility;
+        this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = true;
+    }
     // Update is called once per frame
     void Update()
     {

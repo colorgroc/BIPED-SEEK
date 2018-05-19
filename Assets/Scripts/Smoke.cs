@@ -15,19 +15,30 @@ public class Smoke : MonoBehaviour {
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
     private AudioSource soundSource;
+    GameObject s;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         smoke = (GameObject)Resources.Load("Prefabs/Smoke");
-        used = false;
+        hab = used = false;
         cooldown = 0;
         timeAb = timeAbility;
         this.ab1 = this.ab2 = false;
         Asignation();
     }
-
+    public void Restart()
+    {
+        cooldown = 0;
+        hab = used = false;
+        timeAb = timeAbility;
+        if (s != null)
+        {
+            s.GetComponent<ParticleSystem>().Stop(false);
+            Destroy(s);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -69,7 +80,7 @@ public class Smoke : MonoBehaviour {
     }
     void TirarSmoke()
     {
-        GameObject s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
+        s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
         s.GetComponent<ParticleSystem>().Play(false);
         hab = true;
         soundSource.PlayOneShot(abilitySound);

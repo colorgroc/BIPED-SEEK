@@ -29,7 +29,14 @@ public class Sprint : MonoBehaviour {
         this.ab1 = this.ab2 = false;
         Asignation();
     }
-
+    public void Restart()
+    {
+        cooldown = 0;
+        hab = used = false;
+        timeAb = timeAbility;
+        this.gameObject.GetComponent<PlayerControl>().SetSpeed(speed);
+        this.gameObject.GetComponent<PlayerControl>()._sprint = false;
+    }
     // Update is called once per frame
     void Update()
     {

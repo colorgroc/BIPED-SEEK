@@ -13,12 +13,4 @@ public class Rondes : MonoBehaviour {
         timesPlayed = 0;
         rondas = rondes;
     }
-
-    private void Start()
-    {
-    }
-
-    private void Update()
-    {    
-    }
 }

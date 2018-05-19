@@ -37,7 +37,14 @@ public class ControlAbility : MonoBehaviour {
             }
         }
     }
-
+    public void Restart()
+    {
+        cooldown = 0;
+        hab = used = false;
+        timeAb = timeAbility;
+        if (guard != null && guardsList.Count > 0)
+            DefaultControl();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -118,10 +125,6 @@ public class ControlAbility : MonoBehaviour {
             {
                 gO.gameObject.GetComponent<AbilitiesControl>().invisibility.enabled = false;
             }
-           /* else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
-            {
-                gO.gameObject.GetComponent<Repel>().enabled = false;
-            }*/
             else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
             {
                 gO.gameObject.GetComponent<AbilitiesControl>().smoke.enabled = false;

@@ -28,7 +28,13 @@ public class Immobilizer : MonoBehaviour {
         this.ab1 = this.ab2 = false;
         Asignation();
     }
-
+    public void Restart()
+    {
+        cooldown = 0;
+        hab = used = false;
+        timeAb = timeAbility;
+        MoveAgain();
+    }
     public void Update()
     {
         if (used)
@@ -99,23 +105,33 @@ public class Immobilizer : MonoBehaviour {
 
     void MoveAgain()
     {
-        foreach (Collider hit in colliders)
+        foreach (GameObject guard in NewControl.guards)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-            if (rb != null)
-            {// && rb.IsSleeping())
-             //rb.WakeUp();
-                if (rb.gameObject.tag.Equals("Guard"))
-                {
-                    hit.GetComponent<NPCConnectedPatrol>().freezed = false;
-                }
-                else
-                {
-                    hit.GetComponent<PlayerControl>().canAct = true;
-                }
-            }
+            guard.GetComponent<NPCConnectedPatrol>().freezed = true;
         }
+        foreach (GameObject player in NewControl.players)
+        {
+            player.GetComponent<PlayerControl>().canAct = false;
+        }
+        //foreach (Collider hit in colliders)
+        //{
+        //    if (hit.gameObject.name != "mixamorig:LeftHand")
+        //    {
+        //        //Debug.Log(hit.gameObject.name);
+        //        //GameObject rb = hit.GetComponent<Rigidbody>().gameObject;
+        //        if (hit.gameObject != null && this.gameObject != hit.gameObject)
+        //        {
+        //            if (hit.gameObject.tag.Equals("Guard") || hit.gameObject.tag.Equals("Killer Guards"))
+        //            {
+        //                hit.GetComponent<NPCConnectedPatrol>().freezed = false;
+        //            }
+        //            else
+        //            {
+        //                hit.GetComponent<PlayerControl>().canAct = true;
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     void Asignation()
