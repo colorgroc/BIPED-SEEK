@@ -317,6 +317,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
                 sounds.PlayOneShot(backButton, 4.0F);
+                Debug.Log("ei");
                 SceneManager.LoadScene("Menu");
             }
 
@@ -355,7 +356,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
                 GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
                 ready_P1 = true;
-                cancel_1 = true;
+                cancel_1 = false;
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
