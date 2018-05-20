@@ -117,15 +117,15 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9717514
-        functionName: FinalizandoHabilidad
+      - time: 0.97786045
+        functionName: Control
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.98870057
-        functionName: NewEvent
+      - time: 1
+        functionName: FinalizandoHabilidad
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

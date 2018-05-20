@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
-    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, HUD, box, goKill, goKill2, guards, score2, score3, winner, finnish, events, mapEvent, getClose;
+    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, HUD, box, goKill, goKill2, guards, score2, score3, winner, finnish, events, mapEvent, getClose, killerEvent;
     public Text titol;
     bool once, _once, _Once, __Once, __once;
     //public GameObject player1, player2, HUD, box, objectiveCanvas;
