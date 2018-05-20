@@ -107,11 +107,11 @@ public class Immobilizer : MonoBehaviour {
     {
         foreach (GameObject guard in NewControl.guards)
         {
-            guard.GetComponent<NPCConnectedPatrol>().freezed = true;
+            guard.GetComponent<NPCConnectedPatrol>().freezed = false;
         }
         foreach (GameObject player in NewControl.players)
         {
-            player.GetComponent<PlayerControl>().canAct = false;
+            player.GetComponent<PlayerControl>().canAct = true;
         }
         //foreach (Collider hit in colliders)
         //{
