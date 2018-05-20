@@ -9,7 +9,7 @@ public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
     private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, killer, HUD, box, goKill, goKill2, goKill3, guards, score2, score3, winner, finnish, events, mapEvent, getClose, eventText, killerEvent, killerEvent_score, npcReduction_half, speedy, npcReduction_convertToObjective;//, npcReduction_halfNonObjective;
     public Text titol;
-    bool once, _once, _Once, __Once, __once, _oNce;
+    bool once, _once, _Once, __Once, __once, _oNce, timed3, timed4, timed5;
     //public GameObject player1, player2, HUD, box, objectiveCanvas;
     private float time, time2, time3, time4, time5;
     //private bool proceed;
@@ -34,6 +34,7 @@ public class Tutorial_InGame : MonoBehaviour {
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         time = time2 = time3 = time4 = time5 = OK = 0;
+        once = _once = _Once =__Once = __once = _oNce = timed3 = timed4 = timed5 = false;
         box.SetActive(true);
         welcome2.SetActive(false);
         thereUR.SetActive(false);
@@ -85,11 +86,11 @@ public class Tutorial_InGame : MonoBehaviour {
             time += Time.deltaTime;
         if (OK == 10 && !__once)
             time2 += Time.deltaTime;
-        if(OK == 20 && !__Once)
+        if(OK == 20 && timed4)
             time4 += Time.deltaTime; 
-        if (OK == 15 && !_oNce)
+        if (OK == 15 && timed3)
             time3 += Time.deltaTime;
-        if (OK == 8 && !_once)
+        if (OK == 8 && timed5)
             time5 += Time.deltaTime;
 
         if (Input.GetButtonDown("Submit") && Time.timeScale == 0)
@@ -271,7 +272,7 @@ public class Tutorial_InGame : MonoBehaviour {
             }
             else if (OK == 16)
             {
-                if(killer != null && GameObject.Find("Killer") == null)
+                if(killer != null && GameObject.Find("Killer") != null)
                     killer.SetActive(false);
                 events.SetActive(true);
                 mapEvent.SetActive(true);
@@ -361,9 +362,11 @@ public class Tutorial_InGame : MonoBehaviour {
         }
         if(OK == 8 && Time.timeScale == 1 && !_once)
         {
-            if(player1.GetComponent<PlayerControl>().cooledDown && time5 > 3)
-            {
+            if(player1.GetComponent<PlayerControl>().cooledDown && !timed5)
+                timed5 = true;
+            if(time5 > 3 && timed5){
                 _once = true;
+                timed5 = false;
                 Time.timeScale = 0;
                 box.SetActive(true);
                 score2.SetActive(true);
@@ -395,9 +398,12 @@ public class Tutorial_InGame : MonoBehaviour {
         }
         if (OK == 15 && Time.timeScale == 1 && !_oNce)
         {
-            if (killer == null && GameObject.Find("Killer") == null || (player1.GetComponent<PlayerControl>().cooledDown && time3 > 3))
-            {
+
+            if ((killer == null && GameObject.Find("Killer") == null && !timed3) || (player1.GetComponent<PlayerControl>().cooledDown && !timed3))
+                timed3 = true;
+            if(timed3 && time3 > 3){
                 _oNce = true;
+                timed3 = false;
                 Time.timeScale = 0;
                 box.SetActive(true);
                 titol.text = "Killers";
@@ -407,9 +413,11 @@ public class Tutorial_InGame : MonoBehaviour {
         }
         if (OK == 20 && Time.timeScale == 1 && !__Once)
         {
-            if (player2.GetComponent<PlayerControl>().cooledDown && time4 > 3)
-            {
+            if (player2.GetComponent<PlayerControl>().cooledDown && !timed4)
+                timed4 = true;
+            if(timed4 && time4 > 3){
                 __Once = true;
+                timed4 = false;
                 Time.timeScale = 0;
                 box.SetActive(true);
                 titol.text = "Winning score";
