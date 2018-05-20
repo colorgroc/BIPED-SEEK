@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Immobilizer : MonoBehaviour {
 
@@ -105,14 +106,30 @@ public class Immobilizer : MonoBehaviour {
 
     void MoveAgain()
     {
-        foreach (GameObject guard in NewControl.guards)
+        if (NewControl.guards != null)
         {
-            guard.GetComponent<NPCConnectedPatrol>().freezed = false;
+            foreach (GameObject guard in NewControl.guards)
+            {
+                guard.GetComponent<NPCConnectedPatrol>().freezed = false;
+            }
         }
-        foreach (GameObject player in NewControl.players)
+        if (NewControl.players.Count > 0)
         {
-            player.GetComponent<PlayerControl>().canAct = true;
+            foreach (GameObject player in NewControl.players)
+            {
+                player.GetComponent<PlayerControl>().canAct = true;
+            }
         }
+        if (SceneManager.GetActiveScene().name != "Tutorial")
+        {
+            if (NewControl.killers != null)
+            {
+                foreach (GameObject killer in NewControl.killers)
+                {
+                    killer.GetComponent<NPCConnectedPatrol>().freezed = false;
+                }
+            }
+        } else GameObject.Find("Killer").GetComponent<NPCConnectedPatrol>().freezed = false;
         //foreach (Collider hit in colliders)
         //{
         //    if (hit.gameObject.name != "mixamorig:LeftHand")

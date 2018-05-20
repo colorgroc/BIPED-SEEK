@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
-    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, HUD, box, goKill, goKill2, guards, score2, score3, winner, finnish, events, mapEvent, getClose, killerEvent;
+    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, killer, HUD, box, goKill, goKill2, goKill3, guards, score2, score3, winner, finnish, events, mapEvent, getClose, eventText, killerEvent, killerEvent_score, npcReduction_half, speedy, npcReduction_convertToObjective;//, npcReduction_halfNonObjective;
     public Text titol;
-    bool once, _once, _Once, __Once, __once;
+    bool once, _once, _Once, __Once, __once, _oNce;
     //public GameObject player1, player2, HUD, box, objectiveCanvas;
-    private float time, time2;
+    private float time, time2, time3, time4, time5;
     //private bool proceed;
     private int OK;
     private float timeGame = 120, timeLeft;
@@ -33,7 +33,7 @@ public class Tutorial_InGame : MonoBehaviour {
         showIt = true;
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
-        time = time2 = OK = 0;
+        time = time2 = time3 = time4 = time5 = OK = 0;
         box.SetActive(true);
         welcome2.SetActive(false);
         thereUR.SetActive(false);
@@ -53,6 +53,14 @@ public class Tutorial_InGame : MonoBehaviour {
         events.SetActive(false);
         mapEvent.SetActive(false);
         getClose.SetActive(false);
+        killer.SetActive(false);
+        eventText.SetActive(true);
+        killerEvent.SetActive(false);
+        killerEvent_score.SetActive(false);
+        npcReduction_convertToObjective.SetActive(false);
+        npcReduction_half.SetActive(false);
+        speedy.SetActive(false);
+        goKill3.SetActive(false);
         p1mat = player1.GetComponentInChildren<Renderer>().materials;
         p2mat = player2.GetComponentInChildren<Renderer>().materials;
         //RandomAbilities();
@@ -77,10 +85,16 @@ public class Tutorial_InGame : MonoBehaviour {
             time += Time.deltaTime;
         if (OK == 10 && !__once)
             time2 += Time.deltaTime;
+        if(OK == 20 && !__Once)
+            time4 += Time.deltaTime; 
+        if (OK == 15 && !_oNce)
+            time3 += Time.deltaTime;
+        if (OK == 8 && !_once)
+            time5 += Time.deltaTime;
 
         if (Input.GetButtonDown("Submit") && Time.timeScale == 0)
         {
-            if (OK != 16)
+            if (OK != 22)
                 OK++;
         }
         if (Input.GetButtonDown("Cancel") && Time.timeScale == 0)
@@ -89,7 +103,7 @@ public class Tutorial_InGame : MonoBehaviour {
         }
         if (Input.GetButtonDown("Main Menu") && Time.timeScale == 0)
         {
-            if (OK == 16)
+            if (OK == 22)
                 SceneManager.LoadScene("Menu");
         }
         if (OK < 0) OK = 0;
@@ -221,23 +235,87 @@ public class Tutorial_InGame : MonoBehaviour {
                 titol.text = "Events";
                 feedback.SetActive(false);
                 events.SetActive(true);
+                eventText.SetActive(true);
                 mapEvent.SetActive(true);
-                goKill2.SetActive(false);
+                killerEvent.SetActive(false);
                 // feedBackIm.color = normalCol;
             }
             else if (OK == 13)
             {
-                events.SetActive(false);
-                mapEvent.SetActive(false);
-                titol.text = "Let's kill again";
-                goKill2.SetActive(true);
-                score3.SetActive(false);
-                // feedBackIm.color = normalCol;
+                titol.text = "Killers";
+                killerEvent.SetActive(true);                   
+                eventText.SetActive(false);
             }
             else if (OK == 14)
             {
+                killerEvent.SetActive(false);
+                titol.text = "Killers";
+                goKill3.SetActive(true);
+                box.SetActive(true);
+            }
+            else if (OK == 15)
+            {
+                goKill3.SetActive(false);
+                events.SetActive(false);
+                mapEvent.SetActive(false);
+                //titol.text = "HUD - General";
+                if (!_oNce)
+                {
+                    box.SetActive(false);
+                    killer.SetActive(true);
+                    Time.timeScale = 1;
+                }
+                titol.text = "Killers";
+                killerEvent_score.SetActive(true);
+                //feedBackIm.color = feedCol; 
+            }
+            else if (OK == 16)
+            {
+                if(killer != null && GameObject.Find("Killer") == null)
+                    killer.SetActive(false);
+                events.SetActive(true);
+                mapEvent.SetActive(true);
+                killerEvent_score.SetActive(false);
+                titol.text = "Crazynest";
+                speedy.SetActive(true);
+                box.SetActive(true);
+            }
+            else if (OK == 17)
+            {
+                speedy.SetActive(false);
+                titol.text = "NPC Reduction";
+                npcReduction_half.SetActive(true);
+            }
+            //else if (OK == 18)
+            //{
+            //    npcReduction_half.SetActive(false);
+            //    titol.text = "NPC Reduction";
+            //    npcReduction_halfNonObjective.SetActive(true);
+            //}
+            else if (OK == 18)
+            {
+                npcReduction_half.SetActive(false);
+                titol.text = "NPC Reduction";
+                npcReduction_convertToObjective.SetActive(true);
+                events.SetActive(true);
+                mapEvent.SetActive(true);
+            }
+            else if (OK == 19)
+            {
+                events.SetActive(false);
+                mapEvent.SetActive(false);
+                npcReduction_convertToObjective.SetActive(false);
+                titol.text = "Let's kill again";
+                goKill2.SetActive(true);
+                score3.SetActive(false);
+                box.SetActive(true);
+                // feedBackIm.color = normalCol;
+            }
+            else if (OK == 20)
+            {
                 winner.SetActive(false);
                 events.SetActive(false);
+                mapEvent.SetActive(false);
                 //titol.text = "HUD - General";
                 if (!__Once)
                 {
@@ -249,7 +327,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 score3.SetActive(true);
                 //feedBackIm.color = feedCol; 
             }
-            else if (OK == 15)
+            else if (OK == 21)
             {
                 titol.text = "Winner";
                 score3.SetActive(false);
@@ -257,7 +335,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 events.SetActive(false);
                 // feedBackIm.color = normalCol;
             }
-            else if(OK == 16)
+            else if(OK == 22)
             {
                 finnish.SetActive(true);
                 events.SetActive(false);
@@ -283,7 +361,7 @@ public class Tutorial_InGame : MonoBehaviour {
         }
         if(OK == 8 && Time.timeScale == 1 && !_once)
         {
-            if(player1.GetComponent<PlayerControl>().cooledDown)
+            if(player1.GetComponent<PlayerControl>().cooledDown && time5 > 3)
             {
                 _once = true;
                 Time.timeScale = 0;
@@ -315,9 +393,21 @@ public class Tutorial_InGame : MonoBehaviour {
                 getClose.SetActive(true);
             }
         }
-        if (OK == 14 && Time.timeScale == 1 && !__Once)
+        if (OK == 15 && Time.timeScale == 1 && !_oNce)
         {
-            if (player2.GetComponent<PlayerControl>().cooledDown)
+            if (killer == null && GameObject.Find("Killer") == null || (player1.GetComponent<PlayerControl>().cooledDown && time3 > 3))
+            {
+                _oNce = true;
+                Time.timeScale = 0;
+                box.SetActive(true);
+                titol.text = "Killers";
+                killerEvent_score.SetActive(true);
+                events.SetActive(true);
+            }
+        }
+        if (OK == 20 && Time.timeScale == 1 && !__Once)
+        {
+            if (player2.GetComponent<PlayerControl>().cooledDown && time4 > 3)
             {
                 __Once = true;
                 Time.timeScale = 0;

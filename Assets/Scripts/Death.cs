@@ -17,7 +17,11 @@ public class Death : MonoBehaviour {
             if (gameObject != null && gameObject.GetComponentInChildren<Renderer>() != null && gameObject.GetComponentInChildren<Renderer>().material != null)
                 mat = gameObject.GetComponentInChildren<Renderer>().material;
         }
-        else if (SceneManager.GetActiveScene().name == "Tutorial") mats = gameObject.GetComponentInChildren<Renderer>().materials;
+        else if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            if (gameObject != null && gameObject.GetComponentInChildren<Renderer>() != null && gameObject.GetComponentInChildren<Renderer>().materials != null)
+                mats = gameObject.GetComponentInChildren<Renderer>().materials;
+        }
 
         if (!gameObject.tag.Equals("Killer Guards") && gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject != null)
         {

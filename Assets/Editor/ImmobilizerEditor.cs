@@ -12,8 +12,5 @@ public class ImmobilizerEditor : Editor
         Immobilizer fow = (Immobilizer)target;
         Handles.color = Color.cyan;
         Handles.DrawWireArc(fow.transform.position, Vector3.up, Vector3.forward, 360, fow.radius);
-
-
-
     }
 }

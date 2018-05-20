@@ -29,6 +29,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
     private void Awake()
     {
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
         if (_navMeshAgent == null) Debug.LogError("The nav mesh agent component is not attached to " + gameObject.name);
@@ -176,9 +177,9 @@ public class NPCConnectedPatrol : MonoBehaviour {
          if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
         {
             this.anim.SetBool("wannaKill", true);
-
-            col.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
             soundSource.PlayOneShot(killPlayerSound);
+            col.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
+            
             //col.gameObject.GetComponent<PlayerControl>().Respawn(col.gameObject);
             this.anim.SetBool("wannaKill", false);
 
