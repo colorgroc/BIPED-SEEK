@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Death : MonoBehaviour {
 
@@ -9,12 +10,16 @@ public class Death : MonoBehaviour {
         GameObject animDeath = null;
         Material mat = null;
         Material[] mats = null;
+        GameObject prefab = null;
 
-        if (!Tutorial_InGame.showIt)
-            mat = gameObject.GetComponentInChildren<Renderer>().material;
-        else mats = gameObject.GetComponentInChildren<Renderer>().materials;
+        if (SceneManager.GetActiveScene().name != "Tutorial")
+        {
+            if (gameObject != null && gameObject.GetComponentInChildren<Renderer>() != null && gameObject.GetComponentInChildren<Renderer>().material != null)
+                mat = gameObject.GetComponentInChildren<Renderer>().material;
+        }
+        else if (SceneManager.GetActiveScene().name == "Tutorial") mats = gameObject.GetComponentInChildren<Renderer>().materials;
 
-        if (!gameObject.tag.Equals("Killer Guards"))
+        if (!gameObject.tag.Equals("Killer Guards") && gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject != null)
         {
             if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Bear")
             {
@@ -38,14 +43,18 @@ public class Death : MonoBehaviour {
             }
         }
         else animDeath = (GameObject)Resources.Load("Prefabs/Killer_Death");
+        if(animDeath != null)
+            prefab = (GameObject)Instantiate(animDeath, pos, rotation);
 
-        GameObject prefab = (GameObject)Instantiate(animDeath, pos, rotation);
         if (!Tutorial_InGame.showIt)
         {
-            if (!gameObject.tag.Equals("Killer Guards"))
+            if (!gameObject.tag.Equals("Killer Guards") && mat != null && prefab != null)
                 prefab.GetComponentInChildren<Renderer>().material = mat;
         }
-        else prefab.GetComponentInChildren<Renderer>().materials = mats;
+        else
+        {
+            if (mats.Length > 0 && prefab != null) prefab.GetComponentInChildren<Renderer>().materials = mats;
+        }
     }
 }
 

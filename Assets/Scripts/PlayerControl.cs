@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     private AudioClip killPlayerSound, killNPCSound, killObjectiveSound, punchSound;
     private AudioSource soundSource;
-    public bool cooledDown;//, goodFeedback, winnerFeedback;
+    public bool cooledDown, usingAbility;//, goodFeedback, winnerFeedback;
     //public bool badFeedback;
 
     [HideInInspector]
@@ -145,7 +145,7 @@ public class PlayerControl : MonoBehaviour {
         {
             speed = PlayerPrefs.GetFloat("Speed");
         }
-        if (this.canAct)
+        if (this.canAct && !this.usingAbility)
         {
             float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
             float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
@@ -178,8 +178,19 @@ public class PlayerControl : MonoBehaviour {
                 anim.SetBool("Rot_Right", false);
                 anim.SetBool("Rot_Left", false);
             }
-            this.anim.SetBool("wannaKill", this.wannaKill);
+            //
+        }else if(this.canAct && this.usingAbility)
+        {
+            if (Input.GetButtonDown(this.killButton))
+            {
+                this.wannaKill = true;
+                soundSource.PlayOneShot(punchSound);
+            }
+            if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
         }
+            
+
+        this.anim.SetBool("wannaKill", this.wannaKill);
         this.anim.SetBool("isFreezed", !this.canAct);
         //Debug.Log(this.canAct);
         if (this.detected)
@@ -216,7 +227,14 @@ public class PlayerControl : MonoBehaviour {
             }
         }
     }
-
+    public void InicializandoHabilidad()
+    {
+        usingAbility = true;
+    }
+    public void FinalizandoHabilidad()
+    {
+        usingAbility = false;
+    }
     public void Kill(GameObject gO)
     {
         //soundSource.PlayOneShot(killPlayerSound);

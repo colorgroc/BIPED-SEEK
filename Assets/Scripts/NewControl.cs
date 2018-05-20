@@ -496,23 +496,23 @@ public class NewControl : MonoBehaviour
         else Time.timeScale = 1;
     }
 
-    void Default()
-    {
-        NewControl.killers = null;
-        NewControl.players = null;
-        NewControl.guards = null;
-        NewControl.numOfPlayers = 0;
-        NewControl.objComplete = false;
-        NewControl.objKilledByGuard = false;
-        NewControl.timeLeft = 0;
-        NewControl.objective = null;
-        NewControl.finalWinner = null;
-        NewControl.parcialWinner = null;
-        NumCanvasSeleccionJugadores.ready_P1 = false;
-        NumCanvasSeleccionJugadores.ready_P2 = false;
-        NumCanvasSeleccionJugadores.ready_P3 = false;
-        NumCanvasSeleccionJugadores.ready_P4 = false;
-    }
+    //void Default()
+    //{
+    //    NewControl.killers = null;
+    //    NewControl.players = null;
+    //    NewControl.guards = null;
+    //    NewControl.numOfPlayers = 0;
+    //    NewControl.objComplete = false;
+    //    NewControl.objKilledByGuard = false;
+    //    NewControl.timeLeft = 0;
+    //    NewControl.objective = null;
+    //    NewControl.finalWinner = null;
+    //    NewControl.parcialWinner = null;
+    //    NumCanvasSeleccionJugadores.ready_P1 = false;
+    //    NumCanvasSeleccionJugadores.ready_P2 = false;
+    //    NumCanvasSeleccionJugadores.ready_P3 = false;
+    //    NumCanvasSeleccionJugadores.ready_P4 = false;
+    //}
     private string GetMinutes(float timeLeft)
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(timeLeft);

@@ -8,6 +8,7 @@ public class EventosMapa : MonoBehaviour {
     [SerializeField]
     private float minVel = 10f, maxVel = 30f, tempsNothing = 30, tempsEvent = 30;
     private List<GameObject> guardsToDisplay = new List<GameObject>();
+    private List<GameObject> guardsConverted = new List<GameObject>();
     private int evento;
     private List<int> eventos = new List<int>();
     private int i;
@@ -25,7 +26,7 @@ public class EventosMapa : MonoBehaviour {
         soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         for (int i = 0; i < Rondes.rondas; i++)
         {
-            evento = UnityEngine.Random.Range(0, 5);
+            evento = UnityEngine.Random.Range(0, 6);
             eventos.Add(evento);
         }
         ronda = Rondes.timesPlayed;
@@ -110,6 +111,12 @@ public class EventosMapa : MonoBehaviour {
                 canvas.GetComponent<Canvas>().enabled = true;
                 CameraShake.Shake(1f, 4f);
                 break;
+            case 5:
+                NPCConvertNonObjectiveToObjective();
+                soundSource.PlayOneShot(eventSound);
+                canvas.GetComponent<Canvas>().enabled = true;
+                CameraShake.Shake(1f, 4f);
+                break;
         }
         timeEvent1 = timeEvent2 = 0;
         nothing = true;
@@ -125,7 +132,7 @@ public class EventosMapa : MonoBehaviour {
 
     private void NPCReductionObjective()
     {
-        for (int i = 0; i < NewControl.guards.Length/2; i++)
+        for (int i = 0; i < NewControl.guards.Length; i++)
         {
             string type = NewControl.objective.name.Substring(NewControl.objective.name.Length - 1);
             
@@ -155,6 +162,14 @@ public class EventosMapa : MonoBehaviour {
             }
         }
         guardsToDisplay.Clear();
+        if (guardsConverted.Count > 0)
+        {
+            foreach (GameObject guard in guardsConverted)
+            {
+                Destroy(guard);
+            }
+        }
+        guardsConverted.Clear();
     }
 
     private void NPCReductionNonObjective()
@@ -176,6 +191,52 @@ public class EventosMapa : MonoBehaviour {
         for (int i = 0; i < (guardsToDisplay.Count / 2); i++)
         {
             guardsToDisplay[i].SetActive(false);
+        }
+    }
+
+    private void NPCConvertNonObjectiveToObjective()
+    {
+        string type = NewControl.objective.name.Substring(NewControl.objective.name.Length - 1);
+        GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+        for (int i = 0; i < NewControl.guards.Length; i++)
+        {  
+            int rand;
+            do { rand = Random.Range(1, PlayerPrefs.GetInt("NumPlayers") + 1); } while (rand.ToString() == type);
+
+            if (NewControl.guards[i] != null)
+            {
+                if (NewControl.guards[i].name.Equals("Guard_Tipo " + rand.ToString()))
+                {
+                    guardsToDisplay.Add(NewControl.guards[i]);
+                }
+            }
+        }
+        for (int i = 0; i < (guardsToDisplay.Count); i++)
+        {
+            guardsToDisplay[i].SetActive(false);
+            //guardsToDisplay[i].SetActive(false);
+            int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+            GameObject prefabG = null;
+            if (NewControl.objective.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name.Equals("Bear"))
+                prefabG = (GameObject)Resources.Load("Prefabs/Tipo_1");
+            else if (NewControl.objective.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name.Equals("Bunny"))
+                prefabG = (GameObject)Resources.Load("Prefabs/Tipo_2");
+            else if (NewControl.objective.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name.Equals("Penguin"))
+                prefabG = (GameObject)Resources.Load("Prefabs/Tipo_3");
+            else if (NewControl.objective.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name.Equals("Fox"))
+                prefabG = (GameObject)Resources.Load("Prefabs/Tipo_4");
+
+            Vector3 posG = new Vector3(allMyRespawnPoints[rand].transform.position.x, 10.14516f, allMyRespawnPoints[rand].transform.position.z);
+            GameObject guard = (GameObject)Instantiate(prefabG, posG, allMyRespawnPoints[rand].transform.rotation);
+            guard.transform.parent = GameObject.Find("Guards").transform;
+            guard.gameObject.name = "Guard_ObjectiveAppearance";
+            guard.gameObject.tag = "Guard";
+            guard.gameObject.layer = 9;
+            guard.gameObject.GetComponentInChildren<Renderer>().material = NewControl.objective.gameObject.GetComponentInChildren<Renderer>().material;
+            //Destroy(guard.gameObject.GetComponentInChildren<CapsuleCollider>());
+            Destroy(guard.gameObject.GetComponentInChildren<Kill>());
+            GameObject.Find("Control").GetComponent<NewControl>().AddScript(guard);
+            guardsConverted.Add(guard);
         }
     }
 
@@ -210,7 +271,6 @@ public class EventosMapa : MonoBehaviour {
     {
         KillersDestruction();
         NPCRestablishment();
-        DefaultSpeed();
-        
+        DefaultSpeed();    
     }
 }
