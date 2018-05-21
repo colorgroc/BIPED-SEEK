@@ -16,9 +16,13 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
     float time;
     //private float duration = 1f;
     private bool change = true;
+    [SerializeField]
+    private AudioClip onButtonSound;
+    private AudioSource soundSource;
 
     private void Start()
     {
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         initialScale = this.transform.localScale;
         time = 0;
         x = initialScale.x;
@@ -84,6 +88,7 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
     }
     public void OnDeselect(BaseEventData eventData)
     {
+        soundSource.PlayOneShot(onButtonSound);
         //do your stuff when not selected
         if (isVolume)
         {

@@ -16,6 +16,10 @@ public class NewControl : MonoBehaviour
     public static GameObject parcialWinner;
     public static GameObject finalWinner;
 
+    [SerializeField]
+    private AudioClip pauseSound, backSound, menuSound;
+    private AudioSource soundSource;
+
     public static List<GameObject> players;// = new List<GameObject>();
     private List<GameObject> listPlayers;// = new List<GameObject>();
     [HideInInspector]
@@ -79,6 +83,7 @@ public class NewControl : MonoBehaviour
     }
     void Start()
     {
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         Time.timeScale = 0;
         //control HZ monitors
         res = Screen.currentResolution;
@@ -504,11 +509,16 @@ public class NewControl : MonoBehaviour
     {
         if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")) && !Tutorial_InGame.showIt)
         {
+            if (!paused)
+                soundSource.PlayOneShot(pauseSound);
+            else
+                soundSource.PlayOneShot(backSound);
             paused = !paused;
             pausa.SetActive(paused);
         }
         if (Input.GetButtonDown("Main Menu") && paused && !Tutorial_InGame.showIt)
         {
+            soundSource.PlayOneShot(menuSound);
             pausa.SetActive(false);
             Time.timeScale = 1;
             // Default();

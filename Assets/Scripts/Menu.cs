@@ -14,7 +14,7 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private AudioSource music, sounds;
     [SerializeField]
-    private AudioClip onButton, clickButton, backButton;
+    public AudioClip onButton, clickButton, backButton;
     [SerializeField]
     private Canvas mainMenu, options, credits;
     private bool inMenu;
@@ -57,8 +57,7 @@ public class Menu : MonoBehaviour
         }
         //else Tutorial.showIt = true;
         sounds.GetComponent<AudioSource>().enabled = false;
-        sounds.mute = true;
-        sounds.volume = 0;
+        sounds.volume = 1;
     }
 
     void Start()
@@ -103,9 +102,7 @@ public class Menu : MonoBehaviour
             SoundMusic();
         }
         else MuteMusic();
-        sounds.mute = true;
-        sounds.volume = 0;
-
+        sounds.mute = false;
 
         NewControl.finalWinner = null;
         sounds.GetComponent<AudioSource>().enabled = true;
@@ -143,8 +140,6 @@ public class Menu : MonoBehaviour
     public void GoToPlay()
     {
         Tutorial_InGame.showIt = false;
-        sounds.mute = false;
-        sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
         Default();
         SceneManager.LoadScene("Seleccion Personajes");
@@ -152,8 +147,6 @@ public class Menu : MonoBehaviour
     }
     public void Exit()
     {
-        sounds.mute = false;
-        sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
         Application.Quit();
     }
@@ -180,8 +173,6 @@ public class Menu : MonoBehaviour
     public void ShowOptions()
     {
         RandomBackground(optionsBg);
-        sounds.mute = false;
-        sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
         inMenu = false;
         mainMenu.gameObject.SetActive(false);
@@ -222,8 +213,6 @@ public class Menu : MonoBehaviour
     public void ShowCredits()
     {
         RandomBackground(creditsBg);
-        sounds.mute = false;
-        sounds.volume = 1;
         sounds.PlayOneShot(clickButton);
         inMenu = false;
         mainMenu.gameObject.SetActive(false);
@@ -240,8 +229,6 @@ public class Menu : MonoBehaviour
     public void BackToMenu()
     {
         RandomBackground(menuBg);
-        sounds.mute = false;
-        sounds.volume = 1;
         sounds.PlayOneShot(backButton, 4.0F);
         inMenu = true;
         mainMenu.gameObject.SetActive(true);
@@ -255,8 +242,6 @@ public class Menu : MonoBehaviour
         if (tutorialOptions.GetComponent<Dropdown>().value == 0)
         {
             tutorialMenu.SetActive(true);
-            sounds.mute = false;
-            sounds.volume = 1;
             sounds.PlayOneShot(onButton);
             PlayerPrefs.SetInt("Tutorial", 0);
             Tutorial_InGame.showIt = true;
@@ -264,8 +249,6 @@ public class Menu : MonoBehaviour
         else if (tutorialOptions.GetComponent<Dropdown>().value == 1)
         {
             tutorialMenu.SetActive(false);
-            sounds.mute = false;
-            sounds.volume = 1;
             sounds.PlayOneShot(onButton);
             PlayerPrefs.SetInt("Tutorial", 1);
             Tutorial_InGame.showIt = false;
@@ -287,16 +270,12 @@ public class Menu : MonoBehaviour
     }
     public void FullScreen()
     {
-        sounds.mute = false;
-        sounds.volume = 1;
         sounds.PlayOneShot(onButton);
         Screen.fullScreen = true;
         PlayerPrefs.SetInt("ScreenMode", 0);
     }
     public void WindowScreen()
     {
-        sounds.mute = false;
-        sounds.volume = 1;
         sounds.PlayOneShot(onButton);
         Screen.fullScreen = false;
         PlayerPrefs.SetInt("ScreenMode", 1);
@@ -308,17 +287,15 @@ public class Menu : MonoBehaviour
     }
     public void MuteMusic()
     {
-        sounds.mute = false;
-        sounds.volume = 1;
         sounds.PlayOneShot(onButton);
+        sounds.mute = true;
         music.mute = true;
         PlayerPrefs.SetInt("isMute", 1);
     }
     public void SoundMusic()
     {
-        sounds.mute = false;
-        sounds.volume = 1;
         sounds.PlayOneShot(onButton);
+        sounds.mute = false;
         music.mute = false;
         PlayerPrefs.SetInt("isMute", 0);
     }
