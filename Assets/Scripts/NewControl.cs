@@ -17,7 +17,7 @@ public class NewControl : MonoBehaviour
     public static GameObject finalWinner;
 
     [SerializeField]
-    private AudioClip pauseSound, backSound, menuSound;
+    private AudioClip pauseSound, backSound, menuSound, startNumbers;
     private AudioSource soundSource;
 
     public static List<GameObject> players;// = new List<GameObject>();
@@ -94,6 +94,7 @@ public class NewControl : MonoBehaviour
         print(QualitySettings.vSyncCount);  
 
         StartGame();
+        soundSource.PlayOneShot(startNumbers);
     }
     public void StartGame()
     {
@@ -117,6 +118,7 @@ public class NewControl : MonoBehaviour
     {
         if (!startGame && !Tutorial_InGame.showIt)
         {
+            
             timeBack -= Time.fixedUnscaledDeltaTime;
 
             if ((int)timeBack == 0)
