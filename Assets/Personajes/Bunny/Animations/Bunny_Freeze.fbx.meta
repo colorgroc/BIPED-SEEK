@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 21f8482083a951c43be467225b27c188
-timeCreated: 1526640657
+guid: 64dfa8d9dd69c3448821ac8c73e6ee4e
+timeCreated: 1526938249
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -57,14 +57,14 @@ ModelImporter:
     400046: mixamorig:Spine
     400048: mixamorig:Spine1
     400050: mixamorig:Spine2
-    7400000: Bear_Left_Turn
+    7400000: Bunny_Freeze
     9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -87,10 +87,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Bear_Left_Turn
+      name: Bunny_Freeze
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 89
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
