@@ -19,14 +19,15 @@ public class WinnerHUD : MonoBehaviour {
     }
     void Start () {
         soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
-        NewControl.Winner();
+        //NewControl.Winner();
         soundSource.PlayOneShot(winnerSound);
         //asignacio copa i animal del guanyador
         if (NewControl.finalWinner != null)
         {
             player.text = NewControl.finalWinner.name;
-          
-            if(NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("1"))
+
+            //if(NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("1"))
+            if (NewControl.finalWinner.name.EndsWith("1"))
             {
                 cup.sprite = cup1;
 
@@ -47,7 +48,7 @@ public class WinnerHUD : MonoBehaviour {
                     animal.sprite = animal4;
                 }
             }
-            else if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("2"))
+            else if (NewControl.finalWinner.name.EndsWith("2"))//if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("2"))
             {
                 cup.sprite = cup2;
 
@@ -68,7 +69,7 @@ public class WinnerHUD : MonoBehaviour {
                     animal.sprite = animal4;
                 }
             }
-            else if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("3"))
+            else if (NewControl.finalWinner.name.EndsWith("3"))//if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("3"))
             {
                 cup.sprite = cup3;
 
@@ -89,7 +90,7 @@ public class WinnerHUD : MonoBehaviour {
                     animal.sprite = animal4;
                 }
             }
-            else if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("4"))
+            else if (NewControl.finalWinner.name.EndsWith("4"))//if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("4"))
             {
                 cup.sprite = cup4;
 

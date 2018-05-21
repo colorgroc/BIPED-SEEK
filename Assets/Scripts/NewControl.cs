@@ -24,7 +24,8 @@ public class NewControl : MonoBehaviour
     public static GameObject[] killers;
     public static bool paused;
     [SerializeField]
-    private GameObject pausa, objectiveCanvas, finalWinnerCanvas;
+    private GameObject pausa, objectiveCanvas, rankingCanvas;
+    public GameObject finalWinnerCanvas;
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
     [SerializeField]
     private Sprite SpriteTipo_1_Blue, SpriteTipo_2_Blue, SpriteTipo_3_Blue, SpriteTipo_4_Blue, SpriteTipo_1_Red, SpriteTipo_2_Red, SpriteTipo_3_Red, SpriteTipo_4_Red, SpriteTipo_1_Green, SpriteTipo_2_Green, SpriteTipo_3_Green, SpriteTipo_4_Green, SpriteTipo_1_Yellow, SpriteTipo_2_Yellow, SpriteTipo_3_Yellow, SpriteTipo_4_Yellow;
@@ -53,15 +54,14 @@ public class NewControl : MonoBehaviour
     {
         startGame = false;
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
-        //PlayerPrefs.SetInt("NumRondesPerJugador", numRondesPerJugador);
-        //fin = UnityEngine.Random.Range(0, 2);
+
         listPos = new List<int>();
         listPlayers = new List<GameObject>();
         players = new List<GameObject>();
-        //scorePlayers = new List<GameObject>();
+
         habilitat_1 = PlayerPrefs.GetInt("Ability 1");
         habilitat_2 = PlayerPrefs.GetInt("Ability 2");
-        //Debug.Log(habilitat_1 + "; " + habilitat_2);
+
         //creacion jugadores
         PlayersAndGuardsCreation();
         //lista adicional para establecer las rondas de cada jugador
@@ -90,7 +90,7 @@ public class NewControl : MonoBehaviour
 
         StartGame();
     }
-    private void StartGame()
+    public void StartGame()
     {
 
         VariablesOnDefault();
@@ -105,7 +105,6 @@ public class NewControl : MonoBehaviour
 
         timeLeft = time;//UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
         textTiempo.text = GetMinutes(timeLeft);
-
     }
 
     // Update is called once per frame
@@ -143,7 +142,12 @@ public class NewControl : MonoBehaviour
             {
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
-                StartGame();
+                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWinsRound += 1;
+                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 10;
+                //StartGame();
+                objComplete = false;
+                //Ranking.OrdenarRanking();
+                rankingCanvas.SetActive(true);
 
             }
             if (timeLeft <= 0 && !objComplete)
@@ -151,21 +155,34 @@ public class NewControl : MonoBehaviour
                 parcialWinner = objective;
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
+                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWinsRound += 1;
+                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 10;
                 Rondes.timesPlayed++;
-                StartGame();
+                objComplete = false;
+                timeLeft = time;
+                //Ranking.OrdenarRanking();
+                rankingCanvas.SetActive(true);
+                //StartGame();
 
             }
             if (objKilledByGuard)
             {
                 Rondes.timesPlayed++;
-                StartGame();
+                objComplete = false;
+                //Ranking.OrdenarRanking();
+                rankingCanvas.SetActive(true);
+                //StartGame();
 
             }
 
             if (Rondes.timesPlayed == Rondes.rondas)
             {
-                Winner();
-                finalWinnerCanvas.SetActive(true);
+                //Winner();
+                objComplete = false;
+                //Ranking.OrdenarRanking();
+                Ranking.Guanyador();
+                rankingCanvas.SetActive(true);
+                //finalWinnerCanvas.SetActive(true);
             }
         }
     }
@@ -175,6 +192,7 @@ public class NewControl : MonoBehaviour
         //parcialWinner = null;
         objComplete = false;
         finalWinnerCanvas.SetActive(false);
+        rankingCanvas.SetActive(false);
         paused = false;
         pausa.SetActive(false);
         //timeStartLeft = timeLeft;
@@ -194,6 +212,12 @@ public class NewControl : MonoBehaviour
             if (PlayerPrefs.GetInt("Ability 1") == (int)Abilities.CONTROL || PlayerPrefs.GetInt("Ability 2") == (int)Abilities.CONTROL)
                 player.GetComponent<ControlAbility>().Restart();
         }
+        GameObject[] deads = GameObject.FindGameObjectsWithTag("Death");
+        foreach (GameObject death in deads)
+        {
+            Destroy(death);
+        }
+        deads = null;
     }
     private void PlayersAndGuardsCreation()
     {
@@ -413,15 +437,15 @@ public class NewControl : MonoBehaviour
             tipo.gameObject.GetComponent<AbilitiesControl>().teleport.enabled = true;
         }
     }
-    public static void Winner()
-    {
-        players.Sort(SortByScore);
-        //scorePlayers = players;
-        if (players[players.Count - 1] != null)
-            finalWinner = players[players.Count - 1];
-    }
+    //public static void Winner()
+    //{
+    //    players.Sort(Ranking.SortByScore);
+    //    //scorePlayers = players;
+    //    if (players[players.Count - 1] != null)
+    //        finalWinner = players[players.Count - 1];
+    //}
 
-
+    /*
     private static int SortByScore(GameObject o1, GameObject o2)
     {
         if (o1.GetComponent<PlayerControl>().scoreGeneral.CompareTo(o2.GetComponent<PlayerControl>().scoreGeneral) == 0)
@@ -440,7 +464,7 @@ public class NewControl : MonoBehaviour
         }
         else return o1.GetComponent<PlayerControl>().scoreGeneral.CompareTo(o2.GetComponent<PlayerControl>().scoreGeneral);
     }
-
+    */
 
     void RespawnNPCS()
     {
@@ -496,23 +520,6 @@ public class NewControl : MonoBehaviour
         else Time.timeScale = 1;
     }
 
-    //void Default()
-    //{
-    //    NewControl.killers = null;
-    //    NewControl.players = null;
-    //    NewControl.guards = null;
-    //    NewControl.numOfPlayers = 0;
-    //    NewControl.objComplete = false;
-    //    NewControl.objKilledByGuard = false;
-    //    NewControl.timeLeft = 0;
-    //    NewControl.objective = null;
-    //    NewControl.finalWinner = null;
-    //    NewControl.parcialWinner = null;
-    //    NumCanvasSeleccionJugadores.ready_P1 = false;
-    //    NumCanvasSeleccionJugadores.ready_P2 = false;
-    //    NumCanvasSeleccionJugadores.ready_P3 = false;
-    //    NumCanvasSeleccionJugadores.ready_P4 = false;
-    //}
     private string GetMinutes(float timeLeft)
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(timeLeft);

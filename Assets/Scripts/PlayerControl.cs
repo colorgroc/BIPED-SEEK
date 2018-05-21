@@ -22,8 +22,8 @@ public class PlayerControl : MonoBehaviour {
     public bool cooledDown, usingAbility;//, goodFeedback, winnerFeedback;
     //public bool badFeedback;
 
-    [HideInInspector]
-    public int scoreGeneral, scoreKills, scoreWins;
+   // [HideInInspector]
+    public int scoreGeneral, scoreKills, scoreWins, scoreGeneralRound, scoreKillsRound, scoreWinsRound;
     public bool wannaKill, onFieldView, detected, _sprint, canAct;
 
     private Image feedback;
@@ -59,7 +59,7 @@ public class PlayerControl : MonoBehaviour {
 
         this.feedbacks.Sort(SortByName);
 
-
+        scoreGeneral = scoreKills = scoreWins = scoreGeneralRound = scoreKillsRound = scoreWinsRound = 0;
 
         if (this.gameObject.name.Equals("Player 1"))
         {
@@ -242,6 +242,7 @@ public class PlayerControl : MonoBehaviour {
         {
             this.detected = false;
             this.scoreGeneral -= 3;
+            this.scoreGeneralRound -= 3;
 
             if (gO.gameObject.tag.Equals("Guard"))
             {
@@ -263,6 +264,8 @@ public class PlayerControl : MonoBehaviour {
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
             this.scoreGeneral += 5;
             this.scoreKills += 1;
+            this.scoreGeneralRound += 5;
+            this.scoreKillsRound += 1;
             soundSource.PlayOneShot(killPlayerSound);
             gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 

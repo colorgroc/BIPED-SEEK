@@ -23,7 +23,7 @@ public class Death : MonoBehaviour {
                 mats = gameObject.GetComponentInChildren<Renderer>().materials;
         }
 
-        if (!gameObject.tag.Equals("Killer Guards") && gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject != null)
+        if (gameObject != null && !gameObject.tag.Equals("Killer Guards") && !gameObject.tag.Equals("Death") && gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject != null)
         {
             if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Bear")
             {
