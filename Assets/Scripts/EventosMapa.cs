@@ -27,7 +27,7 @@ public class EventosMapa : MonoBehaviour {
         for (int i = 0; i < Rondes.rondas; i++)
         {
             evento = UnityEngine.Random.Range(0, 6);
-            eventos.Add(evento);
+            eventos.Add(3);
         }
         ronda = Rondes.timesPlayed;
         nothing = false;

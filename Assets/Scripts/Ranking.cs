@@ -11,13 +11,11 @@ public class Ranking : MonoBehaviour
     public static List<GameObject> rankList = new List<GameObject>();
     // public static List<Rank> ranking = new List<Rank>();
     //private List<Rank> orderedRank = ranking.OrderByDescending(p => p.player.GetComponent<PlayerControl>().scoreGeneral).ToList();
-    public static List<GameObject> orderedRank; 
-
+    public static List<GameObject> orderedRank;
     // Use this for initialization
 
     void Start()
     {
-        
         //NewControl.players.Where(p => p != null);
         rankings = GameObject.FindGameObjectsWithTag("Ranking");
         foreach (GameObject rank in rankings) rankList.Add(rank);

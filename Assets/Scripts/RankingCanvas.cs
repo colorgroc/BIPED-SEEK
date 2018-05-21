@@ -5,14 +5,11 @@ using UnityEngine.UI;
 using System.Linq;
 
 public class RankingCanvas : MonoBehaviour {
-    [SerializeField]
-    private AudioClip roundSound;
-    private AudioSource soundSource;
+
     [SerializeField]
     private Text round;
     // Use this for initialization
     void Start () {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         Time.timeScale = 0;
         
     }
