@@ -22,42 +22,46 @@ public class Death : MonoBehaviour {
             if (gameObject != null && gameObject.GetComponentInChildren<Renderer>() != null && gameObject.GetComponentInChildren<Renderer>().materials != null)
                 mats = gameObject.GetComponentInChildren<Renderer>().materials;
         }
+        if (gameObject != null )
+        {
+            if (!gameObject.tag.Equals("Killer Guards"))
+                if(gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject != null) {
+                    {
+                        if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Bear")
+                        {
+                            if (gameObject.tag == "Guard") animDeath = (GameObject)Resources.Load("Prefabs/Tipo_1_Death_NPC");
+                            else animDeath = (GameObject)Resources.Load("Prefabs/Tipo_1_Death");
+                        }
+                        else if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Bunny")
+                        {
+                            if (gameObject.tag == "Guard") animDeath = (GameObject)Resources.Load("Prefabs/Tipo_2_Death_NPC");
+                            else animDeath = (GameObject)Resources.Load("Prefabs/Tipo_2_Death");
+                        }
+                        else if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Penguin")
+                        {
+                            if (gameObject.tag == "Guard") animDeath = (GameObject)Resources.Load("Prefabs/Tipo_3_Death_NPC");
+                            else animDeath = (GameObject)Resources.Load("Prefabs/Tipo_3_Death");
+                        }
+                        else if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Fox")
+                        {
+                            if (gameObject.tag == "Guard") animDeath = (GameObject)Resources.Load("Prefabs/Tipo_4_Death_NPC");
+                            else animDeath = (GameObject)Resources.Load("Prefabs/Tipo_4_Death");
+                        }
+                    }
+            }
+            else animDeath = (GameObject)Resources.Load("Prefabs/Killer_Death");
+            if (animDeath != null)
+                prefab = (GameObject)Instantiate(animDeath, pos, rotation);
 
-        if (gameObject != null && !gameObject.tag.Equals("Killer Guards") && !gameObject.tag.Equals("Death") && gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject != null)
-        {
-            if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Bear")
+            if (!Tutorial_InGame.showIt)
             {
-                if (gameObject.tag == "Guard") animDeath = (GameObject)Resources.Load("Prefabs/Tipo_1_Death_NPC");
-                else animDeath = (GameObject)Resources.Load("Prefabs/Tipo_1_Death");
+                if (!gameObject.tag.Equals("Killer Guards") && mat != null && prefab != null)
+                    prefab.GetComponentInChildren<Renderer>().material = mat;
             }
-            else if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Bunny")
+            else
             {
-                if (gameObject.tag == "Guard") animDeath = (GameObject)Resources.Load("Prefabs/Tipo_2_Death_NPC");
-                else animDeath = (GameObject)Resources.Load("Prefabs/Tipo_2_Death");
+                if (mats.Length > 0 && prefab != null) prefab.GetComponentInChildren<Renderer>().materials = mats;
             }
-            else if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Penguin")
-            {
-                if (gameObject.tag == "Guard") animDeath = (GameObject)Resources.Load("Prefabs/Tipo_3_Death_NPC");
-                else animDeath = (GameObject)Resources.Load("Prefabs/Tipo_3_Death");
-            }
-            else if (gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.name == "Fox")
-            {
-                if (gameObject.tag == "Guard") animDeath = (GameObject)Resources.Load("Prefabs/Tipo_4_Death_NPC");
-                else animDeath = (GameObject)Resources.Load("Prefabs/Tipo_4_Death");
-            }
-        }
-        else animDeath = (GameObject)Resources.Load("Prefabs/Killer_Death");
-        if(animDeath != null)
-            prefab = (GameObject)Instantiate(animDeath, pos, rotation);
-
-        if (!Tutorial_InGame.showIt)
-        {
-            if (!gameObject.tag.Equals("Killer Guards") && mat != null && prefab != null)
-                prefab.GetComponentInChildren<Renderer>().material = mat;
-        }
-        else
-        {
-            if (mats.Length > 0 && prefab != null) prefab.GetComponentInChildren<Renderer>().materials = mats;
         }
     }
 }

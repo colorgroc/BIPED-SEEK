@@ -8,7 +8,7 @@ public class Kill : MonoBehaviour {
     {
         if (this.gameObject.GetComponentInParent<PlayerControl>().wannaKill)
         {
-            if (other.gameObject != null && other.gameObject.tag != "Death")// && other.gameObject.name != this.gameObject.transform.parent.name)
+            if (other.gameObject != null && other.gameObject.tag != "Death" && other.gameObject.name != "mixamorig:LeftHand")// && other.gameObject.name != this.gameObject.transform.parent.name)
             {
                 Death.AnimDeath(other.gameObject, other.gameObject.transform.position, other.gameObject.transform.rotation);
                 this.gameObject.GetComponentInParent<PlayerControl>().Kill(other.gameObject);     

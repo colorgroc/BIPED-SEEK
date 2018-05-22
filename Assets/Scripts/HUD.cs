@@ -40,10 +40,7 @@ public class HUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        /*this.score.text = this.player.GetComponent<PlayerControl> ().scoreGeneral.ToString();
-		this.kills.text = this.player.GetComponent<PlayerControl> ().scoreKills.ToString();
-		this.survived.text = this.player.GetComponent<PlayerControl> ().scoreWins.ToString();*/
-
+       
         this.score.text = this.player.GetComponent<PlayerControl>().scoreGeneralRound.ToString();
         this.kills.text = this.player.GetComponent<PlayerControl>().scoreKillsRound.ToString();
         this.survived.text = this.player.GetComponent<PlayerControl>().scoreWinsRound.ToString();

@@ -444,34 +444,6 @@ public class NewControl : MonoBehaviour
             tipo.gameObject.GetComponent<AbilitiesControl>().teleport.enabled = true;
         }
     }
-    //public static void Winner()
-    //{
-    //    players.Sort(Ranking.SortByScore);
-    //    //scorePlayers = players;
-    //    if (players[players.Count - 1] != null)
-    //        finalWinner = players[players.Count - 1];
-    //}
-
-    /*
-    private static int SortByScore(GameObject o1, GameObject o2)
-    {
-        if (o1.GetComponent<PlayerControl>().scoreGeneral.CompareTo(o2.GetComponent<PlayerControl>().scoreGeneral) == 0)
-        {
-            if (o1.GetComponent<PlayerControl>().scoreWins.CompareTo(o2.GetComponent<PlayerControl>().scoreWins) == 0)
-            {
-                if (o1.GetComponent<PlayerControl>().scoreKills.CompareTo(o2.GetComponent<PlayerControl>().scoreKills) == 0)
-                {
-                    return o1.GetComponent<PlayerControl>().scoreGeneral + 1;
-                }
-
-                else return o1.GetComponent<PlayerControl>().scoreKills.CompareTo(o2.GetComponent<PlayerControl>().scoreKills);
-                //return o1.GetComponent<PlayerControl>().scoreKills.CompareTo(o2.GetComponent<PlayerControl>().scoreKills);
-            }
-            else return o1.GetComponent<PlayerControl>().scoreWins.CompareTo(o2.GetComponent<PlayerControl>().scoreWins);
-        }
-        else return o1.GetComponent<PlayerControl>().scoreGeneral.CompareTo(o2.GetComponent<PlayerControl>().scoreGeneral);
-    }
-    */
 
     void RespawnNPCS()
     {

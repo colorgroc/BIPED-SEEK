@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
-    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, killer, HUD, box, goKill, goKill2, goKill3, guards, score2, score3, winner, finnish, events, mapEvent, getClose, eventText, killerEvent, killerEvent_score, npcReduction_half, speedy, npcReduction_convertToObjective;//, npcReduction_halfNonObjective;
+    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, killer, HUD, box, goKill, goKill2, goKill3, guards, score2, score3, winner, finnish, events, mapEvent, getClose, eventText, killerEvent, killerEvent_score, npcReduction_half, speedy, npcReduction_convertToObjective, pausa;//, npcReduction_halfNonObjective;
     public Text titol;
-    bool once, _once, _Once, __Once, __once, _oNce, timed3, timed4, timed5;
+    bool once, _once, _Once, __Once, __once, _oNce, timed3, timed4, timed5, paused;
     //public GameObject player1, player2, HUD, box, objectiveCanvas;
     private float time, time2, time3, time4, time5;
     //private bool proceed;
@@ -17,7 +17,7 @@ public class Tutorial_InGame : MonoBehaviour {
     private float timeGame = 120, timeLeft;
     [SerializeField]
     private Text textTiempo;
-    public static bool showIt;
+    public static bool showIt;//, tuto;
     public Material glowP1, glowP2, outlineP1, outlineP2;
     private Material[] p1mat, p2mat;
     [SerializeField]
@@ -27,6 +27,10 @@ public class Tutorial_InGame : MonoBehaviour {
     //private Image iAb1, iAb2;
     [SerializeField]
     private Sprite freeze, control, invisible, teleport, sprint, smoke;
+
+    [SerializeField]
+    private AudioClip pauseSound, backSound, menuSound;
+    private AudioSource soundSource;
     // Use this for initialization
     private void Awake()
     {
@@ -34,7 +38,8 @@ public class Tutorial_InGame : MonoBehaviour {
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         time = time2 = time3 = time4 = time5 = OK = 0;
-        once = _once = _Once =__Once = __once = _oNce = timed3 = timed4 = timed5 = false;
+        once = _once = _Once =__Once = __once = _oNce = timed3 = timed4 = timed5 = paused = false;
+        //tuto = true;
         box.SetActive(true);
         welcome2.SetActive(false);
         thereUR.SetActive(false);
@@ -67,6 +72,8 @@ public class Tutorial_InGame : MonoBehaviour {
         //RandomAbilities();
         PlayerPrefs.SetInt("Ability 1", (int)NewControl.Abilities.SMOKE);
         PlayerPrefs.SetInt("Ability 2", (int)NewControl.Abilities.IMMOBILIZER);
+        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+
         //feedBackIm.color = normalCol;
         //objective = player2;
     }
@@ -78,6 +85,9 @@ public class Tutorial_InGame : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        if (!finnish.activeInHierarchy)
+            Pausa();
 
         timeLeft -= Time.deltaTime;
         textTiempo.text = GetMinutes(timeLeft);
@@ -93,23 +103,24 @@ public class Tutorial_InGame : MonoBehaviour {
         if (OK == 8 && timed5)
             time5 += Time.deltaTime;
 
-        if (Input.GetButtonDown("Submit") && Time.timeScale == 0)
+        if (Input.GetButtonDown("Submit") && Time.timeScale == 0 && !paused)
         {
             if (OK != 22)
                 OK++;
         }
-        if (Input.GetButtonDown("Cancel") && Time.timeScale == 0)
+        if (Input.GetButtonDown("Cancel") && Time.timeScale == 0 && !paused)
         {
                 OK--;  
         }
-        if (Input.GetButtonDown("Main Menu") && Time.timeScale == 0)
+        if (Input.GetButtonDown("Main Menu") && Time.timeScale == 0 && !paused)
         {
             if (OK == 22)
                 SceneManager.LoadScene("Menu");
         }
         if (OK < 0) OK = 0;
-        if ((Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel")) && Time.timeScale == 0)
+        if ((Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel")) && Time.timeScale == 0 && !paused)
         {
+            //tuto = true;
             if (OK == 0)
             {
                 welcome1.SetActive(true);
@@ -129,6 +140,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 if (!once)
                 {
                     box.SetActive(false);
+                    //tuto = false;
                     Time.timeScale = 1;
                 }
                 titol.text = "There you are";
@@ -152,18 +164,21 @@ public class Tutorial_InGame : MonoBehaviour {
                 titol.text = "HUD - Abilities";
                 score.SetActive(false);
                 abilities.SetActive(true);
+                rounds_time.SetActive(false);
             }
             else if (OK == 5)
             {
                 titol.text = "HUD - General";
                 rounds_time.SetActive(true);
                 abilities.SetActive(false);
+                objectiveTuto.SetActive(false);
             }
             else if (OK == 6)
             {
                 titol.text = "HUD - General";
                 objectiveTuto.SetActive(true);
                 rounds_time.SetActive(false);
+                goKill.SetActive(false);
             }
             else if (OK == 7)
             {
@@ -181,9 +196,10 @@ public class Tutorial_InGame : MonoBehaviour {
                 if (!_once)
                 {
                     guards.SetActive(true);
+                    //tuto = false;
                     //player2.SetActive(true);
                     //haloP2.enabled = true;
-                    objectiveTuto.SetActive(false);
+                    // objectiveTuto.SetActive(false);
                     box.SetActive(false);
                     Time.timeScale = 1;
                 }
@@ -204,12 +220,14 @@ public class Tutorial_InGame : MonoBehaviour {
                 icon.SetActive(false);
                 if (!__once)
                 {
+                   // tuto = false;
                     box.SetActive(false);
-                    titol.text = "Get close to a player";
-                    getClose.SetActive(true);
+                    //getClose.SetActive(true);
                     Time.timeScale = 1;
                 }
                 feedback.SetActive(false);
+                getClose.SetActive(true);
+                titol.text = "Get close to a player";
             }
             else if (OK == 11)
             {
@@ -223,6 +241,7 @@ public class Tutorial_InGame : MonoBehaviour {
                     p2mat[2] = outlineP2;
                     player2.GetComponentInChildren<Renderer>().materials = p2mat;
                     box.SetActive(false);
+                    //tuto = false;
                     Time.timeScale = 1;
                 }
                 titol.text = "Player Detected";
@@ -246,6 +265,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 titol.text = "Killers";
                 killerEvent.SetActive(true);                   
                 eventText.SetActive(false);
+                goKill3.SetActive(false);
             }
             else if (OK == 14)
             {
@@ -253,11 +273,12 @@ public class Tutorial_InGame : MonoBehaviour {
                 titol.text = "Killers";
                 goKill3.SetActive(true);
                 box.SetActive(true);
+                killerEvent_score.SetActive(false);
             }
             else if (OK == 15)
             {
                 goKill3.SetActive(false);
-                events.SetActive(false);
+                //events.SetActive(false);
                 mapEvent.SetActive(false);
                 //titol.text = "HUD - General";
                 if (!_oNce)
@@ -265,9 +286,12 @@ public class Tutorial_InGame : MonoBehaviour {
                     box.SetActive(false);
                     killer.SetActive(true);
                     Time.timeScale = 1;
+                   // tuto = false;
                 }
                 titol.text = "Killers";
                 killerEvent_score.SetActive(true);
+                events.SetActive(true);
+                speedy.SetActive(false);
                 //feedBackIm.color = feedCol; 
             }
             else if (OK == 16)
@@ -280,12 +304,14 @@ public class Tutorial_InGame : MonoBehaviour {
                 titol.text = "Crazynest";
                 speedy.SetActive(true);
                 box.SetActive(true);
+                npcReduction_half.SetActive(false);
             }
             else if (OK == 17)
             {
                 speedy.SetActive(false);
                 titol.text = "NPC Reduction";
                 npcReduction_half.SetActive(true);
+                npcReduction_convertToObjective.SetActive(false);
             }
             //else if (OK == 18)
             //{
@@ -300,6 +326,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 npcReduction_convertToObjective.SetActive(true);
                 events.SetActive(true);
                 mapEvent.SetActive(true);
+                goKill2.SetActive(false);
             }
             else if (OK == 19)
             {
@@ -320,6 +347,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 //titol.text = "HUD - General";
                 if (!__Once)
                 {
+                    //tuto = false;
                     box.SetActive(false);
                     Time.timeScale = 1;
                 }
@@ -333,7 +361,8 @@ public class Tutorial_InGame : MonoBehaviour {
                 titol.text = "Winner";
                 score3.SetActive(false);
                 winner.SetActive(true);
-                events.SetActive(false);
+                finnish.SetActive(false);
+                //events.SetActive(false);
                 // feedBackIm.color = normalCol;
             }
             else if(OK == 22)
@@ -383,6 +412,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 box.SetActive(true);
                 titol.text = "Player Detected";
                 feedback.SetActive(true);
+               // tuto = true;
             }
         }
         if (OK == 10 && Time.timeScale == 1 && !__once)
@@ -394,6 +424,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 box.SetActive(true);
                 titol.text = "Chase a player";
                 getClose.SetActive(true);
+               // tuto = true;
             }
         }
         if (OK == 15 && Time.timeScale == 1 && !_oNce)
@@ -409,6 +440,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 titol.text = "Killers";
                 killerEvent_score.SetActive(true);
                 events.SetActive(true);
+               // tuto = true;
             }
         }
         if (OK == 20 && Time.timeScale == 1 && !__Once)
@@ -422,6 +454,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 box.SetActive(true);
                 titol.text = "Winning score";
                 score3.SetActive(true);
+                //tuto = true;
             }
         }
     }
@@ -432,4 +465,29 @@ public class Tutorial_InGame : MonoBehaviour {
         return string.Format("{0:0}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
     }
 
+    private void Pausa()
+    {
+        if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")))
+        {
+            if (!paused)
+                soundSource.PlayOneShot(pauseSound);
+            else      
+                soundSource.PlayOneShot(backSound);
+            paused = !paused;
+            pausa.SetActive(paused);
+        }
+        if (Input.GetButtonDown("Main Menu") && paused)
+        {
+            soundSource.PlayOneShot(menuSound);
+            pausa.SetActive(false);
+            Time.timeScale = 1;
+            // Default();
+            paused = false;
+            SceneManager.LoadScene("Menu");
+        }
+        if (paused)
+            Time.timeScale = 0;
+        else if (!paused && !box.activeInHierarchy) Time.timeScale = 1;
+
+    }
 }

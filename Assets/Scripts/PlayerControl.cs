@@ -26,9 +26,9 @@ public class PlayerControl : MonoBehaviour {
     public int scoreGeneral, scoreKills, scoreWins, scoreGeneralRound, scoreKillsRound, scoreWinsRound;
     public bool wannaKill, onFieldView, detected, _sprint, canAct;
 
-    private Image feedback;
-    private List<GameObject> feedbacks;
-    private GameObject[] feedbackList;
+    //private Image feedback;
+    //private List<GameObject> feedbacks;
+    //private GameObject[] feedbackList;
     [SerializeField]
     private Color colorP1, colorP2, colorP3, colorP4, DetectedFeedback;
     private Color neutralColor;
@@ -38,34 +38,36 @@ public class PlayerControl : MonoBehaviour {
     private GameObject[] guards;
     List<GameObject> guardsList = new List<GameObject>();
     NavMeshAgent _navMeshAgent;
+    //public float shakeOffset, shakeDuration = 0.5f, shakeAmount = 0.5f;
+    
 
     void Start ()
     {
         soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
-        this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
-        this.feedbacks = new List<GameObject>();
+        //this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
+        //this.feedbacks = new List<GameObject>();
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
         this.canAct = true;
 
         if (Tutorial_InGame.showIt)
             guards = GameObject.FindGameObjectsWithTag("Guard");
 
-        for (int i = 0; i < feedbackList.Length; i++)
-        {
-            this.feedbacks.Add(feedbackList[i].gameObject);
-        }
+        //for (int i = 0; i < feedbackList.Length; i++)
+        //{
+        //    this.feedbacks.Add(feedbackList[i].gameObject);
+        //}
 
-        this.feedbacks.Sort(SortByName);
+        //this.feedbacks.Sort(SortByName);
 
         scoreGeneral = scoreKills = scoreWins = scoreGeneralRound = scoreKillsRound = scoreWinsRound = 0;
 
         if (this.gameObject.name.Equals("Player 1"))
         {
-            this.feedback = this.feedbacks[0].GetComponent<Image>();
-            this.neutralColor = colorP1;
-            this.feedback.color = this.neutralColor;
+            //this.feedback = this.feedbacks[0].GetComponent<Image>();
+            //this.neutralColor = colorP1;
+            //this.feedback.color = this.neutralColor;
 
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation = "H_RPad_1";
@@ -76,9 +78,9 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 2"))
         {
-            this.feedback = this.feedbacks[1].GetComponent<Image>();
-            this.neutralColor = colorP2;
-            this.feedback.color = this.neutralColor;
+            //this.feedback = this.feedbacks[1].GetComponent<Image>();
+            //this.neutralColor = colorP2;
+            //this.feedback.color = this.neutralColor;
 
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation = "H_RPad_2";
@@ -90,9 +92,9 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 3"))
         {
-            this.feedback = this.feedbacks[2].GetComponent<Image>();
-            this.neutralColor = colorP3;
-            this.feedback.color = this.neutralColor;
+            //this.feedback = this.feedbacks[2].GetComponent<Image>();
+            //this.neutralColor = colorP3;
+            //this.feedback.color = this.neutralColor;
 
             this.AxisMovement = "V_LPad_3";
             this.AxisRotation = "H_RPad_3";
@@ -103,9 +105,9 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 4"))
         {
-            this.feedback = this.feedbacks[3].GetComponent<Image>();
-            this.neutralColor = colorP4;
-            this.feedback.color = this.neutralColor;
+            //this.feedback = this.feedbacks[3].GetComponent<Image>();
+            //this.neutralColor = colorP4;
+            //this.feedback.color = this.neutralColor;
 
             this.AxisMovement = "V_LPad_4";
             this.AxisRotation = "H_RPad_4";
@@ -196,13 +198,12 @@ public class PlayerControl : MonoBehaviour {
         if (this.detected)
         {    
             this.timeFeedback += Time.deltaTime;
-            this.feedback.color = this.DetectedFeedback;
-            if (this.timeFeedback >= 5) this.detected = false;
+            if (this.timeFeedback >= 1) this.detected = false;
         }
         else
         {
             this.timeFeedback = 0;
-            this.feedback.color = this.neutralColor;
+            //this.feedback.color = this.neutralColor;
         }
 
         if (this.cooledDown)
