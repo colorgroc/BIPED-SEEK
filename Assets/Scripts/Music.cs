@@ -8,17 +8,11 @@ public class Music : MonoBehaviour {
     // Use this for initialization
     void Start () {
         music.volume = PlayerPrefs.GetInt("MusicVolume");
+        sounds.volume = PlayerPrefs.GetInt("SoundsVolume");
         if (PlayerPrefs.GetInt("isMute") == 1)
             music.mute = true;
         else if (PlayerPrefs.GetInt("isMute") == 0)
-        {
             music.mute = false;
-        }
-
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

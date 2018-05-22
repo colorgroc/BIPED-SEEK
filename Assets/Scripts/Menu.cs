@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
 {
 
     [SerializeField]
-    private Scrollbar volume;
+    private Scrollbar musicVolume, soundsVolume;
     [SerializeField]
     private AudioSource music, sounds;
     [SerializeField]
@@ -45,6 +45,7 @@ public class Menu : MonoBehaviour
                 PlayerPrefs.DeleteAll();
                 PlayerPrefs.SetInt("FirstGame", 1);
                 PlayerPrefs.SetFloat("MusicVolume", 1f);
+                PlayerPrefs.SetFloat("SoundsVolume", 1f);
                 PlayerPrefs.SetInt("isMute", 0); //sona musica
                 if (Screen.fullScreen)
                     PlayerPrefs.SetInt("ScreenMode", 0); //full screen
@@ -77,8 +78,11 @@ public class Menu : MonoBehaviour
         inMenu = true;
         RandomBackground(menuBg);
 
-        volume.value = PlayerPrefs.GetFloat("MusicVolume");
-        music.volume = volume.value;
+        musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
+        music.volume = musicVolume.value;
+
+        soundsVolume.value = PlayerPrefs.GetFloat("SoundsVolume");
+        sounds.volume = soundsVolume.value;
 
         if (PlayerPrefs.GetInt("Tutorial") == 0)
         {
@@ -282,8 +286,13 @@ public class Menu : MonoBehaviour
     }
     public void SetVolume()
     {
-        music.volume = volume.value;
+        music.volume = musicVolume.value;
         PlayerPrefs.SetFloat("MusicVolume", music.volume);
+    }
+    public void SetVolumeSounds()
+    {
+        sounds.volume = soundsVolume.value;
+        PlayerPrefs.SetFloat("SoundsVolume", sounds.volume);
     }
     public void MuteMusic()
     {
