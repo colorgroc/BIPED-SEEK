@@ -238,6 +238,8 @@ public class Menu : MonoBehaviour
         mainMenu.gameObject.SetActive(true);
         credits.gameObject.SetActive(false);
         options.gameObject.SetActive(false);
+        musicVolume.GetComponentInChildren<Outline>().enabled = false;
+        soundsVolume.GetComponentInChildren<Outline>().enabled = false;
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(lastButon.gameObject);
     }
 
