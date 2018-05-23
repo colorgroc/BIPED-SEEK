@@ -187,7 +187,8 @@ public class PlayerControl : MonoBehaviour {
             if (Input.GetButtonDown(this.killButton))
             {
                 this.wannaKill = true;
-                soundSource.PlayOneShot(punchSound);
+                //soundSource.PlayOneShot(punchSound);
+				RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
             }
             if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
         }

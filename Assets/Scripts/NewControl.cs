@@ -48,6 +48,8 @@ public class NewControl : MonoBehaviour
     private float timeBack = 4;//, timeStartLeft;
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
     Resolution res;
+    public FMOD.Studio.EventInstance backgroudMusic;
+    //private FMOD.Studio.ParameterInstance loop;
 
     public enum Abilities
     {
@@ -81,6 +83,20 @@ public class NewControl : MonoBehaviour
         }
 
         countDown.gameObject.SetActive(true);
+        if(SceneManager.GetActiveScene().name == "Mapa_1")
+        {
+            backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Wind");
+            //RuntimeManager.PlayOneShot("event:/BipedSeek/Ambient/Wind", Vector3.zero);
+            //RuntimeManager.PlayOneShot("event:/BipedSeek/Ambient/Wind", Vector3.zero);
+            backgroudMusic.setParameterValue("Vent Loop", 0.2f);
+            //backgroudMusic.getParameter("Vent Loop", out loop);
+        }
+        else if (SceneManager.GetActiveScene().name == "Mapa_2")
+        {
+            backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Birds");
+            //RuntimeManager.PlayOneShot("event:/BipedSeek/Ambient/Birds", Vector3.zero);
+       
+        }
     }
     void Start()
     {
@@ -182,10 +198,15 @@ public class NewControl : MonoBehaviour
                 //StartGame();
 
             }
-
+            if(Rondes.timesPlayed == Rondes.rondas - 1)
+            {
+                if (timeLeft < 10)
+                    backgroudMusic.setParameterValue("Vent Loop", 1);
+            }
             if (Rondes.timesPlayed == Rondes.rondas)
             {
                 //Winner();
+                backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 objComplete = false;
                 //Ranking.OrdenarRanking();
                 Ranking.Guanyador();
