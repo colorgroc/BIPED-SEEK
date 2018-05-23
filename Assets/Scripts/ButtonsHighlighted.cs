@@ -88,7 +88,8 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
     }
     public void OnDeselect(BaseEventData eventData)
     {
-        soundSource.PlayOneShot(onButtonSound);
+		if(soundSource != null)
+        	soundSource.PlayOneShot(onButtonSound);
         //do your stuff when not selected
         if (isVolume)
         {

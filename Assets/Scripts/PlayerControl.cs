@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using FMODUnity;
 
 public class PlayerControl : MonoBehaviour {
 
@@ -253,7 +254,9 @@ public class PlayerControl : MonoBehaviour {
             {
                 Destroy(gO.gameObject);
             }
-            soundSource.PlayOneShot(killNPCSound);
+            //soundSource.PlayOneShot(killNPCSound);
+			RuntimeManager.PlayOneShot("event:/BipedSeek/NPC/NPC_Death", gO.transform.position);
+			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", this.transform.position);
             Death.AnimDeath(this.gameObject, this.gameObject.transform.position, this.gameObject.transform.rotation);
             this.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
@@ -267,7 +270,8 @@ public class PlayerControl : MonoBehaviour {
             this.scoreKills += 1;
             this.scoreGeneralRound += 5;
             this.scoreKillsRound += 1;
-            soundSource.PlayOneShot(killPlayerSound);
+            //soundSource.PlayOneShot(killPlayerSound);
+			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", gO.transform.position);
             gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
         }
@@ -282,7 +286,8 @@ public class PlayerControl : MonoBehaviour {
                 NewControl.objComplete = true;
             }
             Rondes.timesPlayed++;
-            soundSource.PlayOneShot(killObjectiveSound);
+            //soundSource.PlayOneShot(killObjectiveSound);
+			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", gO.transform.position);
         }
     
         

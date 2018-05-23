@@ -7,14 +7,23 @@ public class HUD_Shake : MonoBehaviour
     private float _timeAtCurrentFrame;
     private float _timeAtLastFrame;
     private GameObject player;
+	public GameObject p;
    // private float _fakeDelta;
     private void Start()
     {
         this._originalPos = this.gameObject.transform.localPosition;
-        if (this.gameObject.name.EndsWith("1")) this.player = GameObject.Find("Player 1");
-        else if (this.gameObject.name.EndsWith("2")) this.player = GameObject.Find("Player 2");
-        else if (this.gameObject.name.EndsWith("3")) this.player = GameObject.Find("Player 3");
-        else if (this.gameObject.name.EndsWith("4")) this.player = GameObject.Find("Player 4");
+		if (!Tutorial_InGame.showIt) {
+			if (this.gameObject.name.EndsWith ("1"))
+				this.player = GameObject.Find ("Player 1");
+			else if (this.gameObject.name.EndsWith ("2"))
+				this.player = GameObject.Find ("Player 2");
+			else if (this.gameObject.name.EndsWith ("3"))
+				this.player = GameObject.Find ("Player 3");
+			else if (this.gameObject.name.EndsWith ("4"))
+				this.player = GameObject.Find ("Player 4");
+		} else { 
+			this.player = p;
+		}
     }
     private void Update()
     {

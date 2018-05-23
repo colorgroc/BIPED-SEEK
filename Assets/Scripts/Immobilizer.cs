@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class Immobilizer : MonoBehaviour {
 
@@ -76,7 +77,8 @@ public class Immobilizer : MonoBehaviour {
     }
     void Congelar()
     {
-        soundSource.PlayOneShot(abilitySound);
+        //soundSource.PlayOneShot(abilitySound);
+		RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Freeze", this.transform.position);
         Inmobilitzar();
         hab = true;
     }
@@ -106,49 +108,32 @@ public class Immobilizer : MonoBehaviour {
 
     void MoveAgain()
     {
-        if (NewControl.guards != null)
-        {
-            foreach (GameObject guard in NewControl.guards)
-            {
-                guard.GetComponent<NPCConnectedPatrol>().freezed = false;
-            }
-        }
-        if (NewControl.players.Count > 0)
-        {
-            foreach (GameObject player in NewControl.players)
-            {
-                player.GetComponent<PlayerControl>().canAct = true;
-            }
-        }
-        if (SceneManager.GetActiveScene().name != "Tutorial")
-        {
-            if (NewControl.killers != null)
-            {
-                foreach (GameObject killer in NewControl.killers)
-                {
-                    killer.GetComponent<NPCConnectedPatrol>().freezed = false;
-                }
-            }
-        } else GameObject.Find("Killer").GetComponent<NPCConnectedPatrol>().freezed = false;
-        //foreach (Collider hit in colliders)
-        //{
-        //    if (hit.gameObject.name != "mixamorig:LeftHand")
-        //    {
-        //        //Debug.Log(hit.gameObject.name);
-        //        //GameObject rb = hit.GetComponent<Rigidbody>().gameObject;
-        //        if (hit.gameObject != null && this.gameObject != hit.gameObject)
-        //        {
-        //            if (hit.gameObject.tag.Equals("Guard") || hit.gameObject.tag.Equals("Killer Guards"))
-        //            {
-        //                hit.GetComponent<NPCConnectedPatrol>().freezed = false;
-        //            }
-        //            else
-        //            {
-        //                hit.GetComponent<PlayerControl>().canAct = true;
-        //            }
-        //        }
-        //    }
-        //}
+		if (SceneManager.GetActiveScene ().name != "Tutorial") {
+			if (NewControl.guards != null) {
+				foreach (GameObject guard in NewControl.guards) {
+					guard.GetComponent<NPCConnectedPatrol> ().freezed = false;
+				}
+			}
+			if (NewControl.players.Count > 0) {
+				foreach (GameObject player in NewControl.players) {
+					player.GetComponent<PlayerControl> ().canAct = true;
+				}
+			}
+			if (NewControl.killers != null) {
+				foreach (GameObject killer in NewControl.killers) {
+					killer.GetComponent<NPCConnectedPatrol> ().freezed = false;
+				}
+			}
+
+		} else {
+			GameObject[] guards = GameObject.FindGameObjectsWithTag ("Guard");
+			foreach (GameObject guard in guards)
+				guard.GetComponent<NPCConnectedPatrol> ().freezed = false;
+			if (GameObject.Find ("Player 2") != null)
+				GameObject.Find ("Player 2").gameObject.GetComponent<PlayerControl> ().canAct = true;
+			if (GameObject.Find ("Killer") != null)
+				GameObject.Find ("Killer").GetComponent<NPCConnectedPatrol> ().freezed = false; 
+		}
     }
 
     void Asignation()

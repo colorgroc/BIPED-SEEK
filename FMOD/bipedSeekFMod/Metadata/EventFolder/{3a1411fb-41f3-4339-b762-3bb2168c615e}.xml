@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="EventFolder" id="{3a1411fb-41f3-4339-b762-3bb2168c615e}">
+        <property name="name">
+            <value>BipedSeek</value>
+        </property>
+        <relationship name="folder">
+            <destination>{e06c9cf2-2d9f-4385-9d01-868307132780}</destination>
+        </relationship>
+    </object>
+</objects>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{7ee30c7c-e985-466f-bd6b-e82ea3706199}">
+        <property name="name">
+            <value>Vent Loop</value>
+        </property>
+        <relationship name="folder">
+            <destination>{2b75e6c9-d897-4558-882d-95ac0e4501a4}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{10e551e0-a02d-4c70-bc24-442079e0961d}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{10e551e0-a02d-4c70-bc24-442079e0961d}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class Smoke : MonoBehaviour {
 
@@ -70,6 +71,7 @@ public class Smoke : MonoBehaviour {
         {
             //TirarSmoke
             this.gameObject.GetComponent<Animator>().SetTrigger("Smoke");
+			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Smoke", this.transform.position);
 
         }
         if (Time.timeScale == 1)
@@ -83,7 +85,7 @@ public class Smoke : MonoBehaviour {
         s = Instantiate(smoke, new Vector3(this.transform.position.x, this.transform.position.y + 3.4f, this.transform.position.z), this.transform.rotation);
         s.GetComponent<ParticleSystem>().Play(false);
         hab = true;
-        soundSource.PlayOneShot(abilitySound);
+        //soundSource.PlayOneShot(abilitySound);
     }
     void IconRespawn()
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class Teleport : MonoBehaviour {
 
@@ -67,7 +68,8 @@ public class Teleport : MonoBehaviour {
         TeleportHability();
         hab = true;
         this.iconAb.GetComponent<Image>().fillAmount = 0;
-        soundSource.PlayOneShot(abilitySound);
+        //soundSource.PlayOneShot(abilitySound);
+		RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Teleport", this.transform.position);
     }
 
     void IconRespawn()

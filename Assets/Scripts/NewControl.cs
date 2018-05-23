@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using FMODUnity;
 
 public class NewControl : MonoBehaviour
 {
@@ -483,10 +484,13 @@ public class NewControl : MonoBehaviour
     {
         if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")) && !Tutorial_InGame.showIt)
         {
-            if (!paused)
-                soundSource.PlayOneShot(pauseSound);
-            else
-                soundSource.PlayOneShot(backSound);
+			if (!paused) {
+				soundSource.PlayOneShot (pauseSound);
+				//RuntimeManager.PlayOneShot("event:/BipedSeek/Menu/Accept", Vector3.zero);
+			} else {
+				soundSource.PlayOneShot (backSound);
+				//RuntimeManager.PlayOneShot("event:/BipedSeek/Menu/Back", Vector3.zero);
+			}
             paused = !paused;
             pausa.SetActive(paused);
         }

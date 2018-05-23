@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class Sprint : MonoBehaviour {
 
@@ -85,7 +86,8 @@ public class Sprint : MonoBehaviour {
 
     void Speed()
     {
-        soundSource.PlayOneShot(abilitySound);
+        //soundSource.PlayOneShot(abilitySound);
+		RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Sprint", this.transform.position);
         this.gameObject.GetComponent<PlayerControl>()._sprint = true;
         this.gameObject.GetComponent<PlayerControl>().SetSpeed(sprint);
         hab = true;

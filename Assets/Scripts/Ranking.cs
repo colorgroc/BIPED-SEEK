@@ -13,20 +13,26 @@ public class Ranking : MonoBehaviour
     //private List<Rank> orderedRank = ranking.OrderByDescending(p => p.player.GetComponent<PlayerControl>().scoreGeneral).ToList();
     public static List<GameObject> orderedRank;
     // Use this for initialization
-
+	void Awake(){
+	
+		rankings = GameObject.FindGameObjectsWithTag("Ranking");
+		foreach (GameObject rank in rankings) {
+			rankList.Add (rank);
+			rank.SetActive(false);
+		}
+		rankList.Sort(SortByName);
+		for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
+		{
+			//if(rankList[i] != null)
+				rankList[i].SetActive(true);
+			//if(GameObject.Find("Player " + i.ToString()) != null)
+			//    ranking.Add(new Rank(GameObject.Find("Player " + i.ToString()), rankList[i]));
+		}
+	}
     void Start()
     {
         //NewControl.players.Where(p => p != null);
-        rankings = GameObject.FindGameObjectsWithTag("Ranking");
-        foreach (GameObject rank in rankings) rankList.Add(rank);
-        rankList.Sort(SortByName);
-        foreach (GameObject rank in rankList) rank.SetActive(false);
-        for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
-        {
-            rankList[i].SetActive(true);
-            //if(GameObject.Find("Player " + i.ToString()) != null)
-            //    ranking.Add(new Rank(GameObject.Find("Player " + i.ToString()), rankList[i]));
-        }
+       
         //OrdenarRanking();
     }
     // Update is called once per frame
