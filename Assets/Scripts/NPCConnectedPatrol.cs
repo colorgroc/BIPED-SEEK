@@ -22,14 +22,14 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	int _waypointsVisited;
 
 	public bool isDead;
-    [SerializeField]
-    private AudioClip killPlayerSound, killObjectiveSound;
-    private AudioSource soundSource;
+    //[SerializeField]
+    //private AudioClip killPlayerSound, killObjectiveSound;
+    //private AudioSource soundSource;
     private Animator anim;
 
     private void Awake()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
         if (_navMeshAgent == null) Debug.LogError("The nav mesh agent component is not attached to " + gameObject.name);

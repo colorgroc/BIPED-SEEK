@@ -34,19 +34,97 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 23488
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 3200
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000003C73F5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000003AEFF5FC
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 000007FECD92E4B0
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 000007FECD92E480
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 000007FECD92E580
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 000007FECD92E640
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000058E1E178
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000032960998
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='MenuSound', format=2, channels=2, frequency=48000, lengthbytes=17376, lengthpcm=16016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.999969.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 23488
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 3200
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000003AEFF5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 000007FECD92E4B0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 000007FECD92E480
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 000007FECD92E580
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 000007FECD92E640
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000058E1E3A8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Acceptar', format=2, channels=1, frequency=48000, lengthbytes=2976, lengthpcm=5898, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.000000.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 23488
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 3200
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000003AEFF5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 000007FECD92E4B0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 000007FECD92E480
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 000007FECD92E580
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 000007FECD92E640
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000058E1E3A8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Enrere', format=2, channels=1, frequency=48000, lengthbytes=2944, lengthpcm=5898, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.000000.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 591232
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 3488
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000003AEFF5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 000007FECD92E4B0
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 000007FECD92E480
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 000007FECD92E580
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 000007FECD92E640
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000058063E18
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Start123GO', format=2, channels=1, frequency=48000, lengthbytes=81216, lengthpcm=161628, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.999969.
+[LOG] SystemI::createSound                     : filename = FMOD\bipedSeekFMod\Build\Desktop/Ambient.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] Thread::initThread                       : Init FMOD nonblocking thread (0). Priority: 1, Stack Size: 81920, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
+[LOG] SystemI::createSound                     : setdata soundi = 00000000588042B8 : node = 000000000F7FE4B0
+[LOG] SystemI::createSound                     : add node to async list : head = 0000000058186568.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000000588042B8
+[LOG] SystemI::createSoundInternal             :     Create name='FMOD\bipedSeekFMod\Build\Desktop/Ambient.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 731680
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 3648
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000F7FE5C8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='So_Ambiental_Ocells', format=2, channels=1, frequency=48000, lengthbytes=257984, lengthpcm=494027, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.010651.
+[LOG] Thread::initThread                       :     Init FMOD file thread. Priority: 1, Stack Size: 16384, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000000588042B8
+[LOG] SoundI::getSubSound                      : sound 00000000588042B8.  Subsound index 0 / 1
+[LOG] SystemI::mixerSuspend                    : Suspending output.
+[LOG] SystemI::mixerResume                     : Resuming output.
+[LOG] SoundI::release                          : So_Ambiental_Ocells (00000000588042B8)
+[LOG] SoundI::release                          :     So_Ambiental_Ocells (00000000581865B8)
+[LOG] SoundI::release                          :     So_Ambiental_Ocells (0000000052D1CDE8)
+[LOG] SoundI::release                          :  (0000000014CB94B8)
+[LOG] SoundI::release                          :     Enrere (0000000057F6BB08)
+[LOG] SoundI::release                          :  (0000000014CB9BE8)
+[LOG] SoundI::release                          :     MenuSound (0000000057F6B628)
 [LOG] SoundI::release                          :  (0000000014CB9EC8)
-[LOG] SoundI::release                          :     MenuSound (0000000057F6B488)
+[LOG] SoundI::release                          :     Acceptar (0000000057F6B148)
+[LOG] SoundI::release                          :  (0000000014CBA038)
+[LOG] SoundI::release                          :     Start123GO (0000000057F6B488)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
@@ -56,4 +134,6 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
 [LOG] SystemI::close                           : Closed.
