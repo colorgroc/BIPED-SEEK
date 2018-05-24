@@ -9,14 +9,14 @@ public class HUD_Shake : MonoBehaviour
     private float _timeAtLastFrame;
     private GameObject player;
 	public GameObject p;
-    public FMOD.Studio.EventInstance backgroudSound;
+    //public FMOD.Studio.EventInstance backgroudSound;
     // private float _fakeDelta;
-    private void Awake()
-    {
-        //backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 1"); --> no va nosepq
-        //backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 2");
-        backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 3");
-    }
+    //private void Awake()
+    //{
+    //    //backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 1"); --> no va nosepq
+    //    //backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 2");
+    //    backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 3");
+    //}
     private void Start()
     {
         this._originalPos = this.gameObject.transform.localPosition;
@@ -49,12 +49,15 @@ public class HUD_Shake : MonoBehaviour
         while (duration)
         {
             transform.localPosition = _originalPos + Random.insideUnitSphere * amount;
-            backgroudSound.start();
+            //RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Vibration 1", Vector3.zero);
+            //RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Vibration 2", Vector3.zero);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Vibration 3",Vector3.zero);
+            //backgroudSound.start();
             yield return null;
         }
 
         transform.localPosition = _originalPos;
-        backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
 
