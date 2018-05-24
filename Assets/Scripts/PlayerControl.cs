@@ -161,7 +161,8 @@ public class PlayerControl : MonoBehaviour {
             if (Input.GetButtonDown(this.killButton))
             {
                 this.wannaKill = true;
-                soundSource.PlayOneShot(punchSound);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
+                //soundSource.PlayOneShot(punchSound);
             }
             if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
 
@@ -256,8 +257,8 @@ public class PlayerControl : MonoBehaviour {
                 Destroy(gO.gameObject);
             }
             //soundSource.PlayOneShot(killNPCSound);
-			RuntimeManager.PlayOneShot("event:/BipedSeek/NPC/NPC_Death", gO.transform.position);
-			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", this.transform.position);
+			RuntimeManager.PlayOneShot("event:/BipedSeek/NPC/Death", gO.transform.position);
+			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Death", this.transform.position);
             Death.AnimDeath(this.gameObject, this.gameObject.transform.position, this.gameObject.transform.rotation);
             this.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
@@ -272,7 +273,7 @@ public class PlayerControl : MonoBehaviour {
             this.scoreGeneralRound += 5;
             this.scoreKillsRound += 1;
             //soundSource.PlayOneShot(killPlayerSound);
-			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", gO.transform.position);
+			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Death", gO.transform.position);
             gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
         }
@@ -288,7 +289,8 @@ public class PlayerControl : MonoBehaviour {
             }
             Rondes.timesPlayed++;
             //soundSource.PlayOneShot(killObjectiveSound);
-			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", gO.transform.position);
+
+			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", gO.transform.position);
         }
     
         

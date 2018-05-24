@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using FMODUnity;
 
 public class Menu : MonoBehaviour
 {
 
     [SerializeField]
     private Scrollbar musicVolume, soundsVolume;
-    [SerializeField]
-    private AudioSource music, sounds;
-    [SerializeField]
-    public AudioClip onButton, clickButton, backButton;
+    //[SerializeField]
+    //private AudioSource music, sounds;
+    //[SerializeField]
+    //public AudioClip onButton, clickButton, backButton;
     [SerializeField]
     private Canvas mainMenu, options, credits;
     private bool inMenu;
@@ -34,6 +34,9 @@ public class Menu : MonoBehaviour
     private Sprite bg1, bg2, bg3, bg4, bg5;
     GameObject lastSelect;
     Resolution res;
+    FMOD.Studio.Bus Music;
+    FMOD.Studio.Bus Master;
+    FMOD.Studio.Bus Sounds;
 
     private void Awake()
     {
@@ -57,8 +60,11 @@ public class Menu : MonoBehaviour
             //else Tutorial.showIt = false;
         }
         //else Tutorial.showIt = true;
-        sounds.GetComponent<AudioSource>().enabled = false;
-        sounds.volume = 1;
+        Music = RuntimeManager.GetBus("bus:/Master/Music");
+        Sounds = RuntimeManager.GetBus("bus:/Master/Sounds");
+        Master = RuntimeManager.GetBus("bus:/Master");
+        //sounds.GetComponent<AudioSource>().enabled = false;
+       // sounds.volume = 1;
     }
 
     void Start()
@@ -79,10 +85,12 @@ public class Menu : MonoBehaviour
         RandomBackground(menuBg);
 
         musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
-        music.volume = musicVolume.value;
+        Music.setVolume(musicVolume.value);
+        //music.volume = musicVolume.value;
 
         soundsVolume.value = PlayerPrefs.GetFloat("SoundsVolume");
-        sounds.volume = soundsVolume.value;
+        Sounds.setVolume(soundsVolume.value);
+        //sounds.volume = soundsVolume.value;
 
         if (PlayerPrefs.GetInt("Tutorial") == 0)
         {
@@ -106,10 +114,9 @@ public class Menu : MonoBehaviour
             SoundMusic();
         }
         else MuteMusic();
-        sounds.mute = false;
 
         NewControl.finalWinner = null;
-        sounds.GetComponent<AudioSource>().enabled = true;
+        //sounds.GetComponent<AudioSource>().enabled = true;
     }
 
     void Update()
@@ -144,14 +151,16 @@ public class Menu : MonoBehaviour
     public void GoToPlay()
     {
         Tutorial_InGame.showIt = false;
-        sounds.PlayOneShot(clickButton);
+        //sounds.PlayOneShot(clickButton);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
         Default();
         SceneManager.LoadScene("Seleccion Personajes");
 
     }
     public void Exit()
     {
-        sounds.PlayOneShot(clickButton);
+        //sounds.PlayOneShot(clickButton);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
         Application.Quit();
     }
 
@@ -177,7 +186,8 @@ public class Menu : MonoBehaviour
     public void ShowOptions()
     {
         RandomBackground(optionsBg);
-        sounds.PlayOneShot(clickButton);
+        //sounds.PlayOneShot(clickButton);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
         inMenu = false;
         mainMenu.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
@@ -217,7 +227,8 @@ public class Menu : MonoBehaviour
     public void ShowCredits()
     {
         RandomBackground(creditsBg);
-        sounds.PlayOneShot(clickButton);
+        //sounds.PlayOneShot(clickButton);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
         inMenu = false;
         mainMenu.gameObject.SetActive(false);
         credits.gameObject.SetActive(true);
@@ -228,12 +239,14 @@ public class Menu : MonoBehaviour
     public void GoToTutorial()
     {
         Tutorial_InGame.showIt = true;
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
         SceneManager.LoadScene("Tutorial");
     }
     public void BackToMenu()
     {
         RandomBackground(menuBg);
-        sounds.PlayOneShot(backButton, 4.0F);
+        //sounds.PlayOneShot(backButton, 4.0F);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
         inMenu = true;
         mainMenu.gameObject.SetActive(true);
         credits.gameObject.SetActive(false);
@@ -248,14 +261,16 @@ public class Menu : MonoBehaviour
         if (tutorialOptions.GetComponent<Dropdown>().value == 0)
         {
             tutorialMenu.SetActive(true);
-            sounds.PlayOneShot(onButton);
+            //sounds.PlayOneShot(onButton);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             PlayerPrefs.SetInt("Tutorial", 0);
             Tutorial_InGame.showIt = true;
         }
         else if (tutorialOptions.GetComponent<Dropdown>().value == 1)
         {
             tutorialMenu.SetActive(false);
-            sounds.PlayOneShot(onButton);
+            //sounds.PlayOneShot(onButton);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             PlayerPrefs.SetInt("Tutorial", 1);
             Tutorial_InGame.showIt = false;
         }
@@ -263,7 +278,9 @@ public class Menu : MonoBehaviour
     public void ScreenValue()
     {
         if (fullScreen.GetComponent<Dropdown>().value == 0)
+        {
             FullScreen();
+        }
         else if (fullScreen.GetComponent<Dropdown>().value == 1)
             WindowScreen();
     }
@@ -276,241 +293,46 @@ public class Menu : MonoBehaviour
     }
     public void FullScreen()
     {
-        sounds.PlayOneShot(onButton);
+        //sounds.PlayOneShot(onButton);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
         Screen.fullScreen = true;
         PlayerPrefs.SetInt("ScreenMode", 0);
     }
     public void WindowScreen()
     {
-        sounds.PlayOneShot(onButton);
+        //sounds.PlayOneShot(onButton);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
         Screen.fullScreen = false;
         PlayerPrefs.SetInt("ScreenMode", 1);
     }
     public void SetVolume()
     {
-        music.volume = musicVolume.value;
-        PlayerPrefs.SetFloat("MusicVolume", music.volume);
+        Music.setVolume(musicVolume.value);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume.value);
     }
     public void SetVolumeSounds()
     {
-        sounds.volume = soundsVolume.value;
-        PlayerPrefs.SetFloat("SoundsVolume", sounds.volume);
+        //sounds.volume = soundsVolume.value;
+        Sounds.setVolume(soundsVolume.value);
+        PlayerPrefs.SetFloat("SoundsVolume", soundsVolume.value);
     }
     public void MuteMusic()
     {
-        sounds.PlayOneShot(onButton);
-        sounds.mute = true;
-        music.mute = true;
+        //sounds.PlayOneShot(onButton);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+        Master.setMute(true);
+        //sounds.mute = true;
+        //music.mute = true;
         PlayerPrefs.SetInt("isMute", 1);
     }
     public void SoundMusic()
     {
-        sounds.PlayOneShot(onButton);
-        sounds.mute = false;
-        music.mute = false;
+        //sounds.PlayOneShot(onButton);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+        Master.setMute(false);
+        //sounds.mute = false;
+        //music.mute = false;
         PlayerPrefs.SetInt("isMute", 0);
     }
-
-    /*public void MostrarControles_p1()
-    {
-        GameObject.Find("NamePlayer").GetComponent<Text>().text = "Player 1";
-        mc_p1.SetActive(true);
-        mc_p2.SetActive(false);
-        mc_p3.SetActive(false);
-        mc_p4.SetActive(false);
-    }
-    public void MostrarControles_p2()
-    {
-        GameObject.Find("NamePlayer").GetComponent<Text>().text = "Player 2";
-        mc_p1.SetActive(false);
-        mc_p2.SetActive(true);
-        mc_p3.SetActive(false);
-        mc_p4.SetActive(false);
-    }
-    public void MostrarControles_p3()
-    {
-        GameObject.Find("NamePlayer").GetComponent<Text>().text = "Player 3";
-        mc_p1.SetActive(false);
-        mc_p2.SetActive(false);
-        mc_p3.SetActive(true);
-        mc_p4.SetActive(false);
-    }
-    public void MostrarControles_p4()
-    {
-        GameObject.Find("NamePlayer").GetComponent<Text>().text = "Player 4";
-        mc_p1.SetActive(false);
-        mc_p2.SetActive(false);
-        mc_p3.SetActive(false);
-        mc_p4.SetActive(true);
-    }*/
-    /*
-    public void ChangeControl_Movement()
-    {
-        int num = 0;
-        if (mc_p1.activeInHierarchy)
-        {
-            string button = "";
-            button = Axis(mc_p1.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Movement_P1", button + "1");
-        }
-        else if (mc_p2.activeInHierarchy)
-        {
-            string button = "";
-            button = Axis(mc_p2.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Movement_P2", button + "2");
-        }
-        else if (mc_p3.activeInHierarchy)
-        {
-            string button = "";
-            button = Axis(mc_p3.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Movement_P3", button + "3");
-        }
-        else if (mc_p4.activeInHierarchy)
-        {
-            string button = "";
-            button = Axis(mc_p4.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Movement_P4", button + "4");
-        }
-    }
-
-    public void ChangeControl_Rotation()
-    {
-        int num = 1;
-        if (mc_p1.activeInHierarchy)
-        {
-            string button = "";
-            button = Axis(mc_p1.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Rotation_P1", button + "1");
-        }
-        else if (mc_p2.activeInHierarchy)
-        {
-            string button = "";
-            button = Axis(mc_p2.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Rotation_P2", button + "2");
-        }
-        else if (mc_p3.activeInHierarchy)
-        {
-            string button = "";
-            button = Axis(mc_p3.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Rotation_P3", button + "3");
-        }
-        else if (mc_p4.activeInHierarchy)
-        {
-            string button = "";
-            button = Axis(mc_p4.GetComponentsInChildren<Dropdown>(), num);
-            PlayerPrefs.SetString("Rotation_P4", button + "4");
-        }
-    }
-    private string Axis(Dropdown[] dropList, int num)
-    {
-        string button = "";
-        if (dropList[num].value == 0) button = "H_LPad_";
-        else if (dropList[num].value == 1) button = "H_RPad_";
-        else if (dropList[num].value == 2) button = "H_Arrows_";
-        return button;
-    }
-    private string Button(Dropdown[] dropList, int num)
-    {
-        string button = "";
-        if (dropList[num].value == 0) button = "A_";
-        else if (dropList[num].value == 1) button = "B_";
-        else if (dropList[num].value == 2) button = "Y_";
-        else if (dropList[num].value == 3) button = "X_";
-        else if (dropList[num].value == 4) button = "R_Bumper_";
-        else if (dropList[num].value == 5) button = "R_Trigger_";
-        else if (dropList[num].value == 6) button = "L_Bumper_";
-        else if (dropList[num].value == 7) button = "L_Trigger_";
-        return button;
-    }
-   
-      public void ChangeControl_Kill()
-       {
-           int num = 2;
-           if (mc_p1.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Kill_P1", button + "1");
-
-           }
-           else if (mc_p2.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Kill_P2", button + "2");
-           }
-           else if (mc_p3.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Kill_P3", button + "3");
-           }
-           else if (mc_p4.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Kill_P4", button + "4");
-           }
-       }
-
-       public void ChangeControl_Hab1()
-       {
-           int num = 3;
-           if (mc_p1.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Hab1_P1", button + "1");
-           }
-           else if (mc_p2.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Hab1_P2", button + "2");
-           }
-           else if (mc_p3.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Hab1_P3", button + "3");
-           }
-           else if (mc_p4.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Hab1_P4", button + "4");
-           }
-       }
-
-       public void ChangeControl_Hab2()
-       {
-           int num = 4;
-           if (mc_p1.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p1.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Hab2_P1", button + "1");
-           }
-           else if (mc_p2.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p2.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Hab2_P2", button + "2");
-           }
-           else if (mc_p3.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p3.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Hab2_P3", button + "3");
-           }
-           else if (mc_p4.activeInHierarchy)
-           {
-               string button = "";
-               button = Button(mc_p4.GetComponentsInChildren<Dropdown>(), num);
-               PlayerPrefs.SetString("Hab2_P4", button + "4");
-           }
-       }*/
-
-
 
 }

@@ -16,12 +16,12 @@ public class Sprint : MonoBehaviour {
     [SerializeField]
     private float sprint = 1.7f;
     public Image iconAb;
-    private AudioSource soundSource;
+    //private AudioSource soundSource;
 
     // Use this for initialization
     void Start()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         used = false;
         cooldown = 0;
         timeAb = timeAbility;

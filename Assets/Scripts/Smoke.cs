@@ -15,13 +15,13 @@ public class Smoke : MonoBehaviour {
     GameObject smoke;
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
-    private AudioSource soundSource;
+    //private AudioSource soundSource;
     GameObject s;
 
     // Use this for initialization
     private void Start()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         smoke = (GameObject)Resources.Load("Prefabs/Smoke");
         hab = used = false;
         cooldown = 0;

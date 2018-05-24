@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class Invisibility : MonoBehaviour {
 
@@ -13,12 +14,12 @@ public class Invisibility : MonoBehaviour {
     private AudioClip abilitySound;
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
-    private AudioSource soundSource;
+    //private AudioSource soundSource;
 
     // Use this for initialization
     void Start()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         used = false;
         cooldown = 0;
         timeAb = timeAbility;
@@ -73,7 +74,8 @@ public class Invisibility : MonoBehaviour {
 
     void Invisible()
     {
-        soundSource.PlayOneShot(abilitySound);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Invisible", this.transform.position);
+        //soundSource.PlayOneShot(abilitySound);
         this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
         hab = true;
     }

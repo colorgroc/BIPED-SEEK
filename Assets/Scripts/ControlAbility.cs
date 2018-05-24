@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class ControlAbility : MonoBehaviour {
 
@@ -17,12 +18,12 @@ public class ControlAbility : MonoBehaviour {
     List<GameObject> guardsList = new List<GameObject>();
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
-    private AudioSource soundSource;
+    //private AudioSource soundSource;
 
     // Use this for initialization
     void Start()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         hab = false;
         cooldown = 0;
         timeAb = timeAbility;
@@ -87,7 +88,8 @@ public class ControlAbility : MonoBehaviour {
     }
     void Control()
     {
-        soundSource.PlayOneShot(abilitySound);
+        //soundSource.PlayOneShot(abilitySound);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Control", this.transform.position);
         ControlChange();
         hab = true;
     }

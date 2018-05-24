@@ -17,9 +17,9 @@ public class NewControl : MonoBehaviour
     public static GameObject parcialWinner;
     public static GameObject finalWinner;
 
-    [SerializeField]
-    private AudioClip pauseSound, backSound, menuSound, startNumbers;
-    private AudioSource soundSource;
+    //[SerializeField]
+    //private AudioClip pauseSound, backSound, menuSound, startNumbers;
+    //private AudioSource soundSource;
 
     public static List<GameObject> players;// = new List<GameObject>();
     private List<GameObject> listPlayers;// = new List<GameObject>();
@@ -48,7 +48,7 @@ public class NewControl : MonoBehaviour
     private float timeBack = 4;//, timeStartLeft;
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
     Resolution res;
-    public FMOD.Studio.EventInstance backgroudMusic;
+    public FMOD.Studio.EventInstance backgroudSound;
     //private FMOD.Studio.ParameterInstance loop;
 
     public enum Abilities
@@ -83,24 +83,21 @@ public class NewControl : MonoBehaviour
         }
 
         countDown.gameObject.SetActive(true);
-        if(SceneManager.GetActiveScene().name == "Mapa_1")
+
+        if (SceneManager.GetActiveScene().name == "Mapa_1")
         {
-            backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Wind");
-            //RuntimeManager.PlayOneShot("event:/BipedSeek/Ambient/Wind", Vector3.zero);
-            //RuntimeManager.PlayOneShot("event:/BipedSeek/Ambient/Wind", Vector3.zero);
-            backgroudMusic.setParameterValue("Vent Loop", 0.2f);
-            //backgroudMusic.getParameter("Vent Loop", out loop);
+            backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Wind");
+            backgroudSound.setParameterValue("Vent Loop", 0.2f);
         }
         else if (SceneManager.GetActiveScene().name == "Mapa_2")
         {
-            backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Birds");
-            //RuntimeManager.PlayOneShot("event:/BipedSeek/Ambient/Birds", Vector3.zero);
-       
+            backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Birds");
         }
+
     }
     void Start()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         Time.timeScale = 0;
         //control HZ monitors
         res = Screen.currentResolution;
@@ -111,7 +108,9 @@ public class NewControl : MonoBehaviour
         print(QualitySettings.vSyncCount);  
 
         StartGame();
-        soundSource.PlayOneShot(startNumbers);
+        //soundSource.PlayOneShot(startNumbers);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/CountDown", Vector3.zero);
+
     }
     public void StartGame()
     {
@@ -142,6 +141,7 @@ public class NewControl : MonoBehaviour
             {
                 countDown.color = gold_Color;
                 countDown.text = "GO!";
+                
             }
             else
                 countDown.text = ((int)timeBack).ToString();
@@ -150,6 +150,7 @@ public class NewControl : MonoBehaviour
                 countDown.gameObject.SetActive(false);
                 Time.timeScale = 1;
                 startGame = true;
+                backgroudSound.start();
             }
         }
         else
@@ -201,12 +202,12 @@ public class NewControl : MonoBehaviour
             if(Rondes.timesPlayed == Rondes.rondas - 1)
             {
                 if (timeLeft < 10)
-                    backgroudMusic.setParameterValue("Vent Loop", 1);
+                    backgroudSound.setParameterValue("Vent Loop", 1);
             }
             if (Rondes.timesPlayed == Rondes.rondas)
             {
                 //Winner();
-                backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 objComplete = false;
                 //Ranking.OrdenarRanking();
                 Ranking.Guanyador();
@@ -506,18 +507,21 @@ public class NewControl : MonoBehaviour
         if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")) && !Tutorial_InGame.showIt)
         {
 			if (!paused) {
-				soundSource.PlayOneShot (pauseSound);
-				//RuntimeManager.PlayOneShot("event:/BipedSeek/Menu/Accept", Vector3.zero);
+				//soundSource.PlayOneShot (pauseSound);    
+				RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
 			} else {
-				soundSource.PlayOneShot (backSound);
-				//RuntimeManager.PlayOneShot("event:/BipedSeek/Menu/Back", Vector3.zero);
+				//soundSource.PlayOneShot (backSound);
+				RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
 			}
             paused = !paused;
+            backgroudSound.setPaused(paused);
             pausa.SetActive(paused);
         }
         if (Input.GetButtonDown("Main Menu") && paused && !Tutorial_InGame.showIt)
         {
-            soundSource.PlayOneShot(menuSound);
+            //soundSource.PlayOneShot(menuSound);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+            backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             pausa.SetActive(false);
             Time.timeScale = 1;
             // Default();

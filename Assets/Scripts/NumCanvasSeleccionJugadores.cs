@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using FMODUnity;
 
 public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
-    [SerializeField]
-    private AudioClip onButton, clickButton, backButton;
-    [SerializeField]
-    private AudioSource music, sounds;
+    //[SerializeField]
+    //private AudioClip onButton, clickButton, backButton;
+    //[SerializeField]
+    //private AudioSource music, sounds;
     [SerializeField]
     private Text restriccion;
 
@@ -35,9 +36,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private GameObject[] characterTypes, munyequitos;
 
     void Start() {
-
         //Music
-        music.volume = PlayerPrefs.GetFloat("MusicVolume");
+        //music.volume = PlayerPrefs.GetFloat("MusicVolume");
 
         //inicialitzar variables
         GameObject[] jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
@@ -200,7 +200,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("Submit"))
             {
-                if (!ready_P1) sounds.PlayOneShot(clickButton);
+                if (!ready_P1)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                }
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
@@ -210,7 +214,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("Cancel") && ready_P1)
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
@@ -219,8 +224,9 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 cancel_1 = true;
             }
             else if(Input.GetButtonDown("Cancel") && ((!cancel_1 && !ready_P1) || (cancel_1))){
-                sounds.PlayOneShot(backButton, 4.0F);
-                 SceneManager.LoadScene("Menu");
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                SceneManager.LoadScene("Menu");
             }
 
         }
@@ -251,7 +257,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
-                if (!ready_P1) sounds.PlayOneShot(clickButton);
+                if (!ready_P1)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                }
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1+1);
@@ -261,7 +271,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
@@ -271,7 +282,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
             //-------------------------Moviments player 2-----------------------------------
@@ -299,7 +311,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
-                if (!ready_P2) sounds.PlayOneShot(clickButton);
+                if (!ready_P2)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                }
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
                 PlayerPrefs.SetInt("characterPlayer_2", select_2+ 1);
@@ -309,7 +325,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_2"))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
@@ -319,7 +336,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                 Debug.Log("ei");
                 SceneManager.LoadScene("Menu");
             }
@@ -353,7 +371,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
-                if (!ready_P1) sounds.PlayOneShot(clickButton);
+                if (!ready_P1)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                }
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
@@ -363,7 +385,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
@@ -373,7 +396,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -402,7 +426,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
-                if (!ready_P2) sounds.PlayOneShot(clickButton);
+                if (!ready_P2)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                }
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
                 PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
@@ -412,7 +440,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_2") && ready_P2)
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
@@ -422,7 +451,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -451,7 +481,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_3"))
             {
-                if (!ready_P3) sounds.PlayOneShot(clickButton);
+                if (!ready_P3)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                }
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
                 PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
@@ -461,7 +495,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_3") && ready_P3)
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_3", 0);
@@ -471,7 +506,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
         }
@@ -502,7 +538,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
-                if (!ready_P1) sounds.PlayOneShot(clickButton);
+                if (!ready_P1)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                }
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
                 PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
@@ -512,7 +552,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_1") && ready_P1)
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_1", 0);
@@ -522,7 +563,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -551,7 +593,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
-                if (!ready_P2) sounds.PlayOneShot(clickButton);
+                if (!ready_P2)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                }
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
                 PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
@@ -561,7 +607,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_2") && ready_P2)
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_2", 0);
@@ -571,7 +618,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -600,7 +648,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_3"))
             {
-                if (!ready_P3) sounds.PlayOneShot(clickButton);
+                if (!ready_P3)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                }
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
                 PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
@@ -610,7 +662,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_3") && ready_P3)
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_3", 0);
@@ -620,7 +673,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -649,7 +703,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_4"))
             {
-                if(!ready_P4)sounds.PlayOneShot(clickButton);
+                if (!ready_P4)
+                {
+                    //sounds.PlayOneShot(clickButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                }
                 characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
                 characterTypes_P4[select_4].GetComponent<Outline>().effectColor = yellow_color;
                 PlayerPrefs.SetInt("characterPlayer_4", select_4 + 1);
@@ -659,7 +717,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("B_4") && ready_P4)
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = default_outline;
                 characterTypes_P4[select_4].GetComponent<Outline>().effectColor = default_Color;
                 PlayerPrefs.SetInt("characterPlayer_4", 0);
@@ -669,7 +728,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if (Input.GetButtonDown("B_4") && ((!cancel_4 && !ready_P4) || (cancel_4)))
             {
-                sounds.PlayOneShot(backButton, 4.0F);
+                //sounds.PlayOneShot(backButton, 4.0F);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
         }
@@ -684,12 +744,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P1[select_1].gameObject.SetActive(false);
                 if (select_1 == 0)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_1 = 1;
                 }
                 else if (select_1 == 2)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_1 = 3;
                 }
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
@@ -700,12 +762,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P2[select_2].gameObject.SetActive(false);
                 if (select_2 == 0)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_2 = 1;
                 }
                 else if (select_2 == 2)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_2 = 3;
                 }
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
@@ -716,12 +780,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P3[select_3].gameObject.SetActive(false);
                 if (select_3 == 0)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_3 = 1;
                 }
                 else if (select_3 == 2)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_3 = 3;
                 }
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
@@ -732,12 +798,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P4[select_4].gameObject.SetActive(false);
                 if (select_4 == 0)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_4 = 1;
                 }
                 else if (select_4 == 2)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_4 = 3;
                 }
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
@@ -754,12 +822,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P1[select_1].gameObject.SetActive(false);
                 if (select_1 == 1)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_1 = 0;
                 }
                 else if (select_1 == 3)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_1 = 2;
                 }
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
@@ -770,12 +840,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P2[select_2].gameObject.SetActive(false);
                 if (select_2 == 1)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_2 = 0;
                 }
                 else if (select_2 == 3)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_2 = 2;
                 }
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
@@ -786,12 +858,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P3[select_3].gameObject.SetActive(false);
                 if (select_3 == 1)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_3 = 0;
                 }
                 else if (select_3 == 3)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_3 = 2;
                 }
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
@@ -802,12 +876,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P4[select_4].gameObject.SetActive(false);
                 if (select_4 == 1)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_4 = 0;
                 }
                 else if (select_4 == 3)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_4 = 2;
                 }
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
@@ -824,12 +900,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P1[select_1].gameObject.SetActive(false);
                 if (select_1 == 0)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_1 = 2;
                 }
                 else if (select_1 == 1)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_1 = 3;
                 }
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
@@ -840,12 +918,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P2[select_2].gameObject.SetActive(false);
                 if (select_2 == 0)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_2 = 2;
                 }
                 else if (select_2 == 1)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_2 = 3;
                 }
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
@@ -856,12 +936,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P3[select_3].gameObject.SetActive(false);
                 if (select_3 == 0)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_3 = 2;
                 }
                 else if (select_3 == 1)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_3 = 3;
                 }
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
@@ -872,12 +954,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P4[select_4].gameObject.SetActive(false);
                 if (select_4 == 0)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_4 = 2;
                 }
                 else if (select_4 == 1)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_4 = 3;
                 }
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;
@@ -894,12 +978,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P1[select_1].gameObject.SetActive(false);
                 if (select_1 == 2)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_1 = 0;
                 }
                 else if (select_1 == 3)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_1 = 1;
                 }
                 characterTypes_P1[select_1].GetComponent<Outline>().enabled = true;
@@ -910,12 +996,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P2[select_2].gameObject.SetActive(false);
                 if (select_2 == 2)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_2 = 0;
                 }
                 else if (select_2 == 3)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_2 = 1;
                 }
                 characterTypes_P2[select_2].GetComponent<Outline>().enabled = true;
@@ -926,12 +1014,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P3[select_3].gameObject.SetActive(false);
                 if (select_3 == 2)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_3 = 0;
                 }
                 else if (select_3 == 3)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_3 = 1;
                 }
                 characterTypes_P3[select_3].GetComponent<Outline>().enabled = true;
@@ -942,12 +1032,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 munyequito_P4[select_4].gameObject.SetActive(false);
                 if (select_4 == 2)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_4 = 0;
                 }
                 else if (select_4 == 3)
                 {
-                    sounds.PlayOneShot(onButton);
+                    //sounds.PlayOneShot(onButton);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
                     select_4 = 1;
                 }
                 characterTypes_P4[select_4].GetComponent<Outline>().enabled = true;

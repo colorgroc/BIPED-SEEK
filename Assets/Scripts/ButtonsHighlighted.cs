@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using FMODUnity;
 
 public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
 {
@@ -16,13 +17,13 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
     float time;
     //private float duration = 1f;
     private bool change = true;
-    [SerializeField]
-    private AudioClip onButtonSound;
-    private AudioSource soundSource;
+    //[SerializeField]
+    //private AudioClip onButtonSound;
+    //private AudioSource soundSource;
 
     private void Start()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         initialScale = this.transform.localScale;
         time = 0;
         x = initialScale.x;
@@ -88,8 +89,9 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
     }
     public void OnDeselect(BaseEventData eventData)
     {
-		if(soundSource != null)
-        	soundSource.PlayOneShot(onButtonSound);
+		//if(soundSource != null)
+        	//soundSource.PlayOneShot(onButtonSound);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
         //do your stuff when not selected
         if (isVolume)
         {

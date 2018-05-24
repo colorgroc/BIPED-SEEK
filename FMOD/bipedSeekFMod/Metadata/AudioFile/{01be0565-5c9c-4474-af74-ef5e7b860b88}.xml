@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{01be0565-5c9c-4474-af74-ef5e7b860b88}">
+        <property name="assetPath">
+            <value>BipedSeek/NPC/MortNPC.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>0.51439583333333339</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{2f28d069-e4c2-4542-9611-916533ef0842}</destination>
+        </relationship>
+    </object>
+</objects>

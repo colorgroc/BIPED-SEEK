@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class WinnerHUD : MonoBehaviour {
 
@@ -10,17 +11,18 @@ public class WinnerHUD : MonoBehaviour {
     public Image cup, animal;
     [SerializeField]
     private Sprite cup1, cup2, cup3, cup4, animal1, animal2, animal3, animal4;
-    [SerializeField]
-    private AudioClip winnerSound;
-    private AudioSource soundSource;
+    //[SerializeField]
+    //private AudioClip winnerSound;
+    //private AudioSource soundSource;
 
     private void Awake()
     {
     }
     void Start () {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         //NewControl.Winner();
-        soundSource.PlayOneShot(winnerSound);
+        //soundSource.PlayOneShot(winnerSound);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Winner", Vector3.zero);
         //asignacio copa i animal del guanyador
         if (NewControl.finalWinner != null)
         {
@@ -122,8 +124,8 @@ public class WinnerHUD : MonoBehaviour {
         if (Input.GetButtonDown("Main Menu")) {
 			this.gameObject.SetActive (false);
 			Time.timeScale = 1;
- 
-			SceneManager.LoadScene ("Menu");
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+            SceneManager.LoadScene ("Menu");
 
 		} else Time.timeScale = 0;
         

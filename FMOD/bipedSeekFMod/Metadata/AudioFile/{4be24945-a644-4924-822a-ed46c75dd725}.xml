@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{4be24945-a644-4924-822a-ed46c75dd725}">
+        <property name="assetPath">
+            <value>BipedSeek/Player/Abilities/Invisible.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>2</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{2f28d069-e4c2-4542-9611-916533ef0842}</destination>
+        </relationship>
+    </object>
+</objects>

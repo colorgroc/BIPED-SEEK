@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using FMODUnity;
 
 public class RankingCanvas : MonoBehaviour {
 
@@ -45,6 +46,7 @@ public class RankingCanvas : MonoBehaviour {
 
         if (Input.GetButtonDown("Submit"))
         {
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
             this.gameObject.SetActive(false);  
             if (Rondes.timesPlayed == Rondes.rondas)
                 GameObject.Find("Control").GetComponent<NewControl>().finalWinnerCanvas.SetActive(true);

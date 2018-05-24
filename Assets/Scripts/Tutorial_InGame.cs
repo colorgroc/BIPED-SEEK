@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
-    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, killer, HUD, box, goKill, goKill2, goKill3, guards, score2, score3, winner, finnish, events, mapEvent, getClose, eventText, killerEvent, killerEvent_score, npcReduction_half, speedy, npcReduction_convertToObjective, pausa;//, npcReduction_halfNonObjective;
+    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, killer, HUD, box, goKill, goKill2, goKill3, guards, score2, score3, winner, finnish, events, mapEvent, getClose, eventText, killerEvent, killerEvent_score, npcReduction_half, speedy, npcReduction_convertToObjective, pausa, back;//, npcReduction_halfNonObjective;
     public Text titol;
     bool once, _once, _Once, __Once, __once, _oNce, timed3, timed4, timed5, paused;
     //public GameObject player1, player2, HUD, box, objectiveCanvas;
@@ -28,9 +29,9 @@ public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
     private Sprite freeze, control, invisible, teleport, sprint, smoke;
 
-    [SerializeField]
-    private AudioClip pauseSound, backSound, menuSound;
-    private AudioSource soundSource;
+    //[SerializeField]
+    //private AudioClip pauseSound, backSound, menuSound;
+    //private AudioSource soundSource;
     // Use this for initialization
     private void Awake()
     {
@@ -62,6 +63,7 @@ public class Tutorial_InGame : MonoBehaviour {
         killer.SetActive(false);
         eventText.SetActive(true);
         killerEvent.SetActive(false);
+        back.SetActive(false);
         killerEvent_score.SetActive(false);
         npcReduction_convertToObjective.SetActive(false);
         npcReduction_half.SetActive(false);
@@ -72,7 +74,7 @@ public class Tutorial_InGame : MonoBehaviour {
         //RandomAbilities();
         PlayerPrefs.SetInt("Ability 1", (int)NewControl.Abilities.SMOKE);
         PlayerPrefs.SetInt("Ability 2", (int)NewControl.Abilities.IMMOBILIZER);
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
 
         //feedBackIm.color = normalCol;
         //objective = player2;
@@ -106,16 +108,25 @@ public class Tutorial_InGame : MonoBehaviour {
         if (Input.GetButtonDown("Submit") && Time.timeScale == 0 && !paused)
         {
             if (OK != 22)
+            {
                 OK++;
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+            }
         }
         if (Input.GetButtonDown("Cancel") && Time.timeScale == 0 && !paused)
         {
-                OK--;  
+            if (OK > 0)
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+            OK--;
+            
         }
         if (Input.GetButtonDown("Main Menu") && Time.timeScale == 0 && !paused)
         {
             if (OK == 22)
+            {
                 SceneManager.LoadScene("Menu");
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+            }
         }
         if (OK < 0) OK = 0;
         if ((Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel")) && Time.timeScale == 0 && !paused)
@@ -126,6 +137,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 welcome1.SetActive(true);
                 titol.text = "Tutorial";
                 welcome2.SetActive(false);
+                back.SetActive(false);
             }
             if (OK == 1)
             {
@@ -133,6 +145,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 titol.text = "Movement";
                 welcome2.SetActive(true);
                 thereUR.SetActive(false);
+                back.SetActive(true);
             }
             else if (OK == 2)
             {
@@ -470,15 +483,23 @@ public class Tutorial_InGame : MonoBehaviour {
         if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")))
         {
             if (!paused)
-                soundSource.PlayOneShot(pauseSound);
-            else      
-                soundSource.PlayOneShot(backSound);
+            {
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                //soundSource.PlayOneShot(pauseSound);
+            }
+                
+            else  {
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                //soundSource.PlayOneShot(backSound);
+            }    
+                
             paused = !paused;
             pausa.SetActive(paused);
         }
         if (Input.GetButtonDown("Main Menu") && paused)
         {
-            soundSource.PlayOneShot(menuSound);
+            //soundSource.PlayOneShot(menuSound);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             pausa.SetActive(false);
             Time.timeScale = 1;
             // Default();

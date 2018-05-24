@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{6faaa825-0ff7-4030-8ebf-42970c1148b1}">
+        <property name="name">
+            <value>Teleport</value>
+        </property>
+        <relationship name="folder">
+            <destination>{2b75e6c9-d897-4558-882d-95ac0e4501a4}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{0de9863e-23bc-42a1-bee5-97555be0755c}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{0de9863e-23bc-42a1-bee5-97555be0755c}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+    </object>
+</objects>

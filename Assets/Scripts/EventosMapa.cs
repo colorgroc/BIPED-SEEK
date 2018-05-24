@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class EventosMapa : MonoBehaviour {
 
@@ -17,13 +18,13 @@ public class EventosMapa : MonoBehaviour {
     private int ronda;
     [SerializeField]
     private Canvas canvas;
-    [SerializeField]
-    private AudioClip eventSound;
-   // bool nada;
-    private AudioSource soundSource;
+   // [SerializeField]
+   // private AudioClip eventSound;
+   //// bool nada;
+   // private AudioSource soundSource;
 
     void Start () {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         for (int i = 0; i < Rondes.rondas; i++)
         {
             evento = UnityEngine.Random.Range(0, 6);
@@ -87,33 +88,38 @@ public class EventosMapa : MonoBehaviour {
             case 1: 
                 //nada = false;
                 NPCReductionObjective();
-                soundSource.PlayOneShot(eventSound);
+                //soundSource.PlayOneShot(eventSound);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Event", Vector3.zero);
                 canvas.GetComponent<Canvas>().enabled = true;
                 CameraShake.Shake(1f, 4f);
                 break;
             case 2:      
                 //nada = false;
                 ChangeSpeed();
-                soundSource.PlayOneShot(eventSound);
+                //soundSource.PlayOneShot(eventSound);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Event", Vector3.zero);
                 canvas.GetComponent<Canvas>().enabled = true;
                 CameraShake.Shake(1f, 4f);
                 break;
             case 3:           
                // nada = false;
                 KillersCreation();
-                soundSource.PlayOneShot(eventSound);
+                //soundSource.PlayOneShot(eventSound);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Event", Vector3.zero);
                 canvas.GetComponent<Canvas>().enabled = true;
                 CameraShake.Shake(1f, 4f);
                 break;
             case 4:
                 NPCReductionNonObjective();
-                soundSource.PlayOneShot(eventSound);
+                //soundSource.PlayOneShot(eventSound);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Event", Vector3.zero);
                 canvas.GetComponent<Canvas>().enabled = true;
                 CameraShake.Shake(1f, 4f);
                 break;
             case 5:
                 NPCConvertNonObjectiveToObjective();
-                soundSource.PlayOneShot(eventSound);
+                //soundSource.PlayOneShot(eventSound);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Event", Vector3.zero);
                 canvas.GetComponent<Canvas>().enabled = true;
                 CameraShake.Shake(1f, 4f);
                 break;

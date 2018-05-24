@@ -15,12 +15,11 @@ public class Teleport : MonoBehaviour {
     List<GameObject> guardsList = new List<GameObject>();
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
-    private AudioSource soundSource;
-
+    //private AudioSource soundSource;
     // Use this for initialization
     void Start ()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         hab = false;
         cooldown = 0;
         this.ab1 = this.ab2 = false;
@@ -54,6 +53,7 @@ public class Teleport : MonoBehaviour {
         if (((this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button)) || (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button))) && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
         {
             this.gameObject.GetComponent<Animator>().SetTrigger("Teleport");
+            
         }
 
         if (Time.timeScale == 1)
@@ -68,8 +68,7 @@ public class Teleport : MonoBehaviour {
         TeleportHability();
         hab = true;
         this.iconAb.GetComponent<Image>().fillAmount = 0;
-        //soundSource.PlayOneShot(abilitySound);
-		RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Teleport", this.transform.position);
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Teleport", this.transform.position);
     }
 
     void IconRespawn()
