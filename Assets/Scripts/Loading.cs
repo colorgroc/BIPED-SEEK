@@ -45,7 +45,12 @@ public class Loading : MonoBehaviour {
         slider.value = time/loadingTime;
         temp++;//= (int) Time.fixedDeltaTime;
         totalCargado.text = ((int)(temp/loadingTime*2)).ToString();
-        if (time >= loadingTime) SceneManager.LoadScene(this.scene);
+        if (time >= loadingTime)
+        {
+            Menu.backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            Menu.musicStarted = false;
+            SceneManager.LoadScene(this.scene);
+        }
     }
     private void RandomAbilities()
     {

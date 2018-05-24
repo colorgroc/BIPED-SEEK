@@ -10,8 +10,8 @@ public class ControlAbility : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
-    [SerializeField]
-    private AudioClip abilitySound;
+    //[SerializeField]
+    //private AudioClip abilitySound;
     GameObject player, guard;
     private string nameObj;
     private int random;

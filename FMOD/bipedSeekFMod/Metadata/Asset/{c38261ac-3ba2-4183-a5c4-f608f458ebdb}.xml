@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="EncodableAsset" id="{c38261ac-3ba2-4183-a5c4-f608f458ebdb}">
+        <property name="assetPath">
+            <value>BipedSeek/Music/</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{2f28d069-e4c2-4542-9611-916533ef0842}</destination>
+        </relationship>
+    </object>
+</objects>

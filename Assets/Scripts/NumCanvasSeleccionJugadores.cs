@@ -151,7 +151,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
        /* //proves per 1 jugador
         if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");*/
         //quan tothom ready, comença joc
-        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Loading"); 
+        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Loading");
         else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene("Loading");
         else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene("Loading");
     }
@@ -225,7 +225,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             else if(Input.GetButtonDown("Cancel") && ((!cancel_1 && !ready_P1) || (cancel_1))){
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -283,7 +283,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
             //-------------------------Moviments player 2-----------------------------------
@@ -337,7 +337,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 Debug.Log("ei");
                 SceneManager.LoadScene("Menu");
             }
@@ -397,7 +397,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -452,7 +452,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -507,7 +507,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
         }
@@ -564,7 +564,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -619,7 +619,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -674,7 +674,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
 
@@ -729,7 +729,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             else if (Input.GetButtonDown("B_4") && ((!cancel_4 && !ready_P4) || (cancel_4)))
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
                 SceneManager.LoadScene("Menu");
             }
         }

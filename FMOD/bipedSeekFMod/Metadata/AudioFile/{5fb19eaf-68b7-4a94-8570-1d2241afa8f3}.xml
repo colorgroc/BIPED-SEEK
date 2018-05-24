@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{5fb19eaf-68b7-4a94-8570-1d2241afa8f3}">
+        <property name="assetPath">
+            <value>BipedSeek/Music/DesertBipedSeek.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>96</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{2f28d069-e4c2-4542-9611-916533ef0842}</destination>
+        </relationship>
+    </object>
+</objects>

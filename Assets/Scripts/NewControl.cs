@@ -49,6 +49,7 @@ public class NewControl : MonoBehaviour
     private Vector4 gold_Color = new Vector4(255, 215, 0, 255);
     Resolution res;
     public FMOD.Studio.EventInstance backgroudSound;
+    public FMOD.Studio.EventInstance backgroudMusic;
     //private FMOD.Studio.ParameterInstance loop;
 
     public enum Abilities
@@ -83,15 +84,21 @@ public class NewControl : MonoBehaviour
         }
 
         countDown.gameObject.SetActive(true);
-
+        
         if (SceneManager.GetActiveScene().name == "Mapa_1")
         {
+            backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Music/Mapa 1");
             backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Wind");
             backgroudSound.setParameterValue("Vent Loop", 0.2f);
         }
         else if (SceneManager.GetActiveScene().name == "Mapa_2")
         {
+            backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Music/Mapa 2");
             backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Birds");
+        }
+        else if (SceneManager.GetActiveScene().name == "Mapa_3")
+        {
+            backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Music/Mapa 3");
         }
 
     }
@@ -151,6 +158,7 @@ public class NewControl : MonoBehaviour
                 Time.timeScale = 1;
                 startGame = true;
                 backgroudSound.start();
+                backgroudMusic.start();
             }
         }
         else
@@ -515,6 +523,7 @@ public class NewControl : MonoBehaviour
 			}
             paused = !paused;
             backgroudSound.setPaused(paused);
+            backgroudMusic.setPaused(paused);
             pausa.SetActive(paused);
         }
         if (Input.GetButtonDown("Main Menu") && paused && !Tutorial_InGame.showIt)
@@ -522,6 +531,7 @@ public class NewControl : MonoBehaviour
             //soundSource.PlayOneShot(menuSound);
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             pausa.SetActive(false);
             Time.timeScale = 1;
             // Default();

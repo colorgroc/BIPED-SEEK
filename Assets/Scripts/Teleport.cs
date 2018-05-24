@@ -10,8 +10,8 @@ public class Teleport : MonoBehaviour {
     private bool hab;
     [SerializeField]
     private int coolDown = 10;
-    [SerializeField]
-    private AudioClip abilitySound;
+    //[SerializeField]
+    //private AudioClip abilitySound;
     List<GameObject> guardsList = new List<GameObject>();
     public bool ab1 = false, ab2 = false;
     public Image iconAb;

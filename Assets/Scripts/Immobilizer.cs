@@ -13,17 +13,17 @@ public class Immobilizer : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
-    [SerializeField]
-    private AudioClip abilitySound;
+    //[SerializeField]
+    //private AudioClip abilitySound;
     Collider[] colliders;
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
-    private AudioSource soundSource;
+    //private AudioSource soundSource;
 
     // Use this for initialization
     void Start()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         used = false;
         cooldown = 0;
         timeAb = timeAbility;

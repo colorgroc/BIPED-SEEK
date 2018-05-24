@@ -28,7 +28,8 @@ public class Tutorial_InGame : MonoBehaviour {
     //private Image iAb1, iAb2;
     [SerializeField]
     private Sprite freeze, control, invisible, teleport, sprint, smoke;
-
+    public FMOD.Studio.EventInstance backgroudSound;
+    public FMOD.Studio.EventInstance backgroudMusic;
     //[SerializeField]
     //private AudioClip pauseSound, backSound, menuSound;
     //private AudioSource soundSource;
@@ -74,6 +75,10 @@ public class Tutorial_InGame : MonoBehaviour {
         //RandomAbilities();
         PlayerPrefs.SetInt("Ability 1", (int)NewControl.Abilities.SMOKE);
         PlayerPrefs.SetInt("Ability 2", (int)NewControl.Abilities.IMMOBILIZER);
+
+        backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Music/Mapa 1");
+        backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Wind");
+        backgroudSound.setParameterValue("Vent Loop", 0.2f);
         //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
 
         //feedBackIm.color = normalCol;
@@ -83,6 +88,8 @@ public class Tutorial_InGame : MonoBehaviour {
         timeLeft = timeGame;//UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
         textTiempo.text = GetMinutes(timeLeft);
         objectiveCanvas.GetComponent<ObjectiveCanvas>().Start();
+        backgroudMusic.start();
+        backgroudSound.start();
     }
 
     // Update is called once per frame
@@ -494,6 +501,8 @@ public class Tutorial_InGame : MonoBehaviour {
             }    
                 
             paused = !paused;
+            backgroudMusic.setPaused(paused);
+            backgroudSound.setPaused(paused);
             pausa.SetActive(paused);
         }
         if (Input.GetButtonDown("Main Menu") && paused)
@@ -502,7 +511,8 @@ public class Tutorial_InGame : MonoBehaviour {
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             pausa.SetActive(false);
             Time.timeScale = 1;
-            // Default();
+            backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             paused = false;
             SceneManager.LoadScene("Menu");
         }

@@ -17,9 +17,9 @@ public class PlayerControl : MonoBehaviour {
     private float distToGround, count, timeCoolDown, timeFeedback;
     [SerializeField]
     private int coolDown;
-    [SerializeField]
-    private AudioClip killPlayerSound, killNPCSound, killObjectiveSound, punchSound;
-    private AudioSource soundSource;
+    //[SerializeField]
+    //private AudioClip killPlayerSound, killNPCSound, killObjectiveSound, punchSound;
+    //private AudioSource soundSource;
     public bool cooledDown, usingAbility;//, goodFeedback, winnerFeedback;
     //public bool badFeedback;
 
@@ -44,7 +44,7 @@ public class PlayerControl : MonoBehaviour {
 
     void Start ()
     {
-        soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
         //this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");

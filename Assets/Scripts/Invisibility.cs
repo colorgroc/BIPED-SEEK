@@ -10,8 +10,8 @@ public class Invisibility : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
-    [SerializeField]
-    private AudioClip abilitySound;
+    //[SerializeField]
+    //private AudioClip abilitySound;
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
     //private AudioSource soundSource;

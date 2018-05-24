@@ -8,7 +8,7 @@ using FMODUnity;
 
 public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
 {
-    public bool isVolume, isButton, isDropdown;
+    public bool isVolume, isButton, isDropdown, isToggle;
     private Vector3 initialScale;
     [SerializeField]
     private float duration;// FadeTimer, fadeCoroutine;
@@ -76,9 +76,9 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
             //Menu.inVolume = true;
             this.GetComponentInChildren<Outline>().enabled = true;
         }
-        if (isDropdown)
+        else if (isDropdown)
             this.GetComponent<Outline>().enabled = true;
-        if (isButton)
+        else if (isButton)
         {
             selected = true;
             //this.transform.GetComponent<Image>().CrossFadeAlpha(0.5f, 0, true);
@@ -89,24 +89,34 @@ public class ButtonsHighlighted : MonoBehaviour, ISelectHandler
     }
     public void OnDeselect(BaseEventData eventData)
     {
-		//if(soundSource != null)
-        	//soundSource.PlayOneShot(onButtonSound);
-        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+        //if(soundSource != null)
+        //soundSource.PlayOneShot(onButtonSound);
+
         //do your stuff when not selected
         if (isVolume)
         {
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             //Menu.inVolume = false;
             this.GetComponentInChildren<Outline>().enabled = false;
         }
-        if (isDropdown)
+        else if (isDropdown)
+        {
             this.GetComponent<Outline>().enabled = false;
-        if (isButton)
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+        }
+        else if (isButton)
         {
             selected = false;
             this.transform.localScale = initialScale;
-           // this.transform.GetComponent<Image>().CrossFadeAlpha(1, 0, true);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+            // this.transform.GetComponent<Image>().CrossFadeAlpha(1, 0, true);
         }
-      //  Debug.Log("Deselect");
+        else if (isToggle)
+        {
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+        }
+
+        //  Debug.Log("Deselect");
     }
 
     IEnumerator FadeINFadeOut(float FadeTime, float fadeCoroutine)
