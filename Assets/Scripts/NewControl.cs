@@ -214,13 +214,10 @@ public class NewControl : MonoBehaviour
             }
             if (Rondes.timesPlayed == Rondes.rondas)
             {
-                //Winner();
                 backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 objComplete = false;
-                //Ranking.OrdenarRanking();
                 Ranking.Guanyador();
                 rankingCanvas.SetActive(true);
-                //finalWinnerCanvas.SetActive(true);
             }
         }
     }
