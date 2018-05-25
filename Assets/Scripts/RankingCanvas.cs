@@ -47,9 +47,12 @@ public class RankingCanvas : MonoBehaviour {
         if (Input.GetButtonDown("Submit"))
         {
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
-            this.gameObject.SetActive(false);  
+            this.gameObject.SetActive(false);
             if (Rondes.timesPlayed == Rondes.rondas)
+            {
                 GameObject.Find("Control").GetComponent<NewControl>().finalWinnerCanvas.SetActive(true);
+                this.gameObject.SetActive(false);
+            }
             else
                 GameObject.Find("Control").GetComponent<NewControl>().StartGame();
             

@@ -9,7 +9,7 @@ public class Rondes : MonoBehaviour {
     private int rondes;
     private void Awake()
     {
-        rondes = NewControl.numRondesPerJugador * 2;
+        rondes = NewControl.numRondesPerJugador * NewControl.numOfPlayers;
         timesPlayed = 0;
         rondas = rondes;
     }

@@ -177,52 +177,52 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus001Mat
-    second: {fileID: 2100000, guid: df3133e40fb508346b1fcde6d968230c, type: 2}
+    second: {fileID: 2100000, guid: 9a84a9a8a8d62cd4a8a74805d20e3850, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus002Mat
-    second: {fileID: 2100000, guid: 1013a64178fab964ebff5526a2a515ac, type: 2}
+    second: {fileID: 2100000, guid: 123e3af3fc65b3e4588f139826d9a744, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus003Mat
-    second: {fileID: 2100000, guid: 7e7edf34a1ec0fa4886436208803650e, type: 2}
+    second: {fileID: 2100000, guid: 2c1309952057ba24894afc11cdf453f2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus004Mat
-    second: {fileID: 2100000, guid: b995173ab2e12284f8a264aef0b9be70, type: 2}
+    second: {fileID: 2100000, guid: 499b52cc09a18db409191038a1a29354, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus005Mat
-    second: {fileID: 2100000, guid: 024bc8f6914c5284d8dfd523b5022f48, type: 2}
+    second: {fileID: 2100000, guid: 6b8ad9103c6ff3942bbe8eed1dffeb9a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus006Mat
-    second: {fileID: 2100000, guid: 309e6c9de60b9624da107557d70178f7, type: 2}
+    second: {fileID: 2100000, guid: 4301297a6d196a64e90f9da326ba0d8d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus007Mat
-    second: {fileID: 2100000, guid: c20fa75a72add544787554a4566f82a7, type: 2}
+    second: {fileID: 2100000, guid: 1516b5fbd509ee442a64434ce6a4d331, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus008Mat
-    second: {fileID: 2100000, guid: dfdb3b504167f47479debf7a7373f858, type: 2}
+    second: {fileID: 2100000, guid: fb26d3a5aba3bbc40ae14cae7f19d317, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus009Mat
-    second: {fileID: 2100000, guid: c0c970540f80c3b4e975afa70be69157, type: 2}
+    second: {fileID: 2100000, guid: 727df37c095a3df44aee0136d1de3c1a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cactus010Mat
-    second: {fileID: 2100000, guid: afb55daa1a4b1d04aac944ced4154b7d, type: 2}
+    second: {fileID: 2100000, guid: e02ef6b8fa79d7249bd4658411d99933, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -282,42 +282,42 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stones01Mat
-    second: {fileID: 2100000, guid: 149f300260389b046b2b4c03acce2c0b, type: 2}
+    second: {fileID: 2100000, guid: a8d2cabb8e872194ebd62e89ecc9f203, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stones02Mat
-    second: {fileID: 2100000, guid: c8fdfad6d0b5a1542a5c1d281ccfd2c2, type: 2}
+    second: {fileID: 2100000, guid: ae01ef07c8d19a94d9b0aec816ebbedd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stones03Mat
-    second: {fileID: 2100000, guid: 7e545f9ecb01e454fa54c05c2bf072bb, type: 2}
+    second: {fileID: 2100000, guid: 6e0f661365a89714ab1aa8588348c40b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stones04Mat
-    second: {fileID: 2100000, guid: 14988c5d56a79c04eaccc83dff719f38, type: 2}
+    second: {fileID: 2100000, guid: 6494f8132331b3b4096f288d66b9b736, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stones_2_01Mat
-    second: {fileID: 2100000, guid: 0d643cc8d94ddf449ad7c8984b6118eb, type: 2}
+    second: {fileID: 2100000, guid: 22d53acca339c5948be4629da41892ce, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stones_2_02Mat
-    second: {fileID: 2100000, guid: 1150c9bfa78794542a0c6bd4c97650b6, type: 2}
+    second: {fileID: 2100000, guid: f094d1c3b2d6dcf48a817ddb0fa2fc86, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stones_2_03Mat
-    second: {fileID: 2100000, guid: 081e40a5bec1f754ab2e523752d7fe70, type: 2}
+    second: {fileID: 2100000, guid: c126f6562a4a6404688da16755dbcb61, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Stones_2_04Mat
-    second: {fileID: 2100000, guid: 6367bb4789516544d93fede3ea290039, type: 2}
+    second: {fileID: 2100000, guid: fd10c7cf56709da45a620eccb67ab5e4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -365,11 +365,13 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

@@ -125,6 +125,7 @@ public class WinnerHUD : MonoBehaviour {
 			this.gameObject.SetActive (false);
 			Time.timeScale = 1;
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+            Default();
             SceneManager.LoadScene ("Menu");
 
 		} else Time.timeScale = 0;

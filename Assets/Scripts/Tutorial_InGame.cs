@@ -8,9 +8,10 @@ using FMODUnity;
 
 public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
-    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, killer, HUD, box, goKill, goKill2, goKill3, guards, score2, score3, winner, finnish, events, mapEvent, getClose, eventText, killerEvent, killerEvent_score, npcReduction_half, speedy, npcReduction_convertToObjective, pausa, back;//, npcReduction_halfNonObjective;
+    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, killer, HUD, box, goKill, goKill2, goKill3, guards, score2, score3, winner, finnish, events, mapEvent, getClose, eventText, killerEvent, killerEvent_score, npcReduction_half, speedy, npcReduction_convertToObjective, pausa, back, arrow;//, npcReduction_halfNonObjective;
     public Text titol;
-    bool once, _once, _Once, __Once, __once, _oNce, timed3, timed4, timed5, paused;
+    bool once, _once, _Once, __Once, __once, _oNce, timed3, timed4, timed5;
+    public static bool tutorialPaused;
     //public GameObject player1, player2, HUD, box, objectiveCanvas;
     private float time, time2, time3, time4, time5;
     //private bool proceed;
@@ -36,11 +37,12 @@ public class Tutorial_InGame : MonoBehaviour {
     // Use this for initialization
     private void Awake()
     {
+        QualitySettings.SetQualityLevel(5);
         showIt = true;
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         time = time2 = time3 = time4 = time5 = OK = 0;
-        once = _once = _Once =__Once = __once = _oNce = timed3 = timed4 = timed5 = paused = false;
+        once = _once = _Once =__Once = __once = _oNce = timed3 = timed4 = timed5 = tutorialPaused = false;
         //tuto = true;
         box.SetActive(true);
         welcome2.SetActive(false);
@@ -112,7 +114,7 @@ public class Tutorial_InGame : MonoBehaviour {
         if (OK == 8 && timed5)
             time5 += Time.deltaTime;
 
-        if (Input.GetButtonDown("Submit") && Time.timeScale == 0 && !paused)
+        if (Input.GetButtonDown("Submit") && Time.timeScale == 0 && !tutorialPaused)
         {
             if (OK != 22)
             {
@@ -120,14 +122,14 @@ public class Tutorial_InGame : MonoBehaviour {
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
             }
         }
-        if (Input.GetButtonDown("Cancel") && Time.timeScale == 0 && !paused)
+        if (Input.GetButtonDown("Cancel") && Time.timeScale == 0 && !tutorialPaused)
         {
             if (OK > 0)
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
             OK--;
             
         }
-        if (Input.GetButtonDown("Main Menu") && Time.timeScale == 0 && !paused)
+        if (Input.GetButtonDown("Main Menu") && Time.timeScale == 0 && !tutorialPaused)
         {
             if (OK == 22)
             {
@@ -136,7 +138,7 @@ public class Tutorial_InGame : MonoBehaviour {
             }
         }
         if (OK < 0) OK = 0;
-        if ((Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel")) && Time.timeScale == 0 && !paused)
+        if ((Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel")) && Time.timeScale == 0 && !tutorialPaused)
         {
             //tuto = true;
             if (OK == 0)
@@ -283,6 +285,8 @@ public class Tutorial_InGame : MonoBehaviour {
             else if (OK == 13)
             {
                 titol.text = "Killers";
+                events.SetActive(true);
+                eventText.SetActive(true);
                 killerEvent.SetActive(true);                   
                 eventText.SetActive(false);
                 goKill3.SetActive(false);
@@ -459,6 +463,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 box.SetActive(true);
                 titol.text = "Killers";
                 killerEvent_score.SetActive(true);
+                 eventText.SetActive(true);
                 events.SetActive(true);
                // tuto = true;
             }
@@ -487,9 +492,9 @@ public class Tutorial_InGame : MonoBehaviour {
 
     private void Pausa()
     {
-        if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")))
+        if (Input.GetButtonDown("Start") || (tutorialPaused && Input.GetButtonDown("Cancel")))
         {
-            if (!paused)
+            if (!tutorialPaused)
             {
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
                 //soundSource.PlayOneShot(pauseSound);
@@ -500,12 +505,12 @@ public class Tutorial_InGame : MonoBehaviour {
                 //soundSource.PlayOneShot(backSound);
             }    
                 
-            paused = !paused;
-            backgroudMusic.setPaused(paused);
-            backgroudSound.setPaused(paused);
-            pausa.SetActive(paused);
+            tutorialPaused = !tutorialPaused;
+            backgroudMusic.setPaused(tutorialPaused);
+            backgroudSound.setPaused(tutorialPaused);
+            pausa.SetActive(tutorialPaused);
         }
-        if (Input.GetButtonDown("Main Menu") && paused)
+        if (Input.GetButtonDown("Main Menu") && tutorialPaused)
         {
             //soundSource.PlayOneShot(menuSound);
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
@@ -513,12 +518,12 @@ public class Tutorial_InGame : MonoBehaviour {
             Time.timeScale = 1;
             backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            paused = false;
+            tutorialPaused = false;
             SceneManager.LoadScene("Menu");
         }
-        if (paused)
+        if (tutorialPaused)
             Time.timeScale = 0;
-        else if (!paused && !box.activeInHierarchy) Time.timeScale = 1;
+        else if (!tutorialPaused && !box.activeInHierarchy) Time.timeScale = 1;
 
     }
 }

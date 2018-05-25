@@ -35,6 +35,7 @@ public class PlayerControl : MonoBehaviour {
     public FMOD.Studio.EventInstance backgroudSound;
     private void Awake()
     {
+        QualitySettings.SetQualityLevel(5);
         //this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 1");
         this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 2");
         //this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 3");
@@ -173,7 +174,7 @@ public class PlayerControl : MonoBehaviour {
                 this.backgroudSound.start();
                 this.vibration = true;
             }
-                
+
             this.timeFeedback += Time.deltaTime;
             if (this.timeFeedback >= 1)
             {
@@ -182,11 +183,20 @@ public class PlayerControl : MonoBehaviour {
                 this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             }
         }
-        else this.timeFeedback = 0;
-
-        if(NewControl.paused) this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        else {
+            this.timeFeedback = 0;
+            this.vibration = false;
+            this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+        if (NewControl.paused || Tutorial_InGame.tutorialPaused || Time.timeScale == 0)
+        {
+            this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            this.vibration = false;
+        }
+        if (NewControl.paused) this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         if (this.cooledDown)
         {
+            this.detected = false;
             this.gameObject.transform.position = new Vector3(this.transform.position.x, 1000f, this.transform.position.z);
             this.timeCoolDown += Time.deltaTime;
             GameObject.Find("IconPlayer_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).GetComponent<Image>().fillAmount = this.timeCoolDown / this.coolDown;

@@ -480,14 +480,14 @@ public class NewControl : MonoBehaviour
             if (guard != null)
                 guard.GetComponent<NPCConnectedPatrol>().Respawn(guard.gameObject);
         }
-        if (killers != null)
-        {
-            foreach (GameObject killer in killers)
-            {
-                if (killer != null)
-                    killer.GetComponent<NPCConnectedPatrol>().Respawn(killer.gameObject);
-            }
-        }
+        //if (killers != null)
+        //{
+        //    foreach (GameObject killer in killers)
+        //    {
+        //        if (killer != null)
+        //            killer.GetComponent<NPCConnectedPatrol>().Respawn(killer.gameObject);
+        //    }
+        //}
     }
 
     void RecalculaObjetivo()
@@ -531,6 +531,7 @@ public class NewControl : MonoBehaviour
             backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             pausa.SetActive(false);
             Time.timeScale = 1;
+            VariablesOnDefault();
             // Default();
             paused = false;
             SceneManager.LoadScene("Menu");

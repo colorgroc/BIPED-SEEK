@@ -18,7 +18,8 @@ public class EventosMapa : MonoBehaviour {
     private int ronda;
     [SerializeField]
     private Canvas canvas;
-
+    //[HideInInspector]
+    //public static GameObject[] killers;
 
     void Start () {
         //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
@@ -51,6 +52,7 @@ public class EventosMapa : MonoBehaviour {
                     if (timeEvent2 >= tempsNothing)
                     {
                         canvas.GetComponent<Canvas>().enabled = false;
+                        timeEvent2 = 0;
                         Default();
 
                     }
@@ -61,6 +63,7 @@ public class EventosMapa : MonoBehaviour {
                     if (timeEvent1 >= tempsEvent)
                     {
                         Eventos(i);
+                        //timeEvent1 = 0;
                         i++;
 
                     }
@@ -241,6 +244,7 @@ public class EventosMapa : MonoBehaviour {
 
     private void KillersCreation()
     {
+        NewControl.killers = null;
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPointKillers");
         for (int y = 0; y < NewControl.numKillers; y++)
         {
@@ -253,6 +257,7 @@ public class EventosMapa : MonoBehaviour {
             killer.gameObject.layer = 9;
         }
         NewControl.killers = GameObject.FindGameObjectsWithTag("Killer Guards");
+        Debug.Log(NewControl.killers.Length);
     }
 
     private void KillersDestruction()
