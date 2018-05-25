@@ -17,85 +17,61 @@ public class PlayerControl : MonoBehaviour {
     private float distToGround, count, timeCoolDown, timeFeedback;
     [SerializeField]
     private int coolDown;
-    //[SerializeField]
-    //private AudioClip killPlayerSound, killNPCSound, killObjectiveSound, punchSound;
-    //private AudioSource soundSource;
-    public bool cooledDown, usingAbility;//, goodFeedback, winnerFeedback;
-    //public bool badFeedback;
 
-   // [HideInInspector]
+    public bool cooledDown, usingAbility, vibration;
+
+    [HideInInspector]
     public int scoreGeneral, scoreKills, scoreWins, scoreGeneralRound, scoreKillsRound, scoreWinsRound;
     public bool wannaKill, onFieldView, detected, _sprint, canAct;
 
-    //private Image feedback;
-    //private List<GameObject> feedbacks;
-    //private GameObject[] feedbackList;
     [SerializeField]
     private Color colorP1, colorP2, colorP3, colorP4, DetectedFeedback;
     private Color neutralColor;
     [SerializeField]
     private Animator anim;
-    //private bool canAct;
     private GameObject[] guards;
     List<GameObject> guardsList = new List<GameObject>();
     NavMeshAgent _navMeshAgent;
-    //public float shakeOffset, shakeDuration = 0.5f, shakeAmount = 0.5f;
-    
+    public FMOD.Studio.EventInstance backgroudSound;
+    private void Awake()
+    {
+        //this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 1");
+        this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 2");
+        //this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 3");
+    }
 
     void Start ()
     {
-        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
-        //this.feedbackList = GameObject.FindGameObjectsWithTag("Feedback");
-        //this.feedbacks = new List<GameObject>();
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
         this.canAct = true;
 
         if (Tutorial_InGame.showIt)
             guards = GameObject.FindGameObjectsWithTag("Guard");
 
-        //for (int i = 0; i < feedbackList.Length; i++)
-        //{
-        //    this.feedbacks.Add(feedbackList[i].gameObject);
-        //}
-
-        //this.feedbacks.Sort(SortByName);
 
         scoreGeneral = scoreKills = scoreWins = scoreGeneralRound = scoreKillsRound = scoreWinsRound = 0;
 
         if (this.gameObject.name.Equals("Player 1"))
         {
-            //this.feedback = this.feedbacks[0].GetComponent<Image>();
-            //this.neutralColor = colorP1;
-            //this.feedback.color = this.neutralColor;
-
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation = "H_RPad_1";
             this.killButton = "X_1";
             this.hab1Button = "LB_1";
-            this.hab2Button = "RB_1";
-           
+            this.hab2Button = "RB_1";   
         }
         else if (this.gameObject.name.Equals("Player 2"))
         {
-            //this.feedback = this.feedbacks[1].GetComponent<Image>();
-            //this.neutralColor = colorP2;
-            //this.feedback.color = this.neutralColor;
-
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation = "H_RPad_2";
             this.killButton = "X_2";
             this.hab1Button = "LB_2";
             this.hab2Button = "RB_2";
-       
-
+      
         }
         else if (this.gameObject.name.Equals("Player 3"))
         {
-            //this.feedback = this.feedbacks[2].GetComponent<Image>();
-            //this.neutralColor = colorP3;
-            //this.feedback.color = this.neutralColor;
 
             this.AxisMovement = "V_LPad_3";
             this.AxisRotation = "H_RPad_3";
@@ -106,17 +82,12 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 4"))
         {
-            //this.feedback = this.feedbacks[3].GetComponent<Image>();
-            //this.neutralColor = colorP4;
-            //this.feedback.color = this.neutralColor;
-
             this.AxisMovement = "V_LPad_4";
             this.AxisRotation = "H_RPad_4";
             this.killButton = "X_4";
             this.hab1Button = "LB_4";
             this.hab2Button = "RB_4";
         }
-        // this.canAct = true;
 
         if (!Tutorial_InGame.showIt)
         {
@@ -162,7 +133,6 @@ public class PlayerControl : MonoBehaviour {
             {
                 this.wannaKill = true;
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
-                //soundSource.PlayOneShot(punchSound);
             }
             if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
 
@@ -188,7 +158,6 @@ public class PlayerControl : MonoBehaviour {
             if (Input.GetButtonDown(this.killButton))
             {
                 this.wannaKill = true;
-                //soundSource.PlayOneShot(punchSound);
 				RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
             }
             if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
@@ -197,18 +166,25 @@ public class PlayerControl : MonoBehaviour {
 
         this.anim.SetBool("wannaKill", this.wannaKill);
         this.anim.SetBool("isFreezed", !this.canAct);
-        //Debug.Log(this.canAct);
         if (this.detected)
-        {    
-            this.timeFeedback += Time.deltaTime;
-            if (this.timeFeedback >= 1) this.detected = false;
-        }
-        else
         {
-            this.timeFeedback = 0;
-            //this.feedback.color = this.neutralColor;
+            if (!this.vibration)
+            {
+                this.backgroudSound.start();
+                this.vibration = true;
+            }
+                
+            this.timeFeedback += Time.deltaTime;
+            if (this.timeFeedback >= 1)
+            {
+                this.detected = false;
+                this.vibration = false;
+                this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
         }
+        else this.timeFeedback = 0;
 
+        if(NewControl.paused) this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         if (this.cooledDown)
         {
             this.gameObject.transform.position = new Vector3(this.transform.position.x, 1000f, this.transform.position.z);
@@ -241,7 +217,6 @@ public class PlayerControl : MonoBehaviour {
     }
     public void Kill(GameObject gO)
     {
-        //soundSource.PlayOneShot(killPlayerSound);
         if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards")) //canviar aixo?
         {
             this.detected = false;
@@ -256,7 +231,6 @@ public class PlayerControl : MonoBehaviour {
             {
                 Destroy(gO.gameObject);
             }
-            //soundSource.PlayOneShot(killNPCSound);
 			RuntimeManager.PlayOneShot("event:/BipedSeek/NPC/Death", gO.transform.position);
 			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Death", this.transform.position);
             Death.AnimDeath(this.gameObject, this.gameObject.transform.position, this.gameObject.transform.rotation);
@@ -265,21 +239,18 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (gO.gameObject.layer == 8 && gO != NewControl.objective)
         {
-            //gO.GetComponent<Animator>().Play("Death");
             this.detected = false;
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
             this.scoreGeneral += 5;
             this.scoreKills += 1;
             this.scoreGeneralRound += 5;
             this.scoreKillsRound += 1;
-            //soundSource.PlayOneShot(killPlayerSound);
 			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Death", gO.transform.position);
             gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
         }
         else if (gO.gameObject.layer == 8 && gO == NewControl.objective)
         {
-            //gO.GetComponent<Animator>().Play("Death");
             this.detected = false;
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
             if (!Tutorial_InGame.showIt)
@@ -288,12 +259,9 @@ public class PlayerControl : MonoBehaviour {
                 NewControl.objComplete = true;
             }
             Rondes.timesPlayed++;
-            //soundSource.PlayOneShot(killObjectiveSound);
-
 			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", gO.transform.position);
         }
-    
-        
+
     }
 
     public void SetSpeed(float sprint)
@@ -307,23 +275,17 @@ public class PlayerControl : MonoBehaviour {
 
     public void Respawn(GameObject gO)
     {
-
-            gO.GetComponent<PlayerControl>().detected = false;
-            gO.GetComponent<PlayerControl>().timeFeedback = 0;
-            GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
-            int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-            gO.gameObject.transform.position = new Vector3(allMyRespawnPoints[random].transform.position.x, 10.14516f, allMyRespawnPoints[random].transform.position.z);
-            // gO.gameObject.SetActive(true);
-            gO.gameObject.GetComponent<FieldOfView>().Start();
-
-        //this.canAct = true;
+        gO.GetComponent<PlayerControl>().detected = false;
+        gO.GetComponent<PlayerControl>().timeFeedback = 0;
+        GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+        int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+        gO.gameObject.transform.position = new Vector3(allMyRespawnPoints[random].transform.position.x, 10.14516f, allMyRespawnPoints[random].transform.position.z);
+        gO.gameObject.GetComponent<FieldOfView>().Start();
     }
     public void RespawnCoolDown()
     {
-       
-            this.cooledDown = true;
-            this.timeCoolDown = 0;
-        //Respawn();
+        this.cooledDown = true;
+        this.timeCoolDown = 0;
     }
   
 

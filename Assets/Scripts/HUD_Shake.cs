@@ -35,7 +35,9 @@ public class HUD_Shake : MonoBehaviour
     }
     private void Update()
     {
-        Shake(this.player.GetComponent<PlayerControl>().detected, 5f);
+        
+        if (NewControl.paused) StopAllCoroutines();
+        else Shake(this.player.GetComponent<PlayerControl>().detected, 5f);
     }
     public void Shake(bool duration, float amount)
     { 
@@ -51,7 +53,7 @@ public class HUD_Shake : MonoBehaviour
             transform.localPosition = _originalPos + Random.insideUnitSphere * amount;
             //RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Vibration 1", Vector3.zero);
             //RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Vibration 2", Vector3.zero);
-            RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Vibration 3",Vector3.zero);
+            //RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Vibration 3",Vector3.zero);
             //backgroudSound.start();
             yield return null;
         }

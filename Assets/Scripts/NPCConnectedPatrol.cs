@@ -19,17 +19,17 @@ public class NPCConnectedPatrol : MonoBehaviour {
 	public bool playerOnFieldView, freezed;
 
 	float _waitTimer;
-	int _waypointsVisited;
+	int _waypointsVisited, rand;
 
 	public bool isDead;
-    //[SerializeField]
-    //private AudioClip killPlayerSound, killObjectiveSound;
-    //private AudioSource soundSource;
+
     private Animator anim;
 
     private void Awake()
     {
-        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
+        _waitTimer = 0;
+        _waypointsVisited = 0;
+
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         this.anim = this.gameObject.GetComponent<Animator>();
         if (_navMeshAgent == null) Debug.LogError("The nav mesh agent component is not attached to " + gameObject.name);
@@ -41,36 +41,47 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
                 if (allWaypoints.Length > 0)
                 {
-                    while (_currentWaypoint == null)
-                    {
+                    //while (_currentWaypoint == null)
+                   // {
                         int random = UnityEngine.Random.Range(0, allWaypoints.Length);
                         ConnectedWaypoint startingWaypoint = allWaypoints[random].GetComponent<ConnectedWaypoint>();
 
                         if (startingWaypoint != null)
                         {
                             _currentWaypoint = startingWaypoint;
-                            //this.anim.SetBool("isWalkingForward", false);
+                            //_travelling = true;
                         }
-                    }
+                   // }
                 }
                 else Debug.LogError("Failed to find any waypoints for use in the scene");
             }
+            rand = Random.Range(0, 2);
+            
         }
     }
     public void Start () {
-        this.freezed = false;
-        SetDestination();
-        this.anim.SetBool("isWalkingForward", _travelling);
 
+        if (rand == 0)
+        {
+            _travelling = true;
+            this.anim.SetBool("isWalkingForward", true);
+            SetDestination();
+        }
+        else
+        {
+            _travelling = false;
+            this.anim.SetBool("isWalkingForward", false);
+            _waitTimer = 0;
+        }
+        this.freezed = false;
+
+        //waiting = true;
+        //_waitTimer = 0f;
     }
 	
 	public void Update () {
 
-        this.anim.SetBool("isWalkingForward", _travelling);
-
-        _navMeshAgent.acceleration = PlayerPrefs.GetFloat("Speed");
-        _navMeshAgent.speed = PlayerPrefs.GetFloat("Speed");
-
+        
         if(_navMeshAgent.speed > PlayerControl.defaultSpeed && _travelling)
             anim.SetBool("isRunning", true);
         else anim.SetBool("isRunning", false);
@@ -83,7 +94,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         if (this.freezed)
         {
             _navMeshAgent.isStopped = true;
-            waiting = true;
+            _travelling = false;
             _waitTimer = 0f;
         }
         else _navMeshAgent.isStopped = false;
@@ -91,23 +102,26 @@ public class NPCConnectedPatrol : MonoBehaviour {
         if (_travelling && _navMeshAgent.remainingDistance <= 0.5f) {
 			_travelling = false;
 			_waypointsVisited++;
-            waiting = true;
+           // waiting = true;
             _waitTimer = 0f;
 
 		}
 
         this.anim.SetBool("isFreezed", this.freezed);
-        if (waiting) {
+        if (!_travelling) {
 			_waitTimer += Time.deltaTime;
 			if (_waitTimer >= _totalWaitTime) {
-				waiting = false;
+				_travelling = true;
 				SetDestination ();
 			}
 		}
 		if (this.gameObject.tag.Equals("Killer Guards") && playerOnFieldView) {
 			ChacePlayer (playerTarget.transform.position);
 		}
-	}
+        this.anim.SetBool("isWalkingForward", _travelling);
+        _navMeshAgent.acceleration = PlayerPrefs.GetFloat("Speed");
+        _navMeshAgent.speed = PlayerPrefs.GetFloat("Speed");
+    }
 
 	public void SetDestination(){
        
@@ -116,15 +130,14 @@ public class NPCConnectedPatrol : MonoBehaviour {
             ConnectedWaypoint nextWaypoint = _currentWaypoint.NextWaypoint(_previousWaypoint);
             _previousWaypoint = _currentWaypoint;
             _currentWaypoint = nextWaypoint;
+           // _travelling = true;
         }
-        //Vector3 targetVector = new Vector3();
+
         if (_currentWaypoint != null)
         {
             Vector3 targetVector = _currentWaypoint.transform.position;
-
+            //_travelling = true;
             _navMeshAgent.SetDestination(targetVector);
-            _travelling = true;
-
         }
 	}
 
