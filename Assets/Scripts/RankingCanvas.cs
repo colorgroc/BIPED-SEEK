@@ -20,28 +20,30 @@ public class RankingCanvas : MonoBehaviour {
         if (Rondes.timesPlayed == Rondes.rondas)
             round.text = "End Game";
         else round.text = "Next Round";
-
-        Ranking.orderedRank = NewControl.players.OrderByDescending(p => p.GetComponent<PlayerControl>().scoreGeneral).ToList();
-
-        for (int i = 0; i < Ranking.orderedRank.Count; i++)
+        if(NewControl.players != null)
+            Ranking.orderedRank = NewControl.players.OrderByDescending(p => p.GetComponent<PlayerControl>().scoreGeneral).ToList();
+        if (Ranking.orderedRank != null)
         {
-            Ranking.rankList[i].GetComponent<Text>().text = Ranking.orderedRank[i].name;
-            Ranking.rankList[i].transform.Find("Total Score").GetComponent<Text>().text = Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneral.ToString();
-
-            if (Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneralRound > 0)
+            for (int i = 0; i < Ranking.orderedRank.Count; i++)
             {
-                Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().text = "+" + Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneralRound.ToString();
-                Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().color = Color.green;
-            }
-            else if (Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneralRound < 0)
-            {
-                Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().text = Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneralRound.ToString();
-                Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().color = Color.red;
-            }
-            else Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().text = "";
+                Ranking.rankList[i].GetComponent<Text>().text = Ranking.orderedRank[i].name;
+                Ranking.rankList[i].transform.Find("Total Score").GetComponent<Text>().text = Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneral.ToString();
 
-            if (GameObject.Find("IconPlayer_" + Ranking.orderedRank[i].name.Substring(Ranking.orderedRank[i].name.Length -1)) != null)
-                Ranking.rankList[i].transform.Find("Image").GetComponent<Image>().sprite = GameObject.Find("IconPlayer_" + Ranking.orderedRank[i].name.Substring(Ranking.orderedRank[i].name.Length - 1)).GetComponent<Image>().sprite;
+                if (Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneralRound > 0)
+                {
+                    Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().text = "+" + Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneralRound.ToString();
+                    Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().color = Color.green;
+                }
+                else if (Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneralRound < 0)
+                {
+                    Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().text = Ranking.orderedRank[i].GetComponent<PlayerControl>().scoreGeneralRound.ToString();
+                    Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().color = Color.red;
+                }
+                else Ranking.rankList[i].transform.Find("Round Score").GetComponent<Text>().text = "";
+
+                if (GameObject.Find("IconPlayer_" + Ranking.orderedRank[i].name.Substring(Ranking.orderedRank[i].name.Length - 1)) != null)
+                    Ranking.rankList[i].transform.Find("Image").GetComponent<Image>().sprite = GameObject.Find("IconPlayer_" + Ranking.orderedRank[i].name.Substring(Ranking.orderedRank[i].name.Length - 1)).GetComponent<Image>().sprite;
+            }
         }
 
         if (Input.GetButtonDown("Submit"))

@@ -25,11 +25,14 @@ public class ObjectiveCanvas : MonoBehaviour {
         }
         else tObjectiu.text = "Player 2";
 
-        if (Rondes.timesPlayed + 1 == Rondes.rondas)
+        
+    }
+    private void Update()
+    {
+        if (Rondes.timesPlayed + 1 >= Rondes.rondas)
             tRonda.text = "Last Round";
         else
             tRonda.text = "Ronda " + (Rondes.timesPlayed + 1).ToString();
-
     }
 
     //void FixedUpdate ()

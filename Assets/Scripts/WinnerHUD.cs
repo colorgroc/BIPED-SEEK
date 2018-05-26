@@ -22,10 +22,12 @@ public class WinnerHUD : MonoBehaviour {
         //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         //NewControl.Winner();
         //soundSource.PlayOneShot(winnerSound);
-        RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Winner", Vector3.zero);
+        
         //asignacio copa i animal del guanyador
         if (NewControl.finalWinner != null)
         {
+            GameObject.Find("Control").GetComponent<NewControl>().rankingCanvas.SetActive(false);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Winner", Vector3.zero);
             player.text = NewControl.finalWinner.name;
 
             //if(NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("1"))
@@ -119,12 +121,12 @@ public class WinnerHUD : MonoBehaviour {
     }
 	void Update()
     {
-       
 
         if (Input.GetButtonDown("Main Menu")) {
 			this.gameObject.SetActive (false);
 			Time.timeScale = 1;
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
+            GameObject.Find("Control").GetComponent<NewControl>().backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             Default();
             SceneManager.LoadScene ("Menu");
 
@@ -144,6 +146,8 @@ public class WinnerHUD : MonoBehaviour {
         NewControl.objective = null;
         NewControl.finalWinner = null;
         NewControl.parcialWinner = null;
+        Ranking.orderedRank = null;
+        Ranking.rankList = null;
         NumCanvasSeleccionJugadores.ready_P1 = false;
         NumCanvasSeleccionJugadores.ready_P2 = false;
         NumCanvasSeleccionJugadores.ready_P3 = false;

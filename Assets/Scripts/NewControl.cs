@@ -29,7 +29,8 @@ public class NewControl : MonoBehaviour
     public static GameObject[] killers;
     public static bool paused;
     [SerializeField]
-    private GameObject pausa, objectiveCanvas, rankingCanvas;
+    private GameObject pausa, objectiveCanvas;
+    public GameObject rankingCanvas;
     public GameObject finalWinnerCanvas;
     public static int characterPlayer_1, characterPlayer_2, characterPlayer_3, characterPlayer_4;
     [SerializeField]
@@ -51,6 +52,7 @@ public class NewControl : MonoBehaviour
     public FMOD.Studio.EventInstance backgroudSound;
     public FMOD.Studio.EventInstance backgroudMusic;
     //private FMOD.Studio.ParameterInstance loop;
+    private bool once = false;
 
     public enum Abilities
     {
@@ -60,15 +62,16 @@ public class NewControl : MonoBehaviour
     // Use this for initialization
     public void Awake()
     {
-        startGame = false;
+        startGame = once = false;
         numOfPlayers = PlayerPrefs.GetInt("NumPlayers");
 
         listPos = new List<int>();
         listPlayers = new List<GameObject>();
         players = new List<GameObject>();
-
+        Rondes.timesPlayed = 0;
         habilitat_1 = PlayerPrefs.GetInt("Ability 1");
         habilitat_2 = PlayerPrefs.GetInt("Ability 2");
+        rankingCanvas.SetActive(true);
 
         //creacion jugadores
         PlayersAndGuardsCreation();
@@ -179,6 +182,7 @@ public class NewControl : MonoBehaviour
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 10;
                 //StartGame();
                 objComplete = false;
+               // Rondes.timesPlayed++;
                 //Ranking.OrdenarRanking();
                 rankingCanvas.SetActive(true);
 
@@ -193,6 +197,7 @@ public class NewControl : MonoBehaviour
                 Rondes.timesPlayed++;
                 objComplete = false;
                 timeLeft = time;
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", parcialWinner.transform.position);
                 //Ranking.OrdenarRanking();
                 rankingCanvas.SetActive(true);
                 //StartGame();
@@ -201,6 +206,7 @@ public class NewControl : MonoBehaviour
             if (objKilledByGuard)
             {
                 Rondes.timesPlayed++;
+                objKilledByGuard = false;
                 objComplete = false;
                 //Ranking.OrdenarRanking();
                 rankingCanvas.SetActive(true);
@@ -212,12 +218,18 @@ public class NewControl : MonoBehaviour
                 if (timeLeft < 10)
                     backgroudSound.setParameterValue("Vent Loop", 1);
             }
-            if (Rondes.timesPlayed == Rondes.rondas)
+            if (Rondes.timesPlayed >= Rondes.rondas)
             {
+               // Debug.Log(Rondes.rondas);
+               // Debug.Log("iee");
                 backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 objComplete = false;
                 Ranking.Guanyador();
-                rankingCanvas.SetActive(true);
+                if (!once)
+                {
+                    rankingCanvas.SetActive(true);
+                    once = true;
+                }
             }
         }
     }
@@ -230,6 +242,7 @@ public class NewControl : MonoBehaviour
         rankingCanvas.SetActive(false);
         paused = false;
         pausa.SetActive(false);
+
         //timeStartLeft = timeLeft;
         objective = null;
         foreach(GameObject player in players)
@@ -505,7 +518,7 @@ public class NewControl : MonoBehaviour
     void ShowObjectiveCanvas()
     {
         //objectiveCanvas.SetActive(true);
-        objectiveCanvas.GetComponent<ObjectiveCanvas>().Start();
+        this.GetComponent<ObjectiveCanvas>().Start();
     }
     private void Pausa()
     {

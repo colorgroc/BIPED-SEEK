@@ -43,7 +43,7 @@ public class Menu : MonoBehaviour
 
     private void Awake()
     {
-        QualitySettings.SetQualityLevel(5);
+        //QualitySettings.SetQualityLevel(5);
         if (Application.isEditor == false)
         {
             if (PlayerPrefs.GetInt("FirstGame") == 0)

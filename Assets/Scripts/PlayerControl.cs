@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     public static float defaultSpeed = 20;
     [HideInInspector]
-    public string AxisMovement, AxisRotation, killButton, hab1Button, hab2Button, hab3Button, hab4Button, hab5Button, hab6Button;
+    public string AxisMovement, AxisRotation, AxisRotation2, killButton, hab1Button, hab2Button, hab3Button, hab4Button, hab5Button, hab6Button;
 
     private float distToGround, count, timeCoolDown, timeFeedback;
     [SerializeField]
@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour {
     public FMOD.Studio.EventInstance backgroudSound;
     private void Awake()
     {
-        QualitySettings.SetQualityLevel(5);
+       // QualitySettings.SetQualityLevel(5);
         //this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 1");
         this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 2");
         //this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 3");
@@ -57,6 +57,7 @@ public class PlayerControl : MonoBehaviour {
         if (this.gameObject.name.Equals("Player 1"))
         {
             this.AxisMovement = "V_LPad_1";
+            this.AxisRotation2 = "H_LPad_1";
             this.AxisRotation = "H_RPad_1";
             this.killButton = "X_1";
             this.hab1Button = "LB_1";
@@ -65,6 +66,7 @@ public class PlayerControl : MonoBehaviour {
         else if (this.gameObject.name.Equals("Player 2"))
         {
             this.AxisMovement = "V_LPad_2";
+            this.AxisRotation2 = "H_LPad_2";
             this.AxisRotation = "H_RPad_2";
             this.killButton = "X_2";
             this.hab1Button = "LB_2";
@@ -75,6 +77,7 @@ public class PlayerControl : MonoBehaviour {
         {
 
             this.AxisMovement = "V_LPad_3";
+            this.AxisRotation2 = "H_LPad_3";
             this.AxisRotation = "H_RPad_3";
             this.killButton = "X_3";
             this.hab1Button = "LB_3";
@@ -84,6 +87,7 @@ public class PlayerControl : MonoBehaviour {
         else if (this.gameObject.name.Equals("Player 4"))
         {
             this.AxisMovement = "V_LPad_4";
+            this.AxisRotation2 = "H_LPad_4";
             this.AxisRotation = "H_RPad_4";
             this.killButton = "X_4";
             this.hab1Button = "LB_4";
@@ -123,10 +127,12 @@ public class PlayerControl : MonoBehaviour {
         if (this.canAct && !this.usingAbility)
         {
             float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
+            float x = Input.GetAxis(this.AxisRotation2) * Time.deltaTime;
             float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
 
             transform.Translate(0, 0, y * speed);
-            transform.Rotate(0, rX * speedRotation, 0);
+            
+            transform.Rotate(0, (x+rX) * speedRotation, 0);
 
             _navMeshAgent.SetDestination(transform.position);
 
@@ -167,7 +173,7 @@ public class PlayerControl : MonoBehaviour {
 
         this.anim.SetBool("wannaKill", this.wannaKill);
         this.anim.SetBool("isFreezed", !this.canAct);
-        if (this.detected)
+        if (this.detected && !this.cooledDown)
         {
             if (!this.vibration)
             {
@@ -188,12 +194,23 @@ public class PlayerControl : MonoBehaviour {
             this.vibration = false;
             this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
-        if (NewControl.paused || Tutorial_InGame.tutorialPaused || Time.timeScale == 0)
+        if (!Tutorial_InGame.showIt)
         {
-            this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            this.vibration = false;
+            if (NewControl.paused || Tutorial_InGame.tutorialPaused || Time.timeScale == 0 || GameObject.Find("Control").GetComponent<NewControl>().rankingCanvas.activeInHierarchy)
+            {
+                this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                this.vibration = false;
+            }
         }
-        if (NewControl.paused) this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        else
+        {
+            if (NewControl.paused || Tutorial_InGame.tutorialPaused || Time.timeScale == 0)
+            {
+                this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                this.vibration = false;
+            }
+        }
+        
         if (this.cooledDown)
         {
             this.detected = false;
@@ -269,6 +286,8 @@ public class PlayerControl : MonoBehaviour {
                 NewControl.objComplete = true;
             }
             Rondes.timesPlayed++;
+            if (!Tutorial_InGame.showIt)
+                GameObject.Find("Control").GetComponent<EventosMapa>().Default();
 			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", gO.transform.position);
         }
 

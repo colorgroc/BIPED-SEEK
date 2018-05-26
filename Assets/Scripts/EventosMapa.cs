@@ -38,11 +38,11 @@ public class EventosMapa : MonoBehaviour {
 	void Update () {
         if (NewControl.startGame)
         {
-            if (ronda < Rondes.timesPlayed)
+            if (ronda <= Rondes.timesPlayed)
             {
                 ronda = Rondes.timesPlayed;
 
-                nothing = false;
+                //nothing = false;
             }
             if (i < eventos.Count && ronda <= Rondes.rondas)
             {
@@ -257,7 +257,7 @@ public class EventosMapa : MonoBehaviour {
             killer.gameObject.layer = 9;
         }
         NewControl.killers = GameObject.FindGameObjectsWithTag("Killer Guards");
-        Debug.Log(NewControl.killers.Length);
+       // Debug.Log(NewControl.killers.Length);
     }
 
     private void KillersDestruction()
@@ -269,12 +269,15 @@ public class EventosMapa : MonoBehaviour {
                 Destroy(killer);
             }
         }
+        
     }
 
-    private void Default()
+    public void Default()
     {
+        nothing = true;
         KillersDestruction();
         NPCRestablishment();
-        DefaultSpeed();    
+        DefaultSpeed();
+        NewControl.killers = null;
     }
 }

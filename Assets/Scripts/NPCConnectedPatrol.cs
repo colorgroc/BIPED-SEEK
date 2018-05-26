@@ -136,7 +136,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         if (_currentWaypoint != null)
         {
             Vector3 targetVector = _currentWaypoint.transform.position;
-            //_travelling = true;
+            _travelling = true;
             _navMeshAgent.SetDestination(targetVector);
         }
 	}
@@ -145,8 +145,8 @@ public class NPCConnectedPatrol : MonoBehaviour {
 		_navMeshAgent.SetDestination (targetVector);
 	}
 	void OnCollisionEnter(Collision collision){
-       // if (NewControl.startGame)
-       // {
+        if (NewControl.startGame)
+        {
             if (collision.gameObject.tag.Equals("Guard") || collision.gameObject.tag.Equals("Killer Guards"))
             {
                 SetDestination();
@@ -155,8 +155,8 @@ public class NPCConnectedPatrol : MonoBehaviour {
             {
                 SetDestination();
             }
-      //  }
-       if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
+        }
+        if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
             this.anim.SetBool("wannaKill", true);
             Death.AnimDeath(collision.gameObject, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
             collision.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
@@ -187,7 +187,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         //    SetDestination();
         //}
 
-         if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
+        if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
         {
             this.anim.SetBool("wannaKill", true);
             //soundSource.PlayOneShot(killPlayerSound);

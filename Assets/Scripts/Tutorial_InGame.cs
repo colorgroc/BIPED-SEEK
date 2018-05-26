@@ -37,7 +37,7 @@ public class Tutorial_InGame : MonoBehaviour {
     // Use this for initialization
     private void Awake()
     {
-        QualitySettings.SetQualityLevel(5);
+        //QualitySettings.SetQualityLevel(5);
         showIt = true;
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
@@ -277,6 +277,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 titol.text = "Events";
                 feedback.SetActive(false);
                 events.SetActive(true);
+                arrow.SetActive(true);
                 eventText.SetActive(true);
                 mapEvent.SetActive(true);
                 killerEvent.SetActive(false);
@@ -286,7 +287,8 @@ public class Tutorial_InGame : MonoBehaviour {
             {
                 titol.text = "Killers";
                 events.SetActive(true);
-                eventText.SetActive(true);
+                arrow.SetActive(false);
+                //eventText.SetActive(true);
                 killerEvent.SetActive(true);                   
                 eventText.SetActive(false);
                 goKill3.SetActive(false);
@@ -327,6 +329,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 killerEvent_score.SetActive(false);
                 titol.text = "Crazynest";
                 speedy.SetActive(true);
+                arrow.SetActive(true);
                 box.SetActive(true);
                 npcReduction_half.SetActive(false);
             }
@@ -395,7 +398,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 events.SetActive(false);
             }
         }
-        if(OK == 2 && time > 3 && (Input.GetAxis(player1.GetComponent<PlayerControl>().AxisMovement) * Time.deltaTime) != 0 && !once)
+        if(OK == 2 && time > 3 && ((Input.GetAxis(player1.GetComponent<PlayerControl>().AxisMovement) * Time.deltaTime) != 0 || (Input.GetAxis(player1.GetComponent<PlayerControl>().AxisRotation) * Time.deltaTime) != 0) && !once)
         {
             p1mat[1] = glowP1;
             p1mat[2] = outlineP1;
@@ -463,7 +466,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 box.SetActive(true);
                 titol.text = "Killers";
                 killerEvent_score.SetActive(true);
-                 eventText.SetActive(true);
+                 //eventText.SetActive(true);
                 events.SetActive(true);
                // tuto = true;
             }

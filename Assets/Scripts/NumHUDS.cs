@@ -18,10 +18,19 @@ public class NumHUDS : MonoBehaviour {
         }
 
         this.huds.Sort(SortByName);
-
-        for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
+        if (!Tutorial_InGame.showIt)
         {
-            this.huds[i].SetActive(true);
+            for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
+            {
+                this.huds[i].SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                this.huds[i].SetActive(true);
+            }
         }
     }
 	

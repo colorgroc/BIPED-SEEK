@@ -121,6 +121,7 @@ public class Immobilizer : MonoBehaviour {
 			}
 			if (NewControl.killers != null) {
 				foreach (GameObject killer in NewControl.killers) {
+                    if(killer != null)
 					killer.GetComponent<NPCConnectedPatrol> ().freezed = false;
 				}
 			}
