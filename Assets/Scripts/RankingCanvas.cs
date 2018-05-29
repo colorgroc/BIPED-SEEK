@@ -57,9 +57,9 @@ public class RankingCanvas : MonoBehaviour {
             }
             else
                 GameObject.Find("Control").GetComponent<NewControl>().StartGame();
-            
+
             foreach (GameObject player in NewControl.players)
-                player.GetComponent<PlayerControl>().scoreGeneralRound = player.GetComponent<PlayerControl>().scoreKillsRound = player.GetComponent<PlayerControl>().scoreWinsRound = 0;
+                player.GetComponent<PlayerControl>().scoreGeneralRound = 0;//player.GetComponent<PlayerControl>().scoreKillsRound = player.GetComponent<PlayerControl>().scoreWinsRound = 0;
             Time.timeScale = 1;
         }
         else Time.timeScale = 0;

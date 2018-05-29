@@ -103,11 +103,14 @@ public class ControlAbility : MonoBehaviour {
     }
     void DefaultControl()
     {
-        guardsList[random] = guard; //si no va, comentar aixo i descomentar lu d sota
-        //ConvertType(guardsList[random], "Back_to_Guard");
-        //player = this.gameObject;
-        ConvertType(player, "Back_to_Player");
-        ConvertType(guard, "Back_to_Guard");
+        if (random != 0 && guardsList[random] != null && guard != null)
+        {
+            guardsList[random] = guard; //si no va, comentar aixo i descomentar lu d sota
+                                        //ConvertType(guardsList[random], "Back_to_Guard");
+                                        //player = this.gameObject;
+            ConvertType(player, "Back_to_Player");
+            ConvertType(guard, "Back_to_Guard");
+        }
 
     }
 

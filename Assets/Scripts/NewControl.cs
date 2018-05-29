@@ -178,7 +178,7 @@ public class NewControl : MonoBehaviour
             {
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
-                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWinsRound += 1;
+                //parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWinsRound += 1;
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 10;
                 //StartGame();
                 objComplete = false;
@@ -208,6 +208,7 @@ public class NewControl : MonoBehaviour
                 Rondes.timesPlayed++;
                 objKilledByGuard = false;
                 objComplete = false;
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", parcialWinner.transform.position);
                 //Ranking.OrdenarRanking();
                 rankingCanvas.SetActive(true);
                 //StartGame();
@@ -223,6 +224,7 @@ public class NewControl : MonoBehaviour
                // Debug.Log(Rondes.rondas);
                // Debug.Log("iee");
                 backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 objComplete = false;
                 Ranking.Guanyador();
                 if (!once)

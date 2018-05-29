@@ -42,8 +42,8 @@ public class HUD : MonoBehaviour {
     {
        
         this.score.text = this.player.GetComponent<PlayerControl>().scoreGeneralRound.ToString();
-        this.kills.text = this.player.GetComponent<PlayerControl>().scoreKillsRound.ToString();
-        this.survived.text = this.player.GetComponent<PlayerControl>().scoreWinsRound.ToString();
+        this.kills.text = this.player.GetComponent<PlayerControl>().scoreKills.ToString();
+        this.survived.text = this.player.GetComponent<PlayerControl>().scoreWins.ToString();
 
         if (this.player.GetComponent<PlayerControl>().cooledDown)
         {

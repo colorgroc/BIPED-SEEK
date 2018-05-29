@@ -52,7 +52,7 @@ public class PlayerControl : MonoBehaviour {
             guards = GameObject.FindGameObjectsWithTag("Guard");
 
 
-        scoreGeneral = scoreKills = scoreWins = scoreGeneralRound = scoreKillsRound = scoreWinsRound = 0;
+        scoreGeneral = scoreKills = scoreWins = scoreGeneralRound = 0;// = scoreKillsRound = scoreWinsRound = 0;
 
         if (this.gameObject.name.Equals("Player 1"))
         {
@@ -271,7 +271,7 @@ public class PlayerControl : MonoBehaviour {
             this.scoreGeneral += 5;
             this.scoreKills += 1;
             this.scoreGeneralRound += 5;
-            this.scoreKillsRound += 1;
+            //this.scoreKillsRound += 1;
 			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Death", gO.transform.position);
             gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
