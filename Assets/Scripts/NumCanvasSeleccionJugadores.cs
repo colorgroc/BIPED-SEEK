@@ -32,15 +32,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private Color32 yellow_color = new Color32(255, 215, 0, 255);
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
-
-    private GameObject[] characterTypes, munyequitos;
+    private int num;
+    private GameObject[] characterTypes, munyequitos, jugadores;
 
     void Start() {
         //Music
         //music.volume = PlayerPrefs.GetFloat("MusicVolume");
 
         //inicialitzar variables
-        GameObject[] jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
+        jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
         characterTypes_P1 = new List<GameObject>();
         characterTypes_P2 = new List<GameObject>();
         characterTypes_P3 = new List<GameObject>();
@@ -55,7 +55,41 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         //guardar num of players
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
+        num = PlayerPrefs.GetInt("NumPlayers");
+        InicialitzarJugadors();
+      
+        //MapaRandom();     
+    }
+	
+	// Update is called once per frame
+	void Update () {
 
+        //codi de prova
+       // Back();
+        //guardar num of players
+        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
+        if(num != PlayerPrefs.GetInt("NumPlayers"))
+        {
+            InicialitzarJugadors();
+            num = PlayerPrefs.GetInt("NumPlayers");
+        }
+        if (PlayerPrefs.GetInt("NumPlayers") < 2) this.restriccion.enabled = true;
+        else this.restriccion.enabled = false;
+
+        SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
+
+        //reset cancel buton
+
+       /* //proves per 1 jugador
+        if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");*/
+        //quan tothom ready, comença joc
+        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Loading");
+        else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene("Loading");
+        else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene("Loading");
+    }
+  
+    void InicialitzarJugadors()
+    {
         //inicialitzar canvas seleccio personatges
         for (int i = 0; i < jugadores.Length; i++)
         {
@@ -65,7 +99,8 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         players.Sort(SortByName);
 
-        for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++) {
+        for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
+        {
             players[i].SetActive(true);
         }
         foreach (GameObject child in players)
@@ -131,32 +166,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
                 }
             }
         }
-        //MapaRandom();     
     }
-	
-	// Update is called once per frame
-	void Update () {
-
-        //codi de prova
-       // Back();
-        //guardar num of players
-        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        if (PlayerPrefs.GetInt("NumPlayers") < 2) this.restriccion.enabled = true;
-        else this.restriccion.enabled = false;
-
-        SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
-
-        //reset cancel buton
-
-       /* //proves per 1 jugador
-        if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");*/
-        //quan tothom ready, comença joc
-        if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Loading");
-        else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene("Loading");
-        else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene("Loading");
-    }
-  
-
     private static int SortByName(GameObject o1, GameObject o2)
     {
         return o1.name.CompareTo(o2.name);
