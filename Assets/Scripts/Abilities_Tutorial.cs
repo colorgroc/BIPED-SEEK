@@ -9,24 +9,27 @@ using FMODUnity;
 public class Abilities_Tutorial : MonoBehaviour {
 
     [SerializeField]
-    private GameObject welcome1, welcome2, smoke, freeze, control, invisible, sprint, teleport, finish, back, pausa;
+    private GameObject welcome1, welcome2, smoke, freeze, control, invisible, sprint, teleport, finish, back, pausa, box;
     public Text titol;
     public static bool tutorialPaused;
     private int OK;
     public static bool show;//, tuto;
     public FMOD.Studio.EventInstance backgroudSound;
     public FMOD.Studio.EventInstance backgroudMusic;
-
+    public static bool canAct = false;
     // Use this for initialization
     private void Awake()
     {
         //QualitySettings.SetQualityLevel(5);
         show = true;
+        //Tutorial_InGame.showIt = false;
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         OK = 0;
         tutorialPaused = false;
         //tuto = true;
+        back.SetActive(false);
+        box.SetActive(true);
         welcome1.SetActive(true);
         welcome2.SetActive(false);
         smoke.SetActive(false);
@@ -45,6 +48,8 @@ public class Abilities_Tutorial : MonoBehaviour {
     }
     void Start()
     {
+        show = true;
+        Tutorial_InGame.showIt = false;
         backgroudMusic.start();
         backgroudSound.start();
     }
@@ -136,7 +141,9 @@ public class Abilities_Tutorial : MonoBehaviour {
             else if (OK == 9)
             {
                 finish.SetActive(false);
+                box.SetActive(false);
                 Time.timeScale = 1;
+                canAct = true;
             }
         }
     }
@@ -180,7 +187,7 @@ public class Abilities_Tutorial : MonoBehaviour {
         }
         if (tutorialPaused)
             Time.timeScale = 0;
-        else if (!tutorialPaused) Time.timeScale = 1;
+        else if (!tutorialPaused && !box.activeInHierarchy) Time.timeScale = 1;
 
     }
 }

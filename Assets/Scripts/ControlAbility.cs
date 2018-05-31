@@ -88,7 +88,7 @@ public class ControlAbility : MonoBehaviour {
                 DefaultControl();
             }
         }
-        if (Abilities_Tutorial.show)
+        if (!Abilities_Tutorial.show)
         {
             if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
             {
@@ -97,9 +97,9 @@ public class ControlAbility : MonoBehaviour {
         }
         else
         {
-            if (Input.GetButtonDown("Back") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            if (Input.GetButtonDown("Cancel") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
             {
-                this.gameObject.GetComponent<Animator>().SetTrigger("Immobilitzar");
+                this.gameObject.GetComponent<Animator>().SetTrigger("Control");
                 //Congelar();
             }
         }
@@ -122,6 +122,7 @@ public class ControlAbility : MonoBehaviour {
         random = Random.Range(0, guardsList.Count);
         player = this.gameObject;
         guard = guardsList[random].gameObject;
+
         ConvertType(guardsList[random].gameObject, "Guard_Controlled_by_Player");
         ConvertType(this.gameObject, "Player_Controlled_by_IA");
     }
@@ -144,29 +145,39 @@ public class ControlAbility : MonoBehaviour {
         {
             gO.gameObject.GetComponent<AbilitiesControl>().nPCConnectedPatrol.enabled = true;
             gO.gameObject.GetComponent<AbilitiesControl>().playerControl.enabled = false;
+            if (!Abilities_Tutorial.show)
+            {
 
-            if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
-            {
-                gO.gameObject.GetComponent<AbilitiesControl>().freeze.enabled = false;
-  
+                if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().freeze.enabled = false;
+
+                }
+                else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.INVISIBLITY || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.INVISIBLITY)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().invisibility.enabled = false;
+                }
+                else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().smoke.enabled = false;
+                }
+                else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().sprint.enabled = false;
+                }
+                else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.TELEPORT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.TELEPORT)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().teleport.enabled = false;
+                }
             }
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.INVISIBLITY || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.INVISIBLITY)
-            {
-                gO.gameObject.GetComponent<AbilitiesControl>().invisibility.enabled = false;
-            }
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
-            {
-                gO.gameObject.GetComponent<AbilitiesControl>().smoke.enabled = false;
-            }
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
-            {
-                gO.gameObject.GetComponent<AbilitiesControl>().sprint.enabled = false;
-            }
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.TELEPORT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.TELEPORT)
+            else
             {
                 gO.gameObject.GetComponent<AbilitiesControl>().teleport.enabled = false;
+                gO.gameObject.GetComponent<AbilitiesControl>().sprint.enabled = false;
+                gO.gameObject.GetComponent<AbilitiesControl>().smoke.enabled = false;
+                gO.gameObject.GetComponent<AbilitiesControl>().invisibility.enabled = false;
+                gO.gameObject.GetComponent<AbilitiesControl>().freeze.enabled = false;
             }
-        
         } 
         else if(type.Equals("Guard_Controlled_by_Player"))
         {
@@ -180,30 +191,40 @@ public class ControlAbility : MonoBehaviour {
             gO.gameObject.GetComponent<AbilitiesControl>().nPCConnectedPatrol.enabled = false;
             gO.gameObject.GetComponent<AbilitiesControl>().playerControl.enabled = true;
             gO.gameObject.name = player.name;
-
-            if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
+            if (!Abilities_Tutorial.show)
             {
-                gO.gameObject.GetComponent<AbilitiesControl>().freeze.enabled = true;
+                if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().freeze.enabled = true;
+                }
+                else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.INVISIBLITY || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.INVISIBLITY)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().invisibility.enabled = true;
+                }
+                /* else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
+                 {
+                     gO.gameObject.GetComponent<Repel>().enabled = true;
+                 }*/
+                else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().smoke.enabled = true;
+                }
+                else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().sprint.enabled = true;
+                }
+                else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.TELEPORT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.TELEPORT)
+                {
+                    gO.gameObject.GetComponent<AbilitiesControl>().teleport.enabled = true;
+                }
             }
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.INVISIBLITY || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.INVISIBLITY)
-            {
-                gO.gameObject.GetComponent<AbilitiesControl>().invisibility.enabled = true;
-            }
-           /* else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.REPEL || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.REPEL)
-            {
-                gO.gameObject.GetComponent<Repel>().enabled = true;
-            }*/
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
-            {
-                gO.gameObject.GetComponent<AbilitiesControl>().smoke.enabled = true;
-            }
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
-            {
-                gO.gameObject.GetComponent<AbilitiesControl>().sprint.enabled = true;
-            }
-            else if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.TELEPORT || PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.TELEPORT)
+            else
             {
                 gO.gameObject.GetComponent<AbilitiesControl>().teleport.enabled = true;
+                gO.gameObject.GetComponent<AbilitiesControl>().sprint.enabled = true;
+                gO.gameObject.GetComponent<AbilitiesControl>().smoke.enabled = true;
+                gO.gameObject.GetComponent<AbilitiesControl>().invisibility.enabled = true;
+                gO.gameObject.GetComponent<AbilitiesControl>().freeze.enabled = true;
             }
        
         }
@@ -217,35 +238,53 @@ public class ControlAbility : MonoBehaviour {
 
     void Asignation()
     {
-        if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.CONTROL)
+        if (!Abilities_Tutorial.show)
         {
-            this.ab1 = true;
-            this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_control;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_control;
-        }
-        else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.CONTROL)
-        {
-            this.ab2 = true;
-            this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_control;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_control;
+            if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.CONTROL)
+            {
+                this.ab1 = true;
+                this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_control;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_control;
+            }
+            else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.CONTROL)
+            {
+                this.ab2 = true;
+                this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_control;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_control;
+            }
         }
     }
     void IconRespawn()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
         }
     }
+
     void IconDuration()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
         }

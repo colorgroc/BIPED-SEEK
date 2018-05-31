@@ -8,28 +8,31 @@ public class NumHUDS : MonoBehaviour {
 
     void Start ()
     {
-        GameObject[] hudsList = GameObject.FindGameObjectsWithTag("HUD");
-        this.huds = new List<GameObject>();
-
-        for (int i = 0; i < hudsList.Length; i++)
+        if (!Abilities_Tutorial.show)
         {
-            this.huds.Add(hudsList[i].gameObject);
-            hudsList[i].gameObject.SetActive(false);
-        }
+            GameObject[] hudsList = GameObject.FindGameObjectsWithTag("HUD");
+            this.huds = new List<GameObject>();
 
-        this.huds.Sort(SortByName);
-        if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
-        {
-            for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
+            for (int i = 0; i < hudsList.Length; i++)
             {
-                this.huds[i].SetActive(true);
+                this.huds.Add(hudsList[i].gameObject);
+                hudsList[i].gameObject.SetActive(false);
             }
-        }
-        else
-        {
-            for (int i = 0; i < 3; i++)
+
+            this.huds.Sort(SortByName);
+            if (!Tutorial_InGame.showIt)
             {
-                this.huds[i].SetActive(true);
+                for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
+                {
+                    this.huds[i].SetActive(true);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    this.huds[i].SetActive(true);
+                }
             }
         }
     }

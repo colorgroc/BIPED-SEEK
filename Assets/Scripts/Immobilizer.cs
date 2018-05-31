@@ -118,7 +118,7 @@ public class Immobilizer : MonoBehaviour {
 
     void MoveAgain()
     {
-		if (SceneManager.GetActiveScene ().name != "Tutorial") {
+		if (SceneManager.GetActiveScene ().name != "Tutorial" && SceneManager.GetActiveScene().name != "Hab_Tuto") {
 			if (NewControl.guards != null) {
 				foreach (GameObject guard in NewControl.guards) {
 					guard.GetComponent<NPCConnectedPatrol> ().freezed = false;
@@ -140,10 +140,13 @@ public class Immobilizer : MonoBehaviour {
 			GameObject[] guards = GameObject.FindGameObjectsWithTag ("Guard");
 			foreach (GameObject guard in guards)
 				guard.GetComponent<NPCConnectedPatrol> ().freezed = false;
-			if (GameObject.Find ("Player 2") != null)
-				GameObject.Find ("Player 2").gameObject.GetComponent<PlayerControl> ().canAct = true;
-            if (GameObject.Find("Player 3") != null)
-                GameObject.Find("Player 3").gameObject.GetComponent<PlayerControl>().canAct = true;
+            if (!Abilities_Tutorial.show)
+            {
+                if (GameObject.Find("Player 2") != null)
+                    GameObject.Find("Player 2").gameObject.GetComponent<PlayerControl>().canAct = true;
+                if (GameObject.Find("Player 3") != null)
+                    GameObject.Find("Player 3").gameObject.GetComponent<PlayerControl>().canAct = true;
+            }
     //        if (GameObject.Find ("Killer") != null)
 				//GameObject.Find ("Killer").GetComponent<NPCConnectedPatrol> ().freezed = false; 
 		}
@@ -151,28 +154,38 @@ public class Immobilizer : MonoBehaviour {
 
     void Asignation()
     {
-        if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER)
+        if (!Abilities_Tutorial.show)
         {
-            this.ab1 = true;
-            this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
-        }
-        else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
-        {
-            this.ab2 = true;
-            this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
+            if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.IMMOBILIZER)
+            {
+                this.ab1 = true;
+                this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
+            }
+            else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.IMMOBILIZER)
+            {
+                this.ab2 = true;
+                this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_freeze;
+            }
         }
     }
     void IconRespawn()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
         }
@@ -180,7 +193,14 @@ public class Immobilizer : MonoBehaviour {
 
     void IconDuration()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
         }

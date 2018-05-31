@@ -80,7 +80,8 @@ public class Smoke : MonoBehaviour {
         {
             if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
             {
-                this.gameObject.GetComponent<Animator>().SetTrigger("Immobilitzar");
+                this.gameObject.GetComponent<Animator>().SetTrigger("Smoke");
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Smoke", this.transform.position);
                 //Congelar();
             }
         }
@@ -99,7 +100,14 @@ public class Smoke : MonoBehaviour {
     }
     void IconRespawn()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
         }
@@ -107,7 +115,14 @@ public class Smoke : MonoBehaviour {
 
     void IconDuration()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
         }
@@ -115,23 +130,26 @@ public class Smoke : MonoBehaviour {
 
     void Asignation()
     {
-        if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE)
+        if (!Abilities_Tutorial.show)
         {
-            this.ab1 = true;
-            this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
-        }
-        else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
-        {
-            this.ab2 = true;
-            this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+            if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SMOKE)
+            {
+                this.ab1 = true;
+                this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+            }
+            else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SMOKE)
+            {
+                this.ab2 = true;
+                this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_smoke;
+            }
         }
     }
 }

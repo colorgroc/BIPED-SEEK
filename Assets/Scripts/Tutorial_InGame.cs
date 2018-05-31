@@ -37,8 +37,10 @@ public class Tutorial_InGame : MonoBehaviour {
     // Use this for initialization
     private void Awake()
     {
-        //QualitySettings.SetQualityLevel(5);
         showIt = true;
+        //QualitySettings.SetQualityLevel(5);
+        //showIt = true;
+        //Abilities_Tutorial.show = false;
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         time = time2 = time3 = time4 = time5 = OK = 0;
@@ -82,6 +84,8 @@ public class Tutorial_InGame : MonoBehaviour {
         //objective = player2;
     }
     void Start () {
+        showIt = true;
+        Abilities_Tutorial.show = false;
         timeLeft = timeGame;//UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
         textTiempo.text = GetMinutes(timeLeft);
         objectiveCanvas.GetComponent<ObjectiveCanvas>().Start();

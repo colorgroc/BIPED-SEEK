@@ -20,7 +20,7 @@ public class TutorialMenu : MonoBehaviour {
         Tutorial_InGame.showIt = false;
         Menu.musicStarted = false;
         Menu.backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Hab_Tuto");
     }
     public void GoToEventsTutorial()
     {
@@ -33,6 +33,8 @@ public class TutorialMenu : MonoBehaviour {
 
     private void Update()
     {
+        if (EventSystem.current.currentSelectedGameObject == null)
+            EventSystem.current.SetSelectedGameObject(firstButton);
         if (Input.GetButtonDown("Back"))
         {
             Abilities_Tutorial.show = false;

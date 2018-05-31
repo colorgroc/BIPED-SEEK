@@ -12,12 +12,12 @@ public class Death : MonoBehaviour {
         Material[] mats = null;
         GameObject prefab = null;
 
-        if (SceneManager.GetActiveScene().name != "Tutorial")
+        if (SceneManager.GetActiveScene().name != "Tutorial" && SceneManager.GetActiveScene().name != "Hab_Tuto")
         {
             if (gameObject != null && gameObject.GetComponentInChildren<Renderer>() != null && gameObject.GetComponentInChildren<Renderer>().material != null)
                 mat = gameObject.GetComponentInChildren<Renderer>().material;
         }
-        else if (SceneManager.GetActiveScene().name == "Tutorial")
+        else if (SceneManager.GetActiveScene().name == "Tutorial" || SceneManager.GetActiveScene().name != "Hab_Tuto")
         {
             if (gameObject != null && gameObject.GetComponentInChildren<Renderer>() != null && gameObject.GetComponentInChildren<Renderer>().materials != null)
                 mats = gameObject.GetComponentInChildren<Renderer>().materials;

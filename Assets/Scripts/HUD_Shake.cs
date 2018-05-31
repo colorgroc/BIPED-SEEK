@@ -30,13 +30,14 @@ public class HUD_Shake : MonoBehaviour
 			else if (this.gameObject.name.EndsWith ("4"))
 				this.player = GameObject.Find ("Player 4");
 		} else { 
-			this.player = p;
+            if (!Abilities_Tutorial.show)
+			    this.player = p;
 		}
     }
     private void Update()
     {
         
-        if (NewControl.paused) StopAllCoroutines();
+        if (NewControl.paused || Tutorial_InGame.tutorialPaused) StopAllCoroutines();
         else Shake(this.player.GetComponent<PlayerControl>().detected, 5f);
     }
     public void Shake(bool duration, float amount)

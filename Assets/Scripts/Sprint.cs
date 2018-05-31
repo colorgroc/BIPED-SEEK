@@ -68,7 +68,7 @@ public class Sprint : MonoBehaviour {
 
             }
         }
-        if (Abilities_Tutorial.show)
+        if (!Abilities_Tutorial.show)
         {
             if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
             {
@@ -82,7 +82,7 @@ public class Sprint : MonoBehaviour {
         {
             if (Input.GetButtonDown("Main Menu") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
             {
-                this.gameObject.GetComponent<Animator>().SetTrigger("Immobilitzar");
+                Speed();
                 //Congelar();
             }
         }
@@ -104,35 +104,53 @@ public class Sprint : MonoBehaviour {
 
     void Asignation()
     {
-        if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT)
+        if (!Abilities_Tutorial.show)
         {
-            this.ab1 = true;
-            this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
-        }
-        else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
-        {
-            this.ab2 = true;
-            this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
+            if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.SPRINT)
+            {
+                this.ab1 = true;
+                this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
+            }
+            else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.SPRINT)
+            {
+                this.ab2 = true;
+                this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_sprint;
+            }
         }
     }
     void IconRespawn()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
         }
     }
+
     void IconDuration()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
         }

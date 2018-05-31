@@ -29,12 +29,15 @@ public class HUD : MonoBehaviour {
                 this.player = GameObject.Find("Player 4");
         } else
         {
-            if (this.gameObject.name == "Player1HUD")
-                this.player = player1;
-            else if (this.gameObject.name == "Player2HUD")
-                this.player = player2;
-            else if (this.gameObject.name == "Player3HUD")
-                this.player = player3;
+            if (!Abilities_Tutorial.show)
+            {
+                if (this.gameObject.name == "Player1HUD")
+                    this.player = player1;
+                else if (this.gameObject.name == "Player2HUD")
+                    this.player = player2;
+                else if (this.gameObject.name == "Player3HUD")
+                    this.player = player3;
+            }
         }
 
 	}

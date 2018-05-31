@@ -59,7 +59,7 @@ public class Invisibility : MonoBehaviour {
                 this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
         }
-        if (Abilities_Tutorial.show)
+        if (!Abilities_Tutorial.show)
         {
             if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
             {
@@ -68,9 +68,9 @@ public class Invisibility : MonoBehaviour {
         }
         else
         {
-            if (Input.GetButtonDown("Submit") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            if (Input.GetButtonDown("Submit") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown && Abilities_Tutorial.canAct)
             {
-                this.gameObject.GetComponent<Animator>().SetTrigger("Immobilitzar");
+                this.gameObject.GetComponent<Animator>().SetTrigger("Invisible");
                 //Congelar();
             }
         }
@@ -91,35 +91,53 @@ public class Invisibility : MonoBehaviour {
 
     void Asignation()
     {
-        if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.INVISIBLITY)
+        if (!Abilities_Tutorial.show)
         {
-            this.ab1 = true;
-            this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_invisible;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_invisible;
-        }
-        else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.INVISIBLITY)
-        {
-            this.ab2 = true;
-            this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
-            this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_invisible;
-            this.iconAb.GetComponent<Image>().fillAmount = 1;
-            //grisa
-            GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_invisible;
+            if (PlayerPrefs.GetInt("Ability 1") == (int)NewControl.Abilities.INVISIBLITY)
+            {
+                this.ab1 = true;
+                this.iconAb = GameObject.Find("Ability1_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_invisible;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability1_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_invisible;
+            }
+            else if (PlayerPrefs.GetInt("Ability 2") == (int)NewControl.Abilities.INVISIBLITY)
+            {
+                this.ab2 = true;
+                this.iconAb = GameObject.Find("Ability2_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>();
+                this.iconAb.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_invisible;
+                this.iconAb.GetComponent<Image>().fillAmount = 1;
+                //grisa
+                GameObject.Find("Ability2_Grey_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<AbilitiesControl>().s_invisible;
+            }
         }
     }
     void IconRespawn()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = cooldown / coolDown;
         }
     }
+
     void IconDuration()
     {
-        if (this.ab1 || this.ab2)
+        if (Abilities_Tutorial.show)
+        {
+            if (this.ab1 || this.ab2)
+            {
+                this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
+            }
+        }
+        else
         {
             this.iconAb.GetComponent<Image>().fillAmount = timeAb / timeAbility;
         }

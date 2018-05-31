@@ -48,7 +48,7 @@ public class PlayerControl : MonoBehaviour {
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
         this.canAct = true;
 
-        if (Tutorial_InGame.showIt && Abilities_Tutorial.show)
+        if (Tutorial_InGame.showIt || Abilities_Tutorial.show)
             guards = GameObject.FindGameObjectsWithTag("Guard");
 
 
