@@ -99,7 +99,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         }
         else _navMeshAgent.isStopped = false;
        // Debug.Log(_travelling);
-        if (_travelling && _navMeshAgent.remainingDistance <= 0.5f) {
+        if (_travelling && _navMeshAgent.remainingDistance <= 5f) {
 			_travelling = false;
 			_waypointsVisited++;
            // waiting = true;

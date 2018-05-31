@@ -262,7 +262,7 @@ public class ControlAbility : MonoBehaviour {
     }
     void IconRespawn()
     {
-        if (Abilities_Tutorial.show)
+        if (!Abilities_Tutorial.show)
         {
             if (this.ab1 || this.ab2)
             {
@@ -277,7 +277,7 @@ public class ControlAbility : MonoBehaviour {
 
     void IconDuration()
     {
-        if (Abilities_Tutorial.show)
+        if (!Abilities_Tutorial.show)
         {
             if (this.ab1 || this.ab2)
             {

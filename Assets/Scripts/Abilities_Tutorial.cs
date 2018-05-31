@@ -172,7 +172,11 @@ public class Abilities_Tutorial : MonoBehaviour {
         {
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
             OK = 0;
+            box.SetActive(true);
             welcome1.SetActive(true);
+            tutorialPaused = false;
+            pausa.SetActive(tutorialPaused);
+
         }
         if (Input.GetButtonDown("Main Menu") && tutorialPaused)
         {

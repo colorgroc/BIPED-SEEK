@@ -436,6 +436,8 @@ public class Tutorial_InGame : MonoBehaviour {
                 timed3 = false;
                 Time.timeScale = 0;
                 box.SetActive(true);
+                player1.GetComponent<PlayerControl>().scoreGeneralRound += 30;
+                player1.GetComponent<PlayerControl>().scoreGeneral += 30;
                 titol.text = "Objective killed";
                 score4.SetActive(true);
                 //tuto = true;

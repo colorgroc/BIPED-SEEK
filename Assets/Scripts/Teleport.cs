@@ -15,6 +15,7 @@ public class Teleport : MonoBehaviour {
     List<GameObject> guardsList = new List<GameObject>();
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
+    GameObject[] guards;
     //private AudioSource soundSource;
     // Use this for initialization
     void Start ()
@@ -36,7 +37,7 @@ public class Teleport : MonoBehaviour {
         }
         else
         {
-            GameObject[] guards = GameObject.FindGameObjectsWithTag("Guard");
+            guards = GameObject.FindGameObjectsWithTag("Guard");
             foreach (GameObject guard in guards)
             {
                 if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
@@ -96,7 +97,7 @@ public class Teleport : MonoBehaviour {
 
     void IconRespawn()
     {
-        if (Abilities_Tutorial.show)
+        if (!Abilities_Tutorial.show)
         {
             if (this.ab1 || this.ab2)
             {
@@ -115,7 +116,9 @@ public class Teleport : MonoBehaviour {
         int random = Random.Range(0, guardsList.Count);
         Vector3 newGuardPos = this.gameObject.transform.position;
         this.gameObject.transform.position = guardsList[random].transform.position;
-        NewControl.guards[random].transform.position = newGuardPos;
+        if(!Abilities_Tutorial.show)
+            NewControl.guards[random].transform.position = newGuardPos;
+        else guards[random].transform.position = newGuardPos;
     }
 
     void Asignation()

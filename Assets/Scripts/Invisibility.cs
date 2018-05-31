@@ -115,7 +115,7 @@ public class Invisibility : MonoBehaviour {
     }
     void IconRespawn()
     {
-        if (Abilities_Tutorial.show)
+        if (!Abilities_Tutorial.show)
         {
             if (this.ab1 || this.ab2)
             {
@@ -130,7 +130,7 @@ public class Invisibility : MonoBehaviour {
 
     void IconDuration()
     {
-        if (Abilities_Tutorial.show)
+        if (!Abilities_Tutorial.show)
         {
             if (this.ab1 || this.ab2)
             {

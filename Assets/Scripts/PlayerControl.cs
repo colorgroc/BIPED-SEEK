@@ -25,7 +25,7 @@ public class PlayerControl : MonoBehaviour {
     public bool wannaKill, onFieldView, detected, _sprint, canAct;
 
     [SerializeField]
-    private Color colorP1, colorP2, colorP3, colorP4, DetectedFeedback;
+    private Color colorP1, colorP2, colorP3, colorP4;
     private Color neutralColor;
     [SerializeField]
     private Animator anim;
@@ -143,7 +143,10 @@ public class PlayerControl : MonoBehaviour {
             }
             if (Input.GetButtonUp(this.killButton) && !Abilities_Tutorial.show) this.wannaKill = false;
 
-            if (y > 0) this.anim.SetBool("isWalkingForward", true);
+            if (y > 0)
+            {
+                this.anim.SetBool("isWalkingForward", true);
+            }
             else if (y < 0) this.anim.SetBool("isWalkingBack", true);
             else
             {
@@ -167,7 +170,7 @@ public class PlayerControl : MonoBehaviour {
                 this.wannaKill = true;
 				RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
             }
-            if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
+            if (Input.GetButtonUp(this.killButton) && !Abilities_Tutorial.show) this.wannaKill = false;
         }
             
 
