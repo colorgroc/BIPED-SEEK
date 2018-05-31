@@ -11,7 +11,7 @@ public class ObjectiveCanvas : MonoBehaviour {
     public void Start ()
     {
         this.gameObject.SetActive(true);
-        if (!Tutorial_InGame.showIt)
+        if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
         {
             if (NewControl.objective != null)
             {

@@ -50,12 +50,22 @@ public class Teleport : MonoBehaviour {
                 cooldown = 0;
             }
         }
-        if (((this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button)) || (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button))) && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (Abilities_Tutorial.show)
         {
-            this.gameObject.GetComponent<Animator>().SetTrigger("Teleport");
-            
-        }
+            if (((this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button)) || (this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button))) && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            {
+                this.gameObject.GetComponent<Animator>().SetTrigger("Teleport");
 
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().killButton) && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            {
+                this.gameObject.GetComponent<Animator>().SetTrigger("Immobilitzar");
+                //Congelar();
+            }
+        }
         if (Time.timeScale == 1)
         {
             if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;

@@ -53,7 +53,7 @@ public class Death : MonoBehaviour {
             if (animDeath != null)
                 prefab = (GameObject)Instantiate(animDeath, pos, rotation);
 
-            if (!Tutorial_InGame.showIt)
+            if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
             {
                 if (!gameObject.tag.Equals("Killer Guards") && mat != null && prefab != null)
                     prefab.GetComponentInChildren<Renderer>().material = mat;

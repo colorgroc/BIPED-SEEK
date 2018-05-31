@@ -17,7 +17,7 @@ public class HUD : MonoBehaviour {
         this.score.text = this.kills.text = this.survived.text = "0";
     }
     void Start () {
-        if (!Tutorial_InGame.showIt)
+        if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
         {
             if (this.gameObject.name == "Player1HUD")
                 this.player = GameObject.Find("Player 1");

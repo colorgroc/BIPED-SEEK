@@ -48,7 +48,7 @@ public class PlayerControl : MonoBehaviour {
         PlayerPrefs.SetFloat("Speed", defaultSpeed);
         this.canAct = true;
 
-        if (Tutorial_InGame.showIt)
+        if (Tutorial_InGame.showIt && Abilities_Tutorial.show)
             guards = GameObject.FindGameObjectsWithTag("Guard");
 
 
@@ -94,7 +94,7 @@ public class PlayerControl : MonoBehaviour {
             this.hab2Button = "RB_4";
         }
 
-        if (!Tutorial_InGame.showIt)
+        if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
         {
             foreach (GameObject guard in NewControl.guards)
             {
@@ -136,12 +136,12 @@ public class PlayerControl : MonoBehaviour {
 
             _navMeshAgent.SetDestination(transform.position);
 
-            if (Input.GetButtonDown(this.killButton))
+            if (Input.GetButtonDown(this.killButton) && !Abilities_Tutorial.show)
             {
                 this.wannaKill = true;
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
             }
-            if (Input.GetButtonUp(this.killButton)) this.wannaKill = false;
+            if (Input.GetButtonUp(this.killButton) && !Abilities_Tutorial.show) this.wannaKill = false;
 
             if (y > 0) this.anim.SetBool("isWalkingForward", true);
             else if (y < 0) this.anim.SetBool("isWalkingBack", true);
@@ -162,7 +162,7 @@ public class PlayerControl : MonoBehaviour {
             //
         }else if(this.canAct && this.usingAbility)
         {
-            if (Input.GetButtonDown(this.killButton))
+            if (Input.GetButtonDown(this.killButton) && !Abilities_Tutorial.show)
             {
                 this.wannaKill = true;
 				RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
@@ -194,9 +194,9 @@ public class PlayerControl : MonoBehaviour {
             this.vibration = false;
             this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
-        if (!Tutorial_InGame.showIt)
+        if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
         {
-            if (NewControl.paused || Tutorial_InGame.tutorialPaused || Time.timeScale == 0 || GameObject.Find("Control").GetComponent<NewControl>().rankingCanvas.activeInHierarchy)
+            if (NewControl.paused || Tutorial_InGame.tutorialPaused ||  Abilities_Tutorial.tutorialPaused || Time.timeScale == 0 || GameObject.Find("Control").GetComponent<NewControl>().rankingCanvas.activeInHierarchy)
             {
                 this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 this.vibration = false;
@@ -204,7 +204,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else
         {
-            if (NewControl.paused || Tutorial_InGame.tutorialPaused || Time.timeScale == 0)
+            if (NewControl.paused || Tutorial_InGame.tutorialPaused || Abilities_Tutorial.tutorialPaused || Time.timeScale == 0)
             {
                 this.backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 this.vibration = false;
@@ -214,6 +214,7 @@ public class PlayerControl : MonoBehaviour {
         if (this.cooledDown)
         {
             this.detected = false;
+           
             this.gameObject.transform.position = new Vector3(this.transform.position.x, 1000f, this.transform.position.z);
             this.timeCoolDown += Time.deltaTime;
             GameObject.Find("IconPlayer_" + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).GetComponent<Image>().fillAmount = this.timeCoolDown / this.coolDown;
@@ -247,8 +248,8 @@ public class PlayerControl : MonoBehaviour {
         if (gO.gameObject.tag.Equals("Guard") || gO.gameObject.tag.Equals("Killer Guards")) //canviar aixo?
         {
             this.detected = false;
-            this.scoreGeneral -= 3;
-            this.scoreGeneralRound -= 3;
+            this.scoreGeneral -= 5;
+            this.scoreGeneralRound -= 5;
 
             if (gO.gameObject.tag.Equals("Guard"))
             {
@@ -268,11 +269,15 @@ public class PlayerControl : MonoBehaviour {
         {
             this.detected = false;
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
-            this.scoreGeneral += 5;
+            this.scoreGeneral += 10;
             this.scoreKills += 1;
-            this.scoreGeneralRound += 5;
+            this.scoreGeneralRound += 10;
+
+            gO.gameObject.GetComponent<PlayerControl>().scoreGeneral -= 10;
+            gO.gameObject.GetComponent<PlayerControl>().scoreGeneralRound -= 10;
+
             //this.scoreKillsRound += 1;
-			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Death", gO.transform.position);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Death", gO.transform.position);
             gO.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
 
         }
@@ -280,13 +285,13 @@ public class PlayerControl : MonoBehaviour {
         {
             this.detected = false;
             gO.gameObject.GetComponent<PlayerControl>().detected = false;
-            if (!Tutorial_InGame.showIt)
+            if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
             {
                 NewControl.parcialWinner = this.gameObject;
                 NewControl.objComplete = true;
             }
             Rondes.timesPlayed++;
-            if (!Tutorial_InGame.showIt)
+            if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
                 GameObject.Find("Control").GetComponent<EventosMapa>().Default();
 			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", gO.transform.position);
         }
@@ -314,6 +319,11 @@ public class PlayerControl : MonoBehaviour {
     public void RespawnCoolDown()
     {
         this.cooledDown = true;
+        //if (this.gameObject != NewControl.objective)
+        //{
+        //    this.gameObject.GetComponent<PlayerControl>().scoreGeneral -= 10;
+        //    this.gameObject.GetComponent<PlayerControl>().scoreGeneralRound -= 10;
+        //}
         this.timeCoolDown = 0;
     }
   

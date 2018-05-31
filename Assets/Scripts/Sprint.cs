@@ -68,15 +68,24 @@ public class Sprint : MonoBehaviour {
 
             }
         }
-
-        if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (Abilities_Tutorial.show)
         {
-            //si hi ha animacio abans d fer l'sprint posar aixo
-            //this.gameObject.GetComponent<Animator>().SetTrigger("Sprint");
-            //si no, posar aixo
-            Speed();
+            if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            {
+                //si hi ha animacio abans d fer l'sprint posar aixo
+                //this.gameObject.GetComponent<Animator>().SetTrigger("Sprint");
+                //si no, posar aixo
+                Speed();
+            }
         }
-
+        else
+        {
+            if (Input.GetButtonDown("Main Menu") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            {
+                this.gameObject.GetComponent<Animator>().SetTrigger("Immobilitzar");
+                //Congelar();
+            }
+        }
         if (Time.timeScale == 1)
         {
             if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;

@@ -142,7 +142,7 @@ public class NewControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!startGame && !Tutorial_InGame.showIt)
+        if (!startGame && !Tutorial_InGame.showIt && !Abilities_Tutorial.show)
         {
             
             timeBack -= Time.fixedUnscaledDeltaTime;
@@ -177,9 +177,10 @@ public class NewControl : MonoBehaviour
             if (objComplete && parcialWinner != null)
             {
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
-                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
+                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreKills += 1;
+                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 40;
                 //parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWinsRound += 1;
-                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 10;
+                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 40;
                 //StartGame();
                 objComplete = false;
                // Rondes.timesPlayed++;
@@ -191,9 +192,9 @@ public class NewControl : MonoBehaviour
             {
                 parcialWinner = objective;
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWins += 1;
-                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 10;
-                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWinsRound += 1;
-                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 10;
+                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneral += 50;
+                //parcialWinner.gameObject.GetComponent<PlayerControl>().scoreWinsRound += 1;
+                parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 50;
                 Rondes.timesPlayed++;
                 objComplete = false;
                 timeLeft = time;
@@ -524,7 +525,7 @@ public class NewControl : MonoBehaviour
     }
     private void Pausa()
     {
-        if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")) && !Tutorial_InGame.showIt)
+        if (Input.GetButtonDown("Start") || (paused && Input.GetButtonDown("Cancel")) && !Tutorial_InGame.showIt && !Abilities_Tutorial.show)
         {
 			if (!paused) {
 				//soundSource.PlayOneShot (pauseSound);    
@@ -538,7 +539,7 @@ public class NewControl : MonoBehaviour
             backgroudMusic.setPaused(paused);
             pausa.SetActive(paused);
         }
-        if (Input.GetButtonDown("Main Menu") && paused && !Tutorial_InGame.showIt)
+        if (Input.GetButtonDown("Main Menu") && paused && !Tutorial_InGame.showIt && !Abilities_Tutorial.show)
         {
             //soundSource.PlayOneShot(menuSound);
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);

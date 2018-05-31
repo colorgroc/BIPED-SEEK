@@ -18,7 +18,7 @@ public class NumHUDS : MonoBehaviour {
         }
 
         this.huds.Sort(SortByName);
-        if (!Tutorial_InGame.showIt)
+        if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
         {
             for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
             {

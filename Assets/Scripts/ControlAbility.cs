@@ -12,6 +12,7 @@ public class ControlAbility : MonoBehaviour {
     private int coolDown = 10, timeAbility = 10;
     //[SerializeField]
     //private AudioClip abilitySound;
+    GameObject[] guards;
     GameObject player, guard;
     private string nameObj;
     private int random;
@@ -29,12 +30,25 @@ public class ControlAbility : MonoBehaviour {
         timeAb = timeAbility;
         this.ab1 = this.ab2 = false;
         Asignation();
-
-        foreach (GameObject guard in NewControl.guards)
+        if (!Abilities_Tutorial.show)
         {
-            if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
+            foreach (GameObject guard in NewControl.guards)
             {
-                guardsList.Add(guard);
+                if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
+                {
+                    guardsList.Add(guard);
+                }
+            }
+        }
+        else
+        {
+            guards = GameObject.FindGameObjectsWithTag("Guard");
+            foreach (GameObject guard in guards)
+            {
+                if (guard.name.EndsWith(this.gameObject.name.Substring(this.name.Length - 1)))
+                {
+                    guardsList.Add(guard);
+                }
             }
         }
     }
@@ -74,10 +88,20 @@ public class ControlAbility : MonoBehaviour {
                 DefaultControl();
             }
         }
-
-        if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (Abilities_Tutorial.show)
         {
-            this.gameObject.GetComponent<Animator>().SetTrigger("Control");       
+            if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            {
+                this.gameObject.GetComponent<Animator>().SetTrigger("Control");
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown("Back") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            {
+                this.gameObject.GetComponent<Animator>().SetTrigger("Immobilitzar");
+                //Congelar();
+            }
         }
 
         if (Time.timeScale == 1)

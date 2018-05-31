@@ -20,7 +20,7 @@ public class HUD_Shake : MonoBehaviour
     private void Start()
     {
         this._originalPos = this.gameObject.transform.localPosition;
-		if (!Tutorial_InGame.showIt) {
+		if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show) {
 			if (this.gameObject.name.EndsWith ("1"))
 				this.player = GameObject.Find ("Player 1");
 			else if (this.gameObject.name.EndsWith ("2"))

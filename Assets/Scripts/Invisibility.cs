@@ -59,12 +59,21 @@ public class Invisibility : MonoBehaviour {
                 this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
         }
-
-        if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+        if (Abilities_Tutorial.show)
         {
-            this.gameObject.GetComponent<Animator>().SetTrigger("Invisible");
+            if (((this.ab2 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab2Button)) || (this.ab1 && Input.GetButtonDown(this.gameObject.GetComponent<PlayerControl>().hab1Button))) && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            {
+                this.gameObject.GetComponent<Animator>().SetTrigger("Invisible");
+            }
         }
-
+        else
+        {
+            if (Input.GetButtonDown("Submit") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            {
+                this.gameObject.GetComponent<Animator>().SetTrigger("Immobilitzar");
+                //Congelar();
+            }
+        }
         if (Time.timeScale == 1)
         {
             if (this.gameObject.GetComponent<PlayerControl>().cooledDown) this.iconAb.GetComponent<Image>().fillAmount = 0;
