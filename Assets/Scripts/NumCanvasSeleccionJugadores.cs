@@ -32,7 +32,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private Color32 yellow_color = new Color32(255, 215, 0, 255);
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
-    private int num;
+   // private int num;
     private GameObject[] characterTypes, munyequitos, jugadores;
 
     void Start() {
@@ -55,7 +55,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         //guardar num of players
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        num = PlayerPrefs.GetInt("NumPlayers");
+        //num = PlayerPrefs.GetInt("NumPlayers");
         InicialitzarJugadors();
       
         //MapaRandom();     
@@ -67,16 +67,17 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
         //codi de prova
        // Back();
         //guardar num of players
-        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        if(num != PlayerPrefs.GetInt("NumPlayers"))
+        //PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
+        if(PlayerPrefs.GetInt("NumPlayers") != Input.GetJoystickNames().Length)
         {
             InicialitzarJugadors();
-            num = PlayerPrefs.GetInt("NumPlayers");
+            //num = Input.GetJoystickNames().Length;
+            PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
         }
-        if (PlayerPrefs.GetInt("NumPlayers") < 2) this.restriccion.enabled = true;
+        if (Input.GetJoystickNames().Length < 2) this.restriccion.enabled = true;
         else this.restriccion.enabled = false;
 
-        SeleccionJugadores(PlayerPrefs.GetInt("NumPlayers"));
+        SeleccionJugadores(Input.GetJoystickNames().Length);
 
         //reset cancel buton
 

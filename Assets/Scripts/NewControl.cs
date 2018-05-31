@@ -39,7 +39,7 @@ public class NewControl : MonoBehaviour
     private Text textTiempo, countDown;
     private int topScore, habilitat_1, habilitat_2;//, fin;
     [SerializeField]
-    private int numGuardsPerType = 10, time = 90;//maxMinutes = 3, minMinutes = 1;
+    private int numGuardsPerType = 10, time = 120;//maxMinutes = 3, minMinutes = 1;
     public static int numRondesPerJugador = 2;
     public static int numKillers = 7;
     private List<int> listPos;

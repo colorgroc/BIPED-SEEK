@@ -35,7 +35,7 @@ public class Menu : MonoBehaviour
     GameObject lastSelect;
     Resolution res;
     public static FMOD.Studio.EventInstance backgroudMusic;
-    private FMOD.Studio.PLAYBACK_STATE musicPlaybackState;
+   // private FMOD.Studio.PLAYBACK_STATE musicPlaybackState;
     FMOD.Studio.Bus Music;
     FMOD.Studio.Bus Master;
     FMOD.Studio.Bus Sounds;
@@ -60,19 +60,14 @@ public class Menu : MonoBehaviour
                 tutorialMenu.SetActive(true);
                 Tutorial_InGame.showIt = true;
             }
-            //else Tutorial.showIt = false;
         }
-        //else Tutorial.showIt = true;
         Music = RuntimeManager.GetBus("bus:/Master/Music");
         Sounds = RuntimeManager.GetBus("bus:/Master/Sounds");
         Master = RuntimeManager.GetBus("bus:/Master");
         if (!musicStarted) {
             backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Music/Menu");
         }
-        //if (musicPlaybackState != FMOD.Studio.PLAYBACK_STATE.PLAYING || musicPlaybackState == FMOD.Studio.PLAYBACK_STATE.STOPPED)
-        //    backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Music/Menu");
-        //sounds.GetComponent<AudioSource>().enabled = false;
-        // sounds.volume = 1;
+
     }
 
     void Start()
@@ -83,7 +78,6 @@ public class Menu : MonoBehaviour
             QualitySettings.vSyncCount = 1;
         if (res.refreshRate == 120)
             QualitySettings.vSyncCount = 2;
-        //print(QualitySettings.vSyncCount);
 
         lastSelect = new GameObject();
         options.gameObject.SetActive(false);
@@ -94,7 +88,6 @@ public class Menu : MonoBehaviour
 
         musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
         Music.setVolume(musicVolume.value);
-        //music.volume = musicVolume.value;
 
         soundsVolume.value = PlayerPrefs.GetFloat("SoundsVolume");
         Sounds.setVolume(soundsVolume.value);
@@ -103,8 +96,6 @@ public class Menu : MonoBehaviour
             backgroudMusic.start();
             musicStarted = true;
         }
-        backgroudMusic.getPlaybackState(out musicPlaybackState);
-        //sounds.volume = soundsVolume.value;
 
         if (PlayerPrefs.GetInt("Tutorial") == 0)
         {
@@ -130,8 +121,6 @@ public class Menu : MonoBehaviour
         else MuteMusic();
 
         NewControl.finalWinner = null;
-        //Sounds.setMute(false);
-        //sounds.GetComponent<AudioSource>().enabled = true;
     }
 
     void Update()
@@ -166,7 +155,6 @@ public class Menu : MonoBehaviour
     public void GoToPlay()
     {
         Tutorial_InGame.showIt = false;
-        //sounds.PlayOneShot(clickButton);
         RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
         Default();
         SceneManager.LoadScene("Seleccion Personajes");
@@ -174,7 +162,6 @@ public class Menu : MonoBehaviour
     }
     public void Exit()
     {
-        //sounds.PlayOneShot(clickButton);
         RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
         Application.Quit();
     }
@@ -242,7 +229,6 @@ public class Menu : MonoBehaviour
     public void ShowCredits()
     {
         RandomBackground(creditsBg);
-        //sounds.PlayOneShot(clickButton);
         RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
         inMenu = false;
         mainMenu.gameObject.SetActive(false);
@@ -262,7 +248,6 @@ public class Menu : MonoBehaviour
     public void BackToMenu()
     {
         RandomBackground(menuBg);
-        //sounds.PlayOneShot(backButton, 4.0F);
         RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
         inMenu = true;
         mainMenu.gameObject.SetActive(true);
@@ -278,7 +263,6 @@ public class Menu : MonoBehaviour
         if (tutorialOptions.GetComponent<Dropdown>().value == 0)
         {
             tutorialMenu.SetActive(true);
-            //sounds.PlayOneShot(onButton);
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
             PlayerPrefs.SetInt("Tutorial", 0);
             Tutorial_InGame.showIt = true;
@@ -286,7 +270,6 @@ public class Menu : MonoBehaviour
         else if (tutorialOptions.GetComponent<Dropdown>().value == 1)
         {
             tutorialMenu.SetActive(false);
-            //sounds.PlayOneShot(onButton);
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
             PlayerPrefs.SetInt("Tutorial", 1);
             Tutorial_InGame.showIt = false;
@@ -320,15 +303,11 @@ public class Menu : MonoBehaviour
     }
     public void FullScreen()
     {
-        //sounds.PlayOneShot(onButton);
-        //RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
         Screen.fullScreen = true;
         PlayerPrefs.SetInt("ScreenMode", 0);
     }
     public void WindowScreen()
     {
-        //sounds.PlayOneShot(onButton);
-        //RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
         Screen.fullScreen = false;
         PlayerPrefs.SetInt("ScreenMode", 1);
     }
@@ -339,26 +318,17 @@ public class Menu : MonoBehaviour
     }
     public void SetVolumeSounds()
     {
-        //sounds.volume = soundsVolume.value;
         Sounds.setVolume(soundsVolume.value);
         PlayerPrefs.SetFloat("SoundsVolume", soundsVolume.value);
     }
     public void MuteMusic()
     {
-        //sounds.PlayOneShot(onButton);
-        //RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
         Master.setMute(true);
-        //sounds.mute = true;
-        //music.mute = true;
         PlayerPrefs.SetInt("isMute", 1);
     }
     public void SoundMusic()
     {
-        //sounds.PlayOneShot(onButton);
-        //RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
         Master.setMute(false);
-        //sounds.mute = false;
-        //music.mute = false;
         PlayerPrefs.SetInt("isMute", 0);
     }
 

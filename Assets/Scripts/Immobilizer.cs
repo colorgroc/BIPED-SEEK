@@ -132,8 +132,10 @@ public class Immobilizer : MonoBehaviour {
 				guard.GetComponent<NPCConnectedPatrol> ().freezed = false;
 			if (GameObject.Find ("Player 2") != null)
 				GameObject.Find ("Player 2").gameObject.GetComponent<PlayerControl> ().canAct = true;
-			if (GameObject.Find ("Killer") != null)
-				GameObject.Find ("Killer").GetComponent<NPCConnectedPatrol> ().freezed = false; 
+            if (GameObject.Find("Player 3") != null)
+                GameObject.Find("Player 3").gameObject.GetComponent<PlayerControl>().canAct = true;
+    //        if (GameObject.Find ("Killer") != null)
+				//GameObject.Find ("Killer").GetComponent<NPCConnectedPatrol> ().freezed = false; 
 		}
     }
 

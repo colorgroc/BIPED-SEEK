@@ -8,7 +8,7 @@ public class HUD : MonoBehaviour {
 	public Text score;
 	public Text kills;
 	public Text survived;
-    public GameObject player1, player2;
+    public GameObject player1, player2, player3;
     private GameObject player;
     [SerializeField]
     private Color normal, grey;
@@ -33,6 +33,8 @@ public class HUD : MonoBehaviour {
                 this.player = player1;
             else if (this.gameObject.name == "Player2HUD")
                 this.player = player2;
+            else if (this.gameObject.name == "Player3HUD")
+                this.player = player3;
         }
 
 	}

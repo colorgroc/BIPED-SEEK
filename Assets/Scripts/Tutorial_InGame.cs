@@ -8,9 +8,9 @@ using FMODUnity;
 
 public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
-    private GameObject welcome, score, abilities, feedback, icon, rounds_time, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, killer, HUD, box, goKill, goKill2, goKill3, guards, score2, score3, winner, finnish, events, mapEvent, getClose, eventText, killerEvent, killerEvent_score, npcReduction_half, speedy, npcReduction_convertToObjective, pausa, back, arrow;//, npcReduction_halfNonObjective;
+    private GameObject welcome, score, abilities, feedback, icon, rounds_time, rounds_time2, objectiveTuto, objectiveCanvas, welcome1, welcome2, thereUR, objetive, player1, player2, player3, welcome3, HUD, box, goKill, goKill2, goKill3, guards, guards_3, score2, score3, score4, winner, finnish, getClose, pausa, back;//, npcReduction_halfNonObjective;
     public Text titol;
-    bool once, _once, _Once, __Once, __once, _oNce, timed3, timed4, timed5;
+    bool once, _once, _Once, __Once, __once, _ONce, ope, timed3, timed4, timed5;
     public static bool tutorialPaused;
     //public GameObject player1, player2, HUD, box, objectiveCanvas;
     private float time, time2, time3, time4, time5;
@@ -20,8 +20,8 @@ public class Tutorial_InGame : MonoBehaviour {
     [SerializeField]
     private Text textTiempo;
     public static bool showIt;//, tuto;
-    public Material glowP1, glowP2, outlineP1, outlineP2;
-    private Material[] p1mat, p2mat;
+    public Material glowP1, glowP2, glowP3, outlineP3, outlineP1, outlineP2;
+    private Material[] p1mat, p2mat, p3mat;
     [SerializeField]
     private int numOfAbilities = 6, numOfUsedAbilities = 2;
     private int ability1, ability2;
@@ -42,7 +42,7 @@ public class Tutorial_InGame : MonoBehaviour {
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         time = time2 = time3 = time4 = time5 = OK = 0;
-        once = _once = _Once =__Once = __once = _oNce = timed3 = timed4 = timed5 = tutorialPaused = false;
+        once = _once = _Once =__Once = __once = _ONce = ope = timed3 =timed4 = timed5 = tutorialPaused = false;
         //tuto = true;
         box.SetActive(true);
         welcome2.SetActive(false);
@@ -53,27 +53,22 @@ public class Tutorial_InGame : MonoBehaviour {
         abilities.SetActive(false);
         icon.SetActive(false);
         rounds_time.SetActive(false);
+        rounds_time2.SetActive(false);
         objectiveTuto.SetActive(false);
         finnish.SetActive(false);
         score2.SetActive(false);
         score3.SetActive(false);
+        score4.SetActive(false);
         goKill.SetActive(false);
         goKill2.SetActive(false);
-        winner.SetActive(false);
-        events.SetActive(false);
-        mapEvent.SetActive(false);
-        getClose.SetActive(false);
-        killer.SetActive(false);
-        eventText.SetActive(true);
-        killerEvent.SetActive(false);
-        back.SetActive(false);
-        killerEvent_score.SetActive(false);
-        npcReduction_convertToObjective.SetActive(false);
-        npcReduction_half.SetActive(false);
-        speedy.SetActive(false);
         goKill3.SetActive(false);
+        winner.SetActive(false);
+        getClose.SetActive(false);
+        back.SetActive(false);
+        welcome3.SetActive(false);
         p1mat = player1.GetComponentInChildren<Renderer>().materials;
         p2mat = player2.GetComponentInChildren<Renderer>().materials;
+        p3mat = player3.GetComponentInChildren<Renderer>().materials;
         //RandomAbilities();
         PlayerPrefs.SetInt("Ability 1", (int)NewControl.Abilities.SMOKE);
         PlayerPrefs.SetInt("Ability 2", (int)NewControl.Abilities.IMMOBILIZER);
@@ -99,24 +94,24 @@ public class Tutorial_InGame : MonoBehaviour {
 
         if (!finnish.activeInHierarchy)
             Pausa();
-
+        if (timeLeft <= 0) timeLeft = 0;
         timeLeft -= Time.deltaTime;
         textTiempo.text = GetMinutes(timeLeft);
 
-        if (OK == 2 && !once) 
+        if (OK == 3 && !once) 
             time += Time.deltaTime;
-        if (OK == 10 && !__once)
+        if (OK == 12 && !__once)
             time2 += Time.deltaTime;
-        if(OK == 20 && timed4)
-            time4 += Time.deltaTime; 
-        if (OK == 15 && timed3)
+        if (OK == 17 && timed3)
             time3 += Time.deltaTime;
-        if (OK == 8 && timed5)
+        if (OK == 15 && timed4)
+            time4 += Time.deltaTime; 
+        if (OK == 10 && timed5)
             time5 += Time.deltaTime;
 
         if (Input.GetButtonDown("Submit") && Time.timeScale == 0 && !tutorialPaused)
         {
-            if (OK != 22)
+            if (OK != 19)
             {
                 OK++;
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
@@ -131,8 +126,10 @@ public class Tutorial_InGame : MonoBehaviour {
         }
         if (Input.GetButtonDown("Main Menu") && Time.timeScale == 0 && !tutorialPaused)
         {
-            if (OK == 22)
+            if (OK == 19)
             {
+                backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 SceneManager.LoadScene("Menu");
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             }
@@ -153,12 +150,19 @@ public class Tutorial_InGame : MonoBehaviour {
                 welcome1.SetActive(false);
                 titol.text = "Movement";
                 welcome2.SetActive(true);
-                thereUR.SetActive(false);
+                welcome3.SetActive(false);
                 back.SetActive(true);
             }
             else if (OK == 2)
             {
-                welcome2.SetActive(false);       
+                welcome3.SetActive(true);
+                titol.text = "Movement";
+                welcome2.SetActive(false);
+                thereUR.SetActive(false);
+            }
+            else if (OK == 3)
+            {
+                welcome3.SetActive(false);
                 if (!once)
                 {
                     box.SetActive(false);
@@ -172,7 +176,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 welcome.SetActive(true);
 
             }
-            else if (OK == 3)
+            else if (OK == 4)
             {
                 thereUR.SetActive(false);
                 welcome.SetActive(false);
@@ -181,36 +185,43 @@ public class Tutorial_InGame : MonoBehaviour {
                 score.SetActive(true);
                 abilities.SetActive(false);
             }
-            else if (OK == 4)
+            else if (OK == 5)
             {
                 titol.text = "HUD - Abilities";
                 score.SetActive(false);
                 abilities.SetActive(true);
                 rounds_time.SetActive(false);
             }
-            else if (OK == 5)
+            else if (OK == 6)
             {
                 titol.text = "HUD - General";
                 rounds_time.SetActive(true);
                 abilities.SetActive(false);
-                objectiveTuto.SetActive(false);
-            }
-            else if (OK == 6)
-            {
-                titol.text = "HUD - General";
-                objectiveTuto.SetActive(true);
-                rounds_time.SetActive(false);
-                goKill.SetActive(false);
+                rounds_time2.SetActive(false);
             }
             else if (OK == 7)
+            {
+                titol.text = "HUD - General";
+                rounds_time.SetActive(false);
+                rounds_time2.SetActive(false);
+                objectiveTuto.SetActive(true);
+            }
+            else if (OK == 8)
+            {
+                titol.text = "HUD - General";
+                objectiveTuto.SetActive(false);
+                rounds_time2.SetActive(true);
+                goKill.SetActive(false);
+            }
+            else if (OK == 9)
             {
                 box.SetActive(true);
                 titol.text = "Let's Kill";
                 goKill.SetActive(true);
-                objectiveTuto.SetActive(false);
+                rounds_time2.SetActive(false);
                 score2.SetActive(false);
             }
-            else if (OK == 8)
+            else if (OK == 10)
             {
                 goKill.SetActive(false);
                 //titol.text = "HUD - General";
@@ -218,10 +229,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 if (!_once)
                 {
                     guards.SetActive(true);
-                    //tuto = false;
-                    //player2.SetActive(true);
-                    //haloP2.enabled = true;
-                    // objectiveTuto.SetActive(false);
+                    guards_3.SetActive(true);
                     box.SetActive(false);
                     Time.timeScale = 1;
                 }
@@ -229,7 +237,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 icon.SetActive(false);
                 titol.text = "Loosing Score";
             }
-            else if (OK == 9)
+            else if (OK == 11)
             {
                 box.SetActive(true);
                 titol.text = "Respawn";
@@ -237,7 +245,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 score2.SetActive(false);
                 getClose.SetActive(false);
             }
-            else if (OK == 10)
+            else if (OK == 12)
             {
                 icon.SetActive(false);
                 if (!__once)
@@ -249,174 +257,122 @@ public class Tutorial_InGame : MonoBehaviour {
                 }
                 feedback.SetActive(false);
                 getClose.SetActive(true);
-                titol.text = "Get close to a player";
+                titol.text = "Chase a player";
             }
-            else if (OK == 11)
+            else if (OK == 13)
             {
                 getClose.SetActive(false);
                 //titol.text = "HUD - General";
                 if (!_Once)
                 {
                     //guards.SetActive(true);
-                    player2.SetActive(true);
-                    p2mat[1] = glowP2;
-                    p2mat[2] = outlineP2;
-                    player2.GetComponentInChildren<Renderer>().materials = p2mat;
+                    //player2.SetActive(true);
+                    //p2mat[1] = glowP2;
+                    //p2mat[2] = outlineP2;
+                    //player2.GetComponentInChildren<Renderer>().materials = p2mat;
+                    player3.SetActive(true);
+                    p3mat[1] = glowP3;
+                    p3mat[2] = outlineP3;
+                    player3.GetComponentInChildren<Renderer>().materials = p3mat;
                     box.SetActive(false);
                     //tuto = false;
                     Time.timeScale = 1;
                 }
                 titol.text = "Player Detected";
                 feedback.SetActive(true);
-                events.SetActive(false);
+                goKill2.SetActive(false);
                 //feedBackIm.color = feedCol; 
             }
-            else if (OK == 12)
-            {
-                box.SetActive(true);
-                titol.text = "Events";
-                feedback.SetActive(false);
-                events.SetActive(true);
-                arrow.SetActive(true);
-                eventText.SetActive(true);
-                mapEvent.SetActive(true);
-                killerEvent.SetActive(false);
-                // feedBackIm.color = normalCol;
-            }
-            else if (OK == 13)
-            {
-                titol.text = "Killers";
-                events.SetActive(true);
-                arrow.SetActive(false);
-                //eventText.SetActive(true);
-                killerEvent.SetActive(true);                   
-                eventText.SetActive(false);
-                goKill3.SetActive(false);
-            }
+            
             else if (OK == 14)
             {
-                killerEvent.SetActive(false);
-                titol.text = "Killers";
-                goKill3.SetActive(true);
-                box.SetActive(true);
-                killerEvent_score.SetActive(false);
-            }
-            else if (OK == 15)
-            {
-                goKill3.SetActive(false);
-                //events.SetActive(false);
-                mapEvent.SetActive(false);
-                //titol.text = "HUD - General";
-                if (!_oNce)
-                {
-                    box.SetActive(false);
-                    killer.SetActive(true);
-                    Time.timeScale = 1;
-                   // tuto = false;
-                }
-                titol.text = "Killers";
-                killerEvent_score.SetActive(true);
-                events.SetActive(true);
-                speedy.SetActive(false);
-                //feedBackIm.color = feedCol; 
-            }
-            else if (OK == 16)
-            {
-                if(killer != null && GameObject.Find("Killer") != null)
-                    killer.SetActive(false);
-                events.SetActive(true);
-                mapEvent.SetActive(true);
-                killerEvent_score.SetActive(false);
-                titol.text = "Crazynest";
-                speedy.SetActive(true);
-                arrow.SetActive(true);
-                box.SetActive(true);
-                npcReduction_half.SetActive(false);
-            }
-            else if (OK == 17)
-            {
-                speedy.SetActive(false);
-                titol.text = "NPC Reduction";
-                npcReduction_half.SetActive(true);
-                npcReduction_convertToObjective.SetActive(false);
-            }
-            //else if (OK == 18)
-            //{
-            //    npcReduction_half.SetActive(false);
-            //    titol.text = "NPC Reduction";
-            //    npcReduction_halfNonObjective.SetActive(true);
-            //}
-            else if (OK == 18)
-            {
-                npcReduction_half.SetActive(false);
-                titol.text = "NPC Reduction";
-                npcReduction_convertToObjective.SetActive(true);
-                events.SetActive(true);
-                mapEvent.SetActive(true);
-                goKill2.SetActive(false);
-            }
-            else if (OK == 19)
-            {
-                events.SetActive(false);
-                mapEvent.SetActive(false);
-                npcReduction_convertToObjective.SetActive(false);
-                titol.text = "Let's kill again";
+                
+                feedback.SetActive(false);
+                titol.text = "Let's kill a player";
                 goKill2.SetActive(true);
+                goKill3.SetActive(false);
                 score3.SetActive(false);
                 box.SetActive(true);
                 // feedBackIm.color = normalCol;
             }
-            else if (OK == 20)
+            else if (OK == 15)
+            {
+                if (!__Once)
+                {
+                    box.SetActive(false);
+                    //tuto = false;
+                    Time.timeScale = 1;
+                }
+                //box.SetActive(true);
+                titol.text = "Player Killed";
+                goKill2.SetActive(false);
+                goKill3.SetActive(false);
+                score3.SetActive(true);
+            }
+            else if (OK == 16)
+            {
+                if (!ope)
+                {
+                    player2.SetActive(true);
+                    p2mat[1] = glowP2;
+                    p2mat[2] = outlineP2;
+                    player2.GetComponentInChildren<Renderer>().materials = p2mat;
+                    ope = true;
+                }
+                titol.text = "kill the objective";
+                goKill3.SetActive(true);
+                score4.SetActive(false);
+                score3.SetActive(false);
+                box.SetActive(true);
+                // feedBackIm.color = normalCol;
+            }
+            else if (OK == 17)
             {
                 winner.SetActive(false);
-                events.SetActive(false);
-                mapEvent.SetActive(false);
                 //titol.text = "HUD - General";
-                if (!__Once)
+                if (!_ONce)
                 {
                     //tuto = false;
                     box.SetActive(false);
                     Time.timeScale = 1;
                 }
-                titol.text = "Winning score";
-                goKill2.SetActive(false);
-                score3.SetActive(true);
+                titol.text = "Objective Killed";
+                goKill3.SetActive(false);
+                score4.SetActive(true);
                 //feedBackIm.color = feedCol; 
             }
-            else if (OK == 21)
+            else if (OK == 18)
             {
                 titol.text = "Winner";
-                score3.SetActive(false);
+                score4.SetActive(false);
                 winner.SetActive(true);
                 finnish.SetActive(false);
                 //events.SetActive(false);
                 // feedBackIm.color = normalCol;
             }
-            else if(OK == 22)
+            else if(OK == 19)
             {
+                winner.SetActive(false);
                 finnish.SetActive(true);
-                events.SetActive(false);
             }
         }
-        if(OK == 2 && time > 3 && ((Input.GetAxis(player1.GetComponent<PlayerControl>().AxisMovement) * Time.deltaTime) != 0 || (Input.GetAxis(player1.GetComponent<PlayerControl>().AxisRotation) * Time.deltaTime) != 0) && !once)
+        if(OK == 3 && time > 3 && ((Input.GetAxis(player1.GetComponent<PlayerControl>().AxisMovement) * Time.deltaTime) != 0 || (Input.GetAxis(player1.GetComponent<PlayerControl>().AxisRotation) * Time.deltaTime) != 0) && !once)
         {
             p1mat[1] = glowP1;
             p1mat[2] = outlineP1;
             player1.GetComponentInChildren<Renderer>().materials = p1mat;
+            Debug.Log("nye");
 
         }
-        if (OK == 2 && time > 6 && !once) 
+        if (OK == 3 && time > 6 && !once) 
         {
             Time.timeScale = 0;
             titol.text = "There you are";
             box.SetActive(true);
             thereUR.SetActive(true);
-            events.SetActive(false);
             once = true;
-            //matP1[0].enableInstancing = true;
-            //matP1[1].enableInstancing = true;
         }
-        if(OK == 8 && Time.timeScale == 1 && !_once)
+        if(OK == 10 && Time.timeScale == 1 && !_once)
         {
             if(player1.GetComponent<PlayerControl>().cooledDown && !timed5)
                 timed5 = true;
@@ -425,12 +381,10 @@ public class Tutorial_InGame : MonoBehaviour {
                 timed5 = false;
                 Time.timeScale = 0;
                 box.SetActive(true);
-                score2.SetActive(true);
-                events.SetActive(false);
                 titol.text = "Loosing Score";
             }
         }
-        if (OK == 11 && Time.timeScale == 1 && !_Once)
+        if (OK == 13 && Time.timeScale == 1 && !_Once)
         {
             if (player1.GetComponent<PlayerControl>().detected)
             {
@@ -442,7 +396,7 @@ public class Tutorial_InGame : MonoBehaviour {
                // tuto = true;
             }
         }
-        if (OK == 10 && Time.timeScale == 1 && !__once)
+        if (OK == 12 && Time.timeScale == 1 && !__once)
         {
             if (time2 >= 10)
             {
@@ -454,34 +408,32 @@ public class Tutorial_InGame : MonoBehaviour {
                // tuto = true;
             }
         }
-        if (OK == 15 && Time.timeScale == 1 && !_oNce)
+        if (OK == 15 && Time.timeScale == 1 && !__Once)
         {
-
-            if ((killer == null && GameObject.Find("Killer") == null && !timed3) || (player1.GetComponent<PlayerControl>().cooledDown && !timed3))
-                timed3 = true;
-            if(timed3 && time3 > 3){
-                _oNce = true;
-                timed3 = false;
-                Time.timeScale = 0;
-                box.SetActive(true);
-                titol.text = "Killers";
-                killerEvent_score.SetActive(true);
-                 //eventText.SetActive(true);
-                events.SetActive(true);
-               // tuto = true;
-            }
-        }
-        if (OK == 20 && Time.timeScale == 1 && !__Once)
-        {
-            if (player2.GetComponent<PlayerControl>().cooledDown && !timed4)
+            if (player3.GetComponent<PlayerControl>().cooledDown && !timed4)
                 timed4 = true;
             if(timed4 && time4 > 3){
                 __Once = true;
                 timed4 = false;
                 Time.timeScale = 0;
                 box.SetActive(true);
-                titol.text = "Winning score";
+                titol.text = "Player Killed";
                 score3.SetActive(true);
+                //tuto = true;
+            }
+        }
+        if (OK == 17 && Time.timeScale == 1 && !_ONce)
+        {
+            if (player2.GetComponent<PlayerControl>().cooledDown && !timed3)
+                timed3 = true;
+            if (timed3 && time3 > 3)
+            {
+                _ONce = true;
+                timed3 = false;
+                Time.timeScale = 0;
+                box.SetActive(true);
+                titol.text = "Objective killed";
+                score4.SetActive(true);
                 //tuto = true;
             }
         }
