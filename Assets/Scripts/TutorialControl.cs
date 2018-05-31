@@ -12,11 +12,11 @@ public class TutorialControl : MonoBehaviour
         movements.SetActive(false);
         abilities.SetActive(false);
         //events.SetActive(false);
-        if (Tutorial_InGame.showIt && !Abilities_Tutorial.show && Menu.showIt)
+        if (Tutorial_InGame.showIt)
         {
             movements.SetActive(true);
         }
-        else if (Tutorial_InGame.showIt && Abilities_Tutorial.show && Menu.showIt)
+        else if (Abilities_Tutorial.show)
         {
             abilities.SetActive(true);
         }
