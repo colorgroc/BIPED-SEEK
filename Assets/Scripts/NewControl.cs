@@ -183,7 +183,7 @@ public class NewControl : MonoBehaviour
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 40;
                 //StartGame();
                 objComplete = false;
-                GameObject.Find("MapEvent").GetComponent<EventosMapa>().Default();
+                this.GetComponent<EventosMapa>().Default();
                 // Rondes.timesPlayed++;
                 //Ranking.OrdenarRanking();
                 rankingCanvas.SetActive(true);
@@ -201,7 +201,8 @@ public class NewControl : MonoBehaviour
                 timeLeft = time;
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", parcialWinner.transform.position);
                 //Ranking.OrdenarRanking();
-                GameObject.Find("MapEvent").GetComponent<EventosMapa>().Default();
+                //if (GameObject.Find("MapEvent") != null)
+                this.GetComponent<EventosMapa>().Default();
                 rankingCanvas.SetActive(true);
                 //StartGame();
 
@@ -213,7 +214,8 @@ public class NewControl : MonoBehaviour
                 objComplete = false;
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", parcialWinner.transform.position);
                 //Ranking.OrdenarRanking();
-                GameObject.Find("MapEvent").GetComponent<EventosMapa>().Default();
+                //if (GameObject.Find("MapEvent") != null)
+                this.GetComponent<EventosMapa>().Default();
                 rankingCanvas.SetActive(true);
                 //StartGame();
 
@@ -229,7 +231,7 @@ public class NewControl : MonoBehaviour
                // Debug.Log("iee");
                 backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                GameObject.Find("MapEvent").GetComponent<EventosMapa>().Default();
+                this.GetComponent<EventosMapa>().Default();
                 objComplete = false;
                 Ranking.Guanyador();
                 if (!once)
