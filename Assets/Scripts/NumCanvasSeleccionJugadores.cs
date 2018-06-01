@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using FMODUnity;
+using XInputDotNetPure;
 
 public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
@@ -35,6 +36,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
    // private int num;
     private GameObject[] characterTypes, munyequitos, jugadores;
 
+
     void Start() {
         //Music
         //music.volume = PlayerPrefs.GetFloat("MusicVolume");
@@ -64,16 +66,6 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //codi de prova
-       // Back();
-        //guardar num of players
-        //PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        if(PlayerPrefs.GetInt("NumPlayers") != Input.GetJoystickNames().Length)
-        {
-            InicialitzarJugadors();
-            //num = Input.GetJoystickNames().Length;
-            PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
-        }
         if (Input.GetJoystickNames().Length < 2) this.restriccion.enabled = true;
         else this.restriccion.enabled = false;
 
@@ -268,6 +260,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
+                PlayerControl.player1 = (PlayerIndex)1;
                 if (!ready_P1)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -301,6 +294,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             //Horitzontal
             if (!ready_P2)
             {
+
                 if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
                 {
                     MoveLeft(2);
@@ -322,6 +316,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
+                PlayerControl.player2 = (PlayerIndex)2;
                 if (!ready_P2)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -349,7 +344,6 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             {
                 //sounds.PlayOneShot(backButton, 4.0F);
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                Debug.Log("ei");
                 SceneManager.LoadScene("Menu");
             }
 
@@ -382,6 +376,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
+                PlayerControl.player1 = (PlayerIndex)1;
                 if (!ready_P1)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -437,6 +432,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
+                PlayerControl.player2 = (PlayerIndex)2;
                 if (!ready_P2)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -492,6 +488,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_3"))
             {
+                PlayerControl.player3 = (PlayerIndex)2;
                 if (!ready_P3)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -549,6 +546,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
+                PlayerControl.player1 = (PlayerIndex)1;
                 if (!ready_P1)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -604,6 +602,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
+                PlayerControl.player2 = (PlayerIndex)2;
                 if (!ready_P2)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -659,6 +658,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_3"))
             {
+                PlayerControl.player3 = (PlayerIndex)3;
                 if (!ready_P3)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -714,6 +714,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_4"))
             {
+                PlayerControl.player4 = (PlayerIndex)4;
                 if (!ready_P4)
                 {
                     //sounds.PlayOneShot(clickButton);
