@@ -18,7 +18,10 @@ public class RankingCanvas : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (Rondes.timesPlayed == Rondes.rondas)
+        {
             round.text = "End Game";
+            NewControl.finalWinner = NewControl.players[0].gameObject;
+        }
         else round.text = "Next Round";
         if(NewControl.players != null)
             Ranking.orderedRank = NewControl.players.OrderByDescending(p => p.GetComponent<PlayerControl>().scoreGeneral).ToList();

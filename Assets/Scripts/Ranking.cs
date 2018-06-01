@@ -49,6 +49,6 @@ public class Ranking : MonoBehaviour
         //if (ranking[ranking.Count - 1].player != null)
         //    NewControl.finalWinner = ranking[ranking.Count - 1].player;
         //if(ranking[0].player != null) NewControl.finalWinner = ranking[0].player;
-        if(orderedRank != null && orderedRank[0].gameObject != null) NewControl.finalWinner = orderedRank[0].gameObject;
+        if(orderedRank != null && NewControl.players[0].gameObject != null) NewControl.finalWinner = NewControl.players[0].gameObject;
     }
 }

@@ -232,6 +232,7 @@ public class NewControl : MonoBehaviour
                 backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 this.GetComponent<EventosMapa>().Default();
+                NewControl.finalWinner = players[0].gameObject;
                 objComplete = false;
                 Ranking.Guanyador();
                 if (!once)
@@ -541,6 +542,11 @@ public class NewControl : MonoBehaviour
 				RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
 			}
             paused = !paused;
+            foreach(GameObject player in players)
+            {
+                if(player.GetComponent<PlayerControl>().detected)
+                    player.GetComponent<PlayerControl>().backgroudSound.setPaused(paused);
+            }
             backgroudSound.setPaused(paused);
             backgroudMusic.setPaused(paused);
             pausa.SetActive(paused);
@@ -551,6 +557,11 @@ public class NewControl : MonoBehaviour
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            foreach (GameObject player in players)
+            {
+                if (player.GetComponent<PlayerControl>().detected)
+                    player.GetComponent<PlayerControl>().backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT); 
+            }
             pausa.SetActive(false);
             Time.timeScale = 1;
             VariablesOnDefault();
