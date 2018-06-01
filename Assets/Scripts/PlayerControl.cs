@@ -64,7 +64,7 @@ public class PlayerControl : MonoBehaviour {
 
         if (this.gameObject.name.Equals("Player 1"))
         {
-            //this.player1 = PlayerIndex.One;
+            this.player1 = PlayerIndex.One;
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation2 = "H_LPad_1";
             this.AxisRotation = "H_RPad_1";
@@ -74,7 +74,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 2"))
         {
-            //this.player2 = PlayerIndex.Two;
+            this.player2 = PlayerIndex.Two;
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation2 = "H_LPad_2";
             this.AxisRotation = "H_RPad_2";
@@ -85,7 +85,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 3"))
         {
-           // this.player3 = PlayerIndex.Three;
+           this.player3 = PlayerIndex.Three;
             this.AxisMovement = "V_LPad_3";
             this.AxisRotation2 = "H_LPad_3";
             this.AxisRotation = "H_RPad_3";
@@ -96,7 +96,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 4"))
         {
-           // this.player4 = PlayerIndex.Four;
+           this.player4 = PlayerIndex.Four;
             this.AxisMovement = "V_LPad_4";
             this.AxisRotation2 = "H_LPad_4";
             this.AxisRotation = "H_RPad_4";
