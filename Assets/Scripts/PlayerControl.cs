@@ -204,7 +204,9 @@ public class PlayerControl : MonoBehaviour {
 
             transform.Translate(0, 0, y * speed);
             
-            transform.Rotate(0, (x+rX) * speedRotation, 0);
+            if(rX != 0)
+                transform.Rotate(0, rX * speedRotation, 0);
+            else transform.Rotate(0, x * speedRotation, 0);
 
             _navMeshAgent.SetDestination(transform.position);
 
@@ -227,8 +229,8 @@ public class PlayerControl : MonoBehaviour {
             }
             if(y != 0 && (_sprint || speed > defaultSpeed)) anim.SetBool("isRunning", true);
             else anim.SetBool("isRunning", false);
-            if (y == 0 && rX > 0) anim.SetBool("Rot_Right", true);
-            else if(y == 0 && rX < 0) anim.SetBool("Rot_Left", true);
+            if (y == 0 && (rX > 0 ||x > 0)) anim.SetBool("Rot_Right", true);
+            else if(y == 0 && (rX < 0 || x < 0)) anim.SetBool("Rot_Left", true);
             else
             {
                 anim.SetBool("Rot_Right", false);
