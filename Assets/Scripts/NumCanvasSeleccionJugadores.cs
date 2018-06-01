@@ -262,11 +262,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
-                if (Input.GetJoystickNames()[0].Length == 33)
-                {
-                    PlayerControl.player1 = PlayerIndex.One;
-                    PlayerControl.p1 = true;
-                }
+                //if (Input.GetJoystickNames()[0].Length == 33)
+                //{
+                //    PlayerControl.player1 = PlayerIndex.One;
+                //    PlayerControl.p1 = true;
+                //}
                 if (!ready_P1)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -322,11 +322,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
-                if (Input.GetJoystickNames()[1].Length == 33)
-                {
-                    PlayerControl.player2 = PlayerIndex.Two;
-                    PlayerControl.p2 = true;
-                }
+                //if (Input.GetJoystickNames()[1].Length == 33)
+                //{
+                //    PlayerControl.player2 = PlayerIndex.Two;
+                //    PlayerControl.p2 = true;
+                //}
                 if (!ready_P2)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -386,11 +386,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
-                if (Input.GetJoystickNames()[0].Length == 33)
-                {
-                    PlayerControl.player1 = PlayerIndex.One;
-                    PlayerControl.p1 = true;
-                }
+                //if (Input.GetJoystickNames()[0].Length == 33)
+                //{
+                //    PlayerControl.player1 = PlayerIndex.One;
+                //    PlayerControl.p1 = true;
+                //}
                 if (!ready_P1)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -446,11 +446,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
-                if (Input.GetJoystickNames()[1].Length == 33)
-                {
-                    PlayerControl.player2 = PlayerIndex.Two;
-                    PlayerControl.p2 = true;
-                }
+                //if (Input.GetJoystickNames()[1].Length == 33)
+                //{
+                //    PlayerControl.player2 = PlayerIndex.Two;
+                //    PlayerControl.p2 = true;
+                //}
                 if (!ready_P2)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -506,11 +506,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_3"))
             {
-                if (Input.GetJoystickNames()[2].Length == 33)
-                {
-                    PlayerControl.player3 = PlayerIndex.Three;
-                    PlayerControl.p3 = true;
-                }
+                //if (Input.GetJoystickNames()[2].Length == 33)
+                //{
+                //    PlayerControl.player3 = PlayerIndex.Three;
+                //    PlayerControl.p3 = true;
+                //}
                 if (!ready_P3)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -568,11 +568,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
-                if (Input.GetJoystickNames()[0].Length == 33)
-                {
-                    PlayerControl.player1 = PlayerIndex.One;
-                    PlayerControl.p1 = true;
-                }
+                //if (Input.GetJoystickNames()[0].Length == 33)
+                //{
+                //    PlayerControl.player1 = PlayerIndex.One;
+                //    PlayerControl.p1 = true;
+                //}
                 if (!ready_P1)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -628,11 +628,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
-                if (Input.GetJoystickNames()[1].Length == 33)
-                {
-                    PlayerControl.player2 = PlayerIndex.Two;
-                    PlayerControl.p2 = true;
-                }
+                //if (Input.GetJoystickNames()[1].Length == 33)
+                //{
+                //    PlayerControl.player2 = PlayerIndex.Two;
+                //    PlayerControl.p2 = true;
+                //}
                 if (!ready_P2)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -688,11 +688,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_3"))
             {
-                if (Input.GetJoystickNames()[2].Length == 33)
-                {
-                    PlayerControl.player3 = PlayerIndex.Three;
-                    PlayerControl.p3 = true;
-                }
+                //if (Input.GetJoystickNames()[2].Length == 33)
+                //{
+                //    PlayerControl.player3 = PlayerIndex.Three;
+                //    PlayerControl.p3 = true;
+                //}
                 if (!ready_P3)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -748,11 +748,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_4"))
             {
-                if (Input.GetJoystickNames()[3].Length == 33)
-                {
-                    PlayerControl.player4 = PlayerIndex.Four;
-                    PlayerControl.p4 = true;
-                }
+                //if (Input.GetJoystickNames()[3].Length == 33)
+                //{
+                //    PlayerControl.player4 = PlayerIndex.Four;
+                //    PlayerControl.p4 = true;
+                //}
                 if (!ready_P4)
                 {
                     //sounds.PlayOneShot(clickButton);

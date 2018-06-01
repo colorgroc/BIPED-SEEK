@@ -36,7 +36,7 @@ public class PlayerControl : MonoBehaviour {
     public FMOD.Studio.EventInstance backgroudSound;
 
    // public static PlayerIndex player1, player2, player3, player4;
-    public static PlayerIndex player1, player2, player3, player4;
+    private PlayerIndex player1, player2, player3, player4;
     public static bool p1, p2, p3, p4;
     private GamePadState state;
     private GamePadState prevState;
@@ -66,6 +66,7 @@ public class PlayerControl : MonoBehaviour {
 
         if (this.gameObject.name.Equals("Player 1"))
         {
+            //this.player1 = PlayerIndex.One;
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation2 = "H_LPad_1";
             this.AxisRotation = "H_RPad_1";
@@ -86,7 +87,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 3"))
         {
-           // this.player3 = PlayerIndex.Three;
+            //this.player3 = PlayerIndex.Three;
             this.AxisMovement = "V_LPad_3";
             this.AxisRotation2 = "H_LPad_3";
             this.AxisRotation = "H_RPad_3";
@@ -97,7 +98,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 4"))
         {
-           // this.player4 = PlayerIndex.Four;
+            //this.player4 = PlayerIndex.Four;
             this.AxisMovement = "V_LPad_4";
             this.AxisRotation2 = "H_LPad_4";
             this.AxisRotation = "H_RPad_4";
@@ -133,63 +134,63 @@ public class PlayerControl : MonoBehaviour {
     {
         
 
-        //---------------------Statiic probar amb mandos oficials!! ----------------
-        if (this.gameObject.name.Equals("Player 1") && p1)
-        {
-            this.prevState = this.state;
-            this.state = GamePad.GetState(PlayerIndex.One);
-            if (this.detected)
-            {
-                GamePad.SetVibration(PlayerIndex.One, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-                // GamePad.SetVibration(this.player1, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-            }
-            else
-            {
-                GamePad.SetVibration(PlayerIndex.One, 0, 0);
-            }
-        }
-        else if (this.gameObject.name.Equals("Player 2") && p2)
-        {
-            this.prevState = this.state;
-            this.state = GamePad.GetState(PlayerIndex.Two);
-            if (this.detected)
-            {
-                GamePad.SetVibration(PlayerIndex.Two, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-                //GamePad.SetVibration(this.player2, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-            }
-            else
-            {
-                GamePad.SetVibration(PlayerIndex.Two, 0, 0);
-            }
-        }
-        else if (this.gameObject.name.Equals("Player 3") && p3)
-        {
-            this.prevState = this.state;
-            this.state = GamePad.GetState(PlayerIndex.Three);
-            if (this.detected)
-            {
-                //GamePad.SetVibration(this.player3, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-                GamePad.SetVibration(PlayerIndex.Three, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-            }
-            else
-            {
-                GamePad.SetVibration(PlayerIndex.Three, 0, 0);
-            }
-        }
-        else if (this.gameObject.name.Equals("Player 4") && p4)
-        {
-            this.prevState = this.state;
-            this.state = GamePad.GetState(PlayerIndex.Four);
-            if (this.detected)
-            {
-                GamePad.SetVibration(PlayerIndex.Four, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-                //GamePad.SetVibration(this.player4, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-            }
-            else
-            {
-                GamePad.SetVibration(PlayerIndex.Four, 0, 0);
-            }
-        }
+        //---------------------/probar amb mandos oficials!! ----------------
+        //if (this.gameObject.name.Equals("Player 1"))
+        //{
+        //    this.prevState = this.state;
+        //    this.state = GamePad.GetState(player1);
+        //    if (this.detected)
+        //    {
+        //        GamePad.SetVibration(player1, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
+        //        // GamePad.SetVibration(this.player1, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
+        //    }
+        //    else
+        //    {
+        //        GamePad.SetVibration(player1, 0, 0);
+        //    }
+        //}
+        //else if (this.gameObject.name.Equals("Player 2"))
+        //{
+        //    this.prevState = this.state;
+        //    this.state = GamePad.GetState(player2);
+        //    if (this.detected)
+        //    {
+        //        GamePad.SetVibration(player2, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
+        //        //GamePad.SetVibration(this.player2, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
+        //    }
+        //    else
+        //    {
+        //        GamePad.SetVibration(player2, 0, 0);
+        //    }
+        //}
+        //else if (this.gameObject.name.Equals("Player 3"))
+        //{
+        //    this.prevState = this.state;
+        //    this.state = GamePad.GetState(player3);
+        //    if (this.detected)
+        //    {
+        //        //GamePad.SetVibration(this.player3, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
+        //        GamePad.SetVibration(player3, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
+        //    }
+        //    else
+        //    {
+        //        GamePad.SetVibration(player3, 0, 0);
+        //    }
+        //}
+        //else if (this.gameObject.name.Equals("Player 4"))
+        //{
+        //    this.prevState = this.state;
+        //    this.state = GamePad.GetState(player4);
+        //    if (this.detected)
+        //    {
+        //        GamePad.SetVibration(player4, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
+        //        //GamePad.SetVibration(this.player4, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
+        //    }
+        //    else
+        //    {
+        //        GamePad.SetVibration(player4, 0, 0);
+        //    }
+        //}
 
 
 

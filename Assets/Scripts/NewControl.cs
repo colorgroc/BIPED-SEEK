@@ -212,7 +212,7 @@ public class NewControl : MonoBehaviour
                 Rondes.timesPlayed++;
                 objKilledByGuard = false;
                 objComplete = false;
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", parcialWinner.transform.position);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", Vector3.zero);
                 //Ranking.OrdenarRanking();
                 //if (GameObject.Find("MapEvent") != null)
                 this.GetComponent<EventosMapa>().Default();
