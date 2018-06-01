@@ -80,7 +80,7 @@ public class Sprint : MonoBehaviour {
         }
         else
         {
-            if (Input.GetButtonDown("Main Menu") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown)
+            if (Input.GetButtonDown("Main Menu") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown && !Abilities_Tutorial.tutorialPaused && Time.timeScale == 1)
             {
                 Speed();
                 //Congelar();
