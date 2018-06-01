@@ -35,12 +35,12 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private Vector2 default_outline = new Vector2(4, 4);
    // private int num;
     private GameObject[] characterTypes, munyequitos, jugadores;
-
+    
 
     void Start() {
         //Music
         //music.volume = PlayerPrefs.GetFloat("MusicVolume");
-
+        PlayerControl.p1 = PlayerControl.p2 = PlayerControl.p3 = PlayerControl.p4 = false;
         //inicialitzar variables
         jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
         characterTypes_P1 = new List<GameObject>();
@@ -57,9 +57,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         //guardar num of players
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
+        //Debug.Log(Input.GetJoystickNames()[0].Length);
+        //Debug.Log(Input.GetJoystickNames()[1].Length);
         //num = PlayerPrefs.GetInt("NumPlayers");
         InicialitzarJugadors();
-      
+
         //MapaRandom();     
     }
 	
@@ -260,7 +262,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
-                PlayerControl.player1 = (PlayerIndex)1;
+                if (Input.GetJoystickNames()[0].Length == 33)
+                {
+                    PlayerControl.player1 = PlayerIndex.One;
+                    PlayerControl.p1 = true;
+                }
                 if (!ready_P1)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -316,7 +322,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
-                PlayerControl.player2 = (PlayerIndex)2;
+                if (Input.GetJoystickNames()[1].Length == 33)
+                {
+                    PlayerControl.player2 = PlayerIndex.Two;
+                    PlayerControl.p2 = true;
+                }
                 if (!ready_P2)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -376,7 +386,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
-                PlayerControl.player1 = (PlayerIndex)1;
+                if (Input.GetJoystickNames()[0].Length == 33)
+                {
+                    PlayerControl.player1 = PlayerIndex.One;
+                    PlayerControl.p1 = true;
+                }
                 if (!ready_P1)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -432,7 +446,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
-                PlayerControl.player2 = (PlayerIndex)2;
+                if (Input.GetJoystickNames()[1].Length == 33)
+                {
+                    PlayerControl.player2 = PlayerIndex.Two;
+                    PlayerControl.p2 = true;
+                }
                 if (!ready_P2)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -488,7 +506,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_3"))
             {
-                PlayerControl.player3 = (PlayerIndex)2;
+                if (Input.GetJoystickNames()[2].Length == 33)
+                {
+                    PlayerControl.player3 = PlayerIndex.Three;
+                    PlayerControl.p3 = true;
+                }
                 if (!ready_P3)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -546,7 +568,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_1"))
             {
-                PlayerControl.player1 = (PlayerIndex)1;
+                if (Input.GetJoystickNames()[0].Length == 33)
+                {
+                    PlayerControl.player1 = PlayerIndex.One;
+                    PlayerControl.p1 = true;
+                }
                 if (!ready_P1)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -602,7 +628,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_2"))
             {
-                PlayerControl.player2 = (PlayerIndex)2;
+                if (Input.GetJoystickNames()[1].Length == 33)
+                {
+                    PlayerControl.player2 = PlayerIndex.Two;
+                    PlayerControl.p2 = true;
+                }
                 if (!ready_P2)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -658,7 +688,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_3"))
             {
-                PlayerControl.player3 = (PlayerIndex)3;
+                if (Input.GetJoystickNames()[2].Length == 33)
+                {
+                    PlayerControl.player3 = PlayerIndex.Three;
+                    PlayerControl.p3 = true;
+                }
                 if (!ready_P3)
                 {
                     //sounds.PlayOneShot(clickButton);
@@ -714,7 +748,11 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             }
             if (Input.GetButtonDown("A_4"))
             {
-                PlayerControl.player4 = (PlayerIndex)4;
+                if (Input.GetJoystickNames()[3].Length == 33)
+                {
+                    PlayerControl.player4 = PlayerIndex.Four;
+                    PlayerControl.p4 = true;
+                }
                 if (!ready_P4)
                 {
                     //sounds.PlayOneShot(clickButton);
