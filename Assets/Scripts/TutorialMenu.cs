@@ -39,9 +39,6 @@ public class TutorialMenu : MonoBehaviour {
         Abilities_Tutorial.show = false;
         Tutorial_InGame.showIt = false;
         killer.SetActive(true);
-        //Menu.musicStarted = false;
-        //Menu.backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        //SceneManager.LoadScene("Tutorial");
     }
     public void BackToTutorialMenu()
     {

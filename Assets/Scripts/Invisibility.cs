@@ -10,16 +10,12 @@ public class Invisibility : MonoBehaviour {
     private bool hab, used;
     [SerializeField]
     private int coolDown = 10, timeAbility = 10;
-    //[SerializeField]
-    //private AudioClip abilitySound;
     public bool ab1 = false, ab2 = false;
     public Image iconAb;
-    //private AudioSource soundSource;
 
     // Use this for initialization
     void Start()
     {
-        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
         used = false;
         cooldown = 0;
         timeAb = timeAbility;
@@ -71,7 +67,6 @@ public class Invisibility : MonoBehaviour {
             if (Input.GetButtonDown("Submit") && !used && !hab && !this.gameObject.GetComponent<PlayerControl>().cooledDown && Abilities_Tutorial.canAct)
             {
                 this.gameObject.GetComponent<Animator>().SetTrigger("Invisible");
-                //Congelar();
             }
         }
         if (Time.timeScale == 1)
@@ -84,7 +79,6 @@ public class Invisibility : MonoBehaviour {
     void Invisible()
     {
         RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Abilities/Invisible", this.transform.position);
-        //soundSource.PlayOneShot(abilitySound);
         this.gameObject.GetComponentInChildren<Renderer>().GetComponent<SkinnedMeshRenderer>().enabled = false;
         hab = true;
     }

@@ -37,7 +37,7 @@ public class HUD_Shake : MonoBehaviour
     private void Update()
     {
         
-        if (NewControl.paused || Tutorial_InGame.tutorialPaused) StopAllCoroutines();
+        if ((Time.timeScale == 0 && !Tutorial_InGame.showIt) || GameObject.Find("Control").GetComponent<NewControl>().rankingCanvas.activeInHierarchy) StopAllCoroutines();
         else Shake(this.player.GetComponent<PlayerControl>().detected, 5f);
     }
     public void Shake(bool duration, float amount)

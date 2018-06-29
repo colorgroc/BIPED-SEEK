@@ -13,12 +13,12 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     public static float defaultSpeed = 20;
     [HideInInspector]
-    public string AxisMovement, AxisRotation, AxisRotation2, killButton, hab1Button, hab2Button, hab3Button, hab4Button, hab5Button, hab6Button;
+    public string AxisMovement, AxisRotation, AxisRotation2, AxisMovement_Arrows, AxisRotation_Arrows, killButton, hab1Button, hab2Button, hab3Button, hab4Button, hab5Button, hab6Button;
 
-    private float distToGround, count, timeCoolDown, timeFeedback;
-    [SerializeField]
-    private int coolDown;
+    private float distToGround, count, timeFeedback;
 
+    public int coolDown;
+    public float timeCoolDown;
     public bool cooledDown, usingAbility, vibration;
 
     [HideInInspector]
@@ -43,12 +43,7 @@ public class PlayerControl : MonoBehaviour {
 
     private void Awake()
     {
-        
-        //PlayerIndex player = PlayerIndex.One;
-        // QualitySettings.SetQualityLevel(5);
-        //this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 1");
         this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 2");
-        //this.backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Stuff/Vibration 3");
     }
 
     void Start ()
@@ -70,6 +65,8 @@ public class PlayerControl : MonoBehaviour {
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation2 = "H_LPad_1";
             this.AxisRotation = "H_RPad_1";
+            this.AxisMovement_Arrows = "V_Arrows_1";
+            this.AxisRotation_Arrows = "H_Arrows_1";
             this.killButton = "X_1";
             this.hab1Button = "LB_1";
             this.hab2Button = "RB_1";   
@@ -80,6 +77,8 @@ public class PlayerControl : MonoBehaviour {
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation2 = "H_LPad_2";
             this.AxisRotation = "H_RPad_2";
+            this.AxisMovement_Arrows = "V_Arrows_2";
+            this.AxisRotation_Arrows = "H_Arrows_2";
             this.killButton = "X_2";
             this.hab1Button = "LB_2";
             this.hab2Button = "RB_2";
@@ -91,6 +90,8 @@ public class PlayerControl : MonoBehaviour {
             this.AxisMovement = "V_LPad_3";
             this.AxisRotation2 = "H_LPad_3";
             this.AxisRotation = "H_RPad_3";
+            this.AxisMovement_Arrows = "V_Arrows_3";
+            this.AxisRotation_Arrows = "H_Arrows_3";
             this.killButton = "X_3";
             this.hab1Button = "LB_3";
             this.hab2Button = "RB_3";
@@ -102,6 +103,8 @@ public class PlayerControl : MonoBehaviour {
             this.AxisMovement = "V_LPad_4";
             this.AxisRotation2 = "H_LPad_4";
             this.AxisRotation = "H_RPad_4";
+            this.AxisMovement_Arrows = "V_Arrows_4";
+            this.AxisRotation_Arrows = "H_Arrows_4";
             this.killButton = "X_4";
             this.hab1Button = "LB_4";
             this.hab2Button = "RB_4";
@@ -198,16 +201,22 @@ public class PlayerControl : MonoBehaviour {
         {
             speed = PlayerPrefs.GetFloat("Speed");
         }
-        if (this.canAct && !this.usingAbility)
+        if (this.canAct && !this.usingAbility && !this.cooledDown)
         {
             float y = Input.GetAxis(this.AxisMovement) * Time.deltaTime;
+            float y_Arrows = Input.GetAxis(this.AxisMovement_Arrows) * Time.deltaTime;
             float x = Input.GetAxis(this.AxisRotation2) * Time.deltaTime;
             float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
+            float x_Arrows = Input.GetAxis(this.AxisRotation_Arrows) * Time.deltaTime;
 
-            transform.Translate(0, 0, y * speed);
-            
-            if(rX != 0)
+            if(y != 0)
+                transform.Translate(0, 0, y * speed);
+            else transform.Translate(0, 0, (-y_Arrows) * speed);
+
+            if (rX != 0)
                 transform.Rotate(0, rX * speedRotation, 0);
+            else if(x_Arrows != 0)
+                transform.Rotate(0, x_Arrows * speedRotation, 0);
             else transform.Rotate(0, x * speedRotation, 0);
 
             _navMeshAgent.SetDestination(transform.position);
@@ -215,44 +224,48 @@ public class PlayerControl : MonoBehaviour {
             if (Input.GetButtonDown(this.killButton) && !Abilities_Tutorial.show)
             {
                 this.wannaKill = true;
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
+                //RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
             }
             if (Input.GetButtonUp(this.killButton) && !Abilities_Tutorial.show) this.wannaKill = false;
 
-            if (y > 0)
+            if (y > 0 || y_Arrows > 0)
             {
                 this.anim.SetBool("isWalkingForward", true);
             }
-            else if (y < 0) this.anim.SetBool("isWalkingBack", true);
+            else if (y < 0 || y_Arrows < 0) this.anim.SetBool("isWalkingBack", true);
             else
             {
                 this.anim.SetBool("isWalkingForward", false);
                 this.anim.SetBool("isWalkingBack", false);
             }
-            if(y != 0 && (_sprint || speed > defaultSpeed)) anim.SetBool("isRunning", true);
+            if((y != 0 || y_Arrows != 0) && (_sprint || speed > defaultSpeed)) anim.SetBool("isRunning", true);
             else anim.SetBool("isRunning", false);
-            if (y == 0 && (rX > 0 ||x > 0)) anim.SetBool("Rot_Right", true);
-            else if(y == 0 && (rX < 0 || x < 0)) anim.SetBool("Rot_Left", true);
+
+            if ((y == 0 && y_Arrows == 0) && (rX > 0 || x > 0 || x_Arrows > 0)) anim.SetBool("Rot_Right", true);
+            else if((y == 0 && y_Arrows == 0) && (rX < 0 || x < 0 || x_Arrows < 0)) anim.SetBool("Rot_Left", true);
             else
             {
                 anim.SetBool("Rot_Right", false);
                 anim.SetBool("Rot_Left", false);
             }
             //
-        }else if(this.canAct && this.usingAbility)
+        }else if(this.canAct && this.usingAbility && !this.cooledDown)
         {
             if (Input.GetButtonDown(this.killButton) && !Abilities_Tutorial.show)
             {
                 this.wannaKill = true;
-				RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
+				//RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
             }
             if (Input.GetButtonUp(this.killButton) && !Abilities_Tutorial.show) this.wannaKill = false;
         }
-            
-
+        //if(this.wannaKill)
+        //{
+        //    RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
+        //} 
         this.anim.SetBool("wannaKill", this.wannaKill);
         this.anim.SetBool("isFreezed", !this.canAct);
-        if (this.detected && !this.cooledDown)
+
+        if (this.detected && !this.cooledDown && Time.timeScale == 1)
         {
             if (!this.vibration)
             {
@@ -313,6 +326,10 @@ public class PlayerControl : MonoBehaviour {
                 this.cooledDown = false;
             }
         }
+    }
+    public void PlayAttackSound()
+    {
+        RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Attack", this.transform.position);
     }
     public void InicializandoHabilidad()
     {
@@ -398,11 +415,6 @@ public class PlayerControl : MonoBehaviour {
     public void RespawnCoolDown()
     {
         this.cooledDown = true;
-        //if (this.gameObject != NewControl.objective)
-        //{
-        //    this.gameObject.GetComponent<PlayerControl>().scoreGeneral -= 10;
-        //    this.gameObject.GetComponent<PlayerControl>().scoreGeneralRound -= 10;
-        //}
         this.timeCoolDown = 0;
     }
   

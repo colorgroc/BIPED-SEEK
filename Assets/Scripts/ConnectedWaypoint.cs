@@ -24,15 +24,16 @@ public class ConnectedWaypoint : Waypoint {
 		}
 	}
 
-	//public override void OnDrawGizmos(){
-	//	Gizmos.color = Color.blue;
-	//	Gizmos.DrawWireSphere (transform.position, debugDragRadius);
+    public override void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, debugDragRadius);
 
-	//	Gizmos.color = Color.yellow;
-	//	Gizmos.DrawWireSphere (transform.position, _connectivityRadius);
-	//}
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, _connectivityRadius);
+    }
 
-	public ConnectedWaypoint NextWaypoint(ConnectedWaypoint previousWaypoint){
+    public ConnectedWaypoint NextWaypoint(ConnectedWaypoint previousWaypoint){
 		if (_connections.Count == 0) {
 			//no hi ha waypoints, retorna null
 			Debug.LogError ("Insuficient waypoint count.");

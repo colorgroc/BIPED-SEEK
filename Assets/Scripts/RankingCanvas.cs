@@ -11,21 +11,27 @@ public class RankingCanvas : MonoBehaviour {
     private Text round;
     // Use this for initialization
     void Start () {
-        Time.timeScale = 0;
         
+        Time.timeScale = 0;
+        if(NewControl.startGame)
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", Vector3.zero);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Rondes.timesPlayed == Rondes.rondas)
+        if (Rondes.timesPlayed >= Rondes.rondas)
         {
             round.text = "End Game";
-            NewControl.finalWinner = NewControl.players[0].gameObject;
+            if (NewControl.players != null && Ranking.orderedRank.Count > 0 && Ranking.orderedRank[0].gameObject != null)
+            {
+                NewControl.finalWinner = Ranking.orderedRank[0].gameObject;
+                //Debug.Log("Guanyador: " + Ranking.orderedRank[0].gameObject.name);
+            }
         }
         else round.text = "Next Round";
         if(NewControl.players != null)
             Ranking.orderedRank = NewControl.players.OrderByDescending(p => p.GetComponent<PlayerControl>().scoreGeneral).ToList();
-        if (Ranking.orderedRank != null)
+        if (Ranking.orderedRank.Count > 0)
         {
             for (int i = 0; i < Ranking.orderedRank.Count; i++)
             {
@@ -62,7 +68,7 @@ public class RankingCanvas : MonoBehaviour {
                 GameObject.Find("Control").GetComponent<NewControl>().StartGame();
 
             foreach (GameObject player in NewControl.players)
-                player.GetComponent<PlayerControl>().scoreGeneralRound = 0;//player.GetComponent<PlayerControl>().scoreKillsRound = player.GetComponent<PlayerControl>().scoreWinsRound = 0;
+                player.GetComponent<PlayerControl>().scoreGeneralRound = 0;
             Time.timeScale = 1;
         }
         else Time.timeScale = 0;

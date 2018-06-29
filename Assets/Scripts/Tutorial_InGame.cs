@@ -12,40 +12,31 @@ public class Tutorial_InGame : MonoBehaviour {
     public Text titol;
     bool once, _once, _Once, __Once, __once, _ONce, ope, timed3, timed4, timed5;
     public static bool tutorialPaused;
-    //public GameObject player1, player2, HUD, box, objectiveCanvas;
     private float time, time2, time3, time4, time5;
-    //private bool proceed;
     private int OK;
     private float timeGame = 120, timeLeft;
     [SerializeField]
     private Text textTiempo;
-    public static bool showIt;//, tuto;
+    public static bool showIt;
     public Material glowP1, glowP2, glowP3, outlineP3, outlineP1, outlineP2;
     private Material[] p1mat, p2mat, p3mat;
     [SerializeField]
     private int numOfAbilities = 6, numOfUsedAbilities = 2;
     private int ability1, ability2;
-    //[SerializeField]
-    //private Image iAb1, iAb2;
+
     [SerializeField]
     private Sprite freeze, control, invisible, teleport, sprint, smoke;
     public FMOD.Studio.EventInstance backgroudSound;
     public FMOD.Studio.EventInstance backgroudMusic;
-    //[SerializeField]
-    //private AudioClip pauseSound, backSound, menuSound;
-    //private AudioSource soundSource;
+
     // Use this for initialization
     private void Awake()
     {
         showIt = true;
-        //QualitySettings.SetQualityLevel(5);
-        //showIt = true;
-        //Abilities_Tutorial.show = false;
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         time = time2 = time3 = time4 = time5 = OK = 0;
         once = _once = _Once =__Once = __once = _ONce = ope = timed3 =timed4 = timed5 = tutorialPaused = false;
-        //tuto = true;
         box.SetActive(true);
         welcome2.SetActive(false);
         thereUR.SetActive(false);
@@ -71,22 +62,17 @@ public class Tutorial_InGame : MonoBehaviour {
         p1mat = player1.GetComponentInChildren<Renderer>().materials;
         p2mat = player2.GetComponentInChildren<Renderer>().materials;
         p3mat = player3.GetComponentInChildren<Renderer>().materials;
-        //RandomAbilities();
         PlayerPrefs.SetInt("Ability 1", (int)NewControl.Abilities.SMOKE);
         PlayerPrefs.SetInt("Ability 2", (int)NewControl.Abilities.IMMOBILIZER);
 
         backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Music/Mapa 1");
         backgroudSound = RuntimeManager.CreateInstance("event:/BipedSeek/Ambient/Wind");
         backgroudSound.setParameterValue("Vent Loop", 0.2f);
-        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
-
-        //feedBackIm.color = normalCol;
-        //objective = player2;
     }
     void Start () {
         showIt = true;
         Abilities_Tutorial.show = false;
-        timeLeft = timeGame;//UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
+        timeLeft = timeGame;
         textTiempo.text = GetMinutes(timeLeft);
         objectiveCanvas.GetComponent<ObjectiveCanvas>().Start();
         backgroudMusic.start();
@@ -134,14 +120,13 @@ public class Tutorial_InGame : MonoBehaviour {
             {
                 backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                SceneManager.LoadScene("Menu");
+                SceneManager.LoadScene("TutorialMenu");
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             }
         }
         if (OK < 0) OK = 0;
         if ((Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel")) && Time.timeScale == 0 && !tutorialPaused)
         {
-            //tuto = true;
             if (OK == 0)
             {
                 welcome1.SetActive(true);
@@ -170,7 +155,6 @@ public class Tutorial_InGame : MonoBehaviour {
                 if (!once)
                 {
                     box.SetActive(false);
-                    //tuto = false;
                     Time.timeScale = 1;
                 }
                 titol.text = "There you are";
@@ -228,7 +212,6 @@ public class Tutorial_InGame : MonoBehaviour {
             else if (OK == 10)
             {
                 goKill.SetActive(false);
-                //titol.text = "HUD - General";
                 
                 if (!_once)
                 {
@@ -254,9 +237,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 icon.SetActive(false);
                 if (!__once)
                 {
-                   // tuto = false;
                     box.SetActive(false);
-                    //getClose.SetActive(true);
                     Time.timeScale = 1;
                 }
                 feedback.SetActive(false);
@@ -266,26 +247,18 @@ public class Tutorial_InGame : MonoBehaviour {
             else if (OK == 13)
             {
                 getClose.SetActive(false);
-                //titol.text = "HUD - General";
                 if (!_Once)
                 {
-                    //guards.SetActive(true);
-                    //player2.SetActive(true);
-                    //p2mat[1] = glowP2;
-                    //p2mat[2] = outlineP2;
-                    //player2.GetComponentInChildren<Renderer>().materials = p2mat;
                     player3.SetActive(true);
                     p3mat[1] = glowP3;
                     p3mat[2] = outlineP3;
                     player3.GetComponentInChildren<Renderer>().materials = p3mat;
                     box.SetActive(false);
-                    //tuto = false;
                     Time.timeScale = 1;
                 }
                 titol.text = "Player Detected";
                 feedback.SetActive(true);
                 goKill2.SetActive(false);
-                //feedBackIm.color = feedCol; 
             }
             
             else if (OK == 14)
@@ -297,17 +270,14 @@ public class Tutorial_InGame : MonoBehaviour {
                 goKill3.SetActive(false);
                 score3.SetActive(false);
                 box.SetActive(true);
-                // feedBackIm.color = normalCol;
             }
             else if (OK == 15)
             {
                 if (!__Once)
                 {
                     box.SetActive(false);
-                    //tuto = false;
                     Time.timeScale = 1;
                 }
-                //box.SetActive(true);
                 titol.text = "Player Killed";
                 goKill2.SetActive(false);
                 goKill3.SetActive(false);
@@ -328,22 +298,18 @@ public class Tutorial_InGame : MonoBehaviour {
                 score4.SetActive(false);
                 score3.SetActive(false);
                 box.SetActive(true);
-                // feedBackIm.color = normalCol;
             }
             else if (OK == 17)
             {
                 winner.SetActive(false);
-                //titol.text = "HUD - General";
                 if (!_ONce)
                 {
-                    //tuto = false;
                     box.SetActive(false);
                     Time.timeScale = 1;
                 }
                 titol.text = "Objective Killed";
                 goKill3.SetActive(false);
                 score4.SetActive(true);
-                //feedBackIm.color = feedCol; 
             }
             else if (OK == 18)
             {
@@ -351,8 +317,7 @@ public class Tutorial_InGame : MonoBehaviour {
                 score4.SetActive(false);
                 winner.SetActive(true);
                 finnish.SetActive(false);
-                //events.SetActive(false);
-                // feedBackIm.color = normalCol;
+
             }
             else if(OK == 19)
             {
@@ -397,7 +362,6 @@ public class Tutorial_InGame : MonoBehaviour {
                 box.SetActive(true);
                 titol.text = "Player Detected";
                 feedback.SetActive(true);
-               // tuto = true;
             }
         }
         if (OK == 12 && Time.timeScale == 1 && !__once)
@@ -409,7 +373,6 @@ public class Tutorial_InGame : MonoBehaviour {
                 box.SetActive(true);
                 titol.text = "Chase a player";
                 getClose.SetActive(true);
-               // tuto = true;
             }
         }
         if (OK == 15 && Time.timeScale == 1 && !__Once)
@@ -423,7 +386,6 @@ public class Tutorial_InGame : MonoBehaviour {
                 box.SetActive(true);
                 titol.text = "Player Killed";
                 score3.SetActive(true);
-                //tuto = true;
             }
         }
         if (OK == 17 && Time.timeScale == 1 && !_ONce)
@@ -440,7 +402,6 @@ public class Tutorial_InGame : MonoBehaviour {
                 player1.GetComponent<PlayerControl>().scoreGeneral += 30;
                 titol.text = "Objective killed";
                 score4.SetActive(true);
-                //tuto = true;
             }
         }
     }
@@ -458,12 +419,10 @@ public class Tutorial_InGame : MonoBehaviour {
             if (!tutorialPaused)
             {
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
-                //soundSource.PlayOneShot(pauseSound);
             }
                 
             else  {
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                //soundSource.PlayOneShot(backSound);
             }    
                 
             tutorialPaused = !tutorialPaused;
@@ -473,14 +432,13 @@ public class Tutorial_InGame : MonoBehaviour {
         }
         if (Input.GetButtonDown("Main Menu") && tutorialPaused)
         {
-            //soundSource.PlayOneShot(menuSound);
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             pausa.SetActive(false);
             Time.timeScale = 1;
             backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             tutorialPaused = false;
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("TutorialMenu");
         }
         if (tutorialPaused)
             Time.timeScale = 0;

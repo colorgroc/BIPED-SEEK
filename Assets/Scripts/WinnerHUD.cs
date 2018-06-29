@@ -9,33 +9,27 @@ public class WinnerHUD : MonoBehaviour {
 
 	public Text player;
     public Image cup, animal;
+    private bool once = false;
     [SerializeField]
     private Sprite cup1, cup2, cup3, cup4, animal1, animal2, animal3, animal4;
-    //[SerializeField]
-    //private AudioClip winnerSound;
-    //private AudioSource soundSource;
 
     private void Awake()
     {
     }
     void Start () {
-        //soundSource = GameObject.Find("Sounds").GetComponent<AudioSource>();
-        //NewControl.Winner();
-        //soundSource.PlayOneShot(winnerSound);
-        
+
         //asignacio copa i animal del guanyador
         if (NewControl.finalWinner != null)
         {
             GameObject.Find("Control").GetComponent<NewControl>().rankingCanvas.SetActive(false);
             RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Winner", Vector3.zero);
-            player.text = NewControl.finalWinner.name;
-
-            //if(NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("1"))
+            //player.text = NewControl.finalWinner.name;
+            player.text = Ranking.orderedRank[0].gameObject.name;
             if (NewControl.finalWinner.name.EndsWith("1"))
             {
                 cup.sprite = cup1;
 
-                if(PlayerPrefs.GetInt("characterPlayer_1") == 1)
+                if (PlayerPrefs.GetInt("characterPlayer_1") == 1)
                 {
                     animal.sprite = animal1;
                 }
@@ -52,7 +46,7 @@ public class WinnerHUD : MonoBehaviour {
                     animal.sprite = animal4;
                 }
             }
-            else if (NewControl.finalWinner.name.EndsWith("2"))//if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("2"))
+            else if (NewControl.finalWinner.name.EndsWith("2"))
             {
                 cup.sprite = cup2;
 
@@ -73,7 +67,7 @@ public class WinnerHUD : MonoBehaviour {
                     animal.sprite = animal4;
                 }
             }
-            else if (NewControl.finalWinner.name.EndsWith("3"))//if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("3"))
+            else if (NewControl.finalWinner.name.EndsWith("3"))
             {
                 cup.sprite = cup3;
 
@@ -94,7 +88,7 @@ public class WinnerHUD : MonoBehaviour {
                     animal.sprite = animal4;
                 }
             }
-            else if (NewControl.finalWinner.name.EndsWith("4"))//if (NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1).Equals("4"))
+            else if (NewControl.finalWinner.name.EndsWith("4"))
             {
                 cup.sprite = cup4;
 
@@ -115,13 +109,108 @@ public class WinnerHUD : MonoBehaviour {
                     animal.sprite = animal4;
                 }
             }
-            // cup.sprite = (Sprite)Resources.Load("Winner/WINNER_" + NewControl.finalWinner.name);
-            //animal.sprite = (Sprite)Resources.Load("Winner/WINNER_" + PlayerPrefs.GetInt("characterPlayer_" + NewControl.finalWinner.name.Substring(NewControl.finalWinner.name.Length - 1)).ToString());
+
         }
+
     }
 	void Update()
     {
+        if (NewControl.finalWinner != null)
+        {
+            GameObject.Find("Control").GetComponent<NewControl>().rankingCanvas.SetActive(false);
+            if (!once)
+            {
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Winner", Vector3.zero);
+                once = true;
+            }
+            //player.text = NewControl.finalWinner.name;
+            player.text = Ranking.orderedRank[0].gameObject.name;
+            if (NewControl.finalWinner.name.EndsWith("1"))
+            {
+                cup.sprite = cup1;
 
+                if (PlayerPrefs.GetInt("characterPlayer_1") == 1)
+                {
+                    animal.sprite = animal1;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_1") == 2)
+                {
+                    animal.sprite = animal2;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_1") == 3)
+                {
+                    animal.sprite = animal3;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_1") == 4)
+                {
+                    animal.sprite = animal4;
+                }
+            }
+            else if (NewControl.finalWinner.name.EndsWith("2"))
+            {
+                cup.sprite = cup2;
+
+                if (PlayerPrefs.GetInt("characterPlayer_2") == 1)
+                {
+                    animal.sprite = animal1;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_2") == 2)
+                {
+                    animal.sprite = animal2;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_2") == 3)
+                {
+                    animal.sprite = animal3;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_2") == 4)
+                {
+                    animal.sprite = animal4;
+                }
+            }
+            else if (NewControl.finalWinner.name.EndsWith("3"))
+            {
+                cup.sprite = cup3;
+
+                if (PlayerPrefs.GetInt("characterPlayer_3") == 1)
+                {
+                    animal.sprite = animal1;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_3") == 2)
+                {
+                    animal.sprite = animal2;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_3") == 3)
+                {
+                    animal.sprite = animal3;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_3") == 4)
+                {
+                    animal.sprite = animal4;
+                }
+            }
+            else if (NewControl.finalWinner.name.EndsWith("4"))
+            {
+                cup.sprite = cup4;
+
+                if (PlayerPrefs.GetInt("characterPlayer_4") == 1)
+                {
+                    animal.sprite = animal1;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_4") == 2)
+                {
+                    animal.sprite = animal2;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_4") == 3)
+                {
+                    animal.sprite = animal3;
+                }
+                else if (PlayerPrefs.GetInt("characterPlayer_4") == 4)
+                {
+                    animal.sprite = animal4;
+                }
+            }
+
+        }
         if (Input.GetButtonDown("Main Menu")) {
 			this.gameObject.SetActive (false);
 			Time.timeScale = 1;
@@ -137,7 +226,7 @@ public class WinnerHUD : MonoBehaviour {
     void Default()
     {
         NewControl.killers = null;
-        NewControl.players = null;
+        NewControl.players = new List<GameObject>();
         NewControl.guards = null;
         NewControl.numOfPlayers = 0;
         NewControl.objComplete = false;
@@ -146,8 +235,8 @@ public class WinnerHUD : MonoBehaviour {
         NewControl.objective = null;
         NewControl.finalWinner = null;
         NewControl.parcialWinner = null;
-        Ranking.orderedRank = null;
-        Ranking.rankList = null;
+        Ranking.orderedRank = new List<GameObject>(); 
+        Ranking.rankList = new List<GameObject>();
         NumCanvasSeleccionJugadores.ready_P1 = false;
         NumCanvasSeleccionJugadores.ready_P2 = false;
         NumCanvasSeleccionJugadores.ready_P3 = false;

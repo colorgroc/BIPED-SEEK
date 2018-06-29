@@ -74,13 +74,13 @@ public class Loading : MonoBehaviour {
         if (ab == (int)NewControl.Abilities.IMMOBILIZER)
         {
             nom.text = "Freeze";
-            desc.text = "Freeze everyone around you during x seconds.";
+            desc.text = "Freeze everyone around you for a while.";
             i.sprite = freeze;
         }
         else if (ab == (int)NewControl.Abilities.INVISIBLITY)
         {
             nom.text = "Invisibility";
-            desc.text = "Become invisible during x seconds.";
+            desc.text = "Become invisible for a while.";
             i.sprite = invisible;
         }
        /* else if (ab == (int)NewControl.Abilities.REPEL)
@@ -91,25 +91,25 @@ public class Loading : MonoBehaviour {
         else if (ab == (int)NewControl.Abilities.SMOKE)
         {
             nom.text = "Smoke Screen";
-            desc.text = "Create smoke during x seconds to hide and escape.";
+            desc.text = "Create smoke to hide and escape.";
             i.sprite = smoke;
         }
         else if (ab == (int)NewControl.Abilities.SPRINT)
         {
             nom.text = "Sprint";
-            desc.text = "Sprint to run away faster or to chase faster during x seconds.";
+            desc.text = "Move faster for a while.";
             i.sprite = sprint;
         }
         else if (ab == (int)NewControl.Abilities.TELEPORT)
         {
             nom.text = "Teleport";
-            desc.text = "Change position with a random NPC of your type.";
+            desc.text = "Change randomly your position.";
             i.sprite = teleport;
         }
         else if (ab == (int)NewControl.Abilities.CONTROL)
         {
             nom.text = "NPC Control";
-            desc.text = "Control a random NPC of your type during x seconds. Your character will be controlled by the IA.";
+            desc.text = "Control a random NPC of your type for a while. Your character will be controlled by the IA.";
             i.sprite = control;
         }
     }

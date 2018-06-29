@@ -115,6 +115,8 @@ public class Teleport : MonoBehaviour {
     {
         int random = Random.Range(0, guardsList.Count);
         Vector3 newGuardPos = this.gameObject.transform.position;
+        //Debug.Log(Vector3.Distance(this.gameObject.transform.position, guardsList[random].transform.position));
+        if(Vector3.Distance(this.gameObject.transform.position, guardsList[random].transform.position) > 20)
         this.gameObject.transform.position = guardsList[random].transform.position;
         if(!Abilities_Tutorial.show)
             NewControl.guards[random].transform.position = newGuardPos;

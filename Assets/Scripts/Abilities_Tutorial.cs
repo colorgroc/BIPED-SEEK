@@ -13,21 +13,18 @@ public class Abilities_Tutorial : MonoBehaviour {
     public Text titol;
     public static bool tutorialPaused;
     private int OK;
-    public static bool show;//, tuto;
+    public static bool show;
     public FMOD.Studio.EventInstance backgroudSound;
     public FMOD.Studio.EventInstance backgroudMusic;
     public static bool canAct = false;
     // Use this for initialization
     private void Awake()
     {
-        //QualitySettings.SetQualityLevel(5);
         show = true;
-        //Tutorial_InGame.showIt = false;
         Time.timeScale = 0;
         titol = GameObject.Find("Titol").GetComponent<Text>();
         OK = 0;
         tutorialPaused = false;
-        //tuto = true;
         back.SetActive(false);
         box.SetActive(true);
         welcome1.SetActive(true);
@@ -74,7 +71,6 @@ public class Abilities_Tutorial : MonoBehaviour {
         if (OK < 0) OK = 0;
         if ((Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel")) && Time.timeScale == 0 && !tutorialPaused)
         {
-            //tuto = true;
             if (OK == 0)
             {
                 welcome1.SetActive(true);
@@ -154,13 +150,11 @@ public class Abilities_Tutorial : MonoBehaviour {
             if (!tutorialPaused)
             {
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
-                //soundSource.PlayOneShot(pauseSound);
             }
 
             else
             {
                 RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                //soundSource.PlayOneShot(backSound);
             }
 
             tutorialPaused = !tutorialPaused;
@@ -171,7 +165,7 @@ public class Abilities_Tutorial : MonoBehaviour {
         if (Input.GetButtonDown("Submit") && tutorialPaused)
         {
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
-            OK = 0;
+            OK = -1;
             box.SetActive(true);
             welcome1.SetActive(true);
             tutorialPaused = false;
@@ -180,14 +174,13 @@ public class Abilities_Tutorial : MonoBehaviour {
         }
         if (Input.GetButtonDown("Main Menu") && tutorialPaused)
         {
-            //soundSource.PlayOneShot(menuSound);
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Navigate", Vector3.zero);
             pausa.SetActive(false);
             Time.timeScale = 1;
             backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             tutorialPaused = false;
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("TutorialMenu");
         }
         if (tutorialPaused)
             Time.timeScale = 0;

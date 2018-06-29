@@ -21,7 +21,7 @@ public class NewControl : MonoBehaviour
     //private AudioClip pauseSound, backSound, menuSound, startNumbers;
     //private AudioSource soundSource;
 
-    public static List<GameObject> players;// = new List<GameObject>();
+    public static List<GameObject> players = new List<GameObject>();
     private List<GameObject> listPlayers;// = new List<GameObject>();
     [HideInInspector]
     public static GameObject[] guards;
@@ -67,7 +67,7 @@ public class NewControl : MonoBehaviour
 
         listPos = new List<int>();
         listPlayers = new List<GameObject>();
-        players = new List<GameObject>();
+        //players = new List<GameObject>();
         Rondes.timesPlayed = 0;
         habilitat_1 = PlayerPrefs.GetInt("Ability 1");
         habilitat_2 = PlayerPrefs.GetInt("Ability 2");
@@ -130,6 +130,10 @@ public class NewControl : MonoBehaviour
         RespawnNPCS();
         foreach (GameObject player in players)
         {
+            player.GetComponent<PlayerControl>().detected = false;
+            player.GetComponent<PlayerControl>().cooledDown = false;
+            player.GetComponent<PlayerControl>().timeCoolDown = player.GetComponent<PlayerControl>().coolDown;
+            GameObject.Find("IconPlayer_" + player.gameObject.name.Substring(player.gameObject.name.Length - 1)).GetComponent<Image>().fillAmount = 1;
             player.GetComponent<PlayerControl>().Respawn(player.gameObject);
             player.GetComponent<FieldOfView>().Start();
         }
@@ -199,9 +203,11 @@ public class NewControl : MonoBehaviour
                 Rondes.timesPlayed++;
                 objComplete = false;
                 timeLeft = time;
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", parcialWinner.transform.position);
+                RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", Vector3.zero);
+                //RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Objective_Death", parcialWinner.transform.position);
                 //Ranking.OrdenarRanking();
                 //if (GameObject.Find("MapEvent") != null)
+
                 this.GetComponent<EventosMapa>().Default();
                 rankingCanvas.SetActive(true);
                 //StartGame();
@@ -232,7 +238,7 @@ public class NewControl : MonoBehaviour
                 backgroudSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 backgroudMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 this.GetComponent<EventosMapa>().Default();
-                NewControl.finalWinner = players[0].gameObject;
+                //finalWinner = Ranking.orderedRank[0].gameObject;//players[0].gameObject;
                 objComplete = false;
                 Ranking.Guanyador();
                 if (!once)
@@ -519,7 +525,7 @@ public class NewControl : MonoBehaviour
         {
             int random = UnityEngine.Random.Range(0, listPlayers.Count);
             objective = GameObject.Find(listPlayers[random].name);
-            Debug.Log(listPlayers[random]);
+            //Debug.Log(listPlayers[random]);
             listPlayers.RemoveAt(random);
             ShowObjectiveCanvas();
         }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour {
 
-	//[SerializeField]
-	//protected float debugDragRadius = 1.0F;
+    [SerializeField]
+    protected float debugDragRadius = 1.0F;
 
-	//public virtual void OnDrawGizmos(){
-	//	Gizmos.color = Color.magenta;
-	//	Gizmos.DrawWireSphere (transform.position, debugDragRadius);
-	//}
+    public virtual void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, debugDragRadius);
+    }
 }

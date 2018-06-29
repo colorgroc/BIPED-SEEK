@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: fa9c9b05597dfc944aab39517140c154
-timeCreated: 1518492672
+timeCreated: 1530025732
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -25,6 +25,8 @@ TextureImporter:
     21300036: buttons2.0_19
     21300038: buttons2.0_20
     21300040: buttons2.0_22
+    21300042: buttons2.0_23
+    21300044: buttons2.0_24
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -354,10 +356,10 @@ TextureImporter:
       name: buttons2.0_19
       rect:
         serializedVersion: 2
-        x: 592
+        x: 590
         y: 243
-        width: 54
-        height: 54
+        width: 56
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -371,7 +373,7 @@ TextureImporter:
         x: 699
         y: 242
         width: 58
-        height: 52
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,6 +388,34 @@ TextureImporter:
         y: 191
         width: 93
         height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: buttons2.0_23
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 107
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: buttons2.0_24
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 108
+        width: 84
+        height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

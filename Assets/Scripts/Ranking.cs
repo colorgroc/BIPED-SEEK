@@ -8,13 +8,10 @@ public class Ranking : MonoBehaviour
 {
 
     private GameObject[] rankings;
-    public static List<GameObject> rankList;
-    // public static List<Rank> ranking = new List<Rank>();
-    //private List<Rank> orderedRank = ranking.OrderByDescending(p => p.player.GetComponent<PlayerControl>().scoreGeneral).ToList();
-    public static List<GameObject> orderedRank;
+    public static List<GameObject> rankList = new List<GameObject>();
+    public static List<GameObject> orderedRank = new List<GameObject>();
     // Use this for initialization
 	void Awake(){
-        rankList = new List<GameObject>();
 
         rankings = GameObject.FindGameObjectsWithTag("Ranking");
 		foreach (GameObject rank in rankings) {
@@ -24,17 +21,12 @@ public class Ranking : MonoBehaviour
             rankList.Sort(SortByName);
 		for (int i = 0; i < PlayerPrefs.GetInt("NumPlayers"); i++)
 		{
-			//if(rankList[i] != null)
 				rankList[i].SetActive(true);
-			//if(GameObject.Find("Player " + i.ToString()) != null)
-			//    ranking.Add(new Rank(GameObject.Find("Player " + i.ToString()), rankList[i]));
 		}
 	}
     void Start()
     {
-        //NewControl.players.Where(p => p != null);
-       
-        //OrdenarRanking();
+
     }
     // Update is called once per frame
 
@@ -46,9 +38,6 @@ public class Ranking : MonoBehaviour
 
     public static void Guanyador()
     {
-        //if (ranking[ranking.Count - 1].player != null)
-        //    NewControl.finalWinner = ranking[ranking.Count - 1].player;
-        //if(ranking[0].player != null) NewControl.finalWinner = ranking[0].player;
-        if(orderedRank != null && NewControl.players[0].gameObject != null) NewControl.finalWinner = NewControl.players[0].gameObject;
+        if(orderedRank.Count > 0 && NewControl.players[0].gameObject != null) NewControl.finalWinner = orderedRank[0].gameObject;
     }
 }

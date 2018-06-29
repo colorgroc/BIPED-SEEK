@@ -60,7 +60,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
         }
     }
     public void Start () {
-
+        //this.anim = this.gameObject.GetComponent<Animator>();
         if (rand == 0)
         {
             _travelling = true;
@@ -116,7 +116,13 @@ public class NPCConnectedPatrol : MonoBehaviour {
 			}
 		}
 		if (this.gameObject.tag.Equals("Killer Guards") && playerOnFieldView) {
-			ChacePlayer (playerTarget.transform.position);
+            Debug.Log(Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position));
+            if (Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position) <= 15)
+            {
+                this.anim.SetTrigger("WannaKill");
+                //this.anim.SetBool("wannaKill", true);
+            } //else if (Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position) >= 25) this.anim.SetBool("wannaKill", false);
+            ChacePlayer (playerTarget.transform.position);
 		}
         this.anim.SetBool("isWalkingForward", _travelling);
         _navMeshAgent.acceleration = PlayerPrefs.GetFloat("Speed");
@@ -143,7 +149,8 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
 	public void ChacePlayer(Vector3 targetVector){
 		_navMeshAgent.SetDestination (targetVector);
-	}
+       
+    }
 	void OnCollisionEnter(Collision collision){
         if (NewControl.startGame)
         {
@@ -157,21 +164,21 @@ public class NPCConnectedPatrol : MonoBehaviour {
             }
         }
         if (this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject != NewControl.objective) {
-            this.anim.SetBool("wannaKill", true);
+            //this.anim.SetBool("wannaKill", true);
+           // this.anim.SetTrigger("WannaKill");
             Death.AnimDeath(collision.gameObject, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
             collision.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
-            //soundSource.PlayOneShot(killPlayerSound);
-			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", collision.transform.position);
-            this.anim.SetBool("wannaKill", false);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Death", this.transform.position);
+            // this.anim.SetBool("wannaKill", false);
 
         }
         else if(this.gameObject.tag.Equals("Killer Guards") && collision.gameObject.layer == 8 && collision.gameObject == NewControl.objective){
-            this.anim.SetBool("wannaKill", true);
-            //soundSource.PlayOneShot(killObjectiveSound);
-			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", collision.transform.position);
-            Death.AnimDeath(collision.gameObject, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
+            //this.anim.SetBool("wannaKill", true);
+            //this.anim.SetTrigger("WannaKill");
+
+           // Death.AnimDeath(collision.gameObject, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
             NewControl.objKilledByGuard = true;
-            this.anim.SetBool("wannaKill", false);
+            //this.anim.SetBool("wannaKill", false);
         }
 	}
 
@@ -189,20 +196,21 @@ public class NPCConnectedPatrol : MonoBehaviour {
 
         if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject != NewControl.objective)
         {
-            this.anim.SetBool("wannaKill", true);
-            //soundSource.PlayOneShot(killPlayerSound);
-			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", col.transform.position);
+            // this.anim.SetTrigger("WannaKill");
+            //this.anim.SetBool("wannaKill", true);
+            Death.AnimDeath(col.gameObject, col.gameObject.transform.position, col.gameObject.transform.rotation);
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death/Death", this.transform.position);
             col.gameObject.GetComponent<PlayerControl>().RespawnCoolDown();
-            this.anim.SetBool("wannaKill", false);
+          //  this.anim.SetBool("wannaKill", false);
 
         }
         else if (this.gameObject.tag.Equals("Killer Guards") && col.gameObject.layer == 8 && col.gameObject == NewControl.objective)
         {
-            this.anim.SetBool("wannaKill", true);
+           // this.anim.SetTrigger("WannaKill");
+            //this.anim.SetBool("wannaKill", true);
             NewControl.objKilledByGuard = true;
-            //soundSource.PlayOneShot(killObjectiveSound);
-			RuntimeManager.PlayOneShot("event:/BipedSeek/Player/Death", col.transform.position);
-            this.anim.SetBool("wannaKill", false);
+           // Death.AnimDeath(col.gameObject, col.gameObject.transform.position, col.gameObject.transform.rotation);
+            //this.anim.SetBool("wannaKill", false);
         }
     }
     public void Respawn(GameObject gO){

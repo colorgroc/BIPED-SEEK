@@ -26,7 +26,7 @@ public class EventosMapa : MonoBehaviour {
         for (int i = 0; i < Rondes.rondas; i++)
         {
             evento = UnityEngine.Random.Range(0, 6);
-            eventos.Add(evento);
+            eventos.Add(3);
         }
         ronda = Rondes.timesPlayed;
         nothing = false;
@@ -36,13 +36,14 @@ public class EventosMapa : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //Debug.Log(nothing);
         if (NewControl.startGame)
         {
-            if (ronda <= Rondes.timesPlayed)
+            if (ronda < Rondes.timesPlayed)
             {
                 ronda = Rondes.timesPlayed;
-
-                //nothing = false;
+                Default();
+                //nothing = true;
             }
             if (i < eventos.Count && ronda <= Rondes.rondas)
             {
@@ -51,7 +52,7 @@ public class EventosMapa : MonoBehaviour {
                     timeEvent2 += Time.deltaTime;
                     if (timeEvent2 >= tempsNothing)
                     {
-                        canvas.GetComponent<Canvas>().enabled = false;
+                        //canvas.GetComponent<Canvas>().enabled = false;
                         timeEvent2 = 0;
                         Default();
 
@@ -245,6 +246,7 @@ public class EventosMapa : MonoBehaviour {
     private void KillersCreation()
     {
         NewControl.killers = null;
+       // Debug.Log("yay");
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPointKillers");
         for (int y = 0; y < NewControl.numKillers; y++)
         {
@@ -274,10 +276,12 @@ public class EventosMapa : MonoBehaviour {
 
     public void Default()
     {
-        nothing = true;
+        nothing = false;
+        timeEvent1 = timeEvent2 = 0;
         KillersDestruction();
         NPCRestablishment();
         DefaultSpeed();
         NewControl.killers = null;
+        canvas.GetComponent<Canvas>().enabled = false;
     }
 }
