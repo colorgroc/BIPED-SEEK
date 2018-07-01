@@ -34,10 +34,10 @@ public class PlayerControl : MonoBehaviour {
     List<GameObject> guardsList = new List<GameObject>();
     NavMeshAgent _navMeshAgent;
     public FMOD.Studio.EventInstance backgroudSound;
-
+    private PlayerIndex player;
    // public static PlayerIndex player1, player2, player3, player4;
-    private PlayerIndex player1, player2, player3, player4;
-    public static bool p1, p2, p3, p4;
+    //private PlayerIndex player1, player2, player3, player4;
+    //public static bool p1, p2, p3, p4;
     private GamePadState state;
     private GamePadState prevState;
 
@@ -61,7 +61,7 @@ public class PlayerControl : MonoBehaviour {
 
         if (this.gameObject.name.Equals("Player 1"))
         {
-            //this.player1 = PlayerIndex.One;
+            this.player = PlayerIndex.One;
             this.AxisMovement = "V_LPad_1";
             this.AxisRotation2 = "H_LPad_1";
             this.AxisRotation = "H_RPad_1";
@@ -73,7 +73,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 2"))
         {
-            //this.player2 = PlayerIndex.Two;
+            this.player = PlayerIndex.Two;
             this.AxisMovement = "V_LPad_2";
             this.AxisRotation2 = "H_LPad_2";
             this.AxisRotation = "H_RPad_2";
@@ -86,7 +86,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 3"))
         {
-            //this.player3 = PlayerIndex.Three;
+            this.player = PlayerIndex.Three;
             this.AxisMovement = "V_LPad_3";
             this.AxisRotation2 = "H_LPad_3";
             this.AxisRotation = "H_RPad_3";
@@ -99,7 +99,7 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (this.gameObject.name.Equals("Player 4"))
         {
-            //this.player4 = PlayerIndex.Four;
+            this.player = PlayerIndex.Four;
             this.AxisMovement = "V_LPad_4";
             this.AxisRotation2 = "H_LPad_4";
             this.AxisRotation = "H_RPad_4";
@@ -135,67 +135,22 @@ public class PlayerControl : MonoBehaviour {
    
     void Update()
     {
-        
 
         //---------------------/probar amb mandos oficials!! ----------------
-        //if (this.gameObject.name.Equals("Player 1"))
-        //{
-        //    this.prevState = this.state;
-        //    this.state = GamePad.GetState(player1);
-        //    if (this.detected)
-        //    {
-        //        GamePad.SetVibration(player1, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-        //        // GamePad.SetVibration(this.player1, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-        //    }
-        //    else
-        //    {
-        //        GamePad.SetVibration(player1, 0, 0);
-        //    }
-        //}
-        //else if (this.gameObject.name.Equals("Player 2"))
-        //{
-        //    this.prevState = this.state;
-        //    this.state = GamePad.GetState(player2);
-        //    if (this.detected)
-        //    {
-        //        GamePad.SetVibration(player2, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-        //        //GamePad.SetVibration(this.player2, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-        //    }
-        //    else
-        //    {
-        //        GamePad.SetVibration(player2, 0, 0);
-        //    }
-        //}
-        //else if (this.gameObject.name.Equals("Player 3"))
-        //{
-        //    this.prevState = this.state;
-        //    this.state = GamePad.GetState(player3);
-        //    if (this.detected)
-        //    {
-        //        //GamePad.SetVibration(this.player3, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-        //        GamePad.SetVibration(player3, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-        //    }
-        //    else
-        //    {
-        //        GamePad.SetVibration(player3, 0, 0);
-        //    }
-        //}
-        //else if (this.gameObject.name.Equals("Player 4"))
-        //{
-        //    this.prevState = this.state;
-        //    this.state = GamePad.GetState(player4);
-        //    if (this.detected)
-        //    {
-        //        GamePad.SetVibration(player4, state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
-        //        //GamePad.SetVibration(this.player4, state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y);
-        //    }
-        //    else
-        //    {
-        //        GamePad.SetVibration(player4, 0, 0);
-        //    }
-        //}
-
-
+        if (PlayerPrefs.GetInt("Vibration") == 0)
+        {
+            this.prevState = this.state;
+            this.state = GamePad.GetState(this.player);
+            if (this.detected)
+            {
+                GamePad.SetVibration(this.player, this.state.PacketNumber, this.state.PacketNumber);
+                Debug.Log("vibrating: " + this.player);
+            }
+            else
+            {
+                GamePad.SetVibration(this.player, 0, 0);
+            }
+        }
 
         if (!_sprint)
         {
@@ -209,13 +164,13 @@ public class PlayerControl : MonoBehaviour {
             float rX = Input.GetAxis(this.AxisRotation) * Time.deltaTime;
             float x_Arrows = Input.GetAxis(this.AxisRotation_Arrows) * Time.deltaTime;
 
-            if(y != 0)
+            if (y != 0)
                 transform.Translate(0, 0, y * speed);
             else transform.Translate(0, 0, (-y_Arrows) * speed);
 
             if (rX != 0)
                 transform.Rotate(0, rX * speedRotation, 0);
-            else if(x_Arrows != 0)
+            else if (x_Arrows != 0)
                 transform.Rotate(0, x_Arrows * speedRotation, 0);
             else transform.Rotate(0, x * speedRotation, 0);
 
@@ -435,6 +390,144 @@ public class PlayerControl : MonoBehaviour {
                anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
     }
     
+    //private bool PressedDown(string button)
+    //{
+    //    // Detect if a button was pressed this frame
+    //    if (button.Equals("A"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }  
+    //    }
+    //    else if (button.Equals("B")) { 
+        
+    //        if (this.prevState.Buttons.B == ButtonState.Released && this.state.Buttons.B == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("X"))
+    //    {
+    //        if (this.prevState.Buttons.X == ButtonState.Released && this.state.Buttons.X == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Y"))
+    //    {
+    //        if (this.prevState.Buttons.Y == ButtonState.Released && this.state.Buttons.Y == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Move_Left"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Move_Right"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Move_Up"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Move_Down"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Rot_Left"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Rot_Right"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Arrow_Left"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Arrow_Right"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Arrow_Up"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Arrow_Down"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("Start"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("BL"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("BR"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("TL"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if (button.Equals("TR"))
+    //    {
+    //        if (this.prevState.Buttons.A == ButtonState.Released && this.state.Buttons.A == ButtonState.Pressed)
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 
 
 

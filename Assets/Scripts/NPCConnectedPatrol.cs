@@ -119,7 +119,7 @@ public class NPCConnectedPatrol : MonoBehaviour {
             Debug.Log(Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position));
             if (Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position) <= 15)
             {
-                this.anim.SetTrigger("WannaKill");
+                this.anim.SetTrigger("kill");
                 //this.anim.SetBool("wannaKill", true);
             } //else if (Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position) >= 25) this.anim.SetBool("wannaKill", false);
             ChacePlayer (playerTarget.transform.position);

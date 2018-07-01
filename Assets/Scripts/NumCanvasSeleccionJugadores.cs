@@ -40,7 +40,7 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     void Start() {
         //Music
         //music.volume = PlayerPrefs.GetFloat("MusicVolume");
-        PlayerControl.p1 = PlayerControl.p2 = PlayerControl.p3 = PlayerControl.p4 = false;
+       // PlayerControl.p1 = PlayerControl.p2 = PlayerControl.p3 = PlayerControl.p4 = false;
         //inicialitzar variables
         jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
         characterTypes_P1 = new List<GameObject>();
@@ -67,10 +67,10 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
         if (Input.GetJoystickNames().Length < 2) this.restriccion.enabled = true;
         else this.restriccion.enabled = false;
-
+        //InicialitzarJugadors();
         SeleccionJugadores(Input.GetJoystickNames().Length);
 
         //reset cancel buton

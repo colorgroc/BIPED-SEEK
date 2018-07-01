@@ -21,7 +21,7 @@ public class Menu : MonoBehaviour
     [SerializeField]
     private Button opt, cred;
     [SerializeField]
-    GameObject fullScreen, muted, tutorialOptions, tutorialMenu;
+    GameObject fullScreen, muted, tutorialOptions, tutorialMenu, vibration;
     [SerializeField]
     GameObject mc_p1, mc_p2, mc_p3, mc_p4;
     [SerializeField]
@@ -56,9 +56,10 @@ public class Menu : MonoBehaviour
                 if (Screen.fullScreen)
                     PlayerPrefs.SetInt("ScreenMode", 0); //full screen
                 else if (!Screen.fullScreen) PlayerPrefs.SetInt("ScreenMode", 1);
-                PlayerPrefs.SetInt("Tutorial", 0); //1 = si
+                PlayerPrefs.SetInt("Tutorial", 0); //0 = si
                 tutorialMenu.SetActive(true);
                 showIt = true;
+                PlayerPrefs.SetInt("Vibration", 1); // 0 = sí
             }
         }
         Music = RuntimeManager.GetBus("bus:/Master/Music");
@@ -198,6 +199,14 @@ public class Menu : MonoBehaviour
         options.gameObject.SetActive(true);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(fullScreen);
 
+        if (PlayerPrefs.GetInt("Vibration") == 0) //si
+        {
+            vibration.GetComponent<Dropdown>().value = 0;
+        }
+        else if (PlayerPrefs.GetInt("Vibration") == 1) //no
+        {
+            vibration.GetComponent<Dropdown>().value = 1;
+        }
         if (PlayerPrefs.GetInt("ScreenMode") == 0) //On
         {
             fullScreen.GetComponent<Dropdown>().value = 0;
@@ -287,6 +296,19 @@ public class Menu : MonoBehaviour
         else if (fullScreen.GetComponent<Dropdown>().value == 1)
         {
             WindowScreen();
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+        }
+    }
+    public void VibrationValue()
+    {
+        if (vibration.GetComponent<Dropdown>().value == 0)
+        {
+            RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+            PlayerPrefs.SetInt("Vibration", 0);
+        }
+        else if (vibration.GetComponent<Dropdown>().value == 1)
+        {
+            PlayerPrefs.SetInt("Vibration", 1);
             RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
         }
     }
