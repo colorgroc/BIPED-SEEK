@@ -7,7 +7,8 @@ using UnityEngine.EventSystems;
 using FMODUnity;
 using XInputDotNetPure;
 
-public class NumCanvasSeleccionJugadores : MonoBehaviour {
+public class NumCanvasSeleccionJugadores : MonoBehaviour
+{
 
     //[SerializeField]
     //private AudioClip onButton, clickButton, backButton;
@@ -33,14 +34,15 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     private Color32 yellow_color = new Color32(255, 215, 0, 255);
     private Vector4 default_Color = new Vector4(0, 0, 0, 128);
     private Vector2 default_outline = new Vector2(4, 4);
-   // private int num;
+    // private int num;
     private GameObject[] characterTypes, munyequitos, jugadores;
-    
 
-    void Start() {
+
+    void Start()
+    {
         //Music
         //music.volume = PlayerPrefs.GetFloat("MusicVolume");
-       // PlayerControl.p1 = PlayerControl.p2 = PlayerControl.p3 = PlayerControl.p4 = false;
+        // PlayerControl.p1 = PlayerControl.p2 = PlayerControl.p3 = PlayerControl.p4 = false;
         //inicialitzar variables
         jugadores = GameObject.FindGameObjectsWithTag("Seleccion Personajes");
         characterTypes_P1 = new List<GameObject>();
@@ -64,9 +66,10 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         //MapaRandom();     
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         PlayerPrefs.SetInt("NumPlayers", Input.GetJoystickNames().Length);
         if (Input.GetJoystickNames().Length < 2) this.restriccion.enabled = true;
         else this.restriccion.enabled = false;
@@ -75,14 +78,14 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
 
         //reset cancel buton
 
-       /* //proves per 1 jugador
-        if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");*/
+        /* //proves per 1 jugador
+         if (PlayerPrefs.GetInt("NumPlayers") == 1 && ready_P1) SceneManager.LoadScene("Juego");*/
         //quan tothom ready, comença joc
         if (PlayerPrefs.GetInt("NumPlayers") == 2 && ready_P1 && ready_P2) SceneManager.LoadScene("Loading");
         else if (PlayerPrefs.GetInt("NumPlayers") == 3 && ready_P1 && ready_P2 && ready_P3) SceneManager.LoadScene("Loading");
         else if (PlayerPrefs.GetInt("NumPlayers") == 4 && ready_P1 && ready_P2 && ready_P3 && ready_P4) SceneManager.LoadScene("Loading");
     }
-  
+
     void InicialitzarJugadors()
     {
         //inicialitzar canvas seleccio personatges
@@ -166,197 +169,529 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
     {
         return o1.name.CompareTo(o2.name);
     }
-  
-
-    //private void Back()
-    //{
-    //    if (Input.GetButton("Cancel") && ((!cancel_1 || !cancel_2 || !cancel_3 || !cancel_4)))// || (!ready_P1 && !ready_P2 && !ready_P3 && !ready_P4)))
-    //    {
-    //        sounds.PlayOneShot(backButton, 4.0F);
-    //        SceneManager.LoadScene("Menu");
-    //    }
-    //}
 
     void SeleccionJugadores(int numOfPlayers)
     {
         ////proves per 1 jugador
         if (numOfPlayers == 1)
         {
+            //-------------------------Moviments player 1-----------------------------------
+            //Horitzontal
             if (!ready_P1)
             {
-                if ((Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Horizontal Arrows") < 0))
+                if (Input.GetJoystickNames()[0].Length == 33)
                 {
-                    MoveLeft(1);
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
+                    {
+                        MoveUp(1);
+                    }
                 }
-                else if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal Arrows") > 0)
+                else if (Input.GetJoystickNames()[0].Length == 19)
                 {
-                    MoveRight(1);
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1 PS4") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1 PS4") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1 PS4") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1 PS4") > 0)
+                    {
+                        MoveUp(1);
+                    }
+                }
+                else if (Input.GetJoystickNames()[0].Length == 25)
+                {
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1 Fake") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1 Fake") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1 Fake") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1 Fake") > 0)
+                    {
+                        MoveUp(1);
+                    }
                 }
 
-                //Vertical
-                if (Input.GetAxis("Vertical") > 0 || Input.GetAxis("Vertical Arrows") > 0)
-                {
-                    MoveDown(1);
-                }
-                else if (Input.GetAxis("Vertical") < 0 || Input.GetAxis("Vertical Arrows") < 0)
-                {
-                    MoveUp(1);
-                }
             }
-            if (Input.GetButtonDown("Submit"))
+            if (Input.GetJoystickNames()[0].Length == 33)
             {
-                if (!ready_P1)
+                if (Input.GetButtonDown("A_1"))
                 {
-                    //sounds.PlayOneShot(clickButton);
-                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
                 }
-                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
-                PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
-                ready_P1 = true;
-                cancel_1 = false;
+                if (Input.GetButtonDown("B_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            if (Input.GetButtonDown("Cancel") && ready_P1)
+            else if (Input.GetJoystickNames()[0].Length == 19) //ps4
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 0);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
-                ready_P1 = false;
-                cancel_1 = true;
+                if (Input.GetButtonDown("B_1"))
+                {
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
+                }
+                if (Input.GetButtonDown("X_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("X_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            else if(Input.GetButtonDown("Cancel") && ((!cancel_1 && !ready_P1) || (cancel_1))){
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
+            else if (Input.GetJoystickNames()[0].Length == 25)
+            {
+                if (Input.GetButtonDown("X_1"))
+                {
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
+                }
+                if (Input.GetButtonDown("B_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
 
         }
-        if (numOfPlayers == 2) 
+        if (numOfPlayers == 2)
         {
             //-------------------------Moviments player 1-----------------------------------
             //Horitzontal
             if (!ready_P1)
             {
-                if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
+                if (Input.GetJoystickNames()[0].Length == 33)
                 {
-                    MoveLeft(1);
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
+                    {
+                        MoveUp(1);
+                    }
                 }
-                else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
+                else if (Input.GetJoystickNames()[0].Length == 19)
                 {
-                    MoveRight(1);
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1 PS4") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1 PS4") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1 PS4") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1 PS4") > 0)
+                    {
+                        MoveUp(1);
+                    }
+                }
+                else if (Input.GetJoystickNames()[0].Length == 25)
+                {
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1 Fake") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1 Fake") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1 Fake") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1 Fake") > 0)
+                    {
+                        MoveUp(1);
+                    }
                 }
 
-                //Vertical
-                if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
+            }
+            if (Input.GetJoystickNames()[0].Length == 33)
+            {
+                if (Input.GetButtonDown("A_1"))
                 {
-                    MoveDown(1);
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
                 }
-                else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
+                if (Input.GetButtonDown("B_1") && ready_P1)
                 {
-                    MoveUp(1);
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
                 }
             }
-            if (Input.GetButtonDown("A_1"))
+            else if (Input.GetJoystickNames()[0].Length == 19) //ps4
             {
-                //if (Input.GetJoystickNames()[0].Length == 33)
-                //{
-                //    PlayerControl.player1 = PlayerIndex.One;
-                //    PlayerControl.p1 = true;
-                //}
-                if (!ready_P1)
+                if (Input.GetButtonDown("B_1"))
                 {
-                    //sounds.PlayOneShot(clickButton);
-                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
                 }
-                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
-                PlayerPrefs.SetInt("characterPlayer_1", select_1+1);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
-                ready_P1 = true;
-                cancel_1 = false;
+                if (Input.GetButtonDown("X_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("X_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            if (Input.GetButtonDown("B_1") && ready_P1)
+            else if (Input.GetJoystickNames()[0].Length == 25)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 0);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
-                ready_P1 = false;
-                cancel_1 = true;
-            }
-            else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
-            {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
+                if (Input.GetButtonDown("X_1"))
+                {
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
+                }
+                if (Input.GetButtonDown("B_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
             //-------------------------Moviments player 2-----------------------------------
             //Horitzontal
             if (!ready_P2)
             {
+                if (Input.GetJoystickNames()[1].Length == 33)
+                {
+                    if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
+                    {
+                        MoveLeft(2);
+                    }
+                    else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0)
+                    {
+                        MoveRight(2);
+                    }
 
-                if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
-                {
-                    MoveLeft(2);
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") < 0)
+                    {
+                        MoveDown(2);
+                    }
+                    else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") > 0)
+                    {
+                        MoveUp(2);
+                    }
                 }
-                else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0)
+                else if (Input.GetJoystickNames()[1].Length == 19)
                 {
-                    MoveRight(2);
-                }
+                    if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2 PS4") < 0))
+                    {
+                        MoveLeft(2);
+                    }
+                    else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2 PS4") > 0)
+                    {
+                        MoveRight(2);
+                    }
 
-                //Vertical
-                if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") < 0)
-                {
-                    MoveDown(2);
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2 PS4") < 0)
+                    {
+                        MoveDown(2);
+                    }
+                    else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2 PS4") > 0)
+                    {
+                        MoveUp(2);
+                    }
                 }
-                else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") > 0)
+                else if (Input.GetJoystickNames()[0].Length == 25)
                 {
-                    MoveUp(2);
-                }
-            }
-            if (Input.GetButtonDown("A_2"))
-            {
-                //if (Input.GetJoystickNames()[1].Length == 33)
-                //{
-                //    PlayerControl.player2 = PlayerIndex.Two;
-                //    PlayerControl.p2 = true;
-                //}
-                if (!ready_P2)
-                {
-                    //sounds.PlayOneShot(clickButton);
-                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
-                }
-                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
-                PlayerPrefs.SetInt("characterPlayer_2", select_2+ 1);
-                GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
-                ready_P2 = true;
-                cancel_2 = false;
-            }
-            if (Input.GetButtonDown("B_2"))
-            {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_2", 0);
-                GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
-                ready_P2 = false;
-                cancel_2 = true;
-            }
-            else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
-            {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
-            }
+                    if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2 Fake") < 0))
+                    {
+                        MoveLeft(2);
+                    }
+                    else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2 Fake") > 0)
+                    {
+                        MoveRight(2);
+                    }
 
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2 Fake") < 0)
+                    {
+                        MoveDown(2);
+                    }
+                    else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2 Fake") > 0)
+                    {
+                        MoveUp(2);
+                    }
+                }
+            }
+            if (Input.GetJoystickNames()[1].Length == 33)
+            {
+                if (Input.GetButtonDown("A_2"))
+                {
+
+                    if (!ready_P2)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
+                    PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                    ready_P2 = true;
+                    cancel_2 = false;
+                }
+                if (Input.GetButtonDown("B_2"))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_2", 0);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                    ready_P2 = false;
+                    cancel_2 = true;
+                }
+                else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
+            }
+            else if (Input.GetJoystickNames()[1].Length == 19)
+            {
+                if (Input.GetButtonDown("B_2"))
+                {
+                    if (!ready_P2)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
+                    PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                    ready_P2 = true;
+                    cancel_2 = false;
+                }
+                if (Input.GetButtonDown("X_2"))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_2", 0);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                    ready_P2 = false;
+                    cancel_2 = true;
+                }
+                else if (Input.GetButtonDown("X_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
+            }
+            else if (Input.GetJoystickNames()[1].Length == 25)
+            {
+                if (Input.GetButtonDown("X_2"))
+                {
+                    if (!ready_P2)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
+                    PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                    ready_P2 = true;
+                    cancel_2 = false;
+                }
+                if (Input.GetButtonDown("B_2"))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_2", 0);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                    ready_P2 = false;
+                    cancel_2 = true;
+                }
+                else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
+            }
 
         }
         else if (numOfPlayers == 3)
@@ -365,180 +700,519 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             //Horitzontal
             if (!ready_P1)
             {
-                if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
+                if (Input.GetJoystickNames()[0].Length == 33)
                 {
-                    MoveLeft(1);
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
+                    {
+                        MoveUp(1);
+                    }
                 }
-                else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
+                else if (Input.GetJoystickNames()[0].Length == 19)
                 {
-                    MoveRight(1);
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1 PS4") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1 PS4") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1 PS4") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1 PS4") > 0)
+                    {
+                        MoveUp(1);
+                    }
+                }
+                else if (Input.GetJoystickNames()[0].Length == 25)
+                {
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1 Fake") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1 Fake") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1 Fake") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1 Fake") > 0)
+                    {
+                        MoveUp(1);
+                    }
                 }
 
-                //Vertical
-                if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
-                {
-                    MoveDown(1);
-                }
-                else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
-                {
-                    MoveUp(1);
-                }
             }
-            if (Input.GetButtonDown("A_1"))
+            if (Input.GetJoystickNames()[0].Length == 33)
             {
-                //if (Input.GetJoystickNames()[0].Length == 33)
-                //{
-                //    PlayerControl.player1 = PlayerIndex.One;
-                //    PlayerControl.p1 = true;
-                //}
-                if (!ready_P1)
+                if (Input.GetButtonDown("A_1"))
                 {
-                    //sounds.PlayOneShot(clickButton);
-                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
                 }
-                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
-                PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
-                ready_P1 = true;
-                cancel_1 = false;
+                if (Input.GetButtonDown("B_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            if (Input.GetButtonDown("B_1") && ready_P1)
+            else if (Input.GetJoystickNames()[0].Length == 19) //ps4
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 0);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
-                ready_P1 = false;
-                cancel_1 = true;
+                if (Input.GetButtonDown("B_1"))
+                {
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
+                }
+                if (Input.GetButtonDown("X_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("X_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            else if (Input.GetJoystickNames()[0].Length == 25)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
+                if (Input.GetButtonDown("X_1"))
+                {
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
+                }
+                if (Input.GetButtonDown("B_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-
             //-------------------------Moviments player 2-----------------------------------
             //Horitzontal
             if (!ready_P2)
             {
-                if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
+                if (Input.GetJoystickNames()[1].Length == 33)
                 {
-                    MoveLeft(2);
-                }
-                else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0)
-                {
-                    MoveRight(2);
-                }
+                    if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
+                    {
+                        MoveLeft(2);
+                    }
+                    else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0)
+                    {
+                        MoveRight(2);
+                    }
 
-                //Vertical
-                if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") < 0)
-                {
-                    MoveDown(2);
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") < 0)
+                    {
+                        MoveDown(2);
+                    }
+                    else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") > 0)
+                    {
+                        MoveUp(2);
+                    }
                 }
-                else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") > 0)
+                else if (Input.GetJoystickNames()[1].Length == 19)
                 {
-                    MoveUp(2);
+                    if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2 PS4") < 0))
+                    {
+                        MoveLeft(2);
+                    }
+                    else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2 PS4") > 0)
+                    {
+                        MoveRight(2);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2 PS4") < 0)
+                    {
+                        MoveDown(2);
+                    }
+                    else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2 PS4") > 0)
+                    {
+                        MoveUp(2);
+                    }
+                }
+                else if (Input.GetJoystickNames()[1].Length == 25)
+                {
+                    if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2 Fake") < 0))
+                    {
+                        MoveLeft(2);
+                    }
+                    else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2 Fake") > 0)
+                    {
+                        MoveRight(2);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2 Fake") < 0)
+                    {
+                        MoveDown(2);
+                    }
+                    else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2 Fake") > 0)
+                    {
+                        MoveUp(2);
+                    }
                 }
             }
-            if (Input.GetButtonDown("A_2"))
+            if (Input.GetJoystickNames()[1].Length == 33)
             {
-                //if (Input.GetJoystickNames()[1].Length == 33)
-                //{
-                //    PlayerControl.player2 = PlayerIndex.Two;
-                //    PlayerControl.p2 = true;
-                //}
-                if (!ready_P2)
+                if (Input.GetButtonDown("A_2"))
                 {
-                    //sounds.PlayOneShot(clickButton);
-                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+
+                    if (!ready_P2)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
+                    PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                    ready_P2 = true;
+                    cancel_2 = false;
                 }
-                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
-                PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
-                GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
-                ready_P2 = true;
-                cancel_2 = false;
+                if (Input.GetButtonDown("B_2"))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_2", 0);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                    ready_P2 = false;
+                    cancel_2 = true;
+                }
+                else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            if (Input.GetButtonDown("B_2") && ready_P2)
+            else if (Input.GetJoystickNames()[1].Length == 19)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_2", 0);
-                GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
-                ready_P2 = false;
-                cancel_2 = true;
+                if (Input.GetButtonDown("B_2"))
+                {
+                    if (!ready_P2)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
+                    PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                    ready_P2 = true;
+                    cancel_2 = false;
+                }
+                if (Input.GetButtonDown("X_2"))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_2", 0);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                    ready_P2 = false;
+                    cancel_2 = true;
+                }
+                else if (Input.GetButtonDown("X_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+            else if (Input.GetJoystickNames()[1].Length == 25)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
+                if (Input.GetButtonDown("X_2"))
+                {
+                    if (!ready_P2)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
+                    PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                    ready_P2 = true;
+                    cancel_2 = false;
+                }
+                if (Input.GetButtonDown("B_2"))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_2", 0);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                    ready_P2 = false;
+                    cancel_2 = true;
+                }
+                else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
+
 
             //-------------------------Moviments player 3-----------------------------------
             //Horitzontal
             if (!ready_P3)
             {
-                if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3") < 0))
+                if (Input.GetJoystickNames()[2].Length == 33)
                 {
-                    MoveLeft(3);
+                    if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3") < 0))
+                    {
+                        MoveLeft(3);
+                    }
+                    else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3") > 0)
+                    {
+                        MoveRight(3);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") < 0)
+                    {
+                        MoveDown(3);
+                    }
+                    else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") > 0)
+                    {
+                        MoveUp(3);
+                    }
                 }
-                else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3") > 0)
+                else if (Input.GetJoystickNames()[2].Length == 19)
                 {
-                    MoveRight(3);
+                    if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3 PS4") < 0))
+                    {
+                        MoveLeft(3);
+                    }
+                    else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3 PS4") > 0)
+                    {
+                        MoveRight(3);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3 PS4") < 0)
+                    {
+                        MoveDown(3);
+                    }
+                    else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3 PS4") > 0)
+                    {
+                        MoveUp(3);
+                    }
+                }
+                else if (Input.GetJoystickNames()[2].Length == 25)
+                {
+                    if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3 Fake") < 0))
+                    {
+                        MoveLeft(3);
+                    }
+                    else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3 Fake") > 0)
+                    {
+                        MoveRight(3);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3 Fake") < 0)
+                    {
+                        MoveDown(3);
+                    }
+                    else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3 Fake") > 0)
+                    {
+                        MoveUp(3);
+                    }
                 }
 
-                //Vertical
-                if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") < 0)
-                {
-                    MoveDown(3);
-                }
-                else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") > 0)
-                {
-                    MoveUp(3);
-                }
             }
-            if (Input.GetButtonDown("A_3"))
+            if (Input.GetJoystickNames()[2].Length == 33)
             {
-                //if (Input.GetJoystickNames()[2].Length == 33)
-                //{
-                //    PlayerControl.player3 = PlayerIndex.Three;
-                //    PlayerControl.p3 = true;
-                //}
-                if (!ready_P3)
+                if (Input.GetButtonDown("A_3"))
                 {
-                    //sounds.PlayOneShot(clickButton);
+
+                    if (!ready_P3)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    }
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
+                    PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
+                    ready_P3 = true;
+                    cancel_3 = false;
+                }
+                if (Input.GetButtonDown("B_3") && ready_P3)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
                     RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_3", 0);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
+                    ready_P3 = false;
+                    cancel_3 = true;
                 }
-                characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
-                PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
-                GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
-                ready_P3 = true;
-                cancel_3 = false;
+                else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            if (Input.GetButtonDown("B_3") && ready_P3)
+            else if (Input.GetJoystickNames()[2].Length == 19)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_3", 0);
-                GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
-                ready_P3 = false;
-                cancel_3 = true;
+                if (Input.GetButtonDown("B_3"))
+                {
+
+                    if (!ready_P3)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    }
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
+                    PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
+                    ready_P3 = true;
+                    cancel_3 = false;
+                }
+                if (Input.GetButtonDown("X_3") && ready_P3)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_3", 0);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
+                    ready_P3 = false;
+                    cancel_3 = true;
+                }
+                else if (Input.GetButtonDown("X_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
+            else if (Input.GetJoystickNames()[2].Length == 25)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
+                if (Input.GetButtonDown("X_3"))
+                {
+
+                    if (!ready_P3)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    }
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
+                    PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
+                    ready_P3 = true;
+                    cancel_3 = false;
+                }
+                if (Input.GetButtonDown("B_3") && ready_P3)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_3", 0);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
+                    ready_P3 = false;
+                    cancel_3 = true;
+                }
+                else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
         }
         else if (numOfPlayers == 4)
@@ -547,245 +1221,698 @@ public class NumCanvasSeleccionJugadores : MonoBehaviour {
             //Horitzontal
             if (!ready_P1)
             {
-                if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
+                if (Input.GetJoystickNames()[0].Length == 33)
                 {
-                    MoveLeft(1);
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
+                    {
+                        MoveUp(1);
+                    }
                 }
-                else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1") > 0)
+                else if (Input.GetJoystickNames()[0].Length == 19)
                 {
-                    MoveRight(1);
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1 PS4") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1 PS4") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1 PS4") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1 PS4") > 0)
+                    {
+                        MoveUp(1);
+                    }
+                }
+                else if (Input.GetJoystickNames()[0].Length == 25)
+                {
+                    if ((Input.GetAxis("H_LPad_1") < 0 || Input.GetAxis("H_Arrows_1 Fake") < 0))
+                    {
+                        MoveLeft(1);
+                    }
+                    else if (Input.GetAxis("H_LPad_1") > 0 || Input.GetAxis("H_Arrows_1 Fake") > 0)
+                    {
+                        MoveRight(1);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1 Fake") < 0)
+                    {
+                        MoveDown(1);
+                    }
+                    else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1 Fake") > 0)
+                    {
+                        MoveUp(1);
+                    }
                 }
 
-                //Vertical
-                if (Input.GetAxis("V_LPad_1") > 0 || Input.GetAxis("V_Arrows_1") < 0)
-                {
-                    MoveDown(1);
-                }
-                else if (Input.GetAxis("V_LPad_1") < 0 || Input.GetAxis("V_Arrows_1") > 0)
-                {
-                    MoveUp(1);
-                }
             }
-            if (Input.GetButtonDown("A_1"))
+            if (Input.GetJoystickNames()[0].Length == 33)
             {
-                //if (Input.GetJoystickNames()[0].Length == 33)
-                //{
-                //    PlayerControl.player1 = PlayerIndex.One;
-                //    PlayerControl.p1 = true;
-                //}
-                if (!ready_P1)
+                if (Input.GetButtonDown("A_1"))
                 {
-                    //sounds.PlayOneShot(clickButton);
-                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
                 }
-                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
-                PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
-                ready_P1 = true;
-                cancel_1 = false;
+                if (Input.GetButtonDown("B_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            if (Input.GetButtonDown("B_1") && ready_P1)
+            else if (Input.GetJoystickNames()[0].Length == 19) //ps4
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_1", 0);
-                GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
-                ready_P1 = false;
-                cancel_1 = true;
+                if (Input.GetButtonDown("B_1"))
+                {
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
+                }
+                if (Input.GetButtonDown("X_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("X_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+            else if (Input.GetJoystickNames()[0].Length == 25)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
+                if (Input.GetButtonDown("X_1"))
+                {
+                    if (!ready_P1)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = blue_color;
+                    PlayerPrefs.SetInt("characterPlayer_1", select_1 + 1);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = true;
+                    ready_P1 = true;
+                    cancel_1 = false;
+                }
+                if (Input.GetButtonDown("B_1") && ready_P1)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P1[select_1].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_1", 0);
+                    GameObject.Find("Ready_1").GetComponent<Text>().enabled = false;
+                    ready_P1 = false;
+                    cancel_1 = true;
+                }
+                else if (Input.GetButtonDown("B_1") && ((!cancel_1 && !ready_P1) || (cancel_1)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-
             //-------------------------Moviments player 2-----------------------------------
             //Horitzontal
             if (!ready_P2)
             {
-                if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
+                if (Input.GetJoystickNames()[1].Length == 33)
                 {
-                    MoveLeft(2);
-                }
-                else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0)
-                {
-                    MoveRight(2);
-                }
+                    if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2") < 0))
+                    {
+                        MoveLeft(2);
+                    }
+                    else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2") > 0)
+                    {
+                        MoveRight(2);
+                    }
 
-                //Vertical
-                if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") < 0)
-                {
-                    MoveDown(2);
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2") < 0)
+                    {
+                        MoveDown(2);
+                    }
+                    else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") > 0)
+                    {
+                        MoveUp(2);
+                    }
                 }
-                else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2") > 0)
+                else if (Input.GetJoystickNames()[1].Length == 19)
                 {
-                    MoveUp(2);
+                    if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2 PS4") < 0))
+                    {
+                        MoveLeft(2);
+                    }
+                    else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2 PS4") > 0)
+                    {
+                        MoveRight(2);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2 PS4") < 0)
+                    {
+                        MoveDown(2);
+                    }
+                    else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2 PS4") > 0)
+                    {
+                        MoveUp(2);
+                    }
+                }
+                else if (Input.GetJoystickNames()[1].Length == 25)
+                {
+                    if ((Input.GetAxis("H_LPad_2") < 0 || Input.GetAxis("H_Arrows_2 Fake") < 0))
+                    {
+                        MoveLeft(2);
+                    }
+                    else if (Input.GetAxis("H_LPad_2") > 0 || Input.GetAxis("H_Arrows_2 Fake") > 0)
+                    {
+                        MoveRight(2);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_2") > 0 || Input.GetAxis("V_Arrows_2 Fake") < 0)
+                    {
+                        MoveDown(2);
+                    }
+                    else if (Input.GetAxis("V_LPad_2") < 0 || Input.GetAxis("V_Arrows_2 Fake") > 0)
+                    {
+                        MoveUp(2);
+                    }
                 }
             }
-            if (Input.GetButtonDown("A_2"))
+            if (Input.GetJoystickNames()[1].Length == 33)
             {
-                //if (Input.GetJoystickNames()[1].Length == 33)
-                //{
-                //    PlayerControl.player2 = PlayerIndex.Two;
-                //    PlayerControl.p2 = true;
-                //}
-                if (!ready_P2)
+                if (Input.GetButtonDown("A_2"))
                 {
-                    //sounds.PlayOneShot(clickButton);
-                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+
+                    if (!ready_P2)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
+                    PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                    ready_P2 = true;
+                    cancel_2 = false;
                 }
-                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
-                PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
-                GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
-                ready_P2 = true;
-                cancel_2 = false;
+                if (Input.GetButtonDown("B_2"))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_2", 0);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                    ready_P2 = false;
+                    cancel_2 = true;
+                }
+                else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            if (Input.GetButtonDown("B_2") && ready_P2)
+            else if (Input.GetJoystickNames()[1].Length == 19)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_2", 0);
-                GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
-                ready_P2 = false;
-                cancel_2 = true;
+                if (Input.GetButtonDown("B_2"))
+                {
+                    if (!ready_P2)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
+                    PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                    ready_P2 = true;
+                    cancel_2 = false;
+                }
+                if (Input.GetButtonDown("X_2"))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_2", 0);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                    ready_P2 = false;
+                    cancel_2 = true;
+                }
+                else if (Input.GetButtonDown("X_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+            else if (Input.GetJoystickNames()[1].Length == 25)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
+                if (Input.GetButtonDown("X_2"))
+                {
+                    if (!ready_P2)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = red_color;
+                    PlayerPrefs.SetInt("characterPlayer_2", select_2 + 1);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = true;
+                    ready_P2 = true;
+                    cancel_2 = false;
+                }
+                if (Input.GetButtonDown("B_2"))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P2[select_2].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_2", 0);
+                    GameObject.Find("Ready_2").GetComponent<Text>().enabled = false;
+                    ready_P2 = false;
+                    cancel_2 = true;
+                }
+                else if (Input.GetButtonDown("B_2") && ((!cancel_2 && !ready_P2) || (cancel_2)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
+
 
             //-------------------------Moviments player 3-----------------------------------
             //Horitzontal
             if (!ready_P3)
             {
-                if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3") < 0))
+                if (Input.GetJoystickNames()[2].Length == 33)
                 {
-                    MoveLeft(3);
+                    if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3") < 0))
+                    {
+                        MoveLeft(3);
+                    }
+                    else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3") > 0)
+                    {
+                        MoveRight(3);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") < 0)
+                    {
+                        MoveDown(3);
+                    }
+                    else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") > 0)
+                    {
+                        MoveUp(3);
+                    }
                 }
-                else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3") > 0)
+                else if (Input.GetJoystickNames()[2].Length == 19)
                 {
-                    MoveRight(3);
+                    if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3 PS4") < 0))
+                    {
+                        MoveLeft(3);
+                    }
+                    else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3 PS4") > 0)
+                    {
+                        MoveRight(3);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3 PS4") < 0)
+                    {
+                        MoveDown(3);
+                    }
+                    else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3 PS4") > 0)
+                    {
+                        MoveUp(3);
+                    }
+                }
+                else if (Input.GetJoystickNames()[2].Length == 25)
+                {
+                    if ((Input.GetAxis("H_LPad_3") < 0 || Input.GetAxis("H_Arrows_3 Fake") < 0))
+                    {
+                        MoveLeft(3);
+                    }
+                    else if (Input.GetAxis("H_LPad_3") > 0 || Input.GetAxis("H_Arrows_3 Fake") > 0)
+                    {
+                        MoveRight(3);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3 Fake") < 0)
+                    {
+                        MoveDown(3);
+                    }
+                    else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3 Fake") > 0)
+                    {
+                        MoveUp(3);
+                    }
                 }
 
-                //Vertical
-                if (Input.GetAxis("V_LPad_3") > 0 || Input.GetAxis("V_Arrows_3") < 0)
+            }
+            if (Input.GetJoystickNames()[2].Length == 33)
+            {
+                if (Input.GetButtonDown("A_3"))
                 {
-                    MoveDown(3);
+
+                    if (!ready_P3)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    }
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
+                    PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
+                    ready_P3 = true;
+                    cancel_3 = false;
                 }
-                else if (Input.GetAxis("V_LPad_3") < 0 || Input.GetAxis("V_Arrows_3") > 0)
+                if (Input.GetButtonDown("B_3") && ready_P3)
                 {
-                    MoveUp(3);
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_3", 0);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
+                    ready_P3 = false;
+                    cancel_3 = true;
+                }
+                else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
                 }
             }
-            if (Input.GetButtonDown("A_3"))
+            else if (Input.GetJoystickNames()[2].Length == 19)
             {
-                //if (Input.GetJoystickNames()[2].Length == 33)
-                //{
-                //    PlayerControl.player3 = PlayerIndex.Three;
-                //    PlayerControl.p3 = true;
-                //}
-                if (!ready_P3)
+                if (Input.GetButtonDown("B_3"))
                 {
-                    //sounds.PlayOneShot(clickButton);
-                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+
+                    if (!ready_P3)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    }
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
+                    PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
+                    ready_P3 = true;
+                    cancel_3 = false;
                 }
-                characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
-                PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
-                GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
-                ready_P3 = true;
-                cancel_3 = false;
+                if (Input.GetButtonDown("X_3") && ready_P3)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_3", 0);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
+                    ready_P3 = false;
+                    cancel_3 = true;
+                }
+                else if (Input.GetButtonDown("X_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            if (Input.GetButtonDown("B_3") && ready_P3)
+            else if (Input.GetJoystickNames()[2].Length == 25)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_3", 0);
-                GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
-                ready_P3 = false;
-                cancel_3 = true;
-            }
-            else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
-            {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
+                if (Input.GetButtonDown("X_3"))
+                {
+
+                    if (!ready_P3)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    }
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = green_color;
+                    PlayerPrefs.SetInt("characterPlayer_3", select_3 + 1);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = true;
+                    ready_P3 = true;
+                    cancel_3 = false;
+                }
+                if (Input.GetButtonDown("B_3") && ready_P3)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P3[select_3].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_3", 0);
+                    GameObject.Find("Ready_3").GetComponent<Text>().enabled = false;
+                    ready_P3 = false;
+                    cancel_3 = true;
+                }
+                else if (Input.GetButtonDown("B_3") && ((!cancel_3 && !ready_P3) || (cancel_3)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
 
             //-------------------------Moviments player 4-----------------------------------
             //Horitzontal
             if (!ready_P4)
             {
-                if ((Input.GetAxis("H_LPad_4") < 0 || Input.GetAxis("H_Arrows_4") < 0))
+                if (Input.GetJoystickNames()[3].Length == 33)
                 {
-                    MoveLeft(4);
+                    if ((Input.GetAxis("H_LPad_4") < 0 || Input.GetAxis("H_Arrows_4") < 0))
+                    {
+                        MoveLeft(4);
+                    }
+                    else if (Input.GetAxis("H_LPad_4") > 0 || Input.GetAxis("H_Arrows_4") > 0)
+                    {
+                        MoveRight(4);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_4") > 0 || Input.GetAxis("V_Arrows_4") < 0)
+                    {
+                        MoveDown(4);
+                    }
+                    else if (Input.GetAxis("V_LPad_4") < 0 || Input.GetAxis("V_Arrows_4") > 0)
+                    {
+                        MoveUp(4);
+                    }
                 }
-                else if (Input.GetAxis("H_LPad_4") > 0 || Input.GetAxis("H_Arrows_4") > 0)
+                else if (Input.GetJoystickNames()[3].Length == 19)
                 {
-                    MoveRight(4);
+                    if ((Input.GetAxis("H_LPad_4") < 0 || Input.GetAxis("H_Arrows_4 PS4") < 0))
+                    {
+                        MoveLeft(4);
+                    }
+                    else if (Input.GetAxis("H_LPad_4") > 0 || Input.GetAxis("H_Arrows_4 PS4") > 0)
+                    {
+                        MoveRight(4);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_4") > 0 || Input.GetAxis("V_Arrows_4 PS4") < 0)
+                    {
+                        MoveDown(4);
+                    }
+                    else if (Input.GetAxis("V_LPad_4") < 0 || Input.GetAxis("V_Arrows_4 PS4") > 0)
+                    {
+                        MoveUp(4);
+                    }
+                }
+                else if (Input.GetJoystickNames()[3].Length == 25)
+                {
+                    if ((Input.GetAxis("H_LPad_4") < 0 || Input.GetAxis("H_Arrows_4 Fake") < 0))
+                    {
+                        MoveLeft(4);
+                    }
+                    else if (Input.GetAxis("H_LPad_4") > 0 || Input.GetAxis("H_Arrows_4 Fake") > 0)
+                    {
+                        MoveRight(4);
+                    }
+
+                    //Vertical
+                    if (Input.GetAxis("V_LPad_4") > 0 || Input.GetAxis("V_Arrows_4 Fake") < 0)
+                    {
+                        MoveDown(4);
+                    }
+                    else if (Input.GetAxis("V_LPad_4") < 0 || Input.GetAxis("V_Arrows_4 Fake") > 0)
+                    {
+                        MoveUp(4);
+                    }
+                }
+            }
+            if (Input.GetJoystickNames()[3].Length == 33)
+            {
+                if (Input.GetButtonDown("A_4"))
+                {
+                    if (!ready_P4)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectColor = yellow_color;
+                    PlayerPrefs.SetInt("characterPlayer_4", select_4 + 1);
+                    GameObject.Find("Ready_4").GetComponent<Text>().enabled = true;
+                    ready_P4 = true;
+                    cancel_4 = false;
                 }
 
-                //Vertical
-                if (Input.GetAxis("V_LPad_4") > 0 || Input.GetAxis("V_Arrows_4") < 0)
+                if (Input.GetButtonDown("B_4") && ready_P4)
                 {
-                    MoveDown(4);
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_4", 0);
+                    GameObject.Find("Ready_4").GetComponent<Text>().enabled = false;
+                    ready_P4 = false;
+                    cancel_4 = true;
                 }
-                else if (Input.GetAxis("V_LPad_4") < 0 || Input.GetAxis("V_Arrows_4") > 0)
+                else if (Input.GetButtonDown("B_4") && ((!cancel_4 && !ready_P4) || (cancel_4)))
                 {
-                    MoveUp(4);
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
                 }
             }
-            if (Input.GetButtonDown("A_4"))
+            else if (Input.GetJoystickNames()[3].Length == 19)
             {
-                //if (Input.GetJoystickNames()[3].Length == 33)
-                //{
-                //    PlayerControl.player4 = PlayerIndex.Four;
-                //    PlayerControl.p4 = true;
-                //}
-                if (!ready_P4)
+                if (Input.GetButtonDown("B_4"))
                 {
-                    //sounds.PlayOneShot(clickButton);
-                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    if (!ready_P4)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectColor = yellow_color;
+                    PlayerPrefs.SetInt("characterPlayer_4", select_4 + 1);
+                    GameObject.Find("Ready_4").GetComponent<Text>().enabled = true;
+                    ready_P4 = true;
+                    cancel_4 = false;
                 }
-                characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
-                characterTypes_P4[select_4].GetComponent<Outline>().effectColor = yellow_color;
-                PlayerPrefs.SetInt("characterPlayer_4", select_4 + 1);
-                GameObject.Find("Ready_4").GetComponent<Text>().enabled = true;
-                ready_P4 = true;
-                cancel_4 = false;
+
+                if (Input.GetButtonDown("X_4") && ready_P4)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_4", 0);
+                    GameObject.Find("Ready_4").GetComponent<Text>().enabled = false;
+                    ready_P4 = false;
+                    cancel_4 = true;
+                }
+                else if (Input.GetButtonDown("X_4") && ((!cancel_4 && !ready_P4) || (cancel_4)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
-            if (Input.GetButtonDown("B_4") && ready_P4)
+            else if (Input.GetJoystickNames()[3].Length == 25)
             {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = default_outline;
-                characterTypes_P4[select_4].GetComponent<Outline>().effectColor = default_Color;
-                PlayerPrefs.SetInt("characterPlayer_4", 0);
-                GameObject.Find("Ready_4").GetComponent<Text>().enabled = false;
-                ready_P4 = false;
-                cancel_4 = true;
-            }
-            else if (Input.GetButtonDown("B_4") && ((!cancel_4 && !ready_P4) || (cancel_4)))
-            {
-                //sounds.PlayOneShot(backButton, 4.0F);
-                RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
-                SceneManager.LoadScene("Menu");
+                if (Input.GetButtonDown("X_4"))
+                {
+                    if (!ready_P4)
+                    {
+                        //sounds.PlayOneShot(clickButton);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Accept", Vector3.zero);
+                    }
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = outline;
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectColor = yellow_color;
+                    PlayerPrefs.SetInt("characterPlayer_4", select_4 + 1);
+                    GameObject.Find("Ready_4").GetComponent<Text>().enabled = true;
+                    ready_P4 = true;
+                    cancel_4 = false;
+                }
+
+                if (Input.GetButtonDown("B_4") && ready_P4)
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectDistance = default_outline;
+                    characterTypes_P4[select_4].GetComponent<Outline>().effectColor = default_Color;
+                    PlayerPrefs.SetInt("characterPlayer_4", 0);
+                    GameObject.Find("Ready_4").GetComponent<Text>().enabled = false;
+                    ready_P4 = false;
+                    cancel_4 = true;
+                }
+                else if (Input.GetButtonDown("B_4") && ((!cancel_4 && !ready_P4) || (cancel_4)))
+                {
+                    //sounds.PlayOneShot(backButton, 4.0F);
+                    RuntimeManager.PlayOneShot("event:/BipedSeek/Menus/Back", Vector3.zero);
+                    SceneManager.LoadScene("Menu");
+                }
             }
         }
     }
 
-     void MoveRight(int whichPlayer)
+    void MoveRight(int whichPlayer)
     {
         switch (whichPlayer)
         {
