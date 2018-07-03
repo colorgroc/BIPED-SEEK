@@ -68,11 +68,14 @@ public class Menu : MonoBehaviour
         if (!musicStarted) {
             backgroudMusic = RuntimeManager.CreateInstance("event:/BipedSeek/Music/Menu");
         }
-
     }
 
     void Start()
     {
+        for(int i = 0; i < Input.GetJoystickNames().Length; i++)
+        {
+            Debug.Log("Mando " + (i + 1).ToString() + ": " + Input.GetJoystickNames()[i].Length);
+        }
         //control HZ monitors
         res = Screen.currentResolution;
         if (res.refreshRate == 60)
@@ -126,6 +129,13 @@ public class Menu : MonoBehaviour
 
     void Update()
     {
+
+        foreach(KeyCode kcode in System.Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKeyDown(kcode))
+                Debug.Log("KeyCode down: " + kcode);
+        }
+
         if (Input.GetButtonDown("Cancel") && !inMenu && !inDropdown)
         {
             BackToMenu();

@@ -116,13 +116,19 @@ public class NPCConnectedPatrol : MonoBehaviour {
 			}
 		}
 		if (this.gameObject.tag.Equals("Killer Guards") && playerOnFieldView) {
-            Debug.Log(Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position));
-            if (Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position) <= 15)
+            // Debug.Log(Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position));
+            if (Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position) <= 10)
             {
+                _navMeshAgent.isStopped = true;
                 this.anim.SetTrigger("kill");
                 //this.anim.SetBool("wannaKill", true);
-            } //else if (Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position) >= 25) this.anim.SetBool("wannaKill", false);
-            ChacePlayer (playerTarget.transform.position);
+            }
+            else
+            {
+                _navMeshAgent.isStopped = false;
+                //else if (Vector3.Distance(this.gameObject.transform.position, playerTarget.transform.position) >= 25) this.anim.SetBool("wannaKill", false);
+                ChacePlayer(playerTarget.transform.position);
+            }
 		}
         this.anim.SetBool("isWalkingForward", _travelling);
         _navMeshAgent.acceleration = PlayerPrefs.GetFloat("Speed");
@@ -225,8 +231,12 @@ public class NPCConnectedPatrol : MonoBehaviour {
         {
             GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
             int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-            gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
-            gO.gameObject.transform.parent = GameObject.Find("Guards").transform;
+            if (allMyRespawnPoints[random].transform.position != GameObject.Find("Player " + this.gameObject.name.Substring(this.gameObject.name.Length - 1)).transform.position)
+            {
+                gO.gameObject.transform.position = allMyRespawnPoints[random].transform.position;
+                gO.gameObject.transform.parent = GameObject.Find("Guards").transform;
+            }
+            
         }
         gO.gameObject.SetActive (true);
 

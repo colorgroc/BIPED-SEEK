@@ -62,52 +62,150 @@ public class PlayerControl : MonoBehaviour {
         if (this.gameObject.name.Equals("Player 1"))
         {
             this.player = PlayerIndex.One;
-            this.AxisMovement = "V_LPad_1";
-            this.AxisRotation2 = "H_LPad_1";
-            this.AxisRotation = "H_RPad_1";
-            this.AxisMovement_Arrows = "V_Arrows_1";
-            this.AxisRotation_Arrows = "H_Arrows_1";
-            this.killButton = "X_1";
-            this.hab1Button = "LB_1";
-            this.hab2Button = "RB_1";   
+            if (Input.GetJoystickNames()[0].Length == 33) //xbox
+            {
+                this.AxisMovement = "V_LPad_1";
+                this.AxisRotation2 = "H_LPad_1";
+                this.AxisRotation = "H_RPad_1";
+                this.AxisMovement_Arrows = "V_Arrows_1";
+                this.AxisRotation_Arrows = "H_Arrows_1";
+                this.killButton = "X_1";
+                this.hab1Button = "LB_1";
+                this.hab2Button = "RB_1";
+            }
+            else if (Input.GetJoystickNames()[0].Length == 19) //ps4
+            {
+                this.AxisMovement = "V_LPad_1";
+                this.AxisRotation2 = "H_LPad_1";
+                this.AxisRotation = "H_RPad_1 PS4";
+                this.AxisMovement_Arrows = "V_Arrows_1 PS4";
+                this.AxisRotation_Arrows = "H_Arrows_1 PS4";
+                this.killButton = "A_1";
+                this.hab1Button = "LB_1";
+                this.hab2Button = "RB_1";
+            }
+            else if (Input.GetJoystickNames()[0].Length == 25) //fake
+            {
+                this.AxisMovement = "V_LPad_1";
+                this.AxisRotation2 = "H_LPad_1";
+                this.AxisRotation = "H_RPad_1 Fake";
+                this.AxisMovement_Arrows = "V_Arrows_1 Fake";
+                this.AxisRotation_Arrows = "H_Arrows_1 Fake";
+                this.killButton = "Y_1";
+                this.hab1Button = "LB_1";
+                this.hab2Button = "RB_1";
+            }
         }
         else if (this.gameObject.name.Equals("Player 2"))
         {
             this.player = PlayerIndex.Two;
-            this.AxisMovement = "V_LPad_2";
-            this.AxisRotation2 = "H_LPad_2";
-            this.AxisRotation = "H_RPad_2";
-            this.AxisMovement_Arrows = "V_Arrows_2";
-            this.AxisRotation_Arrows = "H_Arrows_2";
-            this.killButton = "X_2";
-            this.hab1Button = "LB_2";
-            this.hab2Button = "RB_2";
-      
+            if (Input.GetJoystickNames()[1].Length == 33)
+            {
+                this.AxisMovement = "V_LPad_2";
+                this.AxisRotation2 = "H_LPad_2";
+                this.AxisRotation = "H_RPad_2";
+                this.AxisMovement_Arrows = "V_Arrows_2";
+                this.AxisRotation_Arrows = "H_Arrows_2";
+                this.killButton = "X_2";
+                this.hab1Button = "LB_2";
+                this.hab2Button = "RB_2";
+            }
+            else if (Input.GetJoystickNames()[1].Length == 19) //ps4
+            {
+                this.AxisMovement = "V_LPad_2";
+                this.AxisRotation2 = "H_LPad_2";
+                this.AxisRotation = "H_RPad_2 PS4";
+                this.AxisMovement_Arrows = "V_Arrows_2 PS4";
+                this.AxisRotation_Arrows = "H_Arrows_2 PS4";
+                this.killButton = "A_2";
+                this.hab1Button = "LB_2";
+                this.hab2Button = "RB_2";
+            }
+            else if (Input.GetJoystickNames()[1].Length == 25) //fake
+            {
+                this.AxisMovement = "V_LPad_2";
+                this.AxisRotation2 = "H_LPad_2";
+                this.AxisRotation = "H_RPad_2 Fake";
+                this.AxisMovement_Arrows = "V_Arrows_2 Fake";
+                this.AxisRotation_Arrows = "H_Arrows_2 Fake";
+                this.killButton = "Y_2";
+                this.hab1Button = "LB_2";
+                this.hab2Button = "RB_2";
+            }
         }
         else if (this.gameObject.name.Equals("Player 3"))
         {
             this.player = PlayerIndex.Three;
-            this.AxisMovement = "V_LPad_3";
-            this.AxisRotation2 = "H_LPad_3";
-            this.AxisRotation = "H_RPad_3";
-            this.AxisMovement_Arrows = "V_Arrows_3";
-            this.AxisRotation_Arrows = "H_Arrows_3";
-            this.killButton = "X_3";
-            this.hab1Button = "LB_3";
-            this.hab2Button = "RB_3";
-
+            if (Input.GetJoystickNames()[2].Length == 33)
+            {
+                this.AxisMovement = "V_LPad_3";
+                this.AxisRotation2 = "H_LPad_3";
+                this.AxisRotation = "H_RPad_3";
+                this.AxisMovement_Arrows = "V_Arrows_3";
+                this.AxisRotation_Arrows = "H_Arrows_3";
+                this.killButton = "X_3";
+                this.hab1Button = "LB_3";
+                this.hab2Button = "RB_3";
+            }
+            else if (Input.GetJoystickNames()[2].Length == 19) //ps4
+            {
+                this.AxisMovement = "V_LPad_3";
+                this.AxisRotation2 = "H_LPad_3";
+                this.AxisRotation = "H_RPad_3 PS4";
+                this.AxisMovement_Arrows = "V_Arrows_3 PS4";
+                this.AxisRotation_Arrows = "H_Arrows_3 PS4";
+                this.killButton = "A_3";
+                this.hab1Button = "LB_3";
+                this.hab2Button = "RB_3";
+            }
+            else if (Input.GetJoystickNames()[2].Length == 25) //fake
+            {
+                this.AxisMovement = "V_LPad_3";
+                this.AxisRotation2 = "H_LPad_3";
+                this.AxisRotation = "H_RPad_3 Fake";
+                this.AxisMovement_Arrows = "V_Arrows_3 Fake";
+                this.AxisRotation_Arrows = "H_Arrows_3 Fake";
+                this.killButton = "Y_3";
+                this.hab1Button = "LB_3";
+                this.hab2Button = "RB_3";
+            }
         }
         else if (this.gameObject.name.Equals("Player 4"))
         {
             this.player = PlayerIndex.Four;
-            this.AxisMovement = "V_LPad_4";
-            this.AxisRotation2 = "H_LPad_4";
-            this.AxisRotation = "H_RPad_4";
-            this.AxisMovement_Arrows = "V_Arrows_4";
-            this.AxisRotation_Arrows = "H_Arrows_4";
-            this.killButton = "X_4";
-            this.hab1Button = "LB_4";
-            this.hab2Button = "RB_4";
+            if (Input.GetJoystickNames()[3].Length == 33)
+            {
+                this.AxisMovement = "V_LPad_4";
+                this.AxisRotation2 = "H_LPad_4";
+                this.AxisRotation = "H_RPad_4";
+                this.AxisMovement_Arrows = "V_Arrows_4";
+                this.AxisRotation_Arrows = "H_Arrows_4";
+                this.killButton = "X_4";
+                this.hab1Button = "LB_4";
+                this.hab2Button = "RB_4";
+            }
+            else if (Input.GetJoystickNames()[3].Length == 19) //ps4
+            {
+                this.AxisMovement = "V_LPad_4";
+                this.AxisRotation2 = "H_LPad_4";
+                this.AxisRotation = "H_RPad_4 PS4";
+                this.AxisMovement_Arrows = "V_Arrows_4 PS4";
+                this.AxisRotation_Arrows = "H_Arrows_4 PS4";
+                this.killButton = "A_4";
+                this.hab1Button = "LB_4";
+                this.hab2Button = "RB_4";
+            }
+            else if (Input.GetJoystickNames()[3].Length == 25) //fake
+            {
+                this.AxisMovement = "V_LPad_4";
+                this.AxisRotation2 = "H_LPad_4";
+                this.AxisRotation = "H_RPad_4 Fake";
+                this.AxisMovement_Arrows = "V_Arrows_4 Fake";
+                this.AxisRotation_Arrows = "H_Arrows_4 Fake";
+                this.killButton = "Y_4";
+                this.hab1Button = "LB_4";
+                this.hab2Button = "RB_4";
+            }
         }
 
         if (!Tutorial_InGame.showIt && !Abilities_Tutorial.show)
@@ -135,7 +233,6 @@ public class PlayerControl : MonoBehaviour {
    
     void Update()
     {
-
         //---------------------/probar amb mandos oficials!! ----------------
         if (PlayerPrefs.GetInt("Vibration") == 0)
         {

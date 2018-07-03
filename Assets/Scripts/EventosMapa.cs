@@ -54,6 +54,8 @@ public class EventosMapa : MonoBehaviour {
                     {
                         //canvas.GetComponent<Canvas>().enabled = false;
                         timeEvent2 = 0;
+                        CameraShake.Shake(1f, 4f);
+                        RuntimeManager.PlayOneShot("event:/BipedSeek/Stuff/Event_Out", Vector3.zero);
                         Default();
 
                     }
@@ -250,9 +252,9 @@ public class EventosMapa : MonoBehaviour {
         GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPointKillers");
         for (int y = 0; y < NewControl.numKillers; y++)
         {
-            int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+            //int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
             GameObject prefabG = (GameObject)Resources.Load("Prefabs/Killer");
-            GameObject killer = (GameObject)Instantiate(prefabG, allMyRespawnPoints[rand].transform.position, allMyRespawnPoints[rand].transform.rotation);
+            GameObject killer = (GameObject)Instantiate(prefabG, allMyRespawnPoints[y].transform.position, allMyRespawnPoints[y].transform.rotation);
             killer.transform.parent = GameObject.Find("Killer Guards").transform;
             killer.gameObject.name = "Killer";
             killer.gameObject.tag = "Killer Guards";

@@ -127,16 +127,27 @@ public class NewControl : MonoBehaviour
 
         VariablesOnDefault();
         RecalculaObjetivo();
-        RespawnNPCS();
+       
+        GameObject[] allMyRespawnPoints = GameObject.FindGameObjectsWithTag("RespawnPoint");
+        listPos.Clear();
         foreach (GameObject player in players)
         {
             player.GetComponent<PlayerControl>().detected = false;
             player.GetComponent<PlayerControl>().cooledDown = false;
             player.GetComponent<PlayerControl>().timeCoolDown = player.GetComponent<PlayerControl>().coolDown;
             GameObject.Find("IconPlayer_" + player.gameObject.name.Substring(player.gameObject.name.Length - 1)).GetComponent<Image>().fillAmount = 1;
-            player.GetComponent<PlayerControl>().Respawn(player.gameObject);
+            player.GetComponent<PlayerControl>().Respawn(player.gameObject); 
+            int random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+            
+            if (listPos.Contains(random))
+            {
+                do { random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); } while (listPos.Contains(random));
+            }
+            listPos.Add(random);
+
             player.GetComponent<FieldOfView>().Start();
         }
+        RespawnNPCS();
         //eleccio objectiu
 
         timeLeft = time;//UnityEngine.Random.Range(minMinutes*60, maxMinutes * 60);
@@ -187,7 +198,7 @@ public class NewControl : MonoBehaviour
                 parcialWinner.gameObject.GetComponent<PlayerControl>().scoreGeneralRound += 40;
                 //StartGame();
                 objComplete = false;
-                this.GetComponent<EventosMapa>().Default();
+                //this.GetComponent<EventosMapa>().Default();
                 // Rondes.timesPlayed++;
                 //Ranking.OrdenarRanking();
                 rankingCanvas.SetActive(true);
@@ -411,26 +422,27 @@ public class NewControl : MonoBehaviour
             //creacion de guards x jugador 
             for (int y = 0; y < numGuardsPerType; y++)
             {
-
-                int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
-                if (listPosGuards.Contains(rand))
+                if (y != random)
                 {
-                    do { random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); } while (listPosGuards.Contains(random));
+                    //int rand = UnityEngine.Random.Range(0, allMyRespawnPoints.Length);
+                    //if (listPosGuards.Contains(rand))
+                    //{
+                    //    do { random = UnityEngine.Random.Range(0, allMyRespawnPoints.Length); } while (listPosGuards.Contains(random));
+                    //}
+                    //listPosGuards.Add(rand);
+                    //GameObject prefabG = (GameObject)Resources.Load("Prefabs/Guard_Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
+                    GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
+                    Vector3 posG = new Vector3(allMyRespawnPoints[y].transform.position.x, 10.14516f, allMyRespawnPoints[y].transform.position.z);
+                    GameObject guard = (GameObject)Instantiate(prefabG, posG, allMyRespawnPoints[y].transform.rotation);
+                    guard.transform.parent = GameObject.Find("Guards").transform;
+                    guard.gameObject.name = "Guard_Tipo " + i.ToString();
+                    guard.gameObject.tag = "Guard";
+                    guard.gameObject.layer = 9;
+                    guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material;
+                    //Destroy(guard.gameObject.GetComponentInChildren<CapsuleCollider>());
+                    Destroy(guard.gameObject.GetComponentInChildren<Kill>());
+                    AddScript(guard);
                 }
-                listPosGuards.Add(rand);
-                //GameObject prefabG = (GameObject)Resources.Load("Prefabs/Guard_Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
-                GameObject prefabG = (GameObject)Resources.Load("Prefabs/Tipo_" + PlayerPrefs.GetInt("characterPlayer_" + i.ToString()).ToString());
-                Vector3 posG = new Vector3(allMyRespawnPoints[rand].transform.position.x, 10.14516f, allMyRespawnPoints[rand].transform.position.z);
-                GameObject guard = (GameObject)Instantiate(prefabG, posG, allMyRespawnPoints[rand].transform.rotation);
-                guard.transform.parent = GameObject.Find("Guards").transform;
-                guard.gameObject.name = "Guard_Tipo " + i.ToString();
-                guard.gameObject.tag = "Guard";
-                guard.gameObject.layer = 9;
-                guard.gameObject.GetComponentInChildren<Renderer>().material = player.gameObject.GetComponentInChildren<Renderer>().material;
-                //Destroy(guard.gameObject.GetComponentInChildren<CapsuleCollider>());
-                Destroy(guard.gameObject.GetComponentInChildren<Kill>());
-                AddScript(guard);
-
             }
         }
 
